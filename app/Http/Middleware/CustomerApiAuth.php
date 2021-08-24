@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Cart;
 use Closure;
 
 class CustomerApiAuth
@@ -16,13 +17,6 @@ class CustomerApiAuth
     public function handle($request, Closure $next)
     {
         $user=auth()->guard('customer-api')->user();
-        if(!$user)
-            return [
-                'status'=>'failed',
-                'action'=>'log_out',
-                'display_message'=>'Please login to continue',
-                'data'=>[]
-            ];
 
         if(!$user->status==2)
             return [
@@ -32,7 +26,24 @@ class CustomerApiAuth
                 'data'=>[]
             ];
 
-        $request->merge(compact('user'));
+        $cart=[];
+        if($user){
+            $cart_items = Cart::where('user_id', $user->id)->get();
+            $cart_total_quantity=0;
+            foreach($cart_items as $c){
+                $cart_total_quantity++;
+                $cart[$c->product_id]=$c->quantity;
+            }
+        }else if($request->device_id){
+            $cart_items = Cart::where('device_id', $request->device_id)->get();
+            $cart_total_quantity=0;
+            foreach($cart_items as $c){
+                $cart_total_quantity++;
+                $cart[$c->product_id]=$c->quantity;
+            }
+        }
+
+        $request->merge(compact('user', 'cart', 'cart_total_quantity'));
         return $next($request);
     }
 }

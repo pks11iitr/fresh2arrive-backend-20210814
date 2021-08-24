@@ -31,3 +31,7 @@ $api->post('resend-otp', 'MobileApps\Customers\Auth\OtpController@resend');
 ///$api->post('google-login', 'MobileApps\Auth\LoginController@googleLogin');
 //test comment again
 $api->get('check-login-status', 'MobileApps\Customers\Auth\LoginController@loginCheck');
+
+
+$api->get('home', 'MobileApps\Customers\HomeController@index');
+$api->get('banner-details/{id}', 'MobileApps\Customers\HomeController@banner_details');

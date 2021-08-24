@@ -74,7 +74,7 @@ class LoginController extends Controller
         event(new SendOtp($user->mobile, $msg, 'login'));
 
         return [
-            'status'=>'failed',
+            'status'=>'success',
             'action'=>'otp_verify',
             'display_message'=>'Please verify otp to continue',
             'data'=>[]
