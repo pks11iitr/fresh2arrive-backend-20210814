@@ -55,6 +55,8 @@ class Product extends Model
         // calculate sold out stock
         //$sold_quantity=Order
         //get difference & set flag
+
+
     }
 
 

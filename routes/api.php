@@ -35,3 +35,7 @@ $api->get('check-login-status', 'MobileApps\Customers\Auth\LoginController@login
 
 $api->get('home', 'MobileApps\Customers\HomeController@index');
 $api->get('banner-details/{id}', 'MobileApps\Customers\HomeController@banner_details');
+
+$api->post('add-cart', 'MobileApps\Customers\CartController@addcart');
+$api->get('cart-details', 'MobileApps\Customers\CartController@getCartDetails');
+
