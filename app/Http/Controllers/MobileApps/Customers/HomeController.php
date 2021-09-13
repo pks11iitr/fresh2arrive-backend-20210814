@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $products=Product::active()
             ->orderBy('name', 'asc')
-            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag')
+            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty')
             ->paginate(20);
 
         Product::setCartQuantity($products, $request->cart);
@@ -54,7 +54,7 @@ class HomeController extends Controller
         $products=Product::join('banner_products', 'products.id', '=', 'banner_products.product_id')
             ->where('isactive', true)
             ->where('banner_products.banner_id', $id)
-            ->select('products.id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag')
+            ->select('products.id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty')
             ->paginate(20);
 
         Product::setCartQuantity($products, $request->cart);

@@ -206,17 +206,39 @@ class LoginController extends Controller
 
     public function loginCheck(Request $request){
         $user=auth()->guard('customer-api')->user();
-        if($user)
-            return [
-                'status'=>'success',
-                'action'=>'logged_in',
-                'display_message'=>'',
-                'data'=>[]
-            ];
+        if($user){
 
+            if(!$user->status==2)
+                return [
+                    'status'=>'failed',
+                    'action'=>'log_out',
+                    'display_message'=>'This account has been suspended',
+                    'data'=>[]
+                ];
+
+            if(empty($user->map_address)){
+                //send to address fill screen
+                return [
+                    'status'=>'success',
+                    'action'=>'fill_address',
+                    'display_message'=>'',
+                    'data'=>[]
+                ];
+            }else{
+                //send to home screen
+                return [
+                    'status'=>'success',
+                    'action'=>'',
+                    'display_message'=>'',
+                    'data'=>[]
+                ];
+            }
+        }
+
+        //send to login page
         return [
             'status'=>'failed',
-            'action'=>'log_out',
+            'action'=>'log_in',
             'display_message'=>'',
             'data'=>[]
         ];

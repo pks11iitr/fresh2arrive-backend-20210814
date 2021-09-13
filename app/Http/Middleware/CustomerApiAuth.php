@@ -18,7 +18,7 @@ class CustomerApiAuth
     {
         $user=auth()->guard('customer-api')->user();
 
-        if(!$user->status==2)
+        if($user && !$user->status==2)
             return [
                 'status'=>'failed',
                 'action'=>'log_out',
@@ -27,6 +27,7 @@ class CustomerApiAuth
             ];
 
         $cart=[];
+        $cart_total_quantity=0;
         if($user){
             $cart_items = Cart::where('user_id', $user->id)->get();
             $cart_total_quantity=0;

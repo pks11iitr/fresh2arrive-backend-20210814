@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Models\Traits\Active;
-use Google\Service\OSConfig\Inventory;
+use App\Models\Inventory;
+use App\Models\OrderDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag'];
+    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty'];
 
     protected $appends = ['percent'];
 
@@ -37,6 +38,10 @@ class Product extends Model
 
     }
 
+    public function getCutPricePerUnitAttribute($value){
+        return $value??0;
+    }
+
     public static function setCartQuantity(&$products, $cart){
         foreach($products as $p){
             $p->cart_quantity=$cart[$p->id]??0;
@@ -56,6 +61,18 @@ class Product extends Model
         //$sold_quantity=Order
         //get difference & set flag
 
+
+    }
+
+    public static function getStock($product_id){
+
+        //check for out of stock
+        $purchased_stock= Inventory::purchased_quantity([$product_id]);
+        $consumed_stock=OrderDetail::consumed_quantity([$product_id]);
+
+        $stock=($purchased_stock[$product_id]??0) - ($consumed_stock[$product_id]??0);
+
+        return $stock;
 
     }
 

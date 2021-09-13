@@ -11,102 +11,151 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addcart(Request $request){
 
-        $user=$request->user;
+    public function updateCart(Request $request){
 
-        $product=Product::active()
-            ->find($request->product_id);
-
-        if(!$product)
-            return [
-                'status'=>'failed',
-                'message'=>'Product is no longer available'
-            ];
-
-        //delete cart product
-        if(!$request->packet_count){
-            return $this->deleteCartItem($product, $user, $request->device_id);
-        }
-
-        //return $user;
         $request->validate([
-            'quantity'=>'required|integer|min:0',
-            'product_id'=>'required|integer|min:1',
+            'action'=>'required|in:increase,decrease,delete',
+            'product_id'=>'required',
+            'device_id'=>'required'
         ]);
 
-        //check for out of stock
-        $purchased_stock=Inventory::purchased_quantity([$request->product_id]);
-        $consumed_stock=OrderDetail::consumed_quantity([$request->product_id]);
+        $user=$request->user;
+        $product=Product::active()
+            ->findOrFail($request->product_id);
+
+        $cart=Cart::where('device_id', $request->device_id)
+            ->where('user_id', $user->id??null)
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        $available_stock=Product::getStock($request->product_id);
+
+        switch($request->action){
+            case 'increase':
+                $result = $this->increaseCart($request->device_id, $user, $product, $cart,$available_stock);
+                break;
+            case 'decrease':
+                $result = $this->decreaseCart($request->device_id, $user, $product, $cart);
+                break;
+            case 'delete':
+                $result = $this->deleteCart($request->device_id, $user, $product, $cart);
+                break;
+
+        }
+
+        if(is_array($result))
+            return $result;
+
+        $product_quantity = $result;
+        $cart = Cart::cartSizeAndPrice($user->id??null, $request->device_id);
+
+        return [
+            'status'=>'success',
+            'message'=>'success',
+            'data'=>compact('cart', 'product_quantity')
+        ];
+
+    }
+    private function increaseCart($device_id, $user, $product, $cart, $available_stock){
+
+        if(!$cart)
+            $quantity = $product->min_qty;
+        else
+            $quantity = $cart->quantity + 1;
 
 
-        $stock=($purchased_stock[$request->product_id]??0) - ($consumed_stock[$request->product_id]??0);
-
-        if($stock  <  $request->packet_count * $product->consumed_quantity)
+        if($quantity * $product->consumed_quantity > $available_stock)
             return [
                 'status'=>'failed',
-                'message'=>'Product is out of stock'
+                'action'=>'',
+                'display_message'=>'Product Is Out Of Stock',
+                'data'=>[]
             ];
 
-        if($request->packet_count < $product->min_qty)
-            //die;
+        if($quantity > $product->max_qty)
             return [
                 'status'=>'failed',
-                'message'=>'Minimum buy quantity is '.$product->min_qty.'.'
-            ];
-
-        if($request->packet_count > $product->max_qty)
-            return [
-                'status'=>'failed',
-                'message'=>'Maximum buy quantity is '.$product->max_qty.'.'
+                'action'=>'',
+                'display_message'=>'Max Buy Quantity Is '.$product->max_qty,
+                'data'=>[]
             ];
 
         Cart::updateOrCreate(
             [
-                'product_id'=>$request->product_id,
-                'user_id'=>$user->id,
-                'device_id'=>$request->device_id
+                'user_id'=>$user->id??null,
+                'device_id'=>$device_id,
+                'product_id'=>$product->id
             ],
             [
-                'packet_count'=>$request->packet_count,
-            ]);
+                'quantity'=>$quantity
+            ]
+        );
 
-        $cart = Cart::cartSizeAndPrice($user->id);
+        return $quantity;
 
-        return [
-            'status'=>'success',
-            'message'=>'success',
-            'data'=>compact('cart')
-        ];
 
     }
 
-    private function deleteCartItem($product, $user, $device_id){
+    private function decreaseCart($device_id, $user, $product, $cart){
 
-        $cart=Cart::where('product_id', $product->id)
-            ->where('user_id', $user->id)
-            ->where('device_id', $device_id)
-            ->first();
+        if(!$cart)
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Invalid Request',
+                'data'=>[]
+            ];
+
+        $quantity = $cart->quantity - 1;
+
+        if($quantity <= 0)
+            $cart->delete();
+        else
+            Cart::updateOrCreate(
+                [
+                    'user_id'=>$user->id??null,
+                    'device_id'=>$device_id,
+                    'product_id'=>$product->id
+                ],
+                [
+                    'quantity'=>$quantity
+                ]
+            );
+
+        return $quantity<0?0:$quantity;
+
+    }
+
+    private function deleteCart($product, $user, $device_id, $cart){
+
+        if(!$cart)
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Invalid Request',
+                'data'=>[]
+            ];
 
         $cart->delete();
 
-        $cart = Cart::cartSizeAndPrice($user->id);
-
-        return [
-            'status'=>'success',
-            'message'=>'success',
-            'data'=>compact('cart')
-        ];
+        return 0;
     }
 
     public function getCartDetails(Request $request){
+
+        $request->validate([
+            'device_id'=>'required'
+        ]);
+
         $user=$request->user;
 
         if($user){
             //die;
 
-            $items=Cart::with(['days', 'timeslot'])
+            $items=Cart::with(['product'])
                 ->where('user_id', $user->id)
+                ->where('device_id', $request->device_id)
                 ->get();
 
             if($items){

@@ -72,18 +72,27 @@ class OtpController extends Controller
 
             $token=Auth::guard('customer-api')->fromUser($user);
 
-            return [
-                'status'=>'success',
-                'action'=>'otp_verified',
-                'display_message'=>'OTP has been verified successfully',
-                'data'=>compact('token')
-            ];
+            if(empty($user->map_address)){
+                return [
+                    'status'=>'success',
+                    'action'=>'fill_address',
+                    'display_message'=>'',
+                    'data'=>compact('token')
+                ];
+            }else{
+                return [
+                    'status'=>'success',
+                    'action'=>'logged_in',
+                    'display_message'=>'',
+                    'data'=>compact('token')
+                ];
+            }
         }
 
         return [
             'status'=>'failed',
             'action'=>'incorrect_otp',
-            'display_message'=>'OTP is not correct',
+            'display_message'=>'Entered OTP is not correct',
             'data'=>[]
         ];
 
