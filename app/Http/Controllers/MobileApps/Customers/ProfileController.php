@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
     public function updateAddress(Request $request){
 
-        $user=auth()->guard('customer-api')->user();
+        $user=$request->user;
         if(!$user)
             return [
                 'status'=>'failed',
