@@ -5,9 +5,11 @@ namespace App\Http\Controllers\MobileApps\Customers;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Configuration;
+use App\Models\DeliveryPartner;
 use App\Models\Inventory;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -151,7 +153,12 @@ class CartController extends Controller
 
         $user = $request->user;
 
-        $items=Cart::with(['product'])
+        $delivery_partner='';
+        if($user){
+           $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($user->assigned_partner);
+        }
+
+        $itemsobj=Cart::with(['product'])
             ->where('user_id', $user->id)
             ->where('device_id', $request->device_id)
             ->get();
@@ -169,7 +176,7 @@ class CartController extends Controller
         $cost=0;
         $count=0;
         $items = [];
-        foreach($items as $detail){
+        foreach($itemsobj as $detail){
             $cost=$cost+$detail->product->packet_price*$detail->quantity;
             $count++;
             $items =[
@@ -190,18 +197,35 @@ class CartController extends Controller
             'item_total'=>round($cost,2),
             'echo-packing'=>0,
             'coupon_discount'=>0,
-            'total_payble'=>round($cost,2)
+            'total_payble'=>round($cost,2),
+            'wallet_balance'=>$balance
         ];
 
-        $delivery_address ='';
-        $bottom_button_text='';
-        $delivery_partner='';
+        $time_slots = TimeSlot::getAvailableTimeSlotsList(date('H:i:s'));
+
+        $delivery_address = '';
+        if($user){
+            $delivery_address = [
+                'name' => $user->name,
+                'mobile' => $user->mobile,
+                'address' => ($user->house_no??'').', '.($user->building??'').', '.($user->street??'').', '.($user->area??'').', '.($user->city??'').', '.($user->state??'').'-'.($user->pincode??'')
+            ];
+        }
+
+        if(!$user)
+            $bottom_button_text='Login to continue';
+        else{
+            if(round($cost,2) <= $balance)
+                $bottom_button_text = 'Place Order';
+            else
+                $bottom_button_text = 'Add Rs.'.(round($cost,2) - $balance).' to wallet';
+        }
 
         return [
             'status'=>'failed',
             'action'=>'',
             'display_message'=>'Invalid Request',
-            'data'=>compact('items', 'prices')
+            'data'=>compact('items', 'prices', 'time_slots', 'delivery_partner', 'bottom_button_text', 'echo_charges', 'delivery_address', 'count', 'cost')
         ];
 
 

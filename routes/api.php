@@ -41,6 +41,19 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->get('banner-details/{id}', 'MobileApps\Customers\HomeController@banner_details');
     $api->post('update-cart', 'MobileApps\Customers\CartController@updateCart');
     $api->get('cart-details', 'MobileApps\Customers\CartController@getCartDetails');
+
+    $api->get('wallet-details', 'MobileApps\Customers\WalletController@index');
+    $api->get('wallet-recharge', 'MobileApps\Customers\WalletController@index');
+    $api->get('verify-recharge', 'MobileApps\Customers\WalletController@index');
+
+    $api->post('put-order', 'MobileApps\Customers\OrderController@index');
+    $api->get('orders/{type}', 'MobileApps\Customers\OrderController@index');
+    $api->get('order-details/{id}', 'MobileApps\Customers\OrderController@index');
+    $api->get('cancel-order/{id}', 'MobileApps\Customers\OrderController@index');
+
+    $api->post('support/{id}', 'MobileApps\Customers\WalletController@index');
+    $api->get('service-areas', 'MobileApps\Customers\WalletController@index');
+    $api->get('refer-details', 'MobileApps\Customers\WalletController@index');
 });
 
 

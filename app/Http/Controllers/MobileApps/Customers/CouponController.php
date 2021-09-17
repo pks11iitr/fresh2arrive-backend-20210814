@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {
     public function list(Request $request){
+        $user = $request->user;
         if(!$user)
             return [
                 'status'=>'failed',
@@ -16,7 +17,6 @@ class CouponController extends Controller
                 'display_message'=>'Please log in to continue',
                 'data'=>[]
             ];
-        $user=$request->user;
 
         $coupons=Coupon::active()->where('expiry_date', '>',date('Y-m-d'))
             ->select('id','code','description', 'expiry_date')
@@ -38,6 +38,13 @@ class CouponController extends Controller
                 'status'=>'failed',
                 'message'=>'Please login to continue'
             ];
+
+        if($user){
+            $walletdetails=Wallet::walletdetails($user->id);
+            $balance = $walletdetails['balance'];
+        }else{
+            $balance = 0;
+        }
 
         $coupon=Coupon::where(DB::raw('BINARY code'), $request->coupon??null)
             ->first();
@@ -102,14 +109,24 @@ class CouponController extends Controller
             'item_total'=>round($cost,2),
             'echo-packing'=>$echo_charges,
             'coupon_discount'=>round($discount,2),
-            'total_payble'=>round($cost+$echo_charges-$discount,2)
+            'total_payble'=>round($cost+$echo_charges-$discount,2),
+            'wallet_balance' => $balance
         ];
+
+        if(!$user)
+            $bottom_button_text='Login to continue';
+        else{
+            if(round($cost,2) <= $balance)
+                $bottom_button_text = 'Place Order';
+            else
+                $bottom_button_text = 'Add Rs.'.(round($cost,2) - $balance).' to wallet';
+        }
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'Discount of Rs. '.$discount.' Applied Successfully',
-            'data'=>compact('prices'),
+            'data'=>compact('prices', 'bottom_button_text'),
         ];
     }
 
