@@ -17,10 +17,10 @@ class ProductFactory extends Factory
     protected $TAGS=['', 'Limited Stock', 'Deal of the day'];
     protected $COMPANY=['Fresh2Arrive', 'Manali Delights', 'Fresh Farm'];
     protected $IMAGES=[
-        'products/3/414_HALDIRAM_CHIPS2.JPG',
-'products/5/656_BICANO_NAMKEEN2.JPG',
-'products/539/911_BICANO_CHIPS2.JPG',
-'sizeimage/26/866_BICANO_NAMKEEN.JPG',
+        'products/product1.jpeg',
+'products/product2.jpeg',
+'products/product3.jpeg',
+'sizeimage/product4.jpeg',
     ];
     protected $PACK=['500-600gm', '1kg', '800-1000gm'];
 
