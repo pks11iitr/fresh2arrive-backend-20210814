@@ -27,6 +27,10 @@ class Product extends Model
         return '';
     }
 
+    public function category(){
+        return $this->belongsToMany('App\Models\Category', 'product_category', 'product_id', 'category_id');
+    }
+
 
     public function getPercentAttribute($value){
 
