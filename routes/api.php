@@ -57,4 +57,18 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
 });
 
 
+$api->group(['prefix' => 'partner'], function ($api) {
+
+    $api->get('app-version', 'MobileApps\VersionController@version');
+    $api->post('login-with-otp', 'MobileApps\Partners\Auth\LoginController@login_with_otp');
+    $api->post('verify-otp', 'MobileApps\Partners\Auth\OtpController@verify');
+    $api->post('resend-otp', 'MobileApps\Partners\Auth\OtpController@resend');
+    $api->get('check-login-status', 'MobileApps\Partners\Auth\LoginController@loginCheck');
+
+    //therapist apis
+    $api->group(['middleware' => ['partner-auth']], function ($api) {
+
+    });
+
+});
 

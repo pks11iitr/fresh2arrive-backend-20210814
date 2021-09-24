@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Cart;
 use Closure;
 
 class PartnerApiAuth
@@ -15,24 +16,19 @@ class PartnerApiAuth
      */
     public function handle($request, Closure $next)
     {
-        $user=auth()->guard('partner-api')->user();
-        if(!$user)
-            return [
-                'status'=>'failed',
-                'action'=>'log_out',
-                'display_message'=>'Please login to continue',
-                'data'=>[]
-            ];
 
-        if(!$user->status==2)
+        $user = auth()->guard('partner-api')->user();
+
+        if ($user && !$user->status == 2)
             return [
-                'status'=>'failed',
-                'action'=>'log_out',
-                'display_message'=>'This account has been suspended',
-                'data'=>[]
+                'status' => 'failed',
+                'action' => 'log_out',
+                'display_message' => 'This account has been suspended',
+                'data' => []
             ];
 
         $request->merge(compact('user'));
         return $next($request);
+
     }
 }

@@ -12,6 +12,8 @@ class HomeController extends Controller
 {
     public function index(Request $request){
 
+        $user = $request->user;
+
         if(empty($request->page) || $request->page==1){
             $categories=Category::active()
                 ->select('name', 'image', 'id')
@@ -37,11 +39,14 @@ class HomeController extends Controller
         $cart_total_quantity=$request->cart_total_quantity;
         Product::setLimitedStock($products);
 
+
+        $partner = $user->partner->name??'';
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner')
         ];
     }
 
