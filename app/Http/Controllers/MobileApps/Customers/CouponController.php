@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Configuration;
 use App\Models\Coupon;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
+use DB;
 
 class CouponController extends Controller
 {
@@ -31,18 +34,19 @@ class CouponController extends Controller
         ];
     }
 
-    public function applyCoupon(Request $request){
+    public function apply(Request $request){
 
-        $user= auth()->guard('customerapi')->user();
+        $user = $request->user;
         if(!$user)
             return [
                 'status'=>'failed',
-                'message'=>'Please login to continue'
+                'action'=>'log_in',
+                'display_message'=>'Please log in to continue',
+                'data'=>[]
             ];
 
         if($user){
-            $walletdetails=Wallet::walletdetails($user->id);
-            $balance = $walletdetails['balance'];
+            $balance=Wallet::balance($user->id);
         }else{
             $balance = 0;
         }
