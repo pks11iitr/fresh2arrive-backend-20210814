@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Configuration;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function initiateOrder(Request $request){
+    public function create(Request $request){
 
         $user=$request->user;
         if(!$user)
@@ -22,14 +22,33 @@ class OrderController extends Controller
         if(empty($request->cart)){
             return [
                 'status'=>'failed',
-                'action'=>'',
+                'action'=>'open_home',
                 'display_message'=>'Shopping cart is empty',
                 'data'=>[]
             ];
         }
 
-        $product = Product::whereIn('id', array_key($request->cart))
-            get()
+
+
+
+
+
+
+
+
+    }
+
+
+    public function list(Request $request, $type){
+
+    }
+
+
+    public function details(Request $request, $id){
+
+    }
+
+    public function cancel(Request $request, $id){
 
     }
 

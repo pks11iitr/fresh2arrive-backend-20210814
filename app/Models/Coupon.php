@@ -2,14 +2,26 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Active;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
-    use HasFactory;
+    use HasFactory, Active;
 
     protected $table = 'coupons';
+
+    protected $fillable =[
+        'code',
+        'discount_type',
+        'discount',
+        'isactive',
+        'minimum_order',
+        'maximum_discount',
+        'expiry_date',
+        'usage_type'
+    ];
 
 
     public function getUserEligibility($user){

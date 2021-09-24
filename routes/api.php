@@ -42,14 +42,17 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->post('update-cart', 'MobileApps\Customers\CartController@updateCart');
     $api->get('cart-details', 'MobileApps\Customers\CartController@getCartDetails');
 
+    $api->post('apply-coupon', 'MobileApps\Customers\CouponController@apply');
+    $api->get('coupons-list', 'MobileApps\Customers\CouponController@list');
+
     $api->get('wallet-details', 'MobileApps\Customers\WalletController@index');
     $api->post('add-money', 'MobileApps\Customers\WalletController@addMoney');
     $api->post('verify-payment', 'MobileApps\Customers\WalletController@verifyRecharge');
 
-    $api->post('put-order', 'MobileApps\Customers\OrderController@index');
-    $api->get('orders/{type}', 'MobileApps\Customers\OrderController@index');
-    $api->get('order-details/{id}', 'MobileApps\Customers\OrderController@index');
-    $api->get('cancel-order/{id}', 'MobileApps\Customers\OrderController@index');
+    $api->post('put-order', 'MobileApps\Customers\OrderController@create');
+    $api->get('orders/{type}', 'MobileApps\Customers\OrderController@list');
+    $api->get('order-details/{id}', 'MobileApps\Customers\OrderController@details');
+    $api->get('cancel-order/{id}', 'MobileApps\Customers\OrderController@cancel');
 
     $api->post('support/{id}', 'MobileApps\Customers\WalletController@index');
     $api->get('service-areas', 'MobileApps\Customers\WalletController@index');

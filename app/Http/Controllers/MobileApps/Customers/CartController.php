@@ -225,7 +225,7 @@ class CartController extends Controller
         return [
             'status'=>'success',
             'action'=>'',
-            'display_message'=>'success',
+            'display_message'=>'',
             'data'=>compact('items', 'prices', 'time_slots', 'delivery_partner', 'bottom_button_text', 'echo_charges', 'delivery_address', 'count', 'cost')
         ];
 
