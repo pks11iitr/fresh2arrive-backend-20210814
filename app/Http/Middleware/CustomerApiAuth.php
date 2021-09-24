@@ -31,16 +31,20 @@ class CustomerApiAuth
         if($user){
             $cart_items = Cart::where('user_id', $user->id)->get();
             $cart_total_quantity=0;
+            $i=0;
             foreach($cart_items as $c){
                 $cart_total_quantity++;
-                $cart[$c->product_id]=$c->quantity;
+                $cart[$i]=$c->quantity;
+                $i++;
             }
         }else if($request->device_id){
             $cart_items = Cart::where('device_id', $request->device_id)->get();
             $cart_total_quantity=0;
+            $i=0;
             foreach($cart_items as $c){
                 $cart_total_quantity++;
-                $cart[$c->product_id]=$c->quantity;
+                $cart[$i]=$c->quantity;
+                $i++;
             }
         }
 

@@ -10,6 +10,7 @@ use App\Models\Inventory;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\TimeSlot;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -167,8 +168,8 @@ class CartController extends Controller
         $echo_charges = $echo_charges->value??0;
 
         if($user){
-            $walletdetails=Wallet::walletdetails($user->id);
-            $balance = $walletdetails['balance'];
+            $balance=Wallet::balance($user->id);
+            //$balance = $walletdetails['balance'];
         }else{
             $balance = 0;
         }
