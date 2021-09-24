@@ -33,6 +33,14 @@ class Cart extends Model
 
     }
 
+
+    public function attachCartItems($user_id, $device_id){
+
+        Cart::where('device_id', $device_id)
+            ->update(['user_id'=>$user_id]);
+
+    }
+
     public function product(){
         return $this->belongsTo('App\Models\Product', 'product_id');
     }

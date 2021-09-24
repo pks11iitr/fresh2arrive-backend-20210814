@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Customers\Auth;
 
 use App\Events\SendOtp;
+use App\Models\Cart;
 use App\Models\Customer;
 use App\Models\OTPModel;
 use Illuminate\Http\Request;
@@ -69,6 +70,8 @@ class OtpController extends Controller
             $user->notification_token=$request->notification_token;
             $user->status=1;
             $user->save();
+
+            Cart::attachCartItems($user->id, $request->device_id);
 
             $token=Auth::guard('customer-api')->fromUser($user);
 
