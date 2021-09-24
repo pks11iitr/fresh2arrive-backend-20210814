@@ -22,12 +22,11 @@ class Wallet extends Model
         'payment_id',
         'payment_id_response',
         'user_id',
-        'amount_type',
-        'created_at'];
+        'amount_type'];
 
     protected $hidden=[ 'updated_at', 'deleted_at','iscomplete', 'order_id_response', 'payment_id', 'payment_id_response', 'order_id', 'balance'];
 
-    protected $appends=['icon','date'];
+    protected $appends=['date', 'time'];
 
     public static function balance($userid){
         $wallet=Wallet::where('user_id', $userid)
@@ -76,16 +75,20 @@ class Wallet extends Model
         ];
     }
 
-    public function getIconAttribute($value){
-        if($this->type=='Debit')
-            return Storage::url('images/red.png');
-        else
-            return Storage::url('images/green.png');
-
-    }
+//    public function getIconAttribute($value){
+//        if($this->type=='Debit')
+//            return Storage::url('images/red.png');
+//        else
+//            return Storage::url('images/green.png');
+//
+//    }
 
     public function getDateAttribute($value){
-        return date('h:iA', strtotime($this->created_at));
+        return date('d M y', strtotime($this->created_at));
+    }
+
+    public function getTimeAttribute($value){
+        return date('h:i A', strtotime($this->created_at));
     }
 
     public function customer()

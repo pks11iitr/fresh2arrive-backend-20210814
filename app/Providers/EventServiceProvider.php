@@ -31,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\OrderConfirmed'=>[
             'App\Listeners\OrderConfirmListner'
         ],
+        'App\Events\RechargeConfirmed'=>[
+            'App\Listeners\RechargeConfirmListner'
+        ],
     ];
 
     /**

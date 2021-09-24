@@ -43,8 +43,8 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->get('cart-details', 'MobileApps\Customers\CartController@getCartDetails');
 
     $api->get('wallet-details', 'MobileApps\Customers\WalletController@index');
-    $api->get('wallet-recharge', 'MobileApps\Customers\WalletController@index');
-    $api->get('verify-recharge', 'MobileApps\Customers\WalletController@index');
+    $api->post('add-money', 'MobileApps\Customers\WalletController@addMoney');
+    $api->post('verify-payment', 'MobileApps\Customers\WalletController@verifyRecharge');
 
     $api->post('put-order', 'MobileApps\Customers\OrderController@index');
     $api->get('orders/{type}', 'MobileApps\Customers\OrderController@index');
