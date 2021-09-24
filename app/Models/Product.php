@@ -18,13 +18,17 @@ class Product extends Model
 
     protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty'];
 
-    protected $appends = ['percent'];
+    protected $appends = ['percent', 'commisions'];
 
     public function getImageAttribute($value){
         if($value)
             return Storage::url($value);
 
         return '';
+    }
+
+    public function getCommissionAttribute($value){
+        return floor($value*$this->packet_price/100);
     }
 
     public function category(){
