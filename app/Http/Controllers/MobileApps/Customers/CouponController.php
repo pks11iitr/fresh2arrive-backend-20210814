@@ -91,7 +91,7 @@ class CouponController extends Controller
             $count++;
         }
 
-        $discount=Cart::getCouponDiscount($items, $coupon)??0;
+        $discount=Coupon::getCouponDiscount($cost)??0;
 
         if($discount <= 0 || $discount > $cost)
         {
