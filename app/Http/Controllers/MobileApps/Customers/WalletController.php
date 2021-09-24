@@ -32,7 +32,7 @@ class WalletController extends Controller
                 ->whereIn('amount_type', ['CASH','POINT'])
                 ->select('amount', 'created_at', 'description', 'type', 'balance')
                 ->orderBy('id', 'desc')
-                ->paginate(20);
+                ->paginate(15);
             //return $historyobj;
 //            foreach($historyobj as $h){
 //                $wallet_transactions[] =[
