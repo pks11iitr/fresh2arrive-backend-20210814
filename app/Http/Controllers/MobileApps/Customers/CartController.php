@@ -223,9 +223,9 @@ class CartController extends Controller
         }
 
         return [
-            'status'=>'failed',
+            'status'=>'success',
             'action'=>'',
-            'display_message'=>'Invalid Request',
+            'display_message'=>'success',
             'data'=>compact('items', 'prices', 'time_slots', 'delivery_partner', 'bottom_button_text', 'echo_charges', 'delivery_address', 'count', 'cost')
         ];
 
