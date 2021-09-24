@@ -38,4 +38,8 @@ class Customer extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'assigned_partner');
+    }
+
 }

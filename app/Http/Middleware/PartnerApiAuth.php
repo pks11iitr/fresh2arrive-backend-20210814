@@ -19,6 +19,14 @@ class PartnerApiAuth
 
         $user = auth()->guard('partner-api')->user();
 
+        if(!$user)
+            return [
+                'status'=>'failed',
+                'action'=>'log_in',
+                'display_message'=>'Please log in to continue',
+                'data'=>[]
+            ];
+
         if ($user && !$user->status == 2)
             return [
                 'status' => 'failed',
