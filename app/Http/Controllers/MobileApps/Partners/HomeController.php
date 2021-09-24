@@ -13,7 +13,7 @@ class HomeController extends Controller
 
         $user = $request->user;
 
-        $name = $user->name;
+        $name = $user->name??'Not Specified';
 
         $banners=Banner::active()
             ->select('id','image', 'type')
