@@ -16,9 +16,9 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty'];
+    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions'];
 
-    protected $appends = ['percent', 'commisions'];
+    protected $appends = ['percent'];
 
     public function getImageAttribute($value){
         if($value)
