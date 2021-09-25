@@ -33,10 +33,11 @@ $api->post('resend-otp', 'MobileApps\Customers\Auth\OtpController@resend');
 $api->get('check-login-status', 'MobileApps\Customers\Auth\LoginController@loginCheck');
 
 $api->post('check-location', 'MobileApps\Customers\LocationController@getLocation');
-$api->post('update-address', 'MobileApps\Customers\ProfileController@updateAddress');
+
 
 
 $api->group(['middleware' => ['customer-auth']], function ($api) {
+    $api->post('update-address', 'MobileApps\Customers\ProfileController@updateAddress');
     $api->get('home', 'MobileApps\Customers\HomeController@index');
     $api->get('banner-details/{id}', 'MobileApps\Customers\HomeController@banner_details');
     $api->post('update-cart', 'MobileApps\Customers\CartController@updateCart');
