@@ -27,12 +27,15 @@ class WalletController extends Controller
 
         $wallet_transactions=[];
         if ($user) {
+            die;
             $wallet_transactions = Wallet::where('user_id', $user->id)
                 ->where('iscomplete', true)
                 ->whereIn('amount_type', ['CASH','POINT'])
-                ->select('amount', 'created_at', 'description', 'type', 'balance')
+                ->select('amount', 'created_at', 'description', 'type', 'balance', 'created_at')
                 ->orderBy('id', 'desc')
                 ->paginate(15);
+            //return $wallet_transactions;
+
             //return $historyobj;
 //            foreach($historyobj as $h){
 //                $wallet_transactions[] =[

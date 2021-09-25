@@ -22,9 +22,11 @@ class Wallet extends Model
         'payment_id',
         'payment_id_response',
         'user_id',
-        'amount_type'];
+        'amount_type',
+        'balance'
+        ];
 
-    protected $hidden=[ 'updated_at', 'deleted_at','iscomplete', 'order_id_response', 'payment_id', 'payment_id_response', 'order_id', 'balance'];
+    protected $hidden=[ 'updated_at', 'deleted_at','iscomplete', 'order_id_response', 'payment_id', 'payment_id_response', 'order_id'];
 
     protected $appends=['date', 'time'];
 
