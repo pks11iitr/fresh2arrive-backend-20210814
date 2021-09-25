@@ -27,7 +27,7 @@ class WalletController extends Controller
 
         $wallet_transactions=[];
         if ($user) {
-            die;
+            //die;
             $wallet_transactions = Wallet::where('user_id', $user->id)
                 ->where('iscomplete', true)
                 ->whereIn('amount_type', ['CASH','POINT'])
