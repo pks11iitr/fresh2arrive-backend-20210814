@@ -27,7 +27,7 @@ class Product extends Model
         return '';
     }
 
-    public function getCommissionAttribute($value){
+    public function getCommissionsAttribute($value){
         return floor($value*$this->packet_price/100);
     }
 
