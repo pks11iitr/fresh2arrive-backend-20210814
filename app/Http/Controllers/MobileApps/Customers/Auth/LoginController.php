@@ -216,7 +216,7 @@ class LoginController extends Controller
                     'data'=>[]
                 ];
 
-            if(empty($user->map_address)){
+            if(empty($user->map_json)){
                 //send to address fill screen
                 return [
                     'status'=>'success',
