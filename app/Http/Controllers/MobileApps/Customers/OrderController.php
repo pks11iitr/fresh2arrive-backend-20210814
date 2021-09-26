@@ -296,7 +296,8 @@ class OrderController extends Controller
             'delivery_address'=>$delivery_address,
             'status'=>$order->status,
             'items'=>$items,
-            'prices'=>$prices
+            'prices'=>$prices,
+            'show_cancel'=>($order->status=='confirmed')?1:0
         ];
 
 
