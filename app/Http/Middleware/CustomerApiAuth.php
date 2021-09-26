@@ -29,7 +29,11 @@ class CustomerApiAuth
         $cart=[];
         $cart_total_quantity=0;
         if($user){
-            $cart_items = Cart::where('user_id', $user->id)->get();
+            $cart_items = Cart::where('user_id', $user->id)
+                ->whereHas('product', function($product){
+                    $product->where('products.isactive', true);
+                })
+                ->get();
             $cart_total_quantity=0;
             $i=0;
             foreach($cart_items as $c){
@@ -38,7 +42,11 @@ class CustomerApiAuth
                 $i++;
             }
         }else if($request->device_id){
-            $cart_items = Cart::where('device_id', $request->device_id)->get();
+            $cart_items = Cart::where('device_id', $request->device_id)
+                ->whereHas('product', function($product){
+                    $product->where('products.isactive', true);
+                })
+                ->get();
             $cart_total_quantity=0;
             $i=0;
             foreach($cart_items as $c){

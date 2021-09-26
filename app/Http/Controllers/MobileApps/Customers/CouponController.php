@@ -73,6 +73,9 @@ class CouponController extends Controller
         }
 
         $items=Cart::with(['product'])
+            ->whereHas('product', function($product){
+                $product->where('products.isactive', true);
+            })
             ->where('user_id', $user->id)
             ->get();
 

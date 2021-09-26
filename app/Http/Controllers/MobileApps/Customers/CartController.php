@@ -68,7 +68,7 @@ class CartController extends Controller
         else
             $quantity = $cart->quantity + 1;
 
-
+        //echo $available_stock;die;
         if($quantity * $product->consumed_quantity > $available_stock)
             return [
                 'status'=>'failed',
@@ -160,6 +160,9 @@ class CartController extends Controller
         }
 
         $itemsobj=Cart::with(['product'])
+            ->whereHas('product', function($product){
+                $product->where('products.isactive', true);
+            })
             ->where('user_id', $user->id)
             ->where('device_id', $request->device_id)
             ->get();
