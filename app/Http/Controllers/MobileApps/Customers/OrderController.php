@@ -199,7 +199,7 @@ class OrderController extends Controller
                 ->where('is_paid',true)
                 ->where('status', 'cancelled')
                 ->withCount('details')
-                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+               // ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
                 ->paginate(10);
         }else if($type == 'delivered'){
             $orders = Order::where('user_id', $user->id)
@@ -207,7 +207,7 @@ class OrderController extends Controller
                 ->where('is_paid',true)
                 ->withCount('details')
                 ->where('status', 'delivered')
-                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+                //->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
                 ->paginate(10);
         }
 
