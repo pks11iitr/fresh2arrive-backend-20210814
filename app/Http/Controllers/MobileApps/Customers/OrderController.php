@@ -191,7 +191,7 @@ class OrderController extends Controller
                 ->where('is_paid',true)
                 ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
                 ->withCount('details')
-                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+                //->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
                 ->paginate(10);
         }else if($type == 'cancelled'){
             $orders = Order::where('user_id', $user->id)
