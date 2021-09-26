@@ -19,11 +19,32 @@ class Order extends Model
         'coupon_discount',
         'delivery_date',
         'delivery_slot',
-        'echo_charges'
+        'delivery_time',
+        'echo_charges',
+        'status',
+        'delivery_partner'
     ];
+
+    protected $appends = ['placed_on', 'delivery_schedule'];
+
+    public function getPlacedOnAttribute($value){
+        return date('D, d M Y, h:i A', strtotime($this->created_at));
+    }
+
+
+    public function getDeliveryScheduleAttribute($value){
+        return date('D, d M Y, ', strtotime($this->delivery_date)).$this->delivery_time;
+    }
+
+
 
 
     public function details(){
         return $this->hasMany('App\Models\OrderDetail', 'order_id');
+    }
+
+
+    public function partner(){
+        return $this->belongsTo('App\Models\Partner', 'delivery_partner');
     }
 }

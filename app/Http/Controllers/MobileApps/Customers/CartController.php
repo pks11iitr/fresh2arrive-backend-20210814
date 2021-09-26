@@ -186,6 +186,7 @@ class CartController extends Controller
             $items =[
                 'id'=>$detail->product_id,
                 'name'=>$detail->product->name,
+                'company'=>$detail->product->company,
                 'image'=>$detail->product->image,
                 'display_pack_size'=>$detail->product->display_pack_size,
                 'price_per_unit'=>$detail->product->price_per_unit,

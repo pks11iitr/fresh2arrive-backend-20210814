@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Configuration;
 use App\Models\Coupon;
+use App\Models\DeliveryPartner;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use DB;
@@ -62,6 +64,8 @@ class OrderController extends Controller
                 'product_id'=>$detail->product_id,
                 'image'=>$detail->product->getRawOriginal('image'),
                 'name'=>$detail->product->name,
+                'company'=>$detail->product->company,
+                'display_pack_size'=>$detail->product->display_pack_size,
                 'price'=>$detail->product->price_per_unit,
                 'cut_price'=>$detail->product->cut_price_per_unit,
                 'unit_name'=>$detail->product->unit_name,
@@ -125,6 +129,17 @@ class OrderController extends Controller
 
         $refid=rand(0,9).date('YmdHis');
 
+        $deliveryslot=explode('**', $request->timeslot)[1];
+        $ts=TimeSlot::find($deliveryslot);
+        if(!$ts)
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Delivery Slot is not valid',
+                'data'=>[],
+            ];
+
+
         $order = Order::create([
             'refid'=>$refid,
             'user_id'=>$request->user->id,
@@ -134,6 +149,8 @@ class OrderController extends Controller
             'echo_charges'=>$echo_charges,
             'delivery_date'=>explode('**', $request->timeslot)[0],
             'delivery_slot'=>explode('**', $request->timeslot)[1],
+            'delivery_time'=>$ts->name,
+            'delivery_partner'=>$user->assigned_partner
         ]);
 
         Wallet::updatewallet($user->id, 'Paid for Order: '.$refid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', $order->id);
@@ -141,13 +158,14 @@ class OrderController extends Controller
         $order->details()->saveMany($details);
 
         $order->is_paid=1;
+        $order->status='confirmed';
         $order->save();
 
 //        Cart::where('user_id', $user->id)
 //            ->delete();
 
         return [
-            'status'=>'successfully',
+            'status'=>'success',
             'action'=>'',
             'display_message'=>'Order Placed Successfully',
             'data'=>[
@@ -157,17 +175,186 @@ class OrderController extends Controller
 
     }
 
-
     public function list(Request $request, $type){
+        $user=$request->user;
+        if(!$user)
+            return [
+                'status'=>'failed',
+                'action'=>'log_in',
+                'display_message'=>'Please log in to continue',
+                'data'=>[]
+            ];
 
+        if($type=='active'){
+            $orders = Order::where('user_id', $user->id)
+                ->orderBy('id', 'desc')
+                ->where('is_paid',true)
+                ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
+                ->withCount('details')
+                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+                ->paginate(10);
+        }else if($type == 'cancelled'){
+            $orders = Order::where('user_id', $user->id)
+                ->orderBy('id', 'desc')
+                ->where('is_paid',true)
+                ->where('status', 'cancelled')
+                ->withCount('details')
+                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+                ->paginate(10);
+        }else if($type == 'delivered'){
+            $orders = Order::where('user_id', $user->id)
+                ->orderBy('id', 'desc')
+                ->where('is_paid',true)
+                ->withCount('details')
+                ->where('status', 'delivered')
+                ->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
+                ->paginate(10);
+        }
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Order Placed Successfully',
+            'data'=>compact('orders')
+        ];
     }
 
 
     public function details(Request $request, $id){
 
+        $user=$request->user;
+        if(!$user)
+            return [
+                'status'=>'failed',
+                'action'=>'log_in',
+                'display_message'=>'Please log in to continue',
+                'data'=>[]
+            ];
+
+        $order = Order::with('details')
+            ->withCount('details')
+            ->where('user_id', $user->id)
+            ->where('is_paid', true)
+            ->find($id);
+        //return $order;
+        if(!$order){
+            return [
+                'status'=>'failed',
+                'action'=>'open_home',
+                'display_message'=>'No such order found',
+                'data'=>[]
+            ];
+        }
+
+        $cost=0;
+        $count=0;
+        foreach($order->details as $detail){
+            $cost=$cost+$detail->packet_price*$detail->packet_count;
+            $count++;
+            $items[] =[
+                'id'=>$detail->product_id,
+                'name'=>$detail->name,
+                'company'=>$detail->company,
+                'image'=>$detail->image,
+                'display_pack_size'=>$detail->display_pack_size,
+                'price_per_unit'=>$detail->price,
+                'cut_price_per_unit'=>$detail->cut_price,
+                'unit_name'=>$detail->unit_name,
+                'packet_price'=>$detail->packet_price,
+                'percent'=>$detail->percent,
+            ];
+        }
+
+        $delivery_partner='';
+        if($user){
+            $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($order->delivery_partner);
+        }
+
+        $delivery_address = '';
+        if($user){
+            $delivery_address = [
+                'name' => $user->name,
+                'mobile' => $user->mobile,
+                'address' => ($user->house_no??'').', '.($user->building??'').', '.($user->street??'').', '.($user->area??'').', '.($user->city??'').', '.($user->state??'').'-'.($user->pincode??'')
+            ];
+        }
+
+        $prices=[
+            'item_count'=>$count,
+            'item_total'=>round($cost,2),
+            'echo-packing'=>$order->echo_charges??0,
+            'coupon_discount'=>$order->coupon_discount,
+            'total_payble'=>round($cost,2)+($order->echo_charges??0)-$order->coupon_discount,
+        ];
+
+        $data=[
+            'id'=>$order->id,
+            'refid'=>$order->refid,
+            'details_count'=>$order->details_count,
+            'delivery_schedule'=>$order->delivery_schedule,
+            'delivery_partner'=>$delivery_partner,
+            'delivery_address'=>$delivery_address,
+            'status'=>$order->status,
+            'items'=>$items,
+            'prices'=>$prices
+        ];
+
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>$data
+        ];
+
     }
 
     public function cancel(Request $request, $id){
+        $user=$request->user;
+        if(!$user)
+            return [
+                'status'=>'failed',
+                'action'=>'log_in',
+                'display_message'=>'Please log in to continue',
+                'data'=>[]
+            ];
+
+        $order = Order::where('user_id', $user->id)
+            ->where('is_paid', true)
+            ->find($id);
+
+        if(!$order){
+            return [
+                'status'=>'failed',
+                'action'=>'open_home',
+                'display_message'=>'No such order found',
+                'data'=>[]
+            ];
+        }
+
+        if($order->status!='confirmed'){
+            return [
+                'status'=>'failed',
+                'action'=>'open_home',
+                'display_message'=>'Order cannot be cancelled',
+                'data'=>[]
+            ];
+        }
+
+        $balance = $order->order_total+$order->echo_charges-$order->coupon_discount;
+
+        $order->status='cancelled';
+        $order->save();
+
+
+        Wallet::updatewallet($user->id, 'Refund for order: '.$order->refid, 'Credit', $balance, 'CASH', $order->id);
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Order has been cancelled',
+            'data'=>[]
+        ];
 
     }
 
