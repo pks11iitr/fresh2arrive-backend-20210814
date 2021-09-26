@@ -215,6 +215,7 @@ class CartController extends Controller
                 'unit_name'=>$detail->product->unit_name,
                 'packet_price'=>$detail->product->packet_price,
                 'percent'=>$detail->product->percent,
+                'quantity'=>$detail->quantity
             ];
         }
 
