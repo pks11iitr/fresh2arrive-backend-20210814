@@ -28,10 +28,18 @@ class CartController extends Controller
         $product=Product::active()
             ->findOrFail($request->product_id);
 
-        $cart=Cart::where('device_id', $request->device_id)
-            ->where('user_id', $user->id??null)
-            ->where('product_id', $request->product_id)
-            ->first();
+        if($user){
+            $cart=Cart:://where('device_id', $request->device_id)
+                where('user_id', $user->id??null)
+                ->where('product_id', $request->product_id)
+                ->first();
+        }else{
+            $cart=Cart::where('device_id', $request->device_id)
+                //->where('user_id', $user->id??null)
+                ->where('product_id', $request->product_id)
+                ->first();
+        }
+
 
         $available_stock=Product::getStock($request->product_id);
 
@@ -96,6 +104,8 @@ class CartController extends Controller
             ]
         );
 
+
+
         return $quantity;
 
 
@@ -159,13 +169,24 @@ class CartController extends Controller
            $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($user->assigned_partner);
         }
 
-        $itemsobj=Cart::with(['product'])
-            ->whereHas('product', function($product){
-                $product->where('products.isactive', true);
-            })
-            ->where('user_id', $user->id)
-            ->where('device_id', $request->device_id)
-            ->get();
+        if($user){
+            $itemsobj=Cart::with(['product'])
+                ->whereHas('product', function($product){
+                    $product->where('products.isactive', true);
+                })
+                ->where('user_id', $user->id)
+                //->where('device_id', $request->device_id)
+                ->get();
+        }else{
+            $itemsobj=Cart::with(['product'])
+                ->whereHas('product', function($product){
+                    $product->where('products.isactive', true);
+                })
+                //->where('user_id', $user->id)
+                ->where('device_id', $request->device_id)
+                ->get();
+        }
+
 
         $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
         $echo_charges = $echo_charges->value??0;
@@ -183,7 +204,7 @@ class CartController extends Controller
         foreach($itemsobj as $detail){
             $cost=$cost+$detail->product->packet_price*$detail->quantity;
             $count++;
-            $items =[
+            $items[] =[
                 'id'=>$detail->product_id,
                 'name'=>$detail->product->name,
                 'company'=>$detail->product->company,
