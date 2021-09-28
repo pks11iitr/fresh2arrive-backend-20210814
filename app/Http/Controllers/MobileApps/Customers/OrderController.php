@@ -214,7 +214,7 @@ class OrderController extends Controller
         return [
             'status'=>'success',
             'action'=>'',
-            'display_message'=>'Order Placed Successfully',
+            'display_message'=>'',
             'data'=>compact('orders')
         ];
     }

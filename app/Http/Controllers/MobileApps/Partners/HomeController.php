@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class HomeController extends Controller
 
         $user = $request->user;
 
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 days'));
+
         $name = $user->name??'Not Specified';
 
         $banners=Banner::active()
@@ -20,11 +24,22 @@ class HomeController extends Controller
             ->orderBy('sequence_no', 'asc')
             ->get();
 
+        $today_deliveries = Order::where('delivery_partner', $user->id)
+            ->where('delivery_date', $today)
+            ->count();
+        $tomorrow_orders = Order::where('delivery_partner', $user->id)
+            ->where('delivery_date', $tomorrow)
+            ->count();
+        $today_delivered = Order::where('delivery_partner', $user->id)
+            ->where('delivery_date', $today)
+            ->where('status', 'delivered')
+            ->count();
+
         $orders=[
 
-            'tomorrow_orders'=>rand(5,20),
-            'today_deliveries'=>rand(10,20),
-            'today_delivered'=>rand(5,10),
+            'tomorrow_orders'=>$tomorrow_orders,
+            'today_deliveries'=>$today_delivered,
+            'today_delivered'=>$today_deliveries,
             'todays_earning'=>rand(100, 500)
 
         ];
