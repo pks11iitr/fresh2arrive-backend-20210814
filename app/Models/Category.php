@@ -14,7 +14,7 @@ class Category extends Model
     protected $table = 'categories';
 
 
-    protected $fillable=['name', 'image', 'isactive'];
+    protected $fillable=['name', 'image', 'isactive', 'earn_upto'];
 
     public function getImageAttribute($value){
         if($value)

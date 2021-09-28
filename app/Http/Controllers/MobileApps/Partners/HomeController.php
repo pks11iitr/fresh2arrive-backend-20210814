@@ -4,9 +4,12 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
+use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -35,29 +38,51 @@ class HomeController extends Controller
             ->where('status', 'delivered')
             ->count();
 
-        $orders=[
+        $commissions = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->where('order_details.status', '=', 'delivered')
+            ->where('orders.delivery_date', $today)
+            ->where('orders.delivery_partner', $user->id)
+            ->sum(DB::raw('order_details.packet_count*products.packet_price*products.commissions'));
 
+        $today_earnings = round($commissions/100);
+
+        $orders=[
             'tomorrow_orders'=>$tomorrow_orders,
             'today_deliveries'=>$today_delivered,
             'today_delivered'=>$today_deliveries,
-            'todays_earning'=>rand(100, 500)
-
+            'todays_earning'=>$today_earnings
         ];
 
 
         $earnings=[
-            'percentage'=>'15&',
+            'percentage'=>'15%',
             'quantity'=>'all'
         ];
 
+        $top_skus = OrderDetail::join('products', 'products.id', '=', 'order_details.product_id')
+            //->where('order_details.status', '=', 'delivered')
+            ->groupBy('order_details.product_id')
+            ->select(DB::raw('sum(order_details.packet_count*products.packet_price)  as sum'), 'products.id')
+            ->orderBy('sum', 'desc')
+            ->skip(0)
+            ->take(10)
+            ->get();
 
-        $products = Product::active()->skip(0)->limit(10);
+        $top_sku_ids = $top_skus->map(function($element){
+            return $element->id;
+        })->toArray();
+
+        $products = Product::active()
+            ->whereIn('id', $top_sku_ids)
+            ->get();
 
         $top_skus = compact('products');
 
+        $category_earnings = Category::active()
+            ->get();
 
-
-        return compact('banners', 'name', 'top_skus', 'earnings', 'orders');
+        return compact('banners', 'name', 'top_skus', 'earnings', 'orders', 'category_earnings');
 
 
     }

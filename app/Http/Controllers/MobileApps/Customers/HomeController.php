@@ -29,11 +29,17 @@ class HomeController extends Controller
             $banners=[];
         }
 
-
         $products=Product::active()
             ->orderBy('name', 'asc')
-            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty')
-            ->paginate(20);
+            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty');
+
+        if(!empty($request->category_id)){
+            $products = $products->whereHas('category', function($category) use($request){
+                $category->where('id', $request->category_id);
+            });
+        }
+
+        $products = $products->paginate(20);
 
         Product::setCartQuantity($products, $request->cart);
         $cart_total_quantity=$request->cart_total_quantity;
