@@ -73,6 +73,7 @@ $api->group(['prefix' => 'partner'], function ($api) {
     $api->group(['middleware' => ['partner-auth']], function ($api) {
         $api->get('home', 'MobileApps\Partners\HomeController@index');
         $api->get('catelogue', 'MobileApps\Partners\CatelogueController@index');
+        $api->get('earnings', 'MobileApps\Partners\EarningController@index');
     });
 
 });

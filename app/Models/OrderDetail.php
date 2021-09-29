@@ -26,7 +26,8 @@ class OrderDetail extends Model
         'packet_price',
         'quantity',
         'packet_count',
-        'status'
+        'status',
+        'commissions'
     ];
 
 
