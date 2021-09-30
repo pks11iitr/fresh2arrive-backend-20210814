@@ -30,7 +30,7 @@ class EarningController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start0)
             ->where('orders.delivery_date', '<=', $end0)
-            ->sum('order_details.commissions*order_details.packet_price*products.packet_count');
+            ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
         $earnings0 = round($earnings0/100);
 
@@ -39,7 +39,7 @@ class EarningController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start1)
             ->where('orders.delivery_date', '<=', $end1)
-            ->sum('order_details.commissions*order_details.packet_price*products.packet_count');
+            ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
         $earnings1 = round($earnings1/100);
 
@@ -48,7 +48,7 @@ class EarningController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start2)
             ->where('orders.delivery_date', '<=', $end2)
-            ->sum('order_details.commissions*order_details.packet_price*products.packet_count');
+            ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
         $earnings2 = round($earnings2/100);
 
@@ -57,7 +57,7 @@ class EarningController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start3)
             ->where('orders.delivery_date', '<=', $end3)
-            ->sum('order_details.commissions*order_details.packet_price*products.packet_count');
+            ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
         $earnings3 = round($earnings3/100);
 
@@ -69,21 +69,32 @@ class EarningController extends Controller
             $end_date = $start0;
         }
 
+        $top_display = date('d M', strtotime($start_date)).'-'.date('d M', strtotime($end_date));
+        if($start_date == $start0)
+            $weekly_earnings = $earnings0;
+        else if($start_date == $start1)
+            $weekly_earnings = $earnings1;
+        else if($start_date == $start2)
+            $weekly_earnings = $earnings2;
+        else if($start_date == $start3)
+            $weekly_earnings = $earnings3;
+
+
         $deliveries = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
-            ->join('products', 'products.id', '=', 'order_details.products_id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
             ->where('orders.delivery_partner', $user->id)
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start_date)
             ->where('orders.delivery_date', '<=', $end_date)
-            ->groupBY('order_id')
-            ->select(DB::raw('count(*) as count'), DB::raw('count(*) as count'), DB::raw('sum() as count'), 'order_id')
+            ->groupBY('order_id', 'delivery_date')
+            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_total) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as sum'), 'order_id', 'delivery_date')
             ->get();
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('start0', 'end0', 'start1', 'end1', 'start2', 'end2', 'start3', 'end3', 'earnings0', 'earnings1', 'earnings2', 'earnings3', 'deliveries')
+            'data'=>compact('start0', 'end0', 'start1', 'end1', 'start2', 'end2', 'start3', 'end3', 'earnings0', 'earnings1', 'earnings2', 'earnings3', 'deliveries', 'weekly_earnings', 'top_display')
         ];
 
 
