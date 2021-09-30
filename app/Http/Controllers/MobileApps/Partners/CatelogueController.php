@@ -49,7 +49,7 @@ class CatelogueController extends Controller
                     ->get();
 
                 $ids = $last_5_day_sales->map(function($element){
-                    return $element->id;
+                    return $element->product_id;
                 })->toArray();
                 if($ids)
                     $products=$products->orderByRaw("FIELD(id, ".implode(',', $ids).")");
