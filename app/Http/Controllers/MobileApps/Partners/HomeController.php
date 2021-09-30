@@ -82,8 +82,12 @@ class HomeController extends Controller
         $category_earnings = Category::active()
             ->get();
 
-        return compact('banners', 'name', 'top_skus', 'earnings', 'orders', 'category_earnings');
-
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('banners', 'name', 'top_skus', 'earnings', 'orders', 'category_earnings')
+        ];
 
     }
 }
