@@ -66,7 +66,7 @@ class EarningController extends Controller
             $end_date = $request->end_date;
         }else{
             $start_date = $start0;
-            $end_date = $start0;
+            $end_date = $end0;
         }
 
         $top_display = date('d M', strtotime($start_date)).'-'.date('d M', strtotime($end_date));
@@ -87,7 +87,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '>=', $start_date)
             ->where('orders.delivery_date', '<=', $end_date)
             ->groupBY('delivery_date')
-            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_total) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as sum'),  DB::raw('DAY(delivery_date) as date'), DB::raw('MONTHNAME(delivery_date) as month'), 'delivery_date')
+            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_total) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'),  DB::raw('DAY(delivery_date) as date'), DB::raw('MONTHNAME(delivery_date) as month'), 'delivery_date')
             ->get();
 
         return [
