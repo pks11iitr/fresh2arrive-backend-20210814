@@ -43,7 +43,7 @@ class HomeController extends Controller
             ->where('order_details.status', '=', 'delivered')
             ->where('orders.delivery_date', $today)
             ->where('orders.delivery_partner', $user->id)
-            ->sum(DB::raw('order_details.packet_count*products.packet_price*products.commissions'));
+            ->sum(DB::raw('order_details.packet_count*order_details.packet_price*order_details.commissions'));
 
         $today_earnings = round($commissions/100);
 
@@ -63,7 +63,7 @@ class HomeController extends Controller
         $top_skus = OrderDetail::join('products', 'products.id', '=', 'order_details.product_id')
             //->where('order_details.status', '=', 'delivered')
             ->groupBy('order_details.product_id')
-            ->select(DB::raw('sum(order_details.packet_count*products.packet_price)  as sum'), 'products.id')
+            ->select(DB::raw('sum(order_details.packet_count*order_details.packet_price)  as sum'), 'products.id')
             ->orderBy('sum', 'desc')
             ->skip(0)
             ->take(10)
