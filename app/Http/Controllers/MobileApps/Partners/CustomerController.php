@@ -48,7 +48,7 @@ class CustomerController extends Controller
             $order_count[$au->user_id]=$au->count;
             $user_categories_count['all']++;
             if($au->count == 1)
-                $user_categories_count['slow-moving']++;
+                $user_categories_count['slow_moving']++;
             if($au->delivery_date >= date('Y-m-d', strtotime('-7 days'))){
                 $user_categories_count['platinum']++;
             }else if($au->delivery_date >= date('Y-m-d', strtotime('-14 days')) && $au->delivery_date <= date('Y-m-d', strtotime('-8 days')))
