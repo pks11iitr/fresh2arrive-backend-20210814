@@ -46,4 +46,9 @@ class Partner extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
+    public function reportedUsers(){
+        return $this->belongsToMany('App\Models\Customer', 'reported_users', 'reported_by', 'reported_user');
+    }
 }

@@ -14,8 +14,9 @@ class Customer extends Authenticatable implements JWTSubject
 
     protected $table='customers';
 
-    protected $fillable=['mobile', 'email', 'name', 'name', 'image', 'notification_token', 'house_no', 'area', 'street', 'city', 'state', 'pincode', 'map_address', 'lat', 'lang', 'map_json'];
+    protected $fillable=['mobile', 'email', 'name', 'name', 'image', 'notification_token', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode', 'map_address', 'lat', 'lang', 'map_json', 'reffered_by_partner', 'reffered_by'];
 
+    protected $appends =['address'];
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -40,6 +41,23 @@ class Customer extends Authenticatable implements JWTSubject
 
     public function partner(){
         return $this->belongsTo('App\Models\Partner', 'assigned_partner');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order', 'user_id');
+    }
+
+    public function refferer(){
+        return $this->belongsTo('App\Models\Customer', 'reffered_by');
+    }
+
+    public function partnerRefferer(){
+        return $this->belongsTo('App\Models\Partner', 'reffered_by_partner');
+    }
+
+
+    public function getAddressSttribute($value){
+        return ($this->house_no??'').' '.($this->building??'').' '.($this->area??'').' '.($this->street??'').' '.($this->city??'').' '.($this->state??'').' '.($this->pincode??'');
     }
 
 }

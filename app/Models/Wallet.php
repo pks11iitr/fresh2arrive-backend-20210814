@@ -98,4 +98,22 @@ class Wallet extends Model
         return $this->belongsTo('App\Models\Customer', 'user_id');
     }
 
+
+    public static function getMultipleBalances($users){
+        $wallet=Wallet::whereIn('user_id', $users)
+            ->where('iscomplete', true)
+            ->select(DB::raw('sum(amount) as total'), 'type', 'user_id')
+            ->groupBy('user_id', 'type')->get();
+        $balances=[];
+        foreach($wallet as $w){
+            $balances[$w->user_id][$w->type]=$w->total;
+        }
+        $final_balances = [];
+        foreach($balances as $key=>$b){
+            $final_balances[$key]= ($b['Credit']??0) - ($b['Debit']??0);
+        }
+
+        return $final_balances;
+    }
+
 }
