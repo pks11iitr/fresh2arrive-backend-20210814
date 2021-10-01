@@ -56,7 +56,7 @@ class Customer extends Authenticatable implements JWTSubject
     }
 
 
-    public function getAddressSttribute($value){
+    public function getAddressAttribute($value){
         return ($this->house_no??'').' '.($this->building??'').' '.($this->area??'').' '.($this->street??'').' '.($this->city??'').' '.($this->state??'').' '.($this->pincode??'');
     }
 
