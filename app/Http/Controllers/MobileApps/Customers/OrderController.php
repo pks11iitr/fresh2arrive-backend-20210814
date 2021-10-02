@@ -72,7 +72,7 @@ class OrderController extends Controller
                 'packet_price'=>$detail->product->packet_price,
                 'quantity'=>$detail->product->consumed_quantity,
                 'packet_count'=>$detail->quantity,
-                'commissions'=>$detail->product->commisions
+                'commissions'=>$detail->product->commissions
             ]);
         }
 
