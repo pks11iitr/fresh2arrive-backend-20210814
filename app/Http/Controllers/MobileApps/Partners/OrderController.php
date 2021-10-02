@@ -96,6 +96,9 @@ class OrderController extends Controller
         $order->status = 'delivered';
         $order->save();
 
+        OrderDetail::where('order_id', $request->order_id)
+            ->update(['status'=>'delivered']);
+
         return [
             'status'=>'success',
             'action'=>'',
