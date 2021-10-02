@@ -80,6 +80,7 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->get('orders-list', 'MobileApps\Partners\OrderController@orders_list');
         $api->get('orders-details/{id}', 'MobileApps\Partners\OrderController@orderDetail');
         $api->post('deliver-order', 'MobileApps\Partners\OrderController@deliverOrder');
+        $api->get('deliveries', 'MobileApps\Partners\OrderController@deliveries');
 
     });
 

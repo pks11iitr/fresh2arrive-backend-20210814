@@ -128,4 +128,28 @@ class OrderController extends Controller
 
     }
 
+
+    public function deliveries(Request $request){
+        $user = $request->user;
+
+        $deliveries = Order::where('delivery_partner', $user->id)
+            ->with(['customer'=>function($customer){
+                $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode');
+            }])
+            ->withCount('details')
+            ->whereIn('status', ['delivered'])
+            //->where('delivery_date', $tomorrow)
+//            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('deliveries')
+        ];
+
+    }
+
 }
