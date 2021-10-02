@@ -111,7 +111,7 @@ class OrderController extends Controller
 
         $user = $request->user;
 
-        $details = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+        $details = OrderDetail::where('order_id', $id)
             //->where('delivery_partner', $user->id)
             ->select('name', 'image', 'company', 'packet_count')
             ->get();
