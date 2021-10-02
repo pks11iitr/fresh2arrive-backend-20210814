@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -123,11 +124,22 @@ class EarningController extends Controller
             ->select(DB::raw('count(*) as count'), DB::raw('sum(order_details.packet_price*order_details.packet_count) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'), 'products.category_id')
             ->get();
 
+        $total_earnings = 0;
+        foreach($deliveries as $d){
+            $d->category = $category_list[$d->category_id]??'Miscelleneous';
+            $total_earnings=$total_earnings+$d->earnings;
+        }
+
+        $total_order = Order::where('delivery_partner', $user->id)
+            ->where('status', 'delivered')
+            ->where('delivery_date', $date)
+            ->count();
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('deliveries')
+            'data'=>compact('deliveries', 'total_earnings', 'total_order')
         ];
 
 
