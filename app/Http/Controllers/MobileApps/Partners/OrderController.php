@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -27,6 +28,14 @@ class OrderController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
+        $today_count=0;
+        $today_date=date('d M y');
+        $today_total=0;
+        foreach($today_orders as $o){
+            $today_count++;
+            $today_total+=$o->order_total;
+        }
+
         $tommorow_orders = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode');
@@ -37,13 +46,21 @@ class OrderController extends Controller
 //            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
             ->orderBy('id', 'desc')
             ->get();
+        $tomorrow_count=0;
+        $tomorrow_date=date('d M y', strtotime('+1 days'));
+        $tomorrow_total=0;
+
+        foreach($today_orders as $o){
+            $tomorrow_count++;
+            $tomorrow_total+=$o->order_total;
+        }
 
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('today_orders', 'tommorow_orders')
+            'data'=>compact('today_orders', 'tommorow_orders', 'today_count', 'today_total', 'today_date', 'tomorrow_count', 'tomorrow_date', 'today_total')
         ];
 
     }
@@ -60,8 +77,8 @@ class OrderController extends Controller
         $user = $request->user;
 
         $order=Order::where('delivery_partner', $user->id)
-                //->whereIn('status', ['confirmed', 'processing', 'dispatched'])
-                //->where('delivery_date', date('Y-m-d'))
+                ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
+                ->where('delivery_date', date('Y-m-d'))
                 ->find($request->order_id);
 
         if(!$order){
@@ -86,6 +103,25 @@ class OrderController extends Controller
             'data'=>[]
         ];
 
+
+    }
+
+
+    public function orderDetail(Request $request, $id){
+
+        $user = $request->user;
+
+        $details = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            //->where('delivery_partner', $user->id)
+            ->select('name', 'image', 'company', 'packet_count')
+            ->get();
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('details')
+        ];
 
     }
 
