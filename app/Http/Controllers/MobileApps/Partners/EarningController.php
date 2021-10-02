@@ -152,14 +152,29 @@ class EarningController extends Controller
         $date = $request->delivery_date;
         $category_id = $request->category_id;
 
-        $deliveries = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+        $category = Category::findOrFail($category_id);
+
+        $items_list = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
             ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->where('products.category_id', $category_id)
             ->where('orders.delivery_partner', $user->id)
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', $date)
-            ->groupBY('products.category_id')
-            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_details.packet_price*order_details.packet_count) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'), 'category_id')
+            ->select('products.name', 'order_details.packet_count', DB::raw('order_details.packet_count*order_details.packet_price'), DB::raw('round(order_details.packet_price*order_details.commissions*order_details.packet_count/100) as earnings'))
             ->get();
+
+        $total_earnings = 0;
+        foreach($items_list as $d){
+            $total_earnings=$total_earnings+$d->earnings;
+        }
+
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('items_list', 'total_earnings', 'category')
+        ];
 
     }
 
