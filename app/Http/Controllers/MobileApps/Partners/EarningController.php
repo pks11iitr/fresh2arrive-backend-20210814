@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +82,7 @@ class EarningController extends Controller
 
 
         $deliveries = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
-            ->join('products', 'products.id', '=', 'order_details.product_id')
+            //->join('products', 'products.id', '=', 'order_details.product_id')
             ->where('orders.delivery_partner', $user->id)
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start_date)
@@ -99,4 +100,55 @@ class EarningController extends Controller
 
 
     }
+
+
+    public function datewiseDetails(Request $request ){
+
+        $user = $request->user;
+
+        $date = $request->delivery_date;
+
+        $categories = Category::select('id', 'name')->get();
+        $category_list=[];
+        foreach($categories as $c){
+            $category_list[$c->id]=$c->name;
+        }
+
+        $deliveries = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->where('orders.delivery_partner', $user->id)
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', $date)
+            ->groupBY('products.category_id')
+            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_details.packet_price*order_details.packet_count) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'), 'products.category_id')
+            ->get();
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('deliveries')
+        ];
+
+
+    }
+
+
+    public function dateCategorywiseDetails(Request $request){
+        $user = $request->user;
+
+        $date = $request->delivery_date;
+        $category_id = $request->category_id;
+
+        $deliveries = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->where('orders.delivery_partner', $user->id)
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', $date)
+            ->groupBY('products.category_id')
+            ->select(DB::raw('count(*) as count'), DB::raw('sum(order_details.packet_price*order_details.packet_count) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'), 'category_id')
+            ->get();
+
+    }
+
 }

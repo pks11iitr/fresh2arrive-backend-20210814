@@ -74,6 +74,8 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->get('home', 'MobileApps\Partners\HomeController@index');
         $api->get('catelogue', 'MobileApps\Partners\CatelogueController@index');
         $api->get('earnings', 'MobileApps\Partners\EarningController@index');
+        $api->get('date-earnings', 'MobileApps\Partners\EarningController@datewiseDetails');
+        $api->get('date-category-earnings', 'MobileApps\Partners\EarningController@dateCategorywiseDetails');
         $api->get('customers', 'MobileApps\Partners\CustomerController@index');
     });
 
