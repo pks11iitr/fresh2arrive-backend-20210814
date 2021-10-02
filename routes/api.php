@@ -55,6 +55,8 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->get('order-details/{id}', 'MobileApps\Customers\OrderController@details');
     $api->get('cancel-order/{id}', 'MobileApps\Customers\OrderController@cancel');
 
+    $api->post('raise-ticket', 'MobileApps\Customers\TicketController@raiseTicket');
+
     $api->post('support/{id}', 'MobileApps\Customers\SidebarController@index');
     $api->get('service-areas', 'MobileApps\Customers\SidebarController@serviceAreas');
     $api->get('refer-details', 'MobileApps\Customers\SidebarController@referDetails');
