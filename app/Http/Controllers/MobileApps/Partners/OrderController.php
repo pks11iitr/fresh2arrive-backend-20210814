@@ -48,4 +48,45 @@ class OrderController extends Controller
 
     }
 
+
+    public function deliverOrder(Request $request){
+
+        $request->validate([
+            'order_id'=>'required',
+            'map_address'=>'required',
+            'delivery_image'=>'required'
+        ]);
+
+        $user = $request->user;
+
+        $order=Order::where('delivery_partner', $user->id)
+                //->whereIn('status', ['confirmed', 'processing', 'dispatched'])
+                //->where('delivery_date', date('Y-m-d'))
+                ->find($request->order_id);
+
+        if(!$order){
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Invalid Delivery Request',
+                'data'=>[]
+            ];
+        }
+
+        $order->saveImage('delivery_image', $request->delivery_image, 'delivery-images');
+
+        $order->delivery_partner_location = $request->map_address;
+        $order->status = 'delivered';
+        $order->save();
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Order has been delivered',
+            'data'=>[]
+        ];
+
+
+    }
+
 }

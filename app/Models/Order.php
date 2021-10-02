@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DocumentUploadTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, DocumentUploadTrait;
 
     protected $table ='orders';
 
@@ -35,8 +36,6 @@ class Order extends Model
     public function getDeliveryScheduleAttribute($value){
         return date('D, d M Y, ', strtotime($this->delivery_date)).$this->delivery_time;
     }
-
-
 
 
     public function details(){
