@@ -25,7 +25,7 @@ class Order extends Model
         'delivery_partner'
     ];
 
-    protected $appends = ['placed_on', 'delivery_schedule', 'details_count'];
+    protected $appends = ['placed_on', 'delivery_schedule'];
 
     public function getPlacedOnAttribute($value){
         return date('D, d M Y, h:i A', strtotime($this->created_at));
