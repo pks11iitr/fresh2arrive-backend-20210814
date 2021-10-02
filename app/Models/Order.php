@@ -49,7 +49,7 @@ class Order extends Model
     }
 
     public function customer(){
-        return $this->belongsTo('App\Models\Customer', 'customer_id');
+        return $this->belongsTo('App\Models\Customer', 'user_id');
     }
 
 
