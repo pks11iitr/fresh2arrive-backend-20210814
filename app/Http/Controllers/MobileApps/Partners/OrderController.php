@@ -19,7 +19,7 @@ class OrderController extends Controller
         $today_orders = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode');
-            }])
+            }, 'details'])
             ->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $today)
@@ -30,7 +30,7 @@ class OrderController extends Controller
         $tommorow_orders = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode');
-            }])
+            }, 'details'])
             ->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $tomorrow)
