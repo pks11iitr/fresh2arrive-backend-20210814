@@ -160,7 +160,7 @@ class EarningController extends Controller
             ->where('orders.delivery_partner', $user->id)
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', $date)
-            ->select('products.name', 'order_details.packet_count', DB::raw('order_details.packet_count*order_details.packet_price'), DB::raw('round(order_details.packet_price*order_details.commissions*order_details.packet_count/100) as earnings'))
+            ->select('products.name', 'order_details.packet_count', DB::raw('order_details.packet_count*order_details.packet_price as sale_value'), DB::raw('round(order_details.packet_price*order_details.commissions*order_details.packet_count/100) as earnings'))
             ->get();
 
         $total_earnings = 0;
