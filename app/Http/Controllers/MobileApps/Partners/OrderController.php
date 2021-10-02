@@ -23,7 +23,7 @@ class OrderController extends Controller
             ->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $today)
-            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid')
+            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
             ->orderBy('id', 'desc')
             ->get();
 
@@ -34,7 +34,7 @@ class OrderController extends Controller
             ->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $tomorrow)
-            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid')
+            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
             ->orderBy('id', 'desc')
             ->get();
 
