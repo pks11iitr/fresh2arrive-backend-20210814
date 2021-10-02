@@ -77,6 +77,10 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->get('date-earnings', 'MobileApps\Partners\EarningController@datewiseDetails');
         $api->get('date-category-earnings', 'MobileApps\Partners\EarningController@dateCategorywiseDetails');
         $api->get('customers', 'MobileApps\Partners\CustomerController@index');
+        $api->get('orders-list', 'MobileApps\Partners\OrderController@orders_list');
+        $api->get('orders-details/{id}', 'MobileApps\Partners\OrderController@orderDetail');
+        $api->post('deliver-order', 'MobileApps\Partners\OrderController@deliverOrder');
+
     });
 
 });

@@ -47,4 +47,10 @@ class Order extends Model
     public function partner(){
         return $this->belongsTo('App\Models\Partner', 'delivery_partner');
     }
+
+    public function customer(){
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
+    }
+
+
 }
