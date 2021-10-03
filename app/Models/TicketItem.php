@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class TicketItem extends Model
 {
@@ -12,5 +13,13 @@ class TicketItem extends Model
     protected $table ='ticket_items';
 
     protected $fillable =['ticket_id', 'product_id', 'packet_count', 'issue', 'image'];
+
+
+    public function getImageAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
+    }
 
 }

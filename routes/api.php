@@ -56,6 +56,8 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->get('cancel-order/{id}', 'MobileApps\Customers\OrderController@cancel');
 
     $api->post('raise-ticket', 'MobileApps\Customers\TicketController@raiseTicket');
+    $api->get('ticket-details/{id}', 'MobileApps\Customers\TicketController@ticketDetails');
+    $api->get('tickets/{type}', 'MobileApps\Customers\TicketController@ticketList');
 
     $api->post('support/{id}', 'MobileApps\Customers\SidebarController@index');
     $api->get('service-areas', 'MobileApps\Customers\SidebarController@serviceAreas');

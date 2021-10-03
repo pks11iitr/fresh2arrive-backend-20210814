@@ -17,4 +17,17 @@ class Ticket extends Model
     public function items(){
         return $this->hasMany('App\Models\TicketItem', 'ticket_id');
     }
+
+
+    public function getCustomerCommentsAttribute($value){
+        return $value??'';
+    }
+
+    public function getPartnerCommentsAttribute($value){
+        return $value??'';
+    }
+
+    public function getAdminCommentsAttribute($value){
+        return $value??'';
+    }
 }

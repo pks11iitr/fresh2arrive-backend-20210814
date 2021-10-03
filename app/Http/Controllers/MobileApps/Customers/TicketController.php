@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\TicketItem;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\s;
 
 class TicketController extends Controller
 {
@@ -85,6 +86,15 @@ class TicketController extends Controller
                 }
             }
         }else{
+
+            if($order->item_partner_status!=0)
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Invalid Request',
+                    'data'=>[]
+                ];
+
             Ticket::create([
                 'refid'=>$max_number,
                 'order_id'=>$request->order_id,
@@ -94,7 +104,7 @@ class TicketController extends Controller
                 'ticket_type'=>'Partner & Delivery Related'
             ]);
 
-            $order->item_ticket_status = 1;
+            $order->item_partner_status = 1;
             $order->save();
         }
 
@@ -109,6 +119,36 @@ class TicketController extends Controller
 
 
     public function ticketDetails(Request $request, $id){
+        $user = $request->user;
 
+        $ticket=Ticket::with('items')
+            ->where('user_id', $user->id)
+            ->find($id);
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('ticket')
+        ];
     }
+
+
+    public function ticketList(Request $request, $type){
+        $user = $request->user;
+
+        $tickets=Ticket::where('user_id', $user->id)
+            ->where('status', $type)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('tickets')
+        ];
+    }
+
+
 }
