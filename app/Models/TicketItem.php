@@ -12,7 +12,7 @@ class TicketItem extends Model
 
     protected $table ='ticket_items';
 
-    protected $fillable =['ticket_id', 'product_id', 'packet_count', 'issue', 'image'];
+    protected $fillable =['ticket_id', 'detail_id', 'packet_count', 'issue', 'image'];
 
 
     public function getImageAttribute($value){
@@ -20,6 +20,11 @@ class TicketItem extends Model
             return Storage::url($value);
 
         return '';
+    }
+
+
+    public function details(){
+        return $this->belongsTo('App\Models\OrderDetail', 'detail_id');
     }
 
 }

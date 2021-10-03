@@ -288,6 +288,17 @@ class OrderController extends Controller
             'total_payble'=>round($cost,2)+($order->echo_charges??0)-$order->coupon_discount,
         ];
 
+        $can_raise_ticket=0;
+        $can_raise_item_issue=0;
+        $can_raise_delivery_issue=0;
+        if($order->is_completed == 0){
+            $can_raise_ticket = 1;
+            if($order->item_ticket_status==0)
+                $can_raise_item_issue = 1;
+            if($order->partner_ticket_status==0)
+                $can_raise_delivery_issue = 1;
+        }
+
         $data=[
             'id'=>$order->id,
             'refid'=>$order->refid,
@@ -298,7 +309,10 @@ class OrderController extends Controller
             'status'=>$order->status,
             'items'=>$items,
             'prices'=>$prices,
-            'show_cancel'=>($order->status=='confirmed')?1:0
+            'show_cancel'=>($order->status=='confirmed')?1:0,
+            'can_raise_ticket'=>$can_raise_ticket,
+            'can_raise_item_issue'=>$can_raise_item_issue,
+            'can_raise_delivery_issue'=>$can_raise_delivery_issue
         ];
 
 

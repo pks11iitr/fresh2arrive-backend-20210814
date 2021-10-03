@@ -93,6 +93,7 @@ class OrderController extends Controller
         $order->saveImage('delivery_image', $request->delivery_image, 'delivery-images');
 
         $order->delivery_partner_location = $request->map_address;
+        $order->delivered_at = date('Y-m-d H:i:s');
         $order->status = 'delivered';
         $order->save();
 

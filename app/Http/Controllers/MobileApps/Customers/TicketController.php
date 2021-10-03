@@ -40,7 +40,7 @@ class TicketController extends Controller
         $order = Order::where('user_id', $user->id)
             ->where('status', 'delivered')
             ->find($request->order_id);
-        if(!$order)
+        if(!$order || $order->is_completed!=0)
             return [
                 'status'=>'failed',
                 'action'=>'',
@@ -75,7 +75,7 @@ class TicketController extends Controller
             if(isset($request->items_issue)){
                 foreach($request->items_issue as $key=>$value){
                     $items[] = new TicketItem([
-                        'product_id'=>$key,
+                        'item_id'=>$key,
                         'packet_count'=>$request->items_quantity[$key]??0,
                         'issue'=>$request->items_issue[$key]??0,
                         'image'=>$this->getImagePath($request->items_image[$key], 'ticket-images/'.$ticket->id)
@@ -121,7 +121,7 @@ class TicketController extends Controller
     public function ticketDetails(Request $request, $id){
         $user = $request->user;
 
-        $ticket=Ticket::with('items')
+        $ticket=Ticket::with('items.details')
             ->where('user_id', $user->id)
             ->find($id);
 

@@ -23,7 +23,9 @@ class Order extends Model
         'delivery_time',
         'echo_charges',
         'status',
-        'delivery_partner'
+        'delivery_partner',
+        'is_completed',
+        'delivered_at'
     ];
 
     protected $appends = ['placed_on', 'delivery_schedule'];
