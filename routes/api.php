@@ -86,6 +86,10 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->post('deliver-order', 'MobileApps\Partners\OrderController@deliverOrder');
         $api->get('deliveries', 'MobileApps\Partners\OrderController@deliveries');
 
+        $api->get('tickets/{type}', 'MobileApps\Partners\TicketController@ticketList');
+        $api->get('ticket-details/{id}', 'MobileApps\Partners\TicketController@details');
+        $api->post('update-ticket', 'MobileApps\Partners\TicketController@update');
+
     });
 
 });
