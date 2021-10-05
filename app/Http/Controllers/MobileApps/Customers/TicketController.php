@@ -78,7 +78,7 @@ class TicketController extends Controller
                 foreach($request->items_issue as $key=>$value){
                     if(!empty($request->items_id[$key]) && !empty($request->items_quantity[$key]) && !empty($request->items_issue[$key]))
                     $items[] = new TicketItem([
-                        'item_id'=>$request->items_id[$key],
+                        'detail_id'=>$request->items_id[$key],
                         'packet_count'=>$request->items_quantity[$key]??0,
                         'issue'=>$request->items_issue[$key]??0,
                         'image'=>$this->getImagePath($request->items_image[$key], 'ticket-images/'.$ticket->id)
