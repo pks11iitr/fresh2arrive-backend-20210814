@@ -14,6 +14,8 @@ class TicketItem extends Model
 
     protected $fillable =['ticket_id', 'detail_id', 'packet_count', 'issue', 'image'];
 
+    protected $appends =['ticket_raised_for'];
+
 
     public function getImageAttribute($value){
         if($value)
@@ -26,5 +28,10 @@ class TicketItem extends Model
     public function details(){
         return $this->belongsTo('App\Models\OrderDetail', 'detail_id');
     }
+
+    public function getTicketRaisedForAttribute(){
+        return 'Issue Raised for '.$this->packet_count;
+    }
+
 
 }

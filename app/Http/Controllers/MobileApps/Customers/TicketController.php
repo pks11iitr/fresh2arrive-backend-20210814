@@ -121,9 +121,15 @@ class TicketController extends Controller
     public function ticketDetails(Request $request, $id){
         $user = $request->user;
 
-        $ticket=Ticket::with('items.details')
+        $ticket=Ticket::with(['items.details', 'order'=>function($order){
+            $order->select('id', 'created_at', 'delivery_date', 'status', 'order_total')->withCount('details');
+        }])
             ->where('user_id', $user->id)
             ->find($id);
+
+        foreach($ticket->items as $t){
+            $t->ticket_raising_for = 'Issue Raised For '.$t->packet_count;
+        }
 
         return [
             'status'=>'success',
