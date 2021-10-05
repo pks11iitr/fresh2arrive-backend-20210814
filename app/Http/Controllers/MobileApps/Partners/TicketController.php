@@ -26,6 +26,12 @@ class TicketController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
+        foreach($tickets as $t){
+            $t->issue = implode(',', $t->items->map(function($element){
+                return $element->issue;
+            })->toArray());
+        }
+
         return [
             'status'=>'success',
             'action'=>'',
