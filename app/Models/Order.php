@@ -28,7 +28,7 @@ class Order extends Model
         'delivered_at'
     ];
 
-    protected $appends = ['placed_on', 'delivery_schedule'];
+    protected $appends = ['placed_on', 'delivery_schedule', 'order_date', 'delivery_at'];
 
     public function getPlacedOnAttribute($value){
         return date('D, d M Y, h:i A', strtotime($this->created_at));
@@ -51,6 +51,14 @@ class Order extends Model
 
     public function customer(){
         return $this->belongsTo('App\Models\Customer', 'user_id');
+    }
+
+    public function getOrderDateAttribute($value){
+        return date('D, d M Y, ', strtotime($this->created_at));
+    }
+
+    public function getDeliveryAtAttribute($value){
+        return date('D, d M Y, ', strtotime($this->delivery_date));
     }
 
 

@@ -138,7 +138,7 @@ class TicketController extends Controller
         $user = $request->user;
 
         $tickets=Ticket::with(['order'=>function($order){
-            $order->select('id', 'refid');
+            $order->select('id', 'refid', 'delivery_date', 'created_at');
         }])
             ->where('user_id', $user->id)
             ->where('status', $type)
