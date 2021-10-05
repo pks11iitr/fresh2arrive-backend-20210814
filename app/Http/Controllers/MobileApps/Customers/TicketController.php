@@ -104,7 +104,7 @@ class TicketController extends Controller
                 'ticket_type'=>'Partner & Delivery Related'
             ]);
 
-            $order->item_partner_status = 1;
+            $order->partner_ticket_status = 1;
             $order->save();
         }
 
