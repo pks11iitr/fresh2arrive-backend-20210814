@@ -29,6 +29,8 @@ class TicketController extends Controller
             'type'=>'required|in:item,partner',
             'comments'=>'string',
             'order_id'=>'required|integer',
+            'items_id'=>'array',
+            'items_id.*'=>'required|integer',
             'items_quantity'=>'array',
             'items_quantity.*'=>'required|integer',
             'items_issue'=>'array',
