@@ -139,11 +139,19 @@ class TicketController extends Controller
 
         $tickets=Ticket::with(['order'=>function($order){
             $order->select('id', 'refid', 'delivery_date', 'created_at');
+        }, 'items'=>function($items){
+            $items->select('id', 'issue', 'ticket_id');
         }])
             ->where('user_id', $user->id)
             ->where('status', $type)
             ->orderBy('id', 'desc')
             ->paginate(10);
+
+        foreach($tickets as $t){
+            $t->issue = implode(',', $t->items->map(function($element){
+                return $element->issue;
+            })->toArray());
+        }
 
         return [
             'status'=>'success',
