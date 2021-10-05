@@ -312,7 +312,9 @@ class OrderController extends Controller
             'show_cancel'=>($order->status=='confirmed')?1:0,
             'can_raise_ticket'=>$can_raise_ticket,
             'can_raise_item_issue'=>$can_raise_item_issue,
-            'can_raise_delivery_issue'=>$can_raise_delivery_issue
+            'can_raise_delivery_issue'=>$can_raise_delivery_issue,
+            'order_date'=>$order->order_date,
+            'delivery_at'=>$order->delivery_at
         ];
 
 
