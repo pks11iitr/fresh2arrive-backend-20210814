@@ -38,7 +38,7 @@ class TicketController extends Controller
         ]);
 
         $order = Order::where('user_id', $user->id)
-            ->where('status', 'delivered')
+            //->where('status', 'delivered')
             ->find($request->order_id);
         if(!$order || $order->is_completed!=0)
             return [
