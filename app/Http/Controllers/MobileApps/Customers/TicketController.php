@@ -137,7 +137,10 @@ class TicketController extends Controller
     public function ticketList(Request $request, $type){
         $user = $request->user;
 
-        $tickets=Ticket::where('user_id', $user->id)
+        $tickets=Ticket::with(['order'=>function($order){
+            $order->select('id', 'refid');
+        }])
+            ->where('user_id', $user->id)
             ->where('status', $type)
             ->orderBy('id', 'desc')
             ->paginate(10);
