@@ -87,7 +87,7 @@ class TicketController extends Controller
             }
         }else{
 
-            if($order->item_partner_status!=0)
+            if($order->partner_ticket_status!=0)
                 return [
                     'status'=>'failed',
                     'action'=>'',
