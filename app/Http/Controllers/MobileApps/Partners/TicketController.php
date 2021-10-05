@@ -19,7 +19,7 @@ class TicketController extends Controller
                 $order->select('id', 'refid');
             },
             'items'=>function($details){
-                $details->select('id', 'issue', 'ticket_id', 'detail_id');
+                $details->select('id', 'issue', 'ticket_id', 'detail_id', 'packet_count');
             }])
             ->where('partner_id', $user->id)
             ->where('status', $type)
@@ -44,9 +44,15 @@ class TicketController extends Controller
     public function details(Request $request, $id){
         $user = $request->user;
 
-        $ticket=Ticket::with('items.details')
+        $ticket=Ticket::with(['items.details', 'order'=>function($order){
+            $order->select('id', 'created_at', 'delivery_date', 'status', 'order_total')->withCount('details');
+        }])
             ->where('partner_id', $user->id)
             ->find($id);
+
+        foreach($ticket->items as $t){
+            $t->ticket_raising_for = 'Issue Raised For '.$t->packet_count;
+        }
 
         return [
             'status'=>'success',
