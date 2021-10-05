@@ -263,6 +263,7 @@ class OrderController extends Controller
                 'unit_name'=>$detail->unit_name,
                 'packet_price'=>$detail->packet_price,
                 'percent'=>$detail->percent,
+                'packet_count'=>$detail->packet_count
             ];
         }
 
