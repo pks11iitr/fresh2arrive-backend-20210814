@@ -291,7 +291,7 @@ class OrderController extends Controller
         $can_raise_ticket=0;
         $can_raise_item_issue=0;
         $can_raise_delivery_issue=0;
-        if($order->is_completed == 0){
+        if($order->status=='delivered' && $order->is_completed == 0){
             $can_raise_ticket = 1;
             if($order->item_ticket_status==0)
                 $can_raise_item_issue = 1;
