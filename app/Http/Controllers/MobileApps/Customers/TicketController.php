@@ -30,13 +30,13 @@ class TicketController extends Controller
             'comments'=>'string',
             'order_id'=>'required|integer',
             'items_id'=>'array',
-            'items_id.*'=>'required|integer',
+            //'items_id.*'=>'required|integer',
             'items_quantity'=>'array',
-            'items_quantity.*'=>'required|integer',
+            //'items_quantity.*'=>'required|integer',
             'items_issue'=>'array',
-            'items_issue.*'=>'required|string',
+            //'items_issue.*'=>'required|string',
             'items_image'=>'array',
-            'items_image.*'=>'image'
+            //'items_image.*'=>'image'
         ]);
 
         $order = Order::where('user_id', $user->id)
