@@ -37,6 +37,38 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     });
 
+
+    Route::group(['prefix'=>'category'], function(){
+
+        Route::get('/','Admin\CategoryController@index')->name('category.list');
+        Route::get('create','Admin\CategoryController@create')->name('category.create');
+        Route::post('store', 'Admin\CategoryController@store')->name('category.store');
+        Route::get('edit/{id}','Admin\CategoryController@edit')->name('category.edit');
+        Route::post('update/{id}', 'Admin\CategoryController@update')->name('category.update');
+
+    });
+
+
+    Route::group(['prefix'=>'partners'],function (){
+
+        Route::get('/','Admin\PartnerController@index')->name('partners.list');
+        Route::get('create','Admin\PartnerController@create')->name('partners.create');
+        Route::post('store', 'Admin\PartnerController@store')->name('partners.store');
+        Route::get('edit/{id}','Admin\PartnerController@edit')->name('partners.edit');
+        Route::post('update/{id}', 'Admin\PartnerController@update')->name('partners.update');
+
+    });
+
+
+    Route::group(['prefix'=>'customers'],function(){
+       Route::get('/','Admin\CustomerController@index')->name('customers.list');
+       Route::get('create','Admin\CustomerController@create')->name('customers.create');
+        Route::post('store', 'Admin\CustomerController@store')->name('customers.store');
+        Route::get('edit/{id}','Admin\CustomerController@edit')->name('customers.edit');
+        Route::post('update/{id}', 'Admin\CustomerController@update')->name('customers.update');
+    });
+
+
 });
 
 require __DIR__.'/auth.php';
