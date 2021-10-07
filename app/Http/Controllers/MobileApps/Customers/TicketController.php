@@ -61,9 +61,6 @@ class TicketController extends Controller
                     'data'=>[]
                 ];
 
-            $order->item_ticket_status = 1;
-            $order->save();
-
             $items=[];
             if(isset($request->items_issue)){
                 foreach($request->items_issue as $key=>$value){
@@ -84,6 +81,9 @@ class TicketController extends Controller
                     'display_message'=>'Please select an item to raise ticket',
                     'data'=>[]
                 ];
+
+            $order->item_ticket_status = 1;
+            $order->save();
 
             if($items){
                 $ticket = Ticket::create([
