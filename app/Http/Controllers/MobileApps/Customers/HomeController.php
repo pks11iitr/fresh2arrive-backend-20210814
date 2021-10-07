@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         $partner = $user->partner->name??'';
 
-        $next_time_slot=TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0];
+        $next_time_slot='Next Delivery Slot: '.(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
 
         return [
             'status'=>'success',
