@@ -33,7 +33,7 @@ $api->post('resend-otp', 'MobileApps\Customers\Auth\OtpController@resend');
 $api->get('check-login-status', 'MobileApps\Customers\Auth\LoginController@loginCheck');
 
 $api->post('check-location', 'MobileApps\Customers\LocationController@getLocation');
-
+$api->get('support', 'MobileApps\Customers\SupportController@index');
 
 
 $api->group(['middleware' => ['customer-auth']], function ($api) {
@@ -72,6 +72,7 @@ $api->group(['prefix' => 'partner'], function ($api) {
     $api->post('verify-otp', 'MobileApps\Partners\Auth\OtpController@verify');
     $api->post('resend-otp', 'MobileApps\Partners\Auth\OtpController@resend');
     $api->get('check-login-status', 'MobileApps\Partners\Auth\LoginController@loginCheck');
+    $api->get('support', 'MobileApps\Partners\SupportController@index');
 
     //therapist apis
     $api->group(['middleware' => ['partner-auth']], function ($api) {
