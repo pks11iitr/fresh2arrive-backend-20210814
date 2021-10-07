@@ -27,7 +27,7 @@ class TicketController extends Controller
 
         $request->validate([
             'type'=>'required|in:item,partner',
-            'comments'=>'string',
+            'comments'=>'nullable|string',
             'order_id'=>'required|integer',
             'items_id'=>'array',
             //'items_id.*'=>'required|integer',
