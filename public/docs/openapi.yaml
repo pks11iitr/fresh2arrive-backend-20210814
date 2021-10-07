@@ -1,0 +1,1995 @@
+openapi: 3.0.3
+info:
+  title: Fresh2Arrive
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://fresh2arrive.local'
+paths:
+  /api/app-version:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/login-with-otp:
+    post:
+      summary: 'Handle a login request to the application.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/verify-otp:
+    post:
+      summary: 'Handle a login request to the application with otp.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/resend-otp:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/check-login-status:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: ''
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: ''
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/check-location:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/update-address:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/home:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  action: ''
+                  display_message: ''
+                  data:
+                    categories:
+                      -
+                        name: 'Fruit & Vegitables'
+                        image: 'http://fresh2arrive.local/uploads/categories/healthcare.png'
+                        id: 1
+                      -
+                        name: 'foodgrains,oil,masala'
+                        image: 'http://fresh2arrive.local/uploads/categories/herbal.jpeg'
+                        id: 2
+                      -
+                        name: 'Beauty & Hygiene'
+                        image: 'http://fresh2arrive.local/uploads/categories/fitness.jpeg'
+                        id: 3
+                      -
+                        name: 'Personal Care'
+                        image: 'http://fresh2arrive.local/uploads/categories/personal.png'
+                        id: 4
+                      -
+                        name: 'yes ti go'
+                        image: 'http://fresh2arrive.local/uploads/category/6/849_download_(1).jpeg'
+                        id: 6
+                      -
+                        name: 'Eggs Meat & Fish'
+                        image: 'http://fresh2arrive.local/uploads/category/7/692_download_(1).jpeg'
+                        id: 7
+                      -
+                        name: 'Gourmet & World Food'
+                        image: 'http://fresh2arrive.local/uploads/category/8/850_Mackenzie_scottjuly29.jpg'
+                        id: 8
+                      -
+                        name: 'dog food'
+                        image: 'http://fresh2arrive.local/uploads/category/10/275_IMG-20201014-WA0019.jpg'
+                        id: 10
+                    banners:
+                      -
+                        id: 8
+                        image: 'http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg'
+                        type: banner
+                      -
+                        id: 9
+                        image: 'http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg'
+                        type: banner
+                      -
+                        id: 11
+                        image: 'http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg'
+                        type: banner
+                      -
+                        id: 12
+                        image: 'http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg'
+                        type: banner
+                      -
+                        id: 13
+                        image: 'http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg'
+                        type: banner
+                      -
+                        id: 14
+                        image: 'http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg'
+                        type: banner
+                    products:
+                      current_page: 1
+                      data:
+                        -
+                          id: 3
+                          company: 'Fresh Farm'
+                          name: 'Delphia Murazik'
+                          image: 'http://fresh2arrive.local/uploads/uploads/products/539/911_BICANO_CHIPS2.JPG'
+                          display_pack_size: 1kg
+                          price_per_unit: 20
+                          cut_price_per_unit: 28
+                          unit_name: Kg
+                          packet_price: 11
+                          tag: 'Deal of the day'
+                          min_qty: 1
+                          max_qty: 6
+                          cart_quantity: 0
+                          percent: 0
+                          commissions: 0
+                        -
+                          id: 2
+                          company: 'Fresh Farm'
+                          name: 'Mrs. Lily Rolfson V'
+                          image: 'http://fresh2arrive.local/uploads/uploads/products/3/414_HALDIRAM_CHIPS2.JPG'
+                          display_pack_size: 1kg
+                          price_per_unit: 18
+                          cut_price_per_unit: 29
+                          unit_name: Kg
+                          packet_price: 13
+                          tag: 'Deal of the day'
+                          min_qty: 2
+                          max_qty: 4
+                          cart_quantity: 0
+                          percent: 0
+                          commissions: 0
+                        -
+                          id: 1
+                          company: 'Manali Delights'
+                          name: 'Prof. Emilia Dietrich III'
+                          image: 'http://fresh2arrive.local/uploads/uploads/products/5/656_BICANO_NAMKEEN2.JPG'
+                          display_pack_size: 500-600gm
+                          price_per_unit: 20
+                          cut_price_per_unit: 32
+                          unit_name: Kg
+                          packet_price: 20
+                          tag: 'Limited Stock'
+                          min_qty: 1
+                          max_qty: 5
+                          cart_quantity: 0
+                          percent: 0
+                          commissions: 0
+                      first_page_url: 'http://fresh2arrive.local/api/home?page=1'
+                      from: 1
+                      last_page: 1
+                      last_page_url: 'http://fresh2arrive.local/api/home?page=1'
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          active: false
+                        -
+                          url: 'http://fresh2arrive.local/api/home?page=1'
+                          label: '1'
+                          active: true
+                        -
+                          url: null
+                          label: 'Next &raquo;'
+                          active: false
+                      next_page_url: null
+                      path: 'http://fresh2arrive.local/api/home'
+                      per_page: 20
+                      prev_page_url: null
+                      to: 3
+                      total: 3
+                    cart_total_quantity: 0
+                    partner: ''
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  action:
+                    type: string
+                    example: ''
+                  display_message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    example:
+                      categories:
+                        -
+                          name: 'Fruit & Vegitables'
+                          image: 'http://fresh2arrive.local/uploads/categories/healthcare.png'
+                          id: 1
+                        -
+                          name: 'foodgrains,oil,masala'
+                          image: 'http://fresh2arrive.local/uploads/categories/herbal.jpeg'
+                          id: 2
+                        -
+                          name: 'Beauty & Hygiene'
+                          image: 'http://fresh2arrive.local/uploads/categories/fitness.jpeg'
+                          id: 3
+                        -
+                          name: 'Personal Care'
+                          image: 'http://fresh2arrive.local/uploads/categories/personal.png'
+                          id: 4
+                        -
+                          name: 'yes ti go'
+                          image: 'http://fresh2arrive.local/uploads/category/6/849_download_(1).jpeg'
+                          id: 6
+                        -
+                          name: 'Eggs Meat & Fish'
+                          image: 'http://fresh2arrive.local/uploads/category/7/692_download_(1).jpeg'
+                          id: 7
+                        -
+                          name: 'Gourmet & World Food'
+                          image: 'http://fresh2arrive.local/uploads/category/8/850_Mackenzie_scottjuly29.jpg'
+                          id: 8
+                        -
+                          name: 'dog food'
+                          image: 'http://fresh2arrive.local/uploads/category/10/275_IMG-20201014-WA0019.jpg'
+                          id: 10
+                      banners:
+                        -
+                          id: 8
+                          image: 'http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg'
+                          type: banner
+                        -
+                          id: 9
+                          image: 'http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg'
+                          type: banner
+                        -
+                          id: 11
+                          image: 'http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg'
+                          type: banner
+                        -
+                          id: 12
+                          image: 'http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg'
+                          type: banner
+                        -
+                          id: 13
+                          image: 'http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg'
+                          type: banner
+                        -
+                          id: 14
+                          image: 'http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg'
+                          type: banner
+                      products:
+                        current_page: 1
+                        data:
+                          -
+                            id: 3
+                            company: 'Fresh Farm'
+                            name: 'Delphia Murazik'
+                            image: 'http://fresh2arrive.local/uploads/uploads/products/539/911_BICANO_CHIPS2.JPG'
+                            display_pack_size: 1kg
+                            price_per_unit: 20
+                            cut_price_per_unit: 28
+                            unit_name: Kg
+                            packet_price: 11
+                            tag: 'Deal of the day'
+                            min_qty: 1
+                            max_qty: 6
+                            cart_quantity: 0
+                            percent: 0
+                            commissions: 0
+                          -
+                            id: 2
+                            company: 'Fresh Farm'
+                            name: 'Mrs. Lily Rolfson V'
+                            image: 'http://fresh2arrive.local/uploads/uploads/products/3/414_HALDIRAM_CHIPS2.JPG'
+                            display_pack_size: 1kg
+                            price_per_unit: 18
+                            cut_price_per_unit: 29
+                            unit_name: Kg
+                            packet_price: 13
+                            tag: 'Deal of the day'
+                            min_qty: 2
+                            max_qty: 4
+                            cart_quantity: 0
+                            percent: 0
+                            commissions: 0
+                          -
+                            id: 1
+                            company: 'Manali Delights'
+                            name: 'Prof. Emilia Dietrich III'
+                            image: 'http://fresh2arrive.local/uploads/uploads/products/5/656_BICANO_NAMKEEN2.JPG'
+                            display_pack_size: 500-600gm
+                            price_per_unit: 20
+                            cut_price_per_unit: 32
+                            unit_name: Kg
+                            packet_price: 20
+                            tag: 'Limited Stock'
+                            min_qty: 1
+                            max_qty: 5
+                            cart_quantity: 0
+                            percent: 0
+                            commissions: 0
+                        first_page_url: 'http://fresh2arrive.local/api/home?page=1'
+                        from: 1
+                        last_page: 1
+                        last_page_url: 'http://fresh2arrive.local/api/home?page=1'
+                        links:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://fresh2arrive.local/api/home?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        next_page_url: null
+                        path: 'http://fresh2arrive.local/api/home'
+                        per_page: 20
+                        prev_page_url: null
+                        to: 3
+                        total: 3
+                      cart_total_quantity: 0
+                      partner: ''
+      tags:
+        - Endpoints
+      security: []
+  '/api/banner-details/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  action: ''
+                  display_message: ''
+                  data:
+                    banners:
+                      -
+                        id: 8
+                        image: 'http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg'
+                        type: banner
+                      -
+                        id: 9
+                        image: 'http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg'
+                        type: banner
+                      -
+                        id: 11
+                        image: 'http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg'
+                        type: banner
+                      -
+                        id: 12
+                        image: 'http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg'
+                        type: banner
+                      -
+                        id: 13
+                        image: 'http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg'
+                        type: banner
+                      -
+                        id: 14
+                        image: 'http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg'
+                        type: banner
+                    products:
+                      current_page: 1
+                      data: []
+                      first_page_url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                      from: null
+                      last_page: 1
+                      last_page_url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          active: false
+                        -
+                          url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                          label: '1'
+                          active: true
+                        -
+                          url: null
+                          label: 'Next &raquo;'
+                          active: false
+                      next_page_url: null
+                      path: 'http://fresh2arrive.local/api/banner-details/id'
+                      per_page: 20
+                      prev_page_url: null
+                      to: null
+                      total: 0
+                    cart_total_quantity: 0
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  action:
+                    type: string
+                    example: ''
+                  display_message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    example:
+                      banners:
+                        -
+                          id: 8
+                          image: 'http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg'
+                          type: banner
+                        -
+                          id: 9
+                          image: 'http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg'
+                          type: banner
+                        -
+                          id: 11
+                          image: 'http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg'
+                          type: banner
+                        -
+                          id: 12
+                          image: 'http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg'
+                          type: banner
+                        -
+                          id: 13
+                          image: 'http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg'
+                          type: banner
+                        -
+                          id: 14
+                          image: 'http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg'
+                          type: banner
+                      products:
+                        current_page: 1
+                        data: []
+                        first_page_url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                        from: null
+                        last_page: 1
+                        last_page_url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                        links:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://fresh2arrive.local/api/banner-details/id?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        next_page_url: null
+                        path: 'http://fresh2arrive.local/api/banner-details/id'
+                        per_page: 20
+                        prev_page_url: null
+                        to: null
+                        total: 0
+                      cart_total_quantity: 0
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the banner detail.'
+        example: id
+        required: true
+        schema:
+          type: string
+  /api/update-cart:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/cart-details:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/apply-coupon:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/coupons-list:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/wallet-details:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/add-money:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/verify-payment:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/put-order:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/orders/{type}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: type
+        description: ''
+        example: 19
+        required: true
+        schema:
+          type: integer
+  '/api/order-details/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order detail.'
+        example: hic
+        required: true
+        schema:
+          type: string
+  '/api/cancel-order/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the cancel order.'
+        example: sequi
+        required: true
+        schema:
+          type: string
+  /api/raise-ticket:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/ticket-details/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the ticket detail.'
+        example: voluptatem
+        required: true
+        schema:
+          type: string
+  '/api/tickets/{type}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: type
+        description: ''
+        example: 5
+        required: true
+        schema:
+          type: integer
+  /api/service-areas:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {  }
+                properties: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/refer-details:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: success
+                  action: ''
+                  display_message: ''
+                  data:
+                    conditions:
+                      - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                      - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                      - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                      - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                      - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                    referral_amount: '50'
+                    user_id: ''
+                    cities:
+                      - Delhi
+                      - Noida
+                      - Faridabad
+                      - Ghaziabad
+                      - Gurgaon
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  action:
+                    type: string
+                    example: ''
+                  display_message:
+                    type: string
+                    example: ''
+                  data:
+                    type: object
+                    example:
+                      conditions:
+                        - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                        - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                        - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                        - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                        - 'Your reffered customer .... jshdsd sjfd yuewiwe riueriere'
+                      referral_amount: '50'
+                      user_id: ''
+                      cities:
+                        - Delhi
+                        - Noida
+                        - Faridabad
+                        - Ghaziabad
+                        - Gurgaon
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/app-version:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/login-with-otp:
+    post:
+      summary: 'Handle a login request to the application.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/verify-otp:
+    post:
+      summary: 'Handle a login request to the application with otp.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/resend-otp:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/check-login-status:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: ''
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: ''
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/home:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/catelogue:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/earnings:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/date-earnings:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/date-category-earnings:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/customers:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/orders-list:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  '/api/partner/orders-details/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orders detail.'
+        example: corporis
+        required: true
+        schema:
+          type: string
+  /api/partner/deliver-order:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/partner/deliveries:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+  '/api/partner/tickets/{type}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: type
+        description: ''
+        example: 10
+        required: true
+        schema:
+          type: integer
+  '/api/partner/ticket-details/{id}':
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: failed
+                  action: log_in
+                  display_message: 'Please log in to continue'
+                  data: []
+                properties:
+                  status:
+                    type: string
+                    example: failed
+                  action:
+                    type: string
+                    example: log_in
+                  display_message:
+                    type: string
+                    example: 'Please log in to continue'
+                  data:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the ticket detail.'
+        example: labore
+        required: true
+        schema:
+          type: string
+  /api/partner/update-ticket:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

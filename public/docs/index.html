@@ -1,0 +1,4014 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Fresh2Arrive Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+    <script src="../docs/js/theme-default-3.11.1.js"></script>
+
+    <link rel="stylesheet"
+          href="//unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="//unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="//cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script>
+        var baseUrl = "http://fresh2arrive.local";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.11.1.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: October 6 2021</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://fresh2arrive.local</code></pre>
+
+        <h1>Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+            <h2 id="endpoints-GETapi-app-version">GET api/app-version</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-app-version">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/app-version" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/app-version"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-app-version">
+    </span>
+<span id="execution-results-GETapi-app-version" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-app-version"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-app-version"></code></pre>
+</span>
+<span id="execution-error-GETapi-app-version" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-app-version"></code></pre>
+</span>
+<form id="form-GETapi-app-version" data-method="GET"
+      data-path="api/app-version"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-app-version', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-app-version"
+                    onclick="tryItOut('GETapi-app-version');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-app-version"
+                    onclick="cancelTryOut('GETapi-app-version');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-app-version" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/app-version</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-login-with-otp">Handle a login request to the application.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-login-with-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/login-with-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/login-with-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-login-with-otp">
+</span>
+<span id="execution-results-POSTapi-login-with-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-login-with-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-login-with-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-login-with-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-login-with-otp"></code></pre>
+</span>
+<form id="form-POSTapi-login-with-otp" data-method="POST"
+      data-path="api/login-with-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-login-with-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-login-with-otp"
+                    onclick="tryItOut('POSTapi-login-with-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-login-with-otp"
+                    onclick="cancelTryOut('POSTapi-login-with-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-login-with-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/login-with-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-verify-otp">Handle a login request to the application with otp.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-verify-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/verify-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/verify-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-verify-otp">
+</span>
+<span id="execution-results-POSTapi-verify-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-verify-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verify-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-verify-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verify-otp"></code></pre>
+</span>
+<form id="form-POSTapi-verify-otp" data-method="POST"
+      data-path="api/verify-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-verify-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-verify-otp"
+                    onclick="tryItOut('POSTapi-verify-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-verify-otp"
+                    onclick="cancelTryOut('POSTapi-verify-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-verify-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/verify-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-resend-otp">POST api/resend-otp</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-resend-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/resend-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/resend-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-resend-otp">
+</span>
+<span id="execution-results-POSTapi-resend-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-resend-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-resend-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-resend-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-resend-otp"></code></pre>
+</span>
+<form id="form-POSTapi-resend-otp" data-method="POST"
+      data-path="api/resend-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-resend-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-resend-otp"
+                    onclick="tryItOut('POSTapi-resend-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-resend-otp"
+                    onclick="cancelTryOut('POSTapi-resend-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-resend-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/resend-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-check-login-status">GET api/check-login-status</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-check-login-status">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/check-login-status" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/check-login-status"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-check-login-status">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-check-login-status" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-check-login-status"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-check-login-status"></code></pre>
+</span>
+<span id="execution-error-GETapi-check-login-status" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-check-login-status"></code></pre>
+</span>
+<form id="form-GETapi-check-login-status" data-method="GET"
+      data-path="api/check-login-status"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-check-login-status', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-check-login-status"
+                    onclick="tryItOut('GETapi-check-login-status');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-check-login-status"
+                    onclick="cancelTryOut('GETapi-check-login-status');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-check-login-status" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/check-login-status</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-check-location">POST api/check-location</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-check-location">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/check-location" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/check-location"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-check-location">
+</span>
+<span id="execution-results-POSTapi-check-location" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-check-location"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-check-location"></code></pre>
+</span>
+<span id="execution-error-POSTapi-check-location" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-check-location"></code></pre>
+</span>
+<form id="form-POSTapi-check-location" data-method="POST"
+      data-path="api/check-location"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-check-location', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-check-location"
+                    onclick="tryItOut('POSTapi-check-location');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-check-location"
+                    onclick="cancelTryOut('POSTapi-check-location');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-check-location" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/check-location</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-update-address">POST api/update-address</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-update-address">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/update-address" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/update-address"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-update-address">
+</span>
+<span id="execution-results-POSTapi-update-address" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-update-address"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-update-address"></code></pre>
+</span>
+<span id="execution-error-POSTapi-update-address" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-update-address"></code></pre>
+</span>
+<form id="form-POSTapi-update-address" data-method="POST"
+      data-path="api/update-address"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-update-address', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-update-address"
+                    onclick="tryItOut('POSTapi-update-address');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-update-address"
+                    onclick="cancelTryOut('POSTapi-update-address');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-update-address" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/update-address</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-home">GET api/home</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-home">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/home" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/home"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-home">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;action&quot;: &quot;&quot;,
+    &quot;display_message&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;categories&quot;: [
+            {
+                &quot;name&quot;: &quot;Fruit &amp; Vegitables&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/categories/healthcare.png&quot;,
+                &quot;id&quot;: 1
+            },
+            {
+                &quot;name&quot;: &quot;foodgrains,oil,masala&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/categories/herbal.jpeg&quot;,
+                &quot;id&quot;: 2
+            },
+            {
+                &quot;name&quot;: &quot;Beauty &amp; Hygiene&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/categories/fitness.jpeg&quot;,
+                &quot;id&quot;: 3
+            },
+            {
+                &quot;name&quot;: &quot;Personal Care&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/categories/personal.png&quot;,
+                &quot;id&quot;: 4
+            },
+            {
+                &quot;name&quot;: &quot;yes ti go&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/category/6/849_download_(1).jpeg&quot;,
+                &quot;id&quot;: 6
+            },
+            {
+                &quot;name&quot;: &quot;Eggs Meat &amp; Fish&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/category/7/692_download_(1).jpeg&quot;,
+                &quot;id&quot;: 7
+            },
+            {
+                &quot;name&quot;: &quot;Gourmet &amp; World Food&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/category/8/850_Mackenzie_scottjuly29.jpg&quot;,
+                &quot;id&quot;: 8
+            },
+            {
+                &quot;name&quot;: &quot;dog food&quot;,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/category/10/275_IMG-20201014-WA0019.jpg&quot;,
+                &quot;id&quot;: 10
+            }
+        ],
+        &quot;banners&quot;: [
+            {
+                &quot;id&quot;: 8,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 13,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 14,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            }
+        ],
+        &quot;products&quot;: {
+            &quot;current_page&quot;: 1,
+            &quot;data&quot;: [
+                {
+                    &quot;id&quot;: 3,
+                    &quot;company&quot;: &quot;Fresh Farm&quot;,
+                    &quot;name&quot;: &quot;Delphia Murazik&quot;,
+                    &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/uploads/products/539/911_BICANO_CHIPS2.JPG&quot;,
+                    &quot;display_pack_size&quot;: &quot;1kg&quot;,
+                    &quot;price_per_unit&quot;: 20,
+                    &quot;cut_price_per_unit&quot;: 28,
+                    &quot;unit_name&quot;: &quot;Kg&quot;,
+                    &quot;packet_price&quot;: 11,
+                    &quot;tag&quot;: &quot;Deal of the day&quot;,
+                    &quot;min_qty&quot;: 1,
+                    &quot;max_qty&quot;: 6,
+                    &quot;cart_quantity&quot;: 0,
+                    &quot;percent&quot;: 0,
+                    &quot;commissions&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 2,
+                    &quot;company&quot;: &quot;Fresh Farm&quot;,
+                    &quot;name&quot;: &quot;Mrs. Lily Rolfson V&quot;,
+                    &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/uploads/products/3/414_HALDIRAM_CHIPS2.JPG&quot;,
+                    &quot;display_pack_size&quot;: &quot;1kg&quot;,
+                    &quot;price_per_unit&quot;: 18,
+                    &quot;cut_price_per_unit&quot;: 29,
+                    &quot;unit_name&quot;: &quot;Kg&quot;,
+                    &quot;packet_price&quot;: 13,
+                    &quot;tag&quot;: &quot;Deal of the day&quot;,
+                    &quot;min_qty&quot;: 2,
+                    &quot;max_qty&quot;: 4,
+                    &quot;cart_quantity&quot;: 0,
+                    &quot;percent&quot;: 0,
+                    &quot;commissions&quot;: 0
+                },
+                {
+                    &quot;id&quot;: 1,
+                    &quot;company&quot;: &quot;Manali Delights&quot;,
+                    &quot;name&quot;: &quot;Prof. Emilia Dietrich III&quot;,
+                    &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/uploads/products/5/656_BICANO_NAMKEEN2.JPG&quot;,
+                    &quot;display_pack_size&quot;: &quot;500-600gm&quot;,
+                    &quot;price_per_unit&quot;: 20,
+                    &quot;cut_price_per_unit&quot;: 32,
+                    &quot;unit_name&quot;: &quot;Kg&quot;,
+                    &quot;packet_price&quot;: 20,
+                    &quot;tag&quot;: &quot;Limited Stock&quot;,
+                    &quot;min_qty&quot;: 1,
+                    &quot;max_qty&quot;: 5,
+                    &quot;cart_quantity&quot;: 0,
+                    &quot;percent&quot;: 0,
+                    &quot;commissions&quot;: 0
+                }
+            ],
+            &quot;first_page_url&quot;: &quot;http://fresh2arrive.local/api/home?page=1&quot;,
+            &quot;from&quot;: 1,
+            &quot;last_page&quot;: 1,
+            &quot;last_page_url&quot;: &quot;http://fresh2arrive.local/api/home?page=1&quot;,
+            &quot;links&quot;: [
+                {
+                    &quot;url&quot;: null,
+                    &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                    &quot;active&quot;: false
+                },
+                {
+                    &quot;url&quot;: &quot;http://fresh2arrive.local/api/home?page=1&quot;,
+                    &quot;label&quot;: &quot;1&quot;,
+                    &quot;active&quot;: true
+                },
+                {
+                    &quot;url&quot;: null,
+                    &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                    &quot;active&quot;: false
+                }
+            ],
+            &quot;next_page_url&quot;: null,
+            &quot;path&quot;: &quot;http://fresh2arrive.local/api/home&quot;,
+            &quot;per_page&quot;: 20,
+            &quot;prev_page_url&quot;: null,
+            &quot;to&quot;: 3,
+            &quot;total&quot;: 3
+        },
+        &quot;cart_total_quantity&quot;: 0,
+        &quot;partner&quot;: &quot;&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-home" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-home"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-home"></code></pre>
+</span>
+<span id="execution-error-GETapi-home" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-home"></code></pre>
+</span>
+<form id="form-GETapi-home" data-method="GET"
+      data-path="api/home"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-home', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-home"
+                    onclick="tryItOut('GETapi-home');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-home"
+                    onclick="cancelTryOut('GETapi-home');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-home" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/home</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-banner-details--id-">GET api/banner-details/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-banner-details--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/banner-details/id" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/banner-details/id"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-banner-details--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;action&quot;: &quot;&quot;,
+    &quot;display_message&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;banners&quot;: [
+            {
+                &quot;id&quot;: 8,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/8/666_WhatsApp_Image_2020-10-08_at_9.00.10_AM_(1).jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 9,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/9/306_Chicken_.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/11/550_WhatsApp_Image_2020-10-08_at_9.00.11_AM.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 12,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/12/391_WhatsApp_Image_2020-10-08_at_9.00.12_AM.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 13,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/13/630_Grocery.jpeg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            },
+            {
+                &quot;id&quot;: 14,
+                &quot;image&quot;: &quot;http://fresh2arrive.local/uploads/banners/14/160_banner3.jpg&quot;,
+                &quot;type&quot;: &quot;banner&quot;
+            }
+        ],
+        &quot;products&quot;: {
+            &quot;current_page&quot;: 1,
+            &quot;data&quot;: [],
+            &quot;first_page_url&quot;: &quot;http://fresh2arrive.local/api/banner-details/id?page=1&quot;,
+            &quot;from&quot;: null,
+            &quot;last_page&quot;: 1,
+            &quot;last_page_url&quot;: &quot;http://fresh2arrive.local/api/banner-details/id?page=1&quot;,
+            &quot;links&quot;: [
+                {
+                    &quot;url&quot;: null,
+                    &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                    &quot;active&quot;: false
+                },
+                {
+                    &quot;url&quot;: &quot;http://fresh2arrive.local/api/banner-details/id?page=1&quot;,
+                    &quot;label&quot;: &quot;1&quot;,
+                    &quot;active&quot;: true
+                },
+                {
+                    &quot;url&quot;: null,
+                    &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                    &quot;active&quot;: false
+                }
+            ],
+            &quot;next_page_url&quot;: null,
+            &quot;path&quot;: &quot;http://fresh2arrive.local/api/banner-details/id&quot;,
+            &quot;per_page&quot;: 20,
+            &quot;prev_page_url&quot;: null,
+            &quot;to&quot;: null,
+            &quot;total&quot;: 0
+        },
+        &quot;cart_total_quantity&quot;: 0
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-banner-details--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-banner-details--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-banner-details--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-banner-details--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-banner-details--id-"></code></pre>
+</span>
+<form id="form-GETapi-banner-details--id-" data-method="GET"
+      data-path="api/banner-details/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-banner-details--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-banner-details--id-"
+                    onclick="tryItOut('GETapi-banner-details--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-banner-details--id-"
+                    onclick="cancelTryOut('GETapi-banner-details--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-banner-details--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/banner-details/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-banner-details--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the banner detail.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-update-cart">POST api/update-cart</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-update-cart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/update-cart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/update-cart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-update-cart">
+</span>
+<span id="execution-results-POSTapi-update-cart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-update-cart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-update-cart"></code></pre>
+</span>
+<span id="execution-error-POSTapi-update-cart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-update-cart"></code></pre>
+</span>
+<form id="form-POSTapi-update-cart" data-method="POST"
+      data-path="api/update-cart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-update-cart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-update-cart"
+                    onclick="tryItOut('POSTapi-update-cart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-update-cart"
+                    onclick="cancelTryOut('POSTapi-update-cart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-update-cart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/update-cart</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-cart-details">GET api/cart-details</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cart-details">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/cart-details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/cart-details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-cart-details">
+    </span>
+<span id="execution-results-GETapi-cart-details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cart-details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cart-details"></code></pre>
+</span>
+<span id="execution-error-GETapi-cart-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cart-details"></code></pre>
+</span>
+<form id="form-GETapi-cart-details" data-method="GET"
+      data-path="api/cart-details"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cart-details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cart-details"
+                    onclick="tryItOut('GETapi-cart-details');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cart-details"
+                    onclick="cancelTryOut('GETapi-cart-details');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cart-details" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cart-details</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-apply-coupon">POST api/apply-coupon</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-apply-coupon">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/apply-coupon" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/apply-coupon"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-apply-coupon">
+</span>
+<span id="execution-results-POSTapi-apply-coupon" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-apply-coupon"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-apply-coupon"></code></pre>
+</span>
+<span id="execution-error-POSTapi-apply-coupon" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-apply-coupon"></code></pre>
+</span>
+<form id="form-POSTapi-apply-coupon" data-method="POST"
+      data-path="api/apply-coupon"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-apply-coupon', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-apply-coupon"
+                    onclick="tryItOut('POSTapi-apply-coupon');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-apply-coupon"
+                    onclick="cancelTryOut('POSTapi-apply-coupon');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-apply-coupon" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/apply-coupon</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-coupons-list">GET api/coupons-list</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-coupons-list">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/coupons-list" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/coupons-list"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-coupons-list">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-coupons-list" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-coupons-list"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-coupons-list"></code></pre>
+</span>
+<span id="execution-error-GETapi-coupons-list" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-coupons-list"></code></pre>
+</span>
+<form id="form-GETapi-coupons-list" data-method="GET"
+      data-path="api/coupons-list"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-coupons-list', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-coupons-list"
+                    onclick="tryItOut('GETapi-coupons-list');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-coupons-list"
+                    onclick="cancelTryOut('GETapi-coupons-list');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-coupons-list" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/coupons-list</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-wallet-details">GET api/wallet-details</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-wallet-details">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/wallet-details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/wallet-details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-wallet-details">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-wallet-details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-wallet-details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-wallet-details"></code></pre>
+</span>
+<span id="execution-error-GETapi-wallet-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-wallet-details"></code></pre>
+</span>
+<form id="form-GETapi-wallet-details" data-method="GET"
+      data-path="api/wallet-details"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-wallet-details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-wallet-details"
+                    onclick="tryItOut('GETapi-wallet-details');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-wallet-details"
+                    onclick="cancelTryOut('GETapi-wallet-details');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-wallet-details" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/wallet-details</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-add-money">POST api/add-money</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-add-money">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/add-money" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/add-money"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-money">
+</span>
+<span id="execution-results-POSTapi-add-money" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-money"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-money"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-money" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-money"></code></pre>
+</span>
+<form id="form-POSTapi-add-money" data-method="POST"
+      data-path="api/add-money"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-money', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-money"
+                    onclick="tryItOut('POSTapi-add-money');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-money"
+                    onclick="cancelTryOut('POSTapi-add-money');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-money" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-money</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-verify-payment">POST api/verify-payment</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-verify-payment">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/verify-payment" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/verify-payment"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-verify-payment">
+</span>
+<span id="execution-results-POSTapi-verify-payment" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-verify-payment"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-verify-payment"></code></pre>
+</span>
+<span id="execution-error-POSTapi-verify-payment" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-verify-payment"></code></pre>
+</span>
+<form id="form-POSTapi-verify-payment" data-method="POST"
+      data-path="api/verify-payment"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-verify-payment', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-verify-payment"
+                    onclick="tryItOut('POSTapi-verify-payment');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-verify-payment"
+                    onclick="cancelTryOut('POSTapi-verify-payment');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-verify-payment" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/verify-payment</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-put-order">POST api/put-order</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-put-order">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/put-order" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/put-order"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-put-order">
+</span>
+<span id="execution-results-POSTapi-put-order" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-put-order"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-put-order"></code></pre>
+</span>
+<span id="execution-error-POSTapi-put-order" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-put-order"></code></pre>
+</span>
+<form id="form-POSTapi-put-order" data-method="POST"
+      data-path="api/put-order"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-put-order', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-put-order"
+                    onclick="tryItOut('POSTapi-put-order');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-put-order"
+                    onclick="cancelTryOut('POSTapi-put-order');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-put-order" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/put-order</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-orders--type-">GET api/orders/{type}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-orders--type-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/orders/19" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/orders/19"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-orders--type-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-orders--type-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-orders--type-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-orders--type-"></code></pre>
+</span>
+<span id="execution-error-GETapi-orders--type-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-orders--type-"></code></pre>
+</span>
+<form id="form-GETapi-orders--type-" data-method="GET"
+      data-path="api/orders/{type}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-orders--type-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-orders--type-"
+                    onclick="tryItOut('GETapi-orders--type-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-orders--type-"
+                    onclick="cancelTryOut('GETapi-orders--type-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-orders--type-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/orders/{type}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>type</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="type"
+               data-endpoint="GETapi-orders--type-"
+               data-component="url" required  hidden>
+    <br>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-order-details--id-">GET api/order-details/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-order-details--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/order-details/hic" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/order-details/hic"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-order-details--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-order-details--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-order-details--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-order-details--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-order-details--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-order-details--id-"></code></pre>
+</span>
+<form id="form-GETapi-order-details--id-" data-method="GET"
+      data-path="api/order-details/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-order-details--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-order-details--id-"
+                    onclick="tryItOut('GETapi-order-details--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-order-details--id-"
+                    onclick="cancelTryOut('GETapi-order-details--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-order-details--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/order-details/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-order-details--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the order detail.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-cancel-order--id-">GET api/cancel-order/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cancel-order--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/cancel-order/sequi" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/cancel-order/sequi"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-cancel-order--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cancel-order--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cancel-order--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cancel-order--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-cancel-order--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cancel-order--id-"></code></pre>
+</span>
+<form id="form-GETapi-cancel-order--id-" data-method="GET"
+      data-path="api/cancel-order/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cancel-order--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cancel-order--id-"
+                    onclick="tryItOut('GETapi-cancel-order--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cancel-order--id-"
+                    onclick="cancelTryOut('GETapi-cancel-order--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cancel-order--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cancel-order/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-cancel-order--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the cancel order.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-raise-ticket">POST api/raise-ticket</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-raise-ticket">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/raise-ticket" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/raise-ticket"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-raise-ticket">
+</span>
+<span id="execution-results-POSTapi-raise-ticket" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-raise-ticket"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-raise-ticket"></code></pre>
+</span>
+<span id="execution-error-POSTapi-raise-ticket" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-raise-ticket"></code></pre>
+</span>
+<form id="form-POSTapi-raise-ticket" data-method="POST"
+      data-path="api/raise-ticket"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-raise-ticket', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-raise-ticket"
+                    onclick="tryItOut('POSTapi-raise-ticket');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-raise-ticket"
+                    onclick="cancelTryOut('POSTapi-raise-ticket');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-raise-ticket" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/raise-ticket</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-ticket-details--id-">GET api/ticket-details/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-ticket-details--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/ticket-details/voluptatem" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/ticket-details/voluptatem"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-ticket-details--id-">
+    </span>
+<span id="execution-results-GETapi-ticket-details--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ticket-details--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ticket-details--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-ticket-details--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ticket-details--id-"></code></pre>
+</span>
+<form id="form-GETapi-ticket-details--id-" data-method="GET"
+      data-path="api/ticket-details/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ticket-details--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ticket-details--id-"
+                    onclick="tryItOut('GETapi-ticket-details--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ticket-details--id-"
+                    onclick="cancelTryOut('GETapi-ticket-details--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ticket-details--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ticket-details/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-ticket-details--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the ticket detail.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-tickets--type-">GET api/tickets/{type}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-tickets--type-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/tickets/5" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/tickets/5"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-tickets--type-">
+    </span>
+<span id="execution-results-GETapi-tickets--type-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-tickets--type-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-tickets--type-"></code></pre>
+</span>
+<span id="execution-error-GETapi-tickets--type-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-tickets--type-"></code></pre>
+</span>
+<form id="form-GETapi-tickets--type-" data-method="GET"
+      data-path="api/tickets/{type}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-tickets--type-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-tickets--type-"
+                    onclick="tryItOut('GETapi-tickets--type-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-tickets--type-"
+                    onclick="cancelTryOut('GETapi-tickets--type-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-tickets--type-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/tickets/{type}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>type</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="type"
+               data-endpoint="GETapi-tickets--type-"
+               data-component="url" required  hidden>
+    <br>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-service-areas">GET api/service-areas</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-service-areas">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/service-areas" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/service-areas"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-service-areas">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-service-areas" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-service-areas"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-service-areas"></code></pre>
+</span>
+<span id="execution-error-GETapi-service-areas" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-service-areas"></code></pre>
+</span>
+<form id="form-GETapi-service-areas" data-method="GET"
+      data-path="api/service-areas"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-service-areas', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-service-areas"
+                    onclick="tryItOut('GETapi-service-areas');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-service-areas"
+                    onclick="cancelTryOut('GETapi-service-areas');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-service-areas" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/service-areas</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-refer-details">GET api/refer-details</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-refer-details">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/refer-details" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/refer-details"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-refer-details">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;success&quot;,
+    &quot;action&quot;: &quot;&quot;,
+    &quot;display_message&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+        &quot;conditions&quot;: [
+            &quot;Your reffered customer .... jshdsd sjfd yuewiwe riueriere&quot;,
+            &quot;Your reffered customer .... jshdsd sjfd yuewiwe riueriere&quot;,
+            &quot;Your reffered customer .... jshdsd sjfd yuewiwe riueriere&quot;,
+            &quot;Your reffered customer .... jshdsd sjfd yuewiwe riueriere&quot;,
+            &quot;Your reffered customer .... jshdsd sjfd yuewiwe riueriere&quot;
+        ],
+        &quot;referral_amount&quot;: &quot;50&quot;,
+        &quot;user_id&quot;: &quot;&quot;,
+        &quot;cities&quot;: [
+            &quot;Delhi&quot;,
+            &quot;Noida&quot;,
+            &quot;Faridabad&quot;,
+            &quot;Ghaziabad&quot;,
+            &quot;Gurgaon&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-refer-details" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-refer-details"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-refer-details"></code></pre>
+</span>
+<span id="execution-error-GETapi-refer-details" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-refer-details"></code></pre>
+</span>
+<form id="form-GETapi-refer-details" data-method="GET"
+      data-path="api/refer-details"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-refer-details', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-refer-details"
+                    onclick="tryItOut('GETapi-refer-details');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-refer-details"
+                    onclick="cancelTryOut('GETapi-refer-details');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-refer-details" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/refer-details</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-app-version">GET api/partner/app-version</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-app-version">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/app-version" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/app-version"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-app-version">
+    </span>
+<span id="execution-results-GETapi-partner-app-version" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-app-version"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-app-version"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-app-version" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-app-version"></code></pre>
+</span>
+<form id="form-GETapi-partner-app-version" data-method="GET"
+      data-path="api/partner/app-version"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-app-version', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-app-version"
+                    onclick="tryItOut('GETapi-partner-app-version');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-app-version"
+                    onclick="cancelTryOut('GETapi-partner-app-version');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-app-version" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/app-version</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-partner-login-with-otp">Handle a login request to the application.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-partner-login-with-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/partner/login-with-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/login-with-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-partner-login-with-otp">
+</span>
+<span id="execution-results-POSTapi-partner-login-with-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-partner-login-with-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-partner-login-with-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-partner-login-with-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-partner-login-with-otp"></code></pre>
+</span>
+<form id="form-POSTapi-partner-login-with-otp" data-method="POST"
+      data-path="api/partner/login-with-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-partner-login-with-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-partner-login-with-otp"
+                    onclick="tryItOut('POSTapi-partner-login-with-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-partner-login-with-otp"
+                    onclick="cancelTryOut('POSTapi-partner-login-with-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-partner-login-with-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/partner/login-with-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-partner-verify-otp">Handle a login request to the application with otp.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-partner-verify-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/partner/verify-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/verify-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-partner-verify-otp">
+</span>
+<span id="execution-results-POSTapi-partner-verify-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-partner-verify-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-partner-verify-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-partner-verify-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-partner-verify-otp"></code></pre>
+</span>
+<form id="form-POSTapi-partner-verify-otp" data-method="POST"
+      data-path="api/partner/verify-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-partner-verify-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-partner-verify-otp"
+                    onclick="tryItOut('POSTapi-partner-verify-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-partner-verify-otp"
+                    onclick="cancelTryOut('POSTapi-partner-verify-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-partner-verify-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/partner/verify-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-partner-resend-otp">POST api/partner/resend-otp</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-partner-resend-otp">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/partner/resend-otp" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/resend-otp"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-partner-resend-otp">
+</span>
+<span id="execution-results-POSTapi-partner-resend-otp" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-partner-resend-otp"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-partner-resend-otp"></code></pre>
+</span>
+<span id="execution-error-POSTapi-partner-resend-otp" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-partner-resend-otp"></code></pre>
+</span>
+<form id="form-POSTapi-partner-resend-otp" data-method="POST"
+      data-path="api/partner/resend-otp"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-partner-resend-otp', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-partner-resend-otp"
+                    onclick="tryItOut('POSTapi-partner-resend-otp');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-partner-resend-otp"
+                    onclick="cancelTryOut('POSTapi-partner-resend-otp');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-partner-resend-otp" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/partner/resend-otp</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-check-login-status">GET api/partner/check-login-status</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-check-login-status">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/check-login-status" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/check-login-status"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-check-login-status">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-check-login-status" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-check-login-status"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-check-login-status"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-check-login-status" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-check-login-status"></code></pre>
+</span>
+<form id="form-GETapi-partner-check-login-status" data-method="GET"
+      data-path="api/partner/check-login-status"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-check-login-status', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-check-login-status"
+                    onclick="tryItOut('GETapi-partner-check-login-status');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-check-login-status"
+                    onclick="cancelTryOut('GETapi-partner-check-login-status');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-check-login-status" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/check-login-status</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-home">GET api/partner/home</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-home">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/home" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/home"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-home">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-home" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-home"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-home"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-home" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-home"></code></pre>
+</span>
+<form id="form-GETapi-partner-home" data-method="GET"
+      data-path="api/partner/home"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-home', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-home"
+                    onclick="tryItOut('GETapi-partner-home');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-home"
+                    onclick="cancelTryOut('GETapi-partner-home');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-home" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/home</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-catelogue">GET api/partner/catelogue</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-catelogue">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/catelogue" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/catelogue"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-catelogue">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-catelogue" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-catelogue"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-catelogue"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-catelogue" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-catelogue"></code></pre>
+</span>
+<form id="form-GETapi-partner-catelogue" data-method="GET"
+      data-path="api/partner/catelogue"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-catelogue', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-catelogue"
+                    onclick="tryItOut('GETapi-partner-catelogue');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-catelogue"
+                    onclick="cancelTryOut('GETapi-partner-catelogue');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-catelogue" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/catelogue</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-earnings">GET api/partner/earnings</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-earnings">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/earnings" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/earnings"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-earnings">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-earnings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-earnings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-earnings"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-earnings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-earnings"></code></pre>
+</span>
+<form id="form-GETapi-partner-earnings" data-method="GET"
+      data-path="api/partner/earnings"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-earnings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-earnings"
+                    onclick="tryItOut('GETapi-partner-earnings');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-earnings"
+                    onclick="cancelTryOut('GETapi-partner-earnings');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-earnings" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/earnings</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-date-earnings">GET api/partner/date-earnings</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-date-earnings">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/date-earnings" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/date-earnings"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-date-earnings">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-date-earnings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-date-earnings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-date-earnings"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-date-earnings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-date-earnings"></code></pre>
+</span>
+<form id="form-GETapi-partner-date-earnings" data-method="GET"
+      data-path="api/partner/date-earnings"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-date-earnings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-date-earnings"
+                    onclick="tryItOut('GETapi-partner-date-earnings');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-date-earnings"
+                    onclick="cancelTryOut('GETapi-partner-date-earnings');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-date-earnings" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/date-earnings</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-date-category-earnings">GET api/partner/date-category-earnings</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-date-category-earnings">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/date-category-earnings" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/date-category-earnings"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-date-category-earnings">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-date-category-earnings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-date-category-earnings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-date-category-earnings"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-date-category-earnings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-date-category-earnings"></code></pre>
+</span>
+<form id="form-GETapi-partner-date-category-earnings" data-method="GET"
+      data-path="api/partner/date-category-earnings"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-date-category-earnings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-date-category-earnings"
+                    onclick="tryItOut('GETapi-partner-date-category-earnings');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-date-category-earnings"
+                    onclick="cancelTryOut('GETapi-partner-date-category-earnings');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-date-category-earnings" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/date-category-earnings</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-customers">GET api/partner/customers</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-customers">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/customers" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/customers"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-customers">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-customers" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-customers"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-customers"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-customers" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-customers"></code></pre>
+</span>
+<form id="form-GETapi-partner-customers" data-method="GET"
+      data-path="api/partner/customers"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-customers', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-customers"
+                    onclick="tryItOut('GETapi-partner-customers');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-customers"
+                    onclick="cancelTryOut('GETapi-partner-customers');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-customers" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/customers</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-orders-list">GET api/partner/orders-list</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-orders-list">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/orders-list" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/orders-list"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-orders-list">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-orders-list" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-orders-list"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-orders-list"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-orders-list" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-orders-list"></code></pre>
+</span>
+<form id="form-GETapi-partner-orders-list" data-method="GET"
+      data-path="api/partner/orders-list"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-orders-list', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-orders-list"
+                    onclick="tryItOut('GETapi-partner-orders-list');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-orders-list"
+                    onclick="cancelTryOut('GETapi-partner-orders-list');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-orders-list" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/orders-list</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-orders-details--id-">GET api/partner/orders-details/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-orders-details--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/orders-details/corporis" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/orders-details/corporis"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-orders-details--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-orders-details--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-orders-details--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-orders-details--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-orders-details--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-orders-details--id-"></code></pre>
+</span>
+<form id="form-GETapi-partner-orders-details--id-" data-method="GET"
+      data-path="api/partner/orders-details/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-orders-details--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-orders-details--id-"
+                    onclick="tryItOut('GETapi-partner-orders-details--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-orders-details--id-"
+                    onclick="cancelTryOut('GETapi-partner-orders-details--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-orders-details--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/orders-details/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-partner-orders-details--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the orders detail.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-partner-deliver-order">POST api/partner/deliver-order</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-partner-deliver-order">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/partner/deliver-order" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/deliver-order"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-partner-deliver-order">
+</span>
+<span id="execution-results-POSTapi-partner-deliver-order" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-partner-deliver-order"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-partner-deliver-order"></code></pre>
+</span>
+<span id="execution-error-POSTapi-partner-deliver-order" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-partner-deliver-order"></code></pre>
+</span>
+<form id="form-POSTapi-partner-deliver-order" data-method="POST"
+      data-path="api/partner/deliver-order"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-partner-deliver-order', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-partner-deliver-order"
+                    onclick="tryItOut('POSTapi-partner-deliver-order');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-partner-deliver-order"
+                    onclick="cancelTryOut('POSTapi-partner-deliver-order');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-partner-deliver-order" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/partner/deliver-order</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-deliveries">GET api/partner/deliveries</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-deliveries">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/deliveries" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/deliveries"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-deliveries">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-deliveries" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-deliveries"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-deliveries"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-deliveries" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-deliveries"></code></pre>
+</span>
+<form id="form-GETapi-partner-deliveries" data-method="GET"
+      data-path="api/partner/deliveries"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-deliveries', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-deliveries"
+                    onclick="tryItOut('GETapi-partner-deliveries');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-deliveries"
+                    onclick="cancelTryOut('GETapi-partner-deliveries');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-deliveries" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/deliveries</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-tickets--type-">GET api/partner/tickets/{type}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-tickets--type-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/tickets/10" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/tickets/10"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-tickets--type-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-tickets--type-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-tickets--type-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-tickets--type-"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-tickets--type-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-tickets--type-"></code></pre>
+</span>
+<form id="form-GETapi-partner-tickets--type-" data-method="GET"
+      data-path="api/partner/tickets/{type}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-tickets--type-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-tickets--type-"
+                    onclick="tryItOut('GETapi-partner-tickets--type-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-tickets--type-"
+                    onclick="cancelTryOut('GETapi-partner-tickets--type-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-tickets--type-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/tickets/{type}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>type</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="type"
+               data-endpoint="GETapi-partner-tickets--type-"
+               data-component="url" required  hidden>
+    <br>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-partner-ticket-details--id-">GET api/partner/ticket-details/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-partner-ticket-details--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://fresh2arrive.local/api/partner/ticket-details/labore" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/ticket-details/labore"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-partner-ticket-details--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;failed&quot;,
+    &quot;action&quot;: &quot;log_in&quot;,
+    &quot;display_message&quot;: &quot;Please log in to continue&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-partner-ticket-details--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-partner-ticket-details--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-partner-ticket-details--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-partner-ticket-details--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-partner-ticket-details--id-"></code></pre>
+</span>
+<form id="form-GETapi-partner-ticket-details--id-" data-method="GET"
+      data-path="api/partner/ticket-details/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-partner-ticket-details--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-partner-ticket-details--id-"
+                    onclick="tryItOut('GETapi-partner-ticket-details--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-partner-ticket-details--id-"
+                    onclick="cancelTryOut('GETapi-partner-ticket-details--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-partner-ticket-details--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/partner/ticket-details/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-partner-ticket-details--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the ticket detail.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-partner-update-ticket">POST api/partner/update-ticket</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-partner-update-ticket">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://fresh2arrive.local/api/partner/update-ticket" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://fresh2arrive.local/api/partner/update-ticket"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-partner-update-ticket">
+</span>
+<span id="execution-results-POSTapi-partner-update-ticket" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-partner-update-ticket"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-partner-update-ticket"></code></pre>
+</span>
+<span id="execution-error-POSTapi-partner-update-ticket" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-partner-update-ticket"></code></pre>
+</span>
+<form id="form-POSTapi-partner-update-ticket" data-method="POST"
+      data-path="api/partner/update-ticket"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-partner-update-ticket', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-partner-update-ticket"
+                    onclick="tryItOut('POSTapi-partner-update-ticket');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-partner-update-ticket"
+                    onclick="cancelTryOut('POSTapi-partner-update-ticket');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-partner-update-ticket" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/partner/update-ticket</code></b>
+        </p>
+                    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var exampleLanguages = ["bash","javascript"];
+        setupLanguages(exampleLanguages);
+    });
+</script>
+</body>
+</html>
