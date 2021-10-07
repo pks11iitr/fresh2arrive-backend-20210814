@@ -25,6 +25,8 @@ Route::group(['middleware'=>['auth', 'acl']], function(){
 
 Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
     Route::get('/','Admin\DashboardController@index')->name('dashboard');
 
     Route::group(['prefix'=>'banners'], function(){
