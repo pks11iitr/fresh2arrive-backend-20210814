@@ -146,7 +146,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('category.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Category
@@ -179,7 +179,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('customers.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Customers
@@ -187,7 +187,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('partners.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Partners
