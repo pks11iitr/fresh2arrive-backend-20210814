@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -48,11 +49,13 @@ class HomeController extends Controller
 
         $partner = $user->partner->name??'';
 
+        $next_time_slot=TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0];
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot')
         ];
     }
 
