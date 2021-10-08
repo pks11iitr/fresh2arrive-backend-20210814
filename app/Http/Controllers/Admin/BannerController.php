@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     public function index(Request $request){
-        return view('admin.banners.view');
+        $banners = Banner::active()->paginate(10);
+        return view('admin.banners.view', compact('banners'));
     }
 
     public function create(Request $request){
