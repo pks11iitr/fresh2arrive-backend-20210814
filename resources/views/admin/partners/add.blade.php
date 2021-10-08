@@ -79,11 +79,11 @@
                                         <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Notification Token </label>
-                                            <input type="text" name="notifitoken" class="form-control" placeholder="Notification Token"  required>
+                                            <input type="text" name="notification_token" class="form-control" placeholder="Notification Token"  required>
                                         </div>
                                             <div class="form-group">
                                                 <label>Status</label>
-                                                <select class="form-control select2" name="isactive">
+                                                <select class="form-control select2" name="status">
                                                     <option value="">Please Select Status</option>
                                                     <option value="1">Yes</option>
                                                     <option value="0">No</option>

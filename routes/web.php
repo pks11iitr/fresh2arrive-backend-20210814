@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>['auth', 'acl']], function(){
 
-    Route::get('/role-check', 'Admin\HomeController@check_n_redirect')->name('user.role.check');
+Route::get('/role-check', 'Admin\HomeController@check_n_redirect')->name('user.role.check');
 
 });
 
@@ -69,6 +69,36 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('store', 'Admin\CustomerController@store')->name('customers.store');
         Route::get('edit/{id}','Admin\CustomerController@edit')->name('customers.edit');
         Route::post('update/{id}', 'Admin\CustomerController@update')->name('customers.update');
+    });
+
+
+
+
+    Route::group(['prefix'=>'orders'],function(){
+        Route::get('/','Admin\OrderController@index')->name('orders.list');
+        Route::get('create','Admin\OrderController@create')->name('orders.create');
+        Route::post('store', 'Admin\OrderController@store')->name('orders.store');
+        Route::get('edit/{id}','Admin\OrderController@edit')->name('orders.edit');
+        Route::post('update/{id}', 'Admin\OrderController@update')->name('orders.update');
+    });
+
+
+
+    Route::group(['prefix'=>'products'],function(){
+        Route::get('/','Admin\ProductController@index')->name('products.list');
+        Route::get('create','Admin\ProductController@create')->name('products.create');
+        Route::post('store', 'Admin\ProductController@store')->name('products.store');
+        Route::get('edit/{id}','Admin\ProductController@edit')->name('products.edit');
+        Route::post('update/{id}', 'Admin\ProductController@update')->name('products.update');
+    });
+
+
+    Route::group(['prefix'=>'inventory'],function(){
+        Route::get('/','Admin\InventoryController@index')->name('inventory.list');
+        Route::get('create','Admin\InventoryController@create')->name('inventory.create');
+        Route::post('store', 'Admin\InventoryController@store')->name('inventory.store');
+        Route::get('edit/{id}','Admin\InventoryController@edit')->name('inventory.edit');
+        Route::post('update/{id}', 'Admin\InventoryController@update')->name('inventory.update');
     });
 
 

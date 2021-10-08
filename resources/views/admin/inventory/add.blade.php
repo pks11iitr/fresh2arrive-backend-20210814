@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category</h1>
+                        <h1>Inventory</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route('category.list')}}">Categories</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('inventory.list')}}">Inventory</a></li>
                         </ol>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Category Add</h3>
+                                <h3 class="card-title">Inventory Add</h3>
                             </div>
                             <!-- /.card-header -->
 
@@ -39,41 +39,44 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Name </label>
-                                                <input type="text" name="name" class="form-control" placeholder="Name"  required>
+                                                <label>Product </label>
+                                                <input type="text" name="product_id" class="form-control" placeholder="Product"  required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Quantity </label>
+                                                <input type="text" name="quantity" class="form-control" placeholder="Quantity"  required>
                                             </div>
                                             <!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label>Image</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*" required>
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                    </div>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="">Upload</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
                                         <!-- /.col -->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Earn Upto </label>
-                                                <input type="text" name="earn_upto" class="form-control" placeholder="Earn Upto"  required>
+                                                <label>Price  </label>
+                                                <input type="text" name="price" class="form-control" placeholder="Price"  required>
                                             </div>
+
                                             <div class="form-group">
-                                                <label>Isactive</label>
-                                                <select class="form-control select2" name="isactive">
-                                                    <option value="">Please Select Status</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
+                                                <label>Vendor </label>
+                                                <input type="text" name="vendor" class="form-control" placeholder="Vendor"  required>
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
                                         <!-- /.col -->
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>	Remarks  </label>
+                                               <textarea name="remarks" rows="5" class="form-control" placeholder="Remarks"></textarea>
+                                            </div>
+
+
+                                            <!-- /.form-group -->
+                                        </div>
                                     </div>
                                     <!-- /.row -->
                                 </div>

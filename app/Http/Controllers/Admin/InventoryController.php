@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class InventoryController extends Controller
 {
-    //
+    public  function index(Request $request){
+        return view('admin.inventory.view');
+    }
+
+    public  function create(Request $request){
+        return view('admin.inventory.add');
+    }
 }

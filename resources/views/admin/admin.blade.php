@@ -155,7 +155,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('orders.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Orders
@@ -163,7 +163,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('products.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Products
@@ -171,7 +171,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('inventory.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Inventory
