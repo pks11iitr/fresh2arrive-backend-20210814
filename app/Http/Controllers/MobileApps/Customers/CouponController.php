@@ -117,7 +117,7 @@ class CouponController extends Controller
         if($request->echo_pack){
             $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
         }
-        $echo_charges = $echo_charges->value??0;
+        $echo_charges = intval($echo_charges->value??0);
 
         $prices=[
             'item_count'=>$count,

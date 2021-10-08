@@ -189,7 +189,7 @@ class CartController extends Controller
 
 
         $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
-        $echo_charges = $echo_charges->value??0;
+        $echo_charges = intval($echo_charges->value??0);
 
         if($user){
             $balance=Wallet::balance($user->id);
