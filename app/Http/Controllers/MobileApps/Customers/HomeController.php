@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,9 +35,7 @@ class HomeController extends Controller
             ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty');
 
         if(!empty($request->category_id)){
-            $products = $products->whereHas('category', function($category) use($request){
-                $category->where('id', $request->category_id);
-            });
+            $products = $products->where('category_id', $request->category_id);
         }
 
         $products = $products->paginate(20);
@@ -48,11 +47,13 @@ class HomeController extends Controller
 
         $partner = $user->partner->name??'';
 
+        $next_time_slot='Next Delivery Slot: '.(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot')
         ];
     }
 

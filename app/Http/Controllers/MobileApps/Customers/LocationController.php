@@ -13,12 +13,17 @@ class LocationController extends Controller
             'location_data' => 'required'
         ]);
 
+        $user=auth()->guard('customer-api')->user();
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
             'data'=>[
+                'name'=>$user->name??'',
+                'house_no'=>$user->house_no??'',
+                'building'=>$user->building??'',
+                'street'=>$user->street??'',
                 'area'=>'Sector 62',
                 'city'=>'Noida',
                 'state'=>'Uttar Pradesh',

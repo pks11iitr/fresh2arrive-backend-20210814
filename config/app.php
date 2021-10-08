@@ -177,6 +177,7 @@ return [
 
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     /*

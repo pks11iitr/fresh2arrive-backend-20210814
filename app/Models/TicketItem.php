@@ -30,7 +30,7 @@ class TicketItem extends Model
     }
 
     public function getTicketRaisedForAttribute(){
-        return 'Issue Raised for '.$this->packet_count;
+        return 'Issue Raised for '.$this->packet_count. ' packs';
     }
 
 

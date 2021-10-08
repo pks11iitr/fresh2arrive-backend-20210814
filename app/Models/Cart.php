@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Cart extends Model
 {
@@ -43,6 +44,14 @@ class Cart extends Model
 
     public function product(){
         return $this->belongsTo('App\Models\Product', 'product_id');
+    }
+
+
+    public function getImageAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
     }
 
 }

@@ -27,7 +27,7 @@ class TicketController extends Controller
 
         $request->validate([
             'type'=>'required|in:item,partner',
-            'comments'=>'string',
+            'comments'=>'nullable|string',
             'order_id'=>'required|integer',
             'items_id'=>'array',
             //'items_id.*'=>'required|integer',
@@ -61,33 +61,44 @@ class TicketController extends Controller
                     'data'=>[]
                 ];
 
-            $ticket = Ticket::create([
-                'refid'=>$max_number,
-                'order_id'=>$request->order_id,
-                'customer_comments'=>$request->comments??'',
-                'user_id'=>$order->user_id,
-                'partner_id'=>$order->delivery_partner,
-                'ticket_type'=>'Items Related'
-            ]);
+            $items=[];
+            if(isset($request->items_issue)){
+                foreach($request->items_issue as $key=>$value){
+                    if(!empty($request->items_id[$key]) && !empty($request->items_quantity[$key]) && !empty($request->items_issue[$key])){
+                        $items[] = new TicketItem([
+                            'detail_id'=>$request->items_id[$key],
+                            'packet_count'=>$request->items_quantity[$key]??0,
+                            'issue'=>$request->items_issue[$key]??0,
+                            'image'=>$this->getImagePath($request->items_image[$key]??null, 'ticket-images/'.$request->order_id)
+                        ]);
+                    }
+                }
+            }
+
+            if(count($items)==0)
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Please select an item to raise ticket',
+                    'data'=>[]
+                ];
 
             $order->item_ticket_status = 1;
             $order->save();
 
-            $items=[];
-            if(isset($request->items_issue)){
-                foreach($request->items_issue as $key=>$value){
-                    if(!empty($request->items_id[$key]) && !empty($request->items_quantity[$key]) && !empty($request->items_issue[$key]))
-                    $items[] = new TicketItem([
-                        'detail_id'=>$request->items_id[$key],
-                        'packet_count'=>$request->items_quantity[$key]??0,
-                        'issue'=>$request->items_issue[$key]??0,
-                        'image'=>$this->getImagePath($request->items_image[$key], 'ticket-images/'.$ticket->id)
-                    ]);
-                }
-                if($items){
-                    $ticket->items()->saveMany($items);
-                }
+            if($items){
+                $ticket = Ticket::create([
+                    'refid'=>$max_number,
+                    'order_id'=>$request->order_id,
+                    'customer_comments'=>$request->comments??'',
+                    'user_id'=>$order->user_id,
+                    'partner_id'=>$order->delivery_partner,
+                    'ticket_type'=>'Items Related'
+                ]);
+                $ticket->items()->saveMany($items);
             }
+
+
         }else{
 
             if($order->partner_ticket_status!=0)
@@ -97,6 +108,14 @@ class TicketController extends Controller
                     'display_message'=>'Invalid Request',
                     'data'=>[]
                 ];
+            if(empty($request->customer_comments))
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Please write your issue',
+                    'data'=>[]
+                ];
+
 
             Ticket::create([
                 'refid'=>$max_number,
