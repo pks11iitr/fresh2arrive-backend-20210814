@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Partner extends Authenticatable implements JWTSubject
@@ -22,7 +23,14 @@ class Partner extends Authenticatable implements JWTSubject
         'address',
         'city',
         'pincode',
-        'state'
+        'state',
+        'aadhaar_no',
+        'pan_no',
+        'aadhaar_url',
+        'pan_url',
+        'bank_account_holder',
+        'bank_account_no',
+        'bank_ifsc',
     ];
 
 
@@ -51,4 +59,20 @@ class Partner extends Authenticatable implements JWTSubject
     public function reportedUsers(){
         return $this->belongsToMany('App\Models\Customer', 'reported_users', 'reported_by', 'reported_user');
     }
+
+
+    public function getAadhaarUrlAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
+    }
+
+    public function getPanUrlAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
+    }
+
 }

@@ -164,7 +164,10 @@ class CartController extends Controller
 
         $user = $request->user;
 
-        $delivery_partner='';
+        $delivery_partner=[
+            'name'=>'',
+            'mobile'=>''
+        ];
         if($user){
            $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($user->assigned_partner);
         }
@@ -230,7 +233,11 @@ class CartController extends Controller
 
         $time_slots = TimeSlot::getAvailableTimeSlotsList(date('H:i:s'));
 
-        $delivery_address = '';
+        $delivery_address = [
+            'name' => '',
+            'mobile' => '',
+            'address' => ''
+        ];
         if($user){
             $delivery_address = [
                 'name' => $user->name,

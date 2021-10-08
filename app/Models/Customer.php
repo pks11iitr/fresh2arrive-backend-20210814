@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Customer extends Authenticatable implements JWTSubject
@@ -58,6 +59,14 @@ class Customer extends Authenticatable implements JWTSubject
 
     public function getAddressAttribute($value){
         return ($this->house_no??'').' '.($this->building??'').' '.($this->area??'').' '.($this->street??'').' '.($this->city??'').' '.($this->state??'').' '.($this->pincode??'');
+    }
+
+
+    public function getImageAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
     }
 
 }
