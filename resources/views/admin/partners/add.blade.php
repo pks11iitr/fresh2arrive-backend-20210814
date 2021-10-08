@@ -45,7 +45,7 @@
                                             <!-- /.form-group -->
                                             <div class="form-group">
                                                 <label>Mobile </label>
-                                                <input type="text" name="mobile" class="form-control" placeholder="Mobile"  required>
+                                                <input type="text" name="mobile" class="form-control" placeholder="Mobile"  required  >
                                             </div>
 
                                             <!-- /.form-group -->
