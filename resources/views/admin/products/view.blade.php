@@ -37,16 +37,30 @@
                                     <thead>
                                     <tr>
                                         <th>Product ID</th>
-                                        <th>Company</th>
                                         <th>Name</th>
                                         <th>Image</th>
-                                        {{--<th>Parent Category</th>--}}
+                                        <th>Display Pack Size</th>
+                                        <th>Packet Price</th>
+                                        <th>Commissions</th>
+                                        <th>Tag</th>
                                         <th>Isactive</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach($products as $products)
+                                        <tr>
+                                            <td>{{$products->id}}</td>
+                                            <td>{{$products->name}}</td>
+                                            <td><imc src="{{$products->image}}" height="50" width="100"/></td>
+                                            <td>{{$products->display_pack_size}}</td>
+                                            <td>{{$products->price_per_unit}}</td>
+                                            <td>{{$products->commissions}}</td>
+                                            <td>{{$products->tag}}</td>
+                                            <td>{{$products->isactive?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('products.edit',['id'=>$products->id])}}">Edit</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

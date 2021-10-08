@@ -1,1 +1,0 @@
-SELECT `id`, `category_id`, `company`, `name`, `image`, `display_pack_size`, `price_per_unit`, `cut_price_per_unit`, `unit_name`, `packet_price`, `consumed_quantity`, `isactive`, `tag`, `min_qty`, `max_qty`,  `show_only_pack_price`, `commissions` FROM `products` WHERE 1

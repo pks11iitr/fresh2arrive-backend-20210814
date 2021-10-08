@@ -37,6 +37,7 @@
                                         <th>Inventory ID</th>
                                         <th>Product</th>
                                         <th>Quantity </th>
+                                        <th>Date </th>
                                         <th>Price</th>
                                         {{--<th>Parent Category</th>--}}
                                         <th>Vendor</th>
@@ -45,7 +46,18 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach($inventory as $inv)
+                                            <tr>
+                                                <td>{{$inv->id}}</td>
+                                                <td>{{$inv->product_id}}</td>
+                                                <td>{{$inv->quantity}}</td>
+                                                <td>{{$inv->create_date}}</td>
+                                                <td>{{$inv->price}}</td>
+                                                <td>{{$inv->vendor}}</td>
+                                                <td>{{$inv->remarks}}</td>
+                                                <td><a href="{{route('inventory.edit',['id'=>$inv->id])}}">Edit</a></td>
+                                                @endforeach
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -8,6 +8,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Banner</h1>
+              @if(session('status'))
+              {{session('status')}}
+              @endif
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

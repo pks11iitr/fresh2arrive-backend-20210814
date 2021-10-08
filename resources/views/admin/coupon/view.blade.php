@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Coupons</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Coupon</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{route('category.create')}}" class="btn btn-primary">Add Category</a>
+                                <a href="{{route('coupon.create')}}" class="btn btn-primary">Add Coupon</a>
 
                             </div>
                             <!-- /.card-header -->
@@ -34,26 +34,19 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Earn Upto</th>
+                                        <th>Coupon ID</th>
+                                        <th>Code</th>
+                                        <th>Discount Type</th>
+                                        <th>Discount</th>
+
+                                        <th>Description</th>
+
+                                        {{--<th>Parent Category</th>--}}
                                         <th>Isactive</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                            @foreach($category as $category)
-                                <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td><imc src="{{$category->image}}" height="50" width="100"/></td>
-                                    <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive?'Active':'Inactive'}}</td>
-                                     <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
-                                </tr>
-                            @endforeach
 
                                     </tbody>
                                 </table>

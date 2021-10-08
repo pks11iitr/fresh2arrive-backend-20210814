@@ -28,8 +28,6 @@
                             <div class="card-header">
                                 <a href="{{route('orders.create')}}" class="btn btn-primary">Add Order</a>
 
-
-
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -37,16 +35,31 @@
                                     <thead>
                                     <tr>
                                         <th>Order ID</th>
-                                        <th>User Name</th>
-                                        <th>Order Total</th>
-                                        <th>Payment Mode</th>
-                                        {{--<th>Parent Category</th>--}}
-                                        <th>Isactive</th>
+                                        <th>Refid</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Is_Pad</th>
+                                        <th>Delivery Date</th>
+                                        <th>Delivery Time</th>
+                                        <th>Delivery Partner</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($order as $Order)
+                        <tr>
+                            <td>{{$Order->id}}</td>
+                            <td>{{$Order->refid}}</td>
+                            <td>{{$Order->order_total}}</td>
+                            <td>{{$Order->status?'pending':'confirmed'}}</td>
+                            <td>{{$Order->is_paid?'Yes':'No'}}</td>
+                            <td>{{$Order->delivery_date}}</td>
+                            <td>{{$Order->delivery_time}}</td>
+                            <td>{{$Order->delivery_partner}}</td>
+                            <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a></td>
 
+                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

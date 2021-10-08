@@ -1,1 +1,0 @@
-SELECT `id`, `mobile`, `email`, `password`, `status`, `name`, `image`, `notification_token`, `house_no`, `building`, `street`, `area`, `city`, `state`, `pincode`, `lat`, `lang`, `map_address`, `map_json`, `assigned_partner`, `reffered_by`, `reffered_by_partner`, `created_at`, `updated_at`, `deleted_at` FROM `customers` WHERE 1

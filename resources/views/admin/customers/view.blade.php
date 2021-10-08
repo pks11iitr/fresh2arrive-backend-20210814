@@ -39,14 +39,25 @@
                                         <th>Customer ID</th>
                                         <th>Name</th>
                                         <th>mobile</th>
-                                        <th>Image</th>
-                                        {{--<th>Parent Category</th>--}}
-                                        <th>Isactive</th>
+                                        <th>Area</th>
+                                        <th>Assigned Partner</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($customer as $customers)
+                                            <tr>
+            <td>{{$customers->id}}</td>
+            <td>{{$customers->name}}</td>
+            <td>{{$customers->mobile}}</td>
+            <td>{{$customers->area}}</td>
+            <td>{{$customers->assigned_partner}}</td>
+            <td>{{$customers->status?'Active':'Inactive'}}</td>
 
+            <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
