@@ -41,11 +41,22 @@
                       <th>Isactive</th>
                       <th>Action</th>
                   </tr>
+                  @foreach($banners as $banner)
+                      <tr>
+                          <td>{{$banner->id}}</td>
+                          <td><imc src="{{$banner->image}}" height="50" width="100"/></td>
+                          <td>{{$banner->type}}</td>
+                          {{--<th>Parent Category</th>--}}
+                          <td>{{$banner->isactive?'Active':'Inactive'}}</td>
+                          <td><a href="{{route('banners.edit', ['id'=>$banner->id])}}">Edit</a></td>
+                      </tr>
+                  @endforeach
                   </thead>
                   <tbody>
 
                   </tbody>
                 </table>
+                  {{$banners->links()}}
               </div>
               <!-- /.card-body -->
             </div>
