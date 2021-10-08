@@ -47,10 +47,7 @@
                                                 <label>Mobile </label>
                                                 <input type="text" name="mobile" class="form-control" placeholder="Mobile"  required>
                                             </div>
-                                            <div class="form-group">
-                                                <label>Notification Token </label>
-                                                <input type="text" name="notifitoken" class="form-control" placeholder="Notification Token"  required>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
                                         <!-- /.col -->
@@ -65,18 +62,25 @@
                                                 <input type="text" name="city" class="form-control" placeholder="City"  required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Pincode</label>
-                                                <input type="text" name="pincode" class="form-control" placeholder="Pincode"  required>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
+                                                <label>Pincode</label>
+                                                <input type="text" name="pincode" class="form-control" placeholder="Pincode"  required>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label>state </label>
                                                 <input type="text" name="state" class="form-control" placeholder="State"  required>
                                             </div>
-
+                                        </div>
+                                        <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Notification Token </label>
+                                            <input type="text" name="notifitoken" class="form-control" placeholder="Notification Token"  required>
+                                        </div>
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="isactive">
