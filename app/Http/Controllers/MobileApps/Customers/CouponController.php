@@ -37,6 +37,9 @@ class CouponController extends Controller
     public function apply(Request $request){
 
         $user = $request->user;
+
+        $discount =0;
+
         if(!$user)
             return [
                 'status'=>'failed',
@@ -51,25 +54,27 @@ class CouponController extends Controller
             $balance = 0;
         }
 
-        $coupon=Coupon::where(DB::raw('BINARY code'), $request->coupon??null)
-            ->first();
+        if($request->coupon){
+            $coupon=Coupon::where(DB::raw('BINARY code'), $request->coupon??null)
+                ->first();
 
-        if(!$coupon){
-            return [
-                'status'=>'failed',
-                'action'=>'',
-                'display_message'=>'Invalid Coupon Applied',
-                'data'=>[],
-            ];
-        }
+            if(!$coupon){
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Invalid Coupon Applied',
+                    'data'=>[],
+                ];
+            }
 
-        if($coupon->isactive==false || !$coupon->getUserEligibility($user)){
-            return [
-                'status'=>'failed',
-                'action'=>'',
-                'display_message'=>'Coupon Has Been Expired',
-                'data'=>[],
-            ];
+            if($coupon->isactive==false || !$coupon->getUserEligibility($user)){
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Coupon Has Been Expired',
+                    'data'=>[],
+                ];
+            }
         }
 
         $items=Cart::with(['product'])
@@ -94,17 +99,19 @@ class CouponController extends Controller
             $count++;
         }
 
-        $discount=$coupon->getCouponDiscount($cost)??0;
+        if($request->coupon){
+            $discount=$coupon->getCouponDiscount($cost)??0;
 
-        if($discount <= 0 || $discount > $cost)
-        {
-            return [
-                'status'=>'failed',
-                'action'=>'',
-                'display_message'=>'Coupon Cannot Be Applied',
-                'data'=>[],
-            ];
+            if($discount <= 0 || $discount > $cost)
+            {
+                return [
+                    'status'=>'failed',
+                    'action'=>'',
+                    'display_message'=>'Coupon Cannot Be Applied',
+                    'data'=>[],
+                ];
 
+            }
         }
 
         if($request->echo_pack){
