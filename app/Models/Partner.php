@@ -75,4 +75,13 @@ class Partner extends Authenticatable implements JWTSubject
         return '';
     }
 
+
+    public function getAadhaarNoAttribute($value){
+        return $value??'';
+    }
+
+    public function getPanNoAttribute($value){
+        return $value??'';
+    }
+
 }

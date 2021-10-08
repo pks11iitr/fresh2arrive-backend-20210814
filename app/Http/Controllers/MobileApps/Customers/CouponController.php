@@ -140,7 +140,7 @@ class CouponController extends Controller
         return [
             'status'=>'success',
             'action'=>'',
-            'display_message'=>'Discount of Rs. '.$discount.' Applied Successfully',
+            'display_message'=>$discount>0?('Discount of Rs. '.$discount.' Applied Successfully'):'',
             'data'=>compact('prices', 'bottom_button_text'),
         ];
     }

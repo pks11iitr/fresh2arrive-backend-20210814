@@ -91,6 +91,12 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->get('ticket-details/{id}', 'MobileApps\Partners\TicketController@details');
         $api->post('update-ticket', 'MobileApps\Partners\TicketController@update');
 
+        $api->post('update-bank-details', 'MobileApps\Partners\ProfileController@updateBankDetails');
+        $api->get('get-bank-details', 'MobileApps\Partners\ProfileController@getBankDetails');
+
+        $api->post('update-kyc', 'MobileApps\Partners\ProfileController@updateKYC');
+        $api->get('get-kyc', 'MobileApps\Partners\ProfileController@getKYC');
+
     });
 
 });
