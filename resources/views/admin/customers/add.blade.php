@@ -55,7 +55,7 @@
 
                                             <div class="form-group">
                                                 <label>Notification Token </label>
-                                                <input type="text" name="notifitoken" class="form-control" placeholder="Notification Token"  required>
+                                                <input type="text" name="notification_token" class="form-control" placeholder="Notification Token"  required>
                                             </div>
                                             <!-- /.form-group -->
 
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>House No</label>
-                                                <input type="text" name="house_no" class="form-control" placeholder="House No"  required>
+                                                <input type="text" name="house" class="form-control" placeholder="House No"  required>
                                             </div>
 
                                             <div class="form-group">

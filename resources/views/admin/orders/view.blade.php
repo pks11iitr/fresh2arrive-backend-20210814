@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Orders</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Order</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{route('category.create')}}" class="btn btn-primary">Add Category</a>
+                                <a href="{{route('orders.create')}}" class="btn btn-primary">Add Order</a>
 
                             </div>
                             <!-- /.card-header -->
@@ -34,27 +34,32 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Earn Upto</th>
-                                        <th>Isactive</th>
+                                        <th>Order ID</th>
+                                        <th>Refid</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Is_Pad</th>
+                                        <th>Delivery Date</th>
+                                        <th>Delivery Time</th>
+                                        <th>Delivery Partner</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($order as $Order)
+                        <tr>
+                            <td>{{$Order->id}}</td>
+                            <td>{{$Order->refid}}</td>
+                            <td>{{$Order->order_total}}</td>
+                            <td>{{$Order->status?'pending':'confirmed'}}</td>
+                            <td>{{$Order->is_paid?'Yes':'No'}}</td>
+                            <td>{{$Order->delivery_date}}</td>
+                            <td>{{$Order->delivery_time}}</td>
+                            <td>{{$Order->delivery_partner}}</td>
+                            <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a></td>
 
-                            @foreach($category as $category)
-                                <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td><imc src="{{$category->image}}" height="50" width="100"/></td>
-                                    <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive?'Active':'Inactive'}}</td>
-                                     <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
-                                </tr>
-                            @endforeach
-
+                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

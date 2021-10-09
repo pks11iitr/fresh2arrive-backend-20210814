@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Products</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Product</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{route('category.create')}}" class="btn btn-primary">Add Category</a>
+                                <a href="{{route('products.create')}}" class="btn btn-primary">Add Product</a>
+
+
 
                             </div>
                             <!-- /.card-header -->
@@ -34,27 +36,31 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
+                                        <th>Product ID</th>
                                         <th>Name</th>
                                         <th>Image</th>
-                                        <th>Earn Upto</th>
+                                        <th>Display Pack Size</th>
+                                        <th>Packet Price</th>
+                                        <th>Commissions</th>
+                                        <th>Tag</th>
                                         <th>Isactive</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                            @foreach($category as $category)
-                                <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td><imc src="{{$category->image}}" height="50" width="100"/></td>
-                                    <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive?'Active':'Inactive'}}</td>
-                                     <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
-                                </tr>
-                            @endforeach
-
+                                    @foreach($products as $products)
+                                        <tr>
+                                            <td>{{$products->id}}</td>
+                                            <td>{{$products->name}}</td>
+                                            <td><imc src="{{$products->image}}" height="50" width="100"/></td>
+                                            <td>{{$products->display_pack_size}}</td>
+                                            <td>{{$products->price_per_unit}}</td>
+                                            <td>{{$products->commissions}}</td>
+                                            <td>{{$products->tag}}</td>
+                                            <td>{{$products->isactive?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('products.edit',['id'=>$products->id])}}">Edit</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
