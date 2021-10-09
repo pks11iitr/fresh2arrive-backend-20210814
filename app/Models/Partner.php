@@ -84,4 +84,16 @@ class Partner extends Authenticatable implements JWTSubject
         return $value??'';
     }
 
+    public function getBankAccountHolderAttribute($value){
+        return $value??'';
+    }
+
+    public function getBankAccountNoAttribute($value){
+        return $value??'';
+    }
+
+    public function getBankIfscAttribute($value){
+        return $value??'';
+    }
+
 }
