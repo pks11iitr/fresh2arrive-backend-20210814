@@ -44,7 +44,7 @@
                   @foreach($banners as $banner)
                       <tr>
                           <td>{{$banner->id}}</td>
-                          <td><imc src="{{$banner->image}}" height="50" width="100"/></td>
+                          <td><img src="{{$banner->image}}" height="50" width="100"/></td>
                           <td>{{$banner->type}}</td>
                           {{--<th>Parent Category</th>--}}
                           <td>{{$banner->isactive?'Active':'Inactive'}}</td>

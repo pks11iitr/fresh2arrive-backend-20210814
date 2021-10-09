@@ -43,8 +43,10 @@
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label>Entity Type</label>
-                                  <select class="form-control select2" name="entity_type">
-
+                                  <select class="form-control select2" name="type">
+                                      <option value="refer">Refer Banner</option>
+                                      <option value="product">Product Banner</option>
+                                      <option value="banner">Only Banner</option>
                                   </select>
                               </div>
                               <!-- /.form-group -->

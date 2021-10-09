@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileTransfer;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
+    use FileTransfer;
+
     public function index(Request $request){
         $banners = Banner::active()->orderBy('id', 'desc')
                     ->paginate(10);
@@ -23,14 +26,7 @@ class BannerController extends Controller
        $Banner =  new Banner();
        $Banner->type= $request->input('type');
        $Banner->isactive= $request->input('isactive');
-        if($request->hasFile('image')){
-            $file=$request->file('image');
-            $ext=$file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('uploads/Banners/',$filename);
-            $Banner->image= $filename;
-
-        }
+       $Banner->image = $this->getImagePath($request->image, 'banners');
         $Banner->save();
         return redirect()->back()->with('message','Banner Addedd Successfully');
     }
