@@ -60,6 +60,14 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     });
 
+    Route::group(['prefix'=>'coupon'], function(){
+            Route::get('/','Admin\CouponController@index')->name('coupon.list');
+            Route::get('create','Admin\CouponController@create')->name('coupon.create');
+            Route::get('edit/{id}','Admin\CouponController@edit')->name('coupon.edit');
+            Route::post('store','Admin\CouponController@store')->name('coupon.store');
+            Route::post('update/{id}','Admin\CouponController@update')->name('coupon.update');
+    });
+
 
     Route::group(['prefix'=>'partners'],function (){
 

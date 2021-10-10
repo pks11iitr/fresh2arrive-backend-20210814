@@ -1,4 +1,5 @@
 @extends('admin.admin')
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -7,12 +8,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Coupon</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route('category.list')}}">Coupons</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('coupon.list')}}">Coupon</a></li>
                         </ol>
                     </div>
                 </div>
@@ -25,108 +25,79 @@
                 <div class="row">
                     <!-- left column -->
                     <div class="col-md-12">
-                        <!-- general form elements -->
+                        <!-- jquery validation -->
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Coupon Add</h3>
                             </div>
                             <!-- /.card-header -->
-
-                            <form role="form" method="post" enctype="multipart/form-data" action="">
+                            <!-- form start -->
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('coupon.store')}}">
                                 @csrf
 
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Code </label>
-                                                <input type="text" name="code" class="form-control" placeholder="Code"  required>
-                                            </div>
-                                            <!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label>Discount Type </label>
-                                                <input type="text" name="discount_type" class="form-control" placeholder="Discount Type"  required>
-                                            </div>
-
-
-
-
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Minimum Order </label>
-                                                <input type="text" name="minimum_order" class="form-control" placeholder="Minimum Order"  required>
-                                            </div>
-                                            <!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label>Maximum Discount </label>
-                                                <input type="text" name="maximum_discount" class="form-control" placeholder="Maximum Discount"  required>
-                                            </div>
-
-
-
-
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-md-3">
-
-                                            <!-- /.form-group -->
-                                            <div class="form-group">
-                                                <label>Expiry Date </label>
-                                                <input type="text" name="expiry_date" class="form-control" placeholder="Expiry Date"  required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Usage Type </label>
-                                                <input type="text" name="usage_type" class="form-control" placeholder="Usage Type"  required>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Discount </label>
-                                                <input type="text" name="discount" class="form-control" placeholder="Discount"  required>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Isactive</label>
-                                                <select class="form-control select2" name="isactive">
-                                                    <option value="">Please Select Status</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
-                                            <!-- /.form-group -->
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Code</label>
+                                        <input type="text" name="code" class="form-control" id="exampleInputimage" placeholder="Enter Code">
                                     </div>
-                                        <div class="row">
-                                        <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Description </label>
-                                            <textarea  name="description" class="form-control" placeholder="Description" rows="5"  required></textarea>
-                                        </div>
-                                        </div>
-                                        <!-- /.row -->
+
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Discount</label>
+                                        <input type="number" name="discount" class="form-control" id="exampleInputimage" placeholder="Enter Discount" min="0">
                                     </div>
-                                    <!-- /.row -->
+
+                                    <div class="form-group">
+                                        <label for="exampleInputistop">Discount Type</label>
+                                        <select name="discount_type" class="form-control" id="exampleInputistop" placeholder="">
+                                            <option value="Fixed">Fixed</option>
+                                            <option value="Percent">Percent</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputistop">Is Active</label>
+                                        <select name="isactive" class="form-control" id="exampleInputistop" placeholder="">
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Minimum Order</label>
+                                        <input type="number" name="minimum_order" class="form-control" id="exampleInputimage" placeholder="Enter Minimum Order" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Maximum Discount</label>
+                                        <input type="number" name="maximum_discount" class="form-control" id="exampleInputimage" placeholder="Enter Maximum Discount" min="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Expiry Date</label>
+                                        <input type="date" name="expiry_date" class="form-control" id="exampleInputimage" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="usage_type" class="form-control" id="exampleInputistop" placeholder="">
+                                            <option value="single-singleuser">One User Can Use One Time</option>
+                                            <option value="single-multipleuser">Many User Can Use One Time</option>
+                                            <option value="multiple-multipleuser">Many User Can Use Many Time</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputimage">Description</label>
+                                        <input type="text" name="description" class="form-control" id="exampleInputimage" placeholder="Enter Description">
+                                    </div>
+                                    <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                                <!-- /.card-body -->
                             </form>
                         </div>
                         <!-- /.card -->
                     </div>
-                    <!--/.col (right) -->
                 </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-
-
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+    </section>
+    <!-- /.content -->
     </div>
-    <!-- ./wrapper -->
 @endsection
-

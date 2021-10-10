@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Coupons</h1>
+                        <h1>Coupon</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -34,25 +34,42 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Coupon ID</th>
                                         <th>Code</th>
                                         <th>Discount Type</th>
                                         <th>Discount</th>
-
-                                        <th>Description</th>
-
-                                        {{--<th>Parent Category</th>--}}
+                                        <th>Minimum Order</th>
+                                        <th>Maximum Discount</th>
+                                        <th>Expiry Date</th>
+                                        <th>Use Type</th>
                                         <th>Isactive</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach($coupons as $coupon)
+                                        <tr>
+                                            <td>{{$coupon->code}}</td>
+                                            <td>{{$coupon->discount_type}}</td>
+                                            <td>{{$coupon->discount}}</td>
+                                            <td>{{$coupon->minimum_order}}</td>
+                                            <td>{{$coupon->maximum_discount	}}</td>
+                                            <td>{{$coupon->expiry_date}}</td>
+                                            <td>{{$coupon->usage_type}}</td>
+                                            <td>
+                                                @if($coupon->isactive==1){{'Yes'}}
+                                                @else{{'No'}}
+                                                @endif
+                                            </td>
+                                            <td><a href="{{route('coupon.edit',['id'=>$coupon->id])}}" class="btn btn-success">Edit</a>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
@@ -61,6 +78,8 @@
             </div>
             <!-- /.container-fluid -->
         </section>
+        <!-- /.content -->
+
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->

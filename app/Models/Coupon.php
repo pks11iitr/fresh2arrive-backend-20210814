@@ -20,7 +20,8 @@ class Coupon extends Model
         'minimum_order',
         'maximum_discount',
         'expiry_date',
-        'usage_type'
+        'usage_type',
+        'description'
     ];
 
 
