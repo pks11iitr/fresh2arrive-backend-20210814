@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('category.store')}}">
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('category.update', ['id'=>$category->id])}}">
                                 @csrf
 
                                 <div class="card-body">

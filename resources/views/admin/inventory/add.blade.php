@@ -32,20 +32,24 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" enctype="multipart/form-data" action="">
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('inventory.store')}}">
                                 @csrf
 
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Product </label>
-                                                <input type="text" name="product_id" class="form-control" placeholder="Product"  required>
+                                                <label>Isactive</label>
+                                                <select class="form-control select2" name="product_id">
+                                                    @foreach($products as $product)
+                                                        <option value="{{$product->id}}">{{$product->name}}({{$product->company}})</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Quantity </label>
-                                                <input type="text" name="quantity" class="form-control" placeholder="Quantity"  required>
+                                                <input type="number" name="quantity" class="form-control" placeholder="Quantity"  required>
                                             </div>
                                             <!-- /.form-group -->
 
@@ -55,12 +59,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Price  </label>
-                                                <input type="text" name="price" class="form-control" placeholder="Price"  required>
+                                                <input type="number" name="price" class="form-control" placeholder="Price"  required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Vendor </label>
                                                 <input type="text" name="vendor" class="form-control" placeholder="Vendor"  required>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Purchase Date</label>
+                                                <input type="date" name="create_date" class="form-control" placeholder="Y-m-d"  required>
                                             </div>
                                             <!-- /.form-group -->
                                         </div>

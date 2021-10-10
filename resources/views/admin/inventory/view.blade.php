@@ -49,7 +49,7 @@
                                         @foreach($inventory as $inv)
                                             <tr>
                                                 <td>{{$inv->id}}</td>
-                                                <td>{{$inv->product_id}}</td>
+                                                <td>{{$inv->product->name??''}}({{$inv->product->company??''}})</td>
                                                 <td>{{$inv->quantity}}</td>
                                                 <td>{{$inv->create_date}}</td>
                                                 <td>{{$inv->price}}</td>

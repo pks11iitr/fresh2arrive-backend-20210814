@@ -13,7 +13,7 @@ class Inventory extends Model
 
     protected $table='inventory';
 
-
+    protected $fillable = ['product_id', 'create_date', 'price', 'quantity', 'vendor', 'remarks'];
 
     public static function purchased_quantity($pids){
         $purchased_items=Inventory::whereIn('product_id', $pids)
@@ -27,5 +27,10 @@ class Inventory extends Model
 
         return $purchased_quantity;
 
+    }
+
+
+    public function product(){
+        return $this->belongsTo('App\Models\Product', 'product_id');
     }
 }

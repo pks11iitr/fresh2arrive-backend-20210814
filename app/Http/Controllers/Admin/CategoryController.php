@@ -49,6 +49,28 @@ class CategoryController extends Controller
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'name'=>'required',
+            //'image'=>'required',
+            'earn_upto'=>'required',
+            'isactive'=>'required'
+        ]);
+        $category=Category::findOrFail($id);
+
+        if($request->image){
+            $path = $this->getImagePath($request->image, 'banners');
+        }else{
+            $path = $category->getRawOriginal('image');
+        }
+
+        $category->update([
+            'isactive'=>$request->isactive,
+            'image'=>$path,
+            'earn_upto'=>$request->earn_upto,
+            'type'=>$request->type
+        ]);
+
+        return redirect()->back()->with('success', 'Category has been updated');
 
     }
 

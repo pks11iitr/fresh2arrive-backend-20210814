@@ -50,6 +50,16 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     });
 
+    Route::group(['prefix'=>'inventory'], function(){
+
+        Route::get('/','Admin\InventoryController@index')->name('inventory.list');
+        Route::get('create','Admin\InventoryController@create')->name('inventory.create');
+        Route::post('store', 'Admin\InventoryController@store')->name('inventory.store');
+        Route::get('edit/{id}','Admin\InventoryController@edit')->name('inventory.edit');
+        Route::post('update/{id}', 'Admin\InventoryController@update')->name('inventory.update');
+
+    });
+
 
     Route::group(['prefix'=>'partners'],function (){
 
