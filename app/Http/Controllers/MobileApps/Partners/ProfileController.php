@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -31,8 +32,8 @@ class ProfileController extends Controller
         }
 
 
-        $pan_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'pan');
-        $aadhaar_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'aadhaar');
+        $pan_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'/pan');
+        $aadhaar_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'/aadhaar');
 
         $user->update([
             'pan_no'=>$request->pan_no,
@@ -101,6 +102,60 @@ class ProfileController extends Controller
             'display_message'=>'',
             'data'=>compact('bank'),
         ];
+    }
+
+
+    public function getPreferences(Request $request){
+        $user=$request->user;
+
+        $user_slots = $user->preferedTimeSlots;
+
+        $uts=$user_slots->map(function($element){
+            return $element->id;
+        })->toArray();
+
+        $timeslots = TimeSlot::active()->get();
+
+        foreach ($timeslots as $ts){
+            $ts->is_selected=0;
+            if(in_array($ts->id, $uts))
+                $ts->is_seleted=1;
+        }
+
+        $user = $user->only('delivery_personal_name', 'delivery_personal_mobile', 'delivery_alternate_contact');
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'',
+            'data'=>compact('timeslots', 'user'),
+        ];
+
+    }
+
+
+    public function updatePreferences(Request $request){
+        $user=$request->user;
+
+        $request->validate([
+            'delivery_personal_name'=>'required',
+            'delivery_personal_mobile'=>'required',
+            'delivery_alternate_contact'=>'required',
+            'slot_ids'=>'array'
+        ]);
+
+        $user->preferedTimeSlots()->syncWithoutDetaching($request->slot_ids);
+
+        $user->update($request->only('delivery_personal_name', 'delivery_personal_mobile', 'delivery_alternate_contact'));
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Preferences have been updated',
+            'data'=>[],
+        ];
+
+
     }
 
 }

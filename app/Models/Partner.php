@@ -31,6 +31,9 @@ class Partner extends Authenticatable implements JWTSubject
         'bank_account_holder',
         'bank_account_no',
         'bank_ifsc',
+        'delivery_alternate_contact',
+        'delivery_personal_name',
+        'delivery_personal_mobile'
     ];
 
 
@@ -94,6 +97,11 @@ class Partner extends Authenticatable implements JWTSubject
 
     public function getBankIfscAttribute($value){
         return $value??'';
+    }
+
+
+    public function preferedTimeSlots(){
+        return $this->belongsToMany('App\Models\TimeSlot', 'prefered_slots', 'partner_id', 'slot_id');
     }
 
 }

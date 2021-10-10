@@ -66,7 +66,6 @@
                                             <div class="form-group">
                                                 <label>Isactive</label>
                                                 <select class="form-control select2" name="isactive">
-                                                    <option value="">Please Select Status</option>
                                                     <option value="1">Yes</option>
                                                     <option value="0">No</option>
                                                 </select>

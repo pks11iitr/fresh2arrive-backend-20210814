@@ -97,6 +97,9 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->post('update-kyc', 'MobileApps\Partners\ProfileController@updateKYC');
         $api->get('get-kyc', 'MobileApps\Partners\ProfileController@getKYC');
 
+        $api->get('get-preferences', 'MobileApps\Partners\ProfileController@getPreferences');
+        $api->post('update-preferences', 'MobileApps\Partners\ProfileController@updatePreferences');
+
     });
 
 });

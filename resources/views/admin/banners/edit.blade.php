@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('banners.store')}}">
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('banners.update', ['id'=>$banner->id])}}">
                                 @csrf
 
                                 <div class="card-body">
@@ -40,7 +40,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Entity Type</label>
-                                                <select class="form-control select2" name="entity_type">
+                                                <select class="form-control select2" name="type">
+                                                    @foreach(['banner', 'refer', 'product'] as $type)
+                                                        <option value="{{$type}}" @if($banner->type==$type){{'selected'}}@endif>{{ucfirst($type)}} Banner</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
@@ -49,13 +52,13 @@
                                                 <label>Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*" required>
+                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*">
                                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                     </div>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text" id="">Upload</span>
-                                                    </div>
+
                                                 </div>
+                                                <br>
+                                                <img src="{{$banner->image}}" height="100" width="200"/>
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
@@ -64,9 +67,8 @@
                                             <div class="form-group">
                                                 <label>Isactive</label>
                                                 <select class="form-control select2" name="isactive">
-                                                    <option value="">Please Select Status</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
+                                                   <option value="1" @if($banner->isactive==1){{'selected'}}@endif>Yes</option>
+                                                    <option value="0" @if($banner->isactive==0){{'selected'}}@endif>No</option>
                                                 </select>
                                             </div>
                                             <!-- /.form-group -->
