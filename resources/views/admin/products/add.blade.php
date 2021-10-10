@@ -32,15 +32,19 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" enctype="multipart/form-data" action="">
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('products.store')}}">
                                 @csrf
 
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Category Id </label>
-                                                <input type="text" name="category_id" class="form-control" placeholder="Category Id"  required>
+                                                <label>Category</label>
+                                                <select class="form-control select2" name="category_id">
+                                                    @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <!-- /.form-group -->
                                             <div class="form-group">
@@ -49,18 +53,18 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Name </label>
+                                                <label>Product Name </label>
                                                 <input type="text" name="name" class="form-control" placeholder="Name"  required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Display Pack Size  </label>
+                                                <label>Display Pack Size</label>
                                                 <input type="text" name="display_pack_size" class="form-control" placeholder="Display Pack Size"  required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Price Per Unit  </label>
-                                                <input type="text" name="price_per_unit" class="form-control" placeholder="Price Per Unit"  required>
+                                                <label>Price Per Unit</label>
+                                                <input type="number" name="price_per_unit" class="form-control" placeholder="Price Per Unit"  step="0.1" required>
                                             </div>
                                             <!-- /.form-group -->
 
@@ -70,7 +74,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Cut Price Per Unit</label>
-                                                <input type="text" name="cut_price_per_unit" class="form-control" placeholder="Cut Price Per Unit"  required>
+                                                <input type="number" name="cut_price_per_unit" class="form-control" placeholder="Cut Price Per Unit" step="0.1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Unit Name </label>
@@ -79,7 +83,7 @@
 
                                             <div class="form-group">
                                                 <label>Packet Price</label>
-                                                <input type="text" name="packet_price" class="form-control" placeholder="Packet Price"  required>
+                                                <input type="number" name="packet_price" class="form-control" placeholder="Packet Price"  required step="0.1">
                                             </div>
 
                                             <div class="form-group">
@@ -88,8 +92,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Tag </label>
-                                                <input type="text" name="tag" class="form-control" placeholder="Tag "  required>
+                                                <label> Tag</label>
+                                                <select class="form-control select2" name="tag">
+                                                    <option value="">Please Select Status</option>
+                                                    <option value="Deal of the day">Deal of the day</option>
+                                                    <option value="Limited Stock">Limited Stock</option>
+                                                </select>
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
@@ -103,32 +111,28 @@
 
                                             <div class="form-group">
                                                 <label>Min Qty</label>
-                                                <input type="text" name="min_qty" class="form-control" placeholder="Min Qty"  required>
+                                                <input type="number" name="min_qty" class="form-control" placeholder="Min Qty"  required>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Max Qty</label>
-                                                <input type="text" name="max_qty" class="form-control" placeholder="Max Qty"  required>
+                                                <input type="number" name="max_qty" class="form-control" placeholder="Max Qty"  required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Show Only Pack Price </label>
-                                                <input type="text" name="show_only_pack_price" class="form-control" placeholder="Show Only Pack Price"  required>
+                                                <label> Product Type </label>
+                                                <select class="form-control select2" name="show_only_pack_price">
+                                                    <option value="0">Fruits/Vegie</option>
+                                                    <option value="1">Grocery</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Commissions </label>
-                                                <input type="text" name="commissions" class="form-control" placeholder="Commissions"  required>
+                                                <input type="number" name="commissions" class="form-control" placeholder="Commissions"  required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label> Is Completed </label>
-                                                <select class="form-control select2" name="is_completed">
-                                                    <option value="">Please Select Status</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
-                                                </select>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
 
@@ -141,13 +145,21 @@
                                                 <label>  Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" name="delivery_image" class="custom-file-input" id="exampleInputFile" accept="image/*" required>
+                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*" required>
                                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                     </div>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text" id="">Upload</span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label> Is Active </label>
+                                                <select class="form-control select2" name="isactive">
+                                                    <option value="1">Active</option>
+                                                    <option value="0">Inactive</option>
+
+                                                </select>
                                             </div>
                                         </div>
 
