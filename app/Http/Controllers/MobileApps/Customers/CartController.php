@@ -8,6 +8,7 @@ use App\Models\Configuration;
 use App\Models\DeliveryPartner;
 use App\Models\Inventory;
 use App\Models\OrderDetail;
+use App\Models\Partner;
 use App\Models\Product;
 use App\Models\TimeSlot;
 use App\Models\Wallet;
@@ -169,7 +170,7 @@ class CartController extends Controller
             'mobile'=>''
         ];
         if($user){
-           $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($user->assigned_partner);
+           $delivery_partner = Partner::select('name', 'mobile')->find($user->assigned_partner);
         }
 
         if($user){

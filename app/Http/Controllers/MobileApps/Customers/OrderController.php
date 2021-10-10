@@ -9,6 +9,7 @@ use App\Models\Coupon;
 use App\Models\DeliveryPartner;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Partner;
 use App\Models\Product;
 use App\Models\TimeSlot;
 use App\Models\Wallet;
@@ -269,7 +270,7 @@ class OrderController extends Controller
 
         $delivery_partner='';
         if($user){
-            $delivery_partner = DeliveryPartner::select('name', 'mobile')->find($order->delivery_partner);
+            $delivery_partner = Partner::select('name', 'mobile')->find($order->delivery_partner);
         }
 
         $delivery_address = '';
