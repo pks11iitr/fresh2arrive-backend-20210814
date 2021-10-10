@@ -19,7 +19,7 @@ class ProfileController extends Controller
             'aadhaar_no'=>'required'
         ]);
 
-        if(empty($user->pan_url) || empty($user->adhaar_url)){
+        if(empty($user->pan_url) || empty($user->aadhaar_url)){
 
             if(empty($request->pan_image) || empty($request->aadhaar_image))
                 return [
