@@ -60,7 +60,7 @@ class OrderController extends Controller
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('today_orders', 'tommorow_orders', 'today_count', 'today_total', 'today_date', 'tomorrow_count', 'tomorrow_date', 'today_total')
+            'data'=>compact('today_orders', 'tommorow_orders', 'today_count', 'today_total', 'today_date', 'tomorrow_count', 'tomorrow_date', 'tomorrow_total')
         ];
 
     }
