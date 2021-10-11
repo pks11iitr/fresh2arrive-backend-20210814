@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\DocumentUploadTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Order extends Model
 {
@@ -59,6 +60,13 @@ class Order extends Model
 
     public function getDeliveryAtAttribute($value){
         return date('D, d M Y, ', strtotime($this->delivery_date));
+    }
+
+    public function getDeliveryImageAttribute($value){
+        if($value)
+            return Storage::url($value);
+
+        return '';
     }
 
 

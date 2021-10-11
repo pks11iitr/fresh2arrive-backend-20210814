@@ -73,6 +73,21 @@
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
+                                        @if($banner->type=='product')
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Banner Products</label>
+                                                <select class="form-control select2" name="product_ids[]" multiple id="product_ids">
+                                                    @foreach($products as $p)
+                                                        @foreach($banner->products as $bp)
+                                                        <option value="{{$p->id}}" @if($bp->id == $p->id){{'selected'}}@endif >{{$p->name.'('.$p->company.')'}}</option>
+                                                            @endforeach
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                    @endif
                                         <!-- /.col -->
                                     </div>
                                     <!-- /.row -->
@@ -95,5 +110,12 @@
 
     </div>
     <!-- ./wrapper -->
+@endsection
+@section('scripts')
+    <script>
+
+        $("#product_ids").select2();
+
+    </script>
 @endsection
 

@@ -24,7 +24,8 @@ class OrderController extends Controller
     }
 
     public function edit(Request $request, $id){
-        return view('admin.orders.edit');
+        $order = Order::with(['details', 'customer', 'partner'])->findOrFail($id);
+        return view('admin.orders.edit', compact('order'));
     }
 
     public function update(Request $request, $id){

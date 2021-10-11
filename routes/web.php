@@ -129,6 +129,14 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     });
 
+    Route::group(['prefix'=>'wallet'], function(){
+        Route::post('add-remove-wallet-balance', 'Admin\WalletController@addremove')->name('wallet.add.remove');
+
+        Route::get('get-wallet-balance/{id}', 'Admin\WalletController@getbalance')->name('user.wallet.balance');
+
+        Route::get('get-wallet-history/{id}', 'Admin\WalletController@getWalletHistory')->name('user.wallet.history');
+    });
+
 
 
 

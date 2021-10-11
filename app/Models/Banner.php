@@ -25,6 +25,6 @@ class Banner extends Model
 
 
     public function products(){
-        $this->belongsToMany('App\Models\Product','banner_products', 'banner_id' , 'product_id');
+       return $this->belongsToMany('App\Models\Product','banner_products', 'banner_id' , 'product_id');
     }
 }
