@@ -32,9 +32,7 @@ class CatelogueController extends Controller
             ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty');
 
         if(!empty($request->category_id)){
-            $products = $products->whereHas('category', function($category) use($request){
-                $category->where('id', $request->category_id);
-            });
+            $products = $products->where('category_id', $request->category_id);
         }
 
         if(!empty($request->sort_by)){
