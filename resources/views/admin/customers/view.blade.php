@@ -52,8 +52,8 @@
             <td>{{$customers->name}}</td>
             <td>{{$customers->mobile}}</td>
             <td>{{$customers->area}}</td>
-            <td>{{$customers->assigned_partner}}</td>
-            <td>{{$customers->status?'Active':'Inactive'}}</td>
+            <td>{{$customers->partner->name}}</td>
+            <td>{{$customers->status==0?'Active':'Inactive'}}</td>
 
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
                                             </tr>

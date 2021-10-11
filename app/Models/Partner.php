@@ -15,25 +15,15 @@ class Partner extends Authenticatable implements JWTSubject
 
     protected $table = 'partners';
 
-    public $fillable =[
+    protected $fillable =[
         'name',
         'mobile',
-        'status',
-        'notification_token',
         'address',
         'city',
         'pincode',
         'state',
-        'aadhaar_no',
-        'pan_no',
-        'aadhaar_url',
-        'pan_url',
-        'bank_account_holder',
-        'bank_account_no',
-        'bank_ifsc',
-        'delivery_alternate_contact',
-        'delivery_personal_name',
-        'delivery_personal_mobile'
+        'notification_token',
+        'status',
     ];
 
 

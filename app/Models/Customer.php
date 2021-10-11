@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Active;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,10 +13,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
-
+    use HasFactory, Active;
     protected $table='customers';
-
-    protected $fillable=['mobile', 'email', 'name', 'name', 'image', 'notification_token', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode', 'map_address', 'lat', 'lang', 'map_json', 'reffered_by_partner', 'reffered_by'];
+    protected $fillable=['mobile', 'email', 'password', 'status', 'name', 'image', 'notification_token', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode', 'lat', 'lang', 'map_address', 'map_json', 'assigned_partner'];
 
     protected $appends =['address'];
 

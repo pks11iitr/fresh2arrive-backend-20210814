@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" enctype="multipart/form-data" action="">
+                            <form role="form" method="post" enctype="multipart/form-data" action="{{route('customers.store')}}">
                                 @csrf
 
                                 <div class="card-body">
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>House No</label>
-                                                <input type="text" name="house" class="form-control" placeholder="House No"  required>
+                                                <input type="text" name="house_no" class="form-control" placeholder="House No"  required>
                                             </div>
 
                                             <div class="form-group">
@@ -131,10 +131,10 @@
 
                                             <div class="form-group">
                                                 <label>Status</label>
-                                                <select class="form-control select2" name="isactive">
+                                                <select class="form-control select2" name="status">
                                                     <option value="">Please Select Status</option>
-                                                    <option value="1">Yes</option>
-                                                    <option value="0">No</option>
+                                                    <option value="0">Active</option>
+                                                    <option value="1"><Ina></Ina>ctive</option>
                                                 </select>
                                             </div>
                                             <!-- /.col -->

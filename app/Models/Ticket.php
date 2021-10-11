@@ -28,6 +28,9 @@ class Ticket extends Model
         return $this->belongsTo('App\Models\Order', 'order_id');
     }
 
+    public function partners_name(){
+        return $this->belongsTo('App\Models\Partner', 'partner_id');
+    }
 
     public function getCustomerCommentsAttribute($value){
         return $value??'';

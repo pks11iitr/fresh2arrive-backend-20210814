@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Partners</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Partner</li>
                         </ol>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{route('category.create')}}" class="btn btn-primary">Add Category</a>
+                                <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
 
                             </div>
                             <!-- /.card-header -->
@@ -34,27 +34,33 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Earn Upto</th>
-                                        <th>Isactive</th>
+                                        <th>ID</th>
+                                        <th>Refid</th>
+                                        <th>Customer Name </th>
+                                        <th>Partner Name</th>
+                                        <th>Order Refid</th>
+                                        <th>Customer Comments</th>
+                                        <th>Partner Comments</th>
+                                        <th>Partner Approved</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                            @foreach($category as $category)
-                                <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td><imc src="{{$category->image}}" height="50" width="100"/></td>
-                                    <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive=='0'?'Active':'Inactive'}}</td>
-                                     <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
-                                </tr>
-                            @endforeach
-
+                                    @foreach($Ticket as $Ticket)
+                                        <tr>
+                                            <td>{{$Ticket->id}}</td>
+                                            <td>{{$Ticket->refid}}</td>
+                                            <td>{{$Ticket->customer->name}}</td>
+                                            <td>{{$Ticket->partners_name->name}}</td>
+                                            <td>{{$Ticket->order->refid}}</td>
+                                            <td>{{$Ticket->customer_comments}}</td>
+                                            <td>{{$Ticket->partner_comments}}</td>
+                                            <td>{{$Ticket->partner_approved}}</td>
+                                            <td>{{$Ticket->status=='Open'?'Open':'Resolve'}}</td>
+                                            <td><a href="{{route('ticket.edit',['id'=>$Ticket->id])}}">Edit</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

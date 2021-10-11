@@ -28,20 +28,22 @@ class BannerController extends Controller
            'image'=>'required',
            'isactive'=>'required'
        ]);
+
        $Banner =  new Banner();
        $Banner->type= $request->type;
        $Banner->isactive= $request->isactive;
        $Banner->image = $this->getImagePath($request->image, 'banners');
        $Banner->save();
        return redirect()->route('banners.edit', $Banner->id)
-           ->with('message','Banner Addedd Successfully');
+           ->with('success','Banner Addedd Successfully');
     }
 
     public function edit(Request $request, $id){
-
         $banner=Banner::findOrFail($id);
         return view('admin.banners.edit', compact('banner'));
     }
+
+
 
     public function update(Request $request, $id){
         $request->validate([
