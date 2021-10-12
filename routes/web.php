@@ -108,6 +108,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('store', 'Admin\ProductController@store')->name('products.store');
         Route::get('edit/{id}','Admin\ProductController@edit')->name('products.edit');
         Route::post('update/{id}', 'Admin\ProductController@update')->name('products.update');
+       // Route::get('')
     });
 
 

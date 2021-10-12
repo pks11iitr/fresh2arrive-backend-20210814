@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Partners</h1>
+                        <h1>Tickets</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Partner</li>
+                            <li class="breadcrumb-item active">Tickets</li>
                         </ol>
                     </div>
                 </div>
@@ -25,13 +25,40 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
+                            <br/>
+                            <div class="row">
 
-                            </div>
+                                <div class="col-md-9">
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('ticket.list')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>ReferID</label>
+                                                    <input type="text" name="search" class="form-control" placeholder="Refid"  required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Partner</label>
+                                                    <select class="form-control select2" name="partner_id" required>
+                                                        @foreach($partner as $partner)
+                                                            <option value="{{$partner->id}}">{{$partner->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example121" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>ID</th>

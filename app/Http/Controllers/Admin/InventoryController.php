@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,10 +8,18 @@ use App\Models\Inventory;
 class InventoryController extends Controller
 {
     public  function index(Request $request){
-        $inventory =Inventory::orderBy('id','desc')
-            ->with('product')
-            ->paginate(10);
-        return view('admin.inventory.view',compact('inventory'));
+        if($request->product_id){
+        $inventory = Inventory:: whereBetween('created_at', [$request->fromdate,$request->todate])
+                ->where('product_id',$request->product_id)
+                ->with('product')
+                ->paginate(10);
+        }else{
+            $inventory =Inventory::orderBy('id','desc')
+                ->with('product')
+                ->paginate(10);
+        }
+        $product = Product::get();
+        return view('admin.inventory.view',compact('inventory','product'));
     }
 
     public  function create(Request $request){
