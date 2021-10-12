@@ -146,7 +146,7 @@ class CatelogueController extends Controller
         }else{
 
             $data=[
-                'image'=> 'https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg',
+                'image'=> 'https://images.freekaamaal.com/featured_images/174550_beereebn.png',
                 'product_text'=>'Dummy Text',
                 'app_text'=>'Download App Now',
                 'link'=>'http://google.com'

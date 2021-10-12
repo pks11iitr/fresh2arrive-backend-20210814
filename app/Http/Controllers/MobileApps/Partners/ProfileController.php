@@ -168,7 +168,7 @@ class ProfileController extends Controller
             'brand'=>'Apno Ki Dukan',
             'link'=>'https://google.com',
             //'qr_image'=>route('qr.code', ['id'=>$user->id])
-            'qr_image'=>'https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'
+            'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
         ];
 
         return [
