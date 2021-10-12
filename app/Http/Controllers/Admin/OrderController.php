@@ -5,13 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Partner;
 
 class OrderController extends Controller
 {
     public function index(Request $request){
-        $order = Order ::orderBy('id','desc')
-            ->paginate(10);
-        return view('admin.orders.view',compact('order'));
+        $search_type=$request->search_type=='1'?'refid':'name';
+        if($request->search){
+            $order = Order::where($search_type,'Like',"%$request->search%")
+                ->paginate(10);
+        }else{
+            $order = Order ::orderBy('id','desc')
+                ->paginate(10);
+        }
+        $partner = Partner::get();
+        return view('admin.orders.view',compact('order','partner'));
     }
 
     public  function create(Request $request){

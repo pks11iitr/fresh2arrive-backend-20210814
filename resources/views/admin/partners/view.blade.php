@@ -26,8 +26,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                               <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
 
+                                    </div>
+                                    <div class="col-md-9">
+                                        <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success ">Search</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

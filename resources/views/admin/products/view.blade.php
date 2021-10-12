@@ -24,13 +24,34 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <a href="{{route('products.create')}}" class="btn btn-primary">Add Product</a>
-
-
-
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="{{route('products.create')}}" class="btn btn-primary">Add Product</a>
+                                </div>
+                                <div class="col-md-9">
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('products.list')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search Only Product Name"  required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success ">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
+
+
+                        </div>
+                        <div class="card">
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
