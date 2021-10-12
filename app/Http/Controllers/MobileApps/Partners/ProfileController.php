@@ -151,11 +151,39 @@ class ProfileController extends Controller
         return [
             'status'=>'success',
             'action'=>'',
-            'display_message'=>'Preferences have been updated',
+            'display_message'=>'',
             'data'=>[],
         ];
 
 
+    }
+
+
+    public function getSidebarInfo(Request $request){
+        $user=$request->user;
+
+        $data= [
+
+            'name'=>'Pankaj Sengar',
+            'brand'=>'Apno Ki Dukan',
+            'link'=>'https://google.com',
+            //'qr_image'=>route('qr.code', ['id'=>$user->id])
+            'qr_image'=>'https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'
+        ];
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Preferences have been updated',
+            'data'=>$data,
+        ];
+
+
+    }
+
+
+    public function qrcodeInfo(Request $request){
+        return view('qrcode');
     }
 
 }

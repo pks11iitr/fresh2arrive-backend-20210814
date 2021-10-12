@@ -78,6 +78,9 @@ $api->group(['prefix' => 'partner'], function ($api) {
     $api->group(['middleware' => ['partner-auth']], function ($api) {
         $api->get('home', 'MobileApps\Partners\HomeController@index');
         $api->get('catelogue', 'MobileApps\Partners\CatelogueController@index');
+
+        $api->post('catelogue-share', 'MobileApps\Partners\CatelogueController@shareCateglogue');
+
         $api->get('earnings', 'MobileApps\Partners\EarningController@index');
         $api->get('date-earnings', 'MobileApps\Partners\EarningController@datewiseDetails');
         $api->get('date-category-earnings', 'MobileApps\Partners\EarningController@dateCategorywiseDetails');
@@ -100,7 +103,13 @@ $api->group(['prefix' => 'partner'], function ($api) {
         $api->get('get-preferences', 'MobileApps\Partners\ProfileController@getPreferences');
         $api->post('update-preferences', 'MobileApps\Partners\ProfileController@updatePreferences');
 
+        $api->get('sidebar-info', 'MobileApps\Partners\ProfileController@getSidebarInfo');
+
+
+
+
     });
+    $api->get('qrcode', ['as' => 'qr.code', 'uses' => 'MobileApps\Partners\ProfileController@qrcodeInfo']);
 
 });
 

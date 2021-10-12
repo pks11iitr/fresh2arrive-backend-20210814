@@ -64,4 +64,87 @@ class CatelogueController extends Controller
         ];
 
     }
+
+
+
+    public function shareCateglogue(Request $request){
+        $type = $request->type;
+
+        if($type == 'product'){
+
+            $product_id = $request->product_id;
+
+            $product = Product::findOrFail($product_id);
+
+            $data = [
+
+                'image'=> $product->image,
+                'product_text'=>$product->name.','.$product->company.','.$product->packet_price.'/pack',
+                'app_text'=>'Get Discounted deal Now',
+                'link'=>'http://google.com'
+            ];
+
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+                'data'=>$data,
+            ];
+
+
+        }else if($type == 'catelogue'){
+
+            $category_id = $request->category_id;
+            $sort_by = $request->sort_by;
+
+            $products=Product::active()
+                ->select('company','name','image','packet_price');
+
+            if(!empty($request->category_id)){
+                $products = $products->where('category_id', $request->category_id);
+            }
+
+            if(!empty($request->sort_by)){
+                if($request->sort_by == 'top_earning'){
+                    $products=$products->orderBy('commissions', 'desc');
+                }else if($request->sort_by == 'fast_selling'){
+                    $last_5_day_sales = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+                        ->groupBy('product_id')
+                        ->select(DB::raw('sum(packet_count) as sum'), 'product_id')
+                        ->orderBy('sum', 'desc')
+                        ->where('orders.delivery_date', '>=', date('Y-m-d'))
+                        ->get();
+
+                    $ids = $last_5_day_sales->map(function($element){
+                        return $element->product_id;
+                    })->toArray();
+                    if($ids)
+                        $products=$products->orderByRaw("FIELD(id, ".implode(',', $ids).")");
+                }
+            }
+
+            $products=$products->get();
+
+            $product_text=implode(',', $products->map(function($elem){
+                return $elem->name.','.$elem->company.','.$elem->packet_price.'/pack';
+            })->toArray());
+
+            $data = [
+
+                'image'=> $products[0]->image,
+                'product_text'=>$product_text,
+                'app_text'=>'Download App Now',
+                'link'=>'http://google.com'
+            ];
+
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+                'data'=>$data,
+            ];
+        }else{
+
+        }
+    }
 }
