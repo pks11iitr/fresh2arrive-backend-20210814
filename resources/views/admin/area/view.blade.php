@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Categories</h1>
+                        <h1>Area</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Category</li>
+                            <li class="breadcrumb-item active">Area</li>
                         </ol>
                     </div>
                 </div>
@@ -26,35 +26,36 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{route('category.create')}}" class="btn btn-primary">Add Category</a>
-
+                                <a href="{{route('area.create')}}" class="btn btn-primary">Add Area</a>
+                                <a href="{{route('area.import')}}" class="btn btn-warning">Import</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
+                                        <th> ID</th>
                                         <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Earn Upto</th>
-                                        <th>Isactive</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Pincode</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($area as $area)
+                                        <tr>
+                                            <td>{{$area->id}}</td>
+                                            <td>{{$area->name}}</td>
+                                            <td>{{$area->city}}</td>
+                                            <td>{{$area->state}}</td>
+                                            <td>{{$area->pincode}}</td>
 
-                            @foreach($category as $category)
-                                <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td><img src="{{$category->image}}" height="50" width="100"/></td>
-                                    <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive=='0'?'Active':'Inactive'}}</td>
-                                     <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
-                                </tr>
-                            @endforeach
-
+                                            <td>{{$area->status==1?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('area.edit',['id'=>$area->id])}}">Edit</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

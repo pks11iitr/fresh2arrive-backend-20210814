@@ -42,11 +42,25 @@
                                         <th>City</th>
                                         <th>Pincode</th>
                                         <th>State</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    @foreach($partners as $partners)
+                                        <tr>
+                                            <td>{{$partners->id}}</td>
+                                            <td>{{$partners->name}}</td>
+                                            <td>{{$partners->mobile}}</td>
+                                            <td>{{$partners->notification_token}}</td>
+                                            <td>{{$partners->address}}</td>
+                                            <td>{{$partners->city}}</td>
+                                            <td>{{$partners->pincode}}</td>
+                                            <td>{{$partners->state}}</td>
+                                            <td>{{$partners->status?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('partners.edit',['id'=>$partners->id])}}">Edit</a></td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

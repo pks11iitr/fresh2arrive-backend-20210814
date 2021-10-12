@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Traits\FileTransfer;
+use App\Models\Banner;
 use App\Models\Customer;
+use Illuminate\Http\Request;
+
+
 class CustomerController extends Controller
 {
+    use FileTransfer;
     public  function index(Request $request){
 
         $customer = Customer::orderBy('id','desc')
@@ -22,13 +27,123 @@ class CustomerController extends Controller
 
     public function store(Request $request){
 
+        $request->validate([
+            'mobile'=>'Required',
+            'email'=>'Required',
+            'password'=>'Required',
+            'status'=>'Required',
+            'name'=>'Required',
+            'image'=>'Required',
+            'notification_token'=>'Required',
+            'house_no'=>'Required',
+            'building'=>'Required',
+            'street'=>'Required',
+            'area'=>'Required',
+            'city'=>'Required',
+            'state'=>'Required',
+            'pincode'=>'Required',
+            'lat'=>'Required',
+            'lang'=>'Required',
+            'map_address'=>'Required',
+            'map_json'=>'Required',
+            'assigned_partner'=>'Required',
+            'reffered_by'=>'Required',
+            'reffered_by_partner'=>'Required'
+        ]);
+
+
+        $customer = New Customer();
+        $customer->mobile=$request->mobile;
+        $customer->email=$request->email;
+        $customer->password=$request->password;
+        $customer->status=$request->status;
+        $customer->name=$request->name;
+        $customer->image = $this->getImagePath($request->image, 'customers');
+        $customer->notification_token=$request->notification_token;
+        $customer->house_no=$request->house_no;
+        $customer->building=$request->building;
+        $customer->street=$request->street;
+        $customer->area=$request->area;
+        $customer->city=$request->city;
+        $customer->state=$request->state;
+        $customer->pincode=$request->pincode;
+        $customer->lat=$request->lat;
+        $customer->lang=$request->lang;
+        $customer->map_address=$request->map_address;
+        $customer->map_json=$request->map_json;
+        $customer->assigned_partner=$request->assigned_partner;
+        $customer->reffered_by=$request->reffered_by;
+        $customer->reffered_by_partner=$request->reffered_by_partner;
+        $customer->save();
+        return redirect()->route('customers.edit', $customer->id)
+            ->with('success','Customer Addedd Successfully');
     }
 
     public function edit(Request $request, $id){
-        return view('admin.customers.edit');
+        $customer=Customer::findOrFail($id);
+        return view('admin.customers.edit', compact('customer'));
     }
 
     public function update(Request $request, $id){
+
+        $request->validate([
+            'mobile'=>'Required',
+            'email'=>'Required',
+            'password'=>'Required',
+            'status'=>'Required',
+            'name'=>'Required',
+            //'image'=>'Required',
+            'notification_token'=>'Required',
+            'house_no'=>'Required',
+            'building'=>'Required',
+            'street'=>'Required',
+            'area'=>'Required',
+            'city'=>'Required',
+            'state'=>'Required',
+            'pincode'=>'Required',
+            'lat'=>'Required',
+            'lang'=>'Required',
+            'map_address'=>'Required',
+            'map_json'=>'Required',
+            'assigned_partner'=>'Required',
+            'reffered_by'=>'Required',
+            'reffered_by_partner'=>'Required'
+        ]);
+
+        $customer = Customer::findOrfail($id);
+        if($request->image){
+            $path = $this->getImagePath($request->image, 'customers');
+        }else{
+            $path = $customer->getRawOriginal('image');
+        }
+
+
+        $customer->update([
+            'mobile'=>$request->mobile,
+            'email'=>$request->email,
+            'password'=>$request->password,
+            'status'=>$request->status,
+            'name'=>$request->name,
+            'image'=>$path,
+            'notification_token'=>$request->notification_token,
+            'house_no'=>$request->house_no,
+            'building'=>$request->building,
+            'street'=>$request->street,
+            'area'=>$request->area,
+            'city'=>$request->city,
+            'state'=>$request->state,
+            'pincode'=>$request->pincode,
+            'lat'=>$request->lat,
+            'lang'=>$request->lang,
+            'map_address'=>$request->map_address,
+            'map_json'=>$request->map_json,
+            'assigned_partner'=>$request->assigned_partner,
+            'reffered_by'=>$request->reffered_by,
+            'reffered_by_partner'=>$request->reffered_by_partner
+        ]);
+
+        return redirect()->back()->with('success', 'Customer has been updated');
+
 
     }
 

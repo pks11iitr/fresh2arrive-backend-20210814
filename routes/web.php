@@ -138,7 +138,27 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
     });
 
 
+    Route::group(['prefix'=>'area'],function(){
 
+        Route::get('/','Admin\AreaController@index')->name('area.list');
+        Route::get('create','Admin\AreaController@create')->name('area.create');
+        Route::post('store', 'Admin\AreaController@store')->name('area.store');
+        Route::get('edit/{id}','Admin\AreaController@edit')->name('area.edit');
+        Route::post('update/{id}', 'Admin\AreaController@update')->name('area.update');
+        Route::get('import', 'Admin\AreaController@import_Excel')->name('area.import');
+        Route::post('excelstore', 'Admin\AreaController@store_excel')->name('area.excelstore');
+    });
+
+
+    Route::group(['prefix'=>'ticket'],function(){
+
+        Route::get('/','Admin\TicketController@index')->name('ticket.list');
+       // Route::get('create','Admin\AreaController@create')->name('area.create');
+       // Route::post('store', 'Admin\AreaController@store')->name('area.store');
+        Route::get('edit/{id}','Admin\TicketController@edit')->name('ticket.edit');
+        Route::post('update/{id}', 'Admin\TicketController@update')->name('ticket.update');
+
+    });
 
 });
 

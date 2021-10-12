@@ -141,7 +141,6 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Banner
-
                             </p>
                         </a>
                     </li>
@@ -150,7 +149,6 @@
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Category
-
                             </p>
                         </a>
                     </li>
@@ -212,15 +210,22 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{route('coupon.list')}}" class="nav-link">
+                        <a href="{{route('area.list')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                Coupon
+                                Area
                             </p>
                         </a>
                     </li>
 
-
+                    <li class="nav-item">
+                        <a href="{{route('ticket.list')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Ticket
+                            </p>
+                        </a>
+                    </li>
                     {{--                    <li class="nav-item">--}}
 {{--                        <a href="{{route('video.list')}}" class="nav-link">--}}
 {{--                            <i class="nav-icon fas fa-th"></i>--}}
