@@ -145,6 +145,18 @@ class CatelogueController extends Controller
             ];
         }else{
 
+            $data=[
+                'image'=> 'https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg',
+                'product_text'=>'Dummy Text',
+                'app_text'=>'Download App Now',
+                'link'=>'http://google.com'
+            ];
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+                'data'=>$data,
+            ];
         }
     }
 }

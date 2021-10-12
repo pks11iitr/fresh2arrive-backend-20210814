@@ -105,6 +105,7 @@ $api->group(['prefix' => 'partner'], function ($api) {
 
         $api->get('sidebar-info', 'MobileApps\Partners\ProfileController@getSidebarInfo');
 
+        $api->post('invite-customer', 'MobileApps\Partners\ProfileController@inviteNewCustomer');
 
 
 

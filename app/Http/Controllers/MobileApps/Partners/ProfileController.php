@@ -186,4 +186,27 @@ class ProfileController extends Controller
         return view('qrcode');
     }
 
+
+    public function inviteNewCustomer(Request $request){
+        $user = $request->user;
+
+        $request->validate([
+            'name'=>'required',
+            'mobile'=>'required'
+        ]);
+
+
+        //send message here
+
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Invite has been sent',
+            'data'=>[],
+        ];
+
+
+    }
+
 }
