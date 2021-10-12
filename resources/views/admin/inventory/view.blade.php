@@ -24,11 +24,52 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <a href="{{route('inventory.create')}}" class="btn btn-primary">Add Inventory</a>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="{{route('inventory.create')}}" class="btn btn-primary" style="margin-top: 30px;">Add Inventory</a>
+                                </div>
+                                <div class="col-md-10">
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('inventory.list')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Product</label>
+                                                    <select class="form-control select2" name="product_id" required>
+                                                        @foreach($product as $product)
+                                                            <option value="{{$product->id}}">{{$product->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>From Date</label>
+                                                    <input type="date" name="fromdate" class="form-control" placeholder="Search Only Product Name"  required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>To Date</label>
+                                                <div class="form-group">
+                                                    <input type="date" name="todate" class="form-control" placeholder="Search Only Product Name"  required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group" >
 
+                                                    <button type="submit" class="btn btn-success " style="margin-top: 30px;">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card">
+
+
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">

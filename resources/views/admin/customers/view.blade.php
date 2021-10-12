@@ -24,13 +24,45 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                               <a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a>
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a>
 
+                                </div>
+                                <div class="col-md-10">
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('customers.list')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <select class="form-control" name="search_type">
+                                                        <option value="">--Select Search Type--</option>
+                                                        <option value="1">By Name</option>
+                                                        <option value="2">By Mobile</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <input type="text" name="search" class="form-control" placeholder="Search Only Customer Name"  required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success ">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
+
+
+                        </div>
+                        <div class="card">
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">

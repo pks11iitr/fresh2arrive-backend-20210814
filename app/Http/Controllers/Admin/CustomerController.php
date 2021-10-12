@@ -13,11 +13,15 @@ class CustomerController extends Controller
 {
     use FileTransfer;
     public  function index(Request $request){
-
-        $customer = Customer::orderBy('id','desc')
-            ->paginate(10);
+        $search_type=$request->search_type==1?'name':'mobile';
+        if($request->search){
+            $customer = Customer::where($search_type, 'LIKE', "%$request->search%")
+                ->paginate(10);
+        }else{
+            $customer = Customer::orderBy('id','desc')
+                ->paginate(10);
+        }
         return view('admin.customers.view',compact('customer'));
-
     }
 
     public  function create(Request $request){
