@@ -163,4 +163,8 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
 });
 
+Route::get('about-us', 'StaticPageController@about');
+Route::get('privacy-policy', 'StaticPageController@privacy');
+Route::get('terms-and-conditions', 'StaticPageController@tnc');
+
 require __DIR__.'/auth.php';
