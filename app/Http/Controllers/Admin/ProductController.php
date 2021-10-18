@@ -85,7 +85,7 @@ class ProductController extends Controller
             'packet_price'=>'required',
             'consumed_quantity'=>'required',
             'isactive'=>'required',
-            'tag'=>'required',
+            //'tag'=>'required',
             'min_qty'=>'required',
             'max_qty'=>'required',
             'commissions'=>'required',
