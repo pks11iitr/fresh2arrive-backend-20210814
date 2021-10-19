@@ -38,7 +38,7 @@ class Product extends Model
 
     public function getPercentAttribute($value){
 
-        if(!empty($this->getRawOriginal('price_per_unit')) && empty($this->getRawOriginal('cut_price_per_unit')) && $this->getRawOriginal('price_per_unit') < $this->getRawOriginal('cut_price_per_unit')){
+        if(!empty($this->getRawOriginal('price_per_unit')) && !empty($this->getRawOriginal('cut_price_per_unit')) && $this->getRawOriginal('price_per_unit') < $this->getRawOriginal('cut_price_per_unit')){
             return number_format(($this->getRawOriginal('cut_price_per_unit')-$this->getRawOriginal('price_per_unit'))*100/$this->getRawOriginal('cut_price_per_unit'), 1);
         }
 
