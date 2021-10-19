@@ -26,7 +26,13 @@ class Order extends Model
         'status',
         'delivery_partner',
         'is_completed',
-        'delivered_at'
+        'delivered_at',
+        'is_accepted',
+        'is_reviewed',
+        'on_time',
+        'on_doorstep',
+        'review',
+        'rating'
     ];
 
     protected $appends = ['placed_on', 'delivery_schedule', 'order_date', 'delivery_at'];

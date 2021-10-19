@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\TimeSlot;
 use Illuminate\Http\Request;
@@ -49,11 +50,19 @@ class HomeController extends Controller
 
         $next_time_slot='Next Delivery Slot: '.(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
 
+        $order = Order::where('user_id', $user->id??0)
+            ->with('partner')
+            ->where('status', 'delivered')
+            ->where('is_reviewed', false)
+            ->first();
+
+        $pending_partner_name = $order->partner->name??'';
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name')
         ];
     }
 
