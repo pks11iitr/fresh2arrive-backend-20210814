@@ -62,7 +62,7 @@ $api->group(['middleware' => ['customer-auth']], function ($api) {
     $api->post('support/{id}', 'MobileApps\Customers\SidebarController@index');
     $api->get('service-areas', 'MobileApps\Customers\SidebarController@serviceAreas');
     $api->get('refer-details', 'MobileApps\Customers\SidebarController@referDetails');
-    $api->get('post-review', 'MobileApps\Customers\ReviewController@store');
+    $api->post('post-review', 'MobileApps\Customers\ReviewController@store');
 });
 
 
