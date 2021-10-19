@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         if(empty($request->page) || $request->page==1){
             $categories=Category::active()
-                ->select('name', 'image', 'id')
+                ->select('name', 'image', 'id', 'font_color')
                 ->get();
 
             $banners=Banner::active()
@@ -47,6 +47,7 @@ class HomeController extends Controller
 
 
         $partner = $user->partner->name??'';
+        $partner_whatsapp = $user->partner->whatsapp_group;
 
         $next_time_slot='Next Delivery Slot: '.(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
 
@@ -63,7 +64,7 @@ class HomeController extends Controller
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name', 'pending_order_id')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name', 'pending_order_id', 'partner_whatsapp')
         ];
     }
 
