@@ -50,7 +50,7 @@
                                     <td>{{$category->name}}</td>
                                     <td><img src="{{$category->image}}" height="50" width="100"/></td>
                                     <td>{{$category->earn_upto}}</td>
-                                    <td>{{$category->isactive=='0'?'Active':'Inactive'}}</td>
+                                    <td>{{$category->isactive=='1'?'Active':'Inactive'}}</td>
                                      <td><a href="{{route('category.edit',['id'=>$category->id])}}">Edit</a></td>
                                 </tr>
                             @endforeach
