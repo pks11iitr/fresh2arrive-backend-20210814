@@ -57,12 +57,13 @@ class HomeController extends Controller
             ->first();
 
         $pending_partner_name = $order->partner->name??'';
+        $pending_order_id=$order->id??'';
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name', 'pending_order_id')
         ];
     }
 
