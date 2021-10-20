@@ -13,7 +13,7 @@ class TimeSlot extends Model
     use Active;
     protected $table='time_slot';
 
-    protected $fillable=['day', 'name', 'from_time', 'to_time', 'order_till', 'isactive','slot_capacity'];
+    protected $fillable=['name', 'from_time', 'to_time', 'order_till', 'isactive'];
 
     protected $hidden = ['created_at','deleted_at','updated_at'];
 

@@ -74,31 +74,7 @@
 
                                     </div>
                                     <!-- /.form-group -->
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label> Day </label>
-                                                <select class="form-control select2" name="day">
-                                                    <option value="0" selected>--Select Day--</option>
-                                                    <option value="1" @if($timeslot->day==1){{'selected'}}@endif >Monday</option>
-                                                    <option value="2" @if($timeslot->day==2){{'selected'}}@endif >Tuesday</option>
-                                                    <option value="3" @if($timeslot->day==3){{'selected'}}@endif >Wednesday</option>
-                                                    <option value="4" @if($timeslot->day==4){{'selected'}}@endif >Thursday</option>
-                                                    <option value="5" @if($timeslot->day==5){{'selected'}}@endif >Friday</option>
-                                                    <option value="6" @if($timeslot->day==6){{'selected'}}@endif >Saturday</option>
-                                                    <option value="7" @if($timeslot->day==7){{'selected'}}@endif >Sunday</option>
 
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Slot Capacity</label>
-                                                <input type="text" name="slot_capacity" class="form-control" value="{{$timeslot->slot_capacity}}">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- /.col -->
 
