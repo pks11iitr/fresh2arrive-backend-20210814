@@ -94,8 +94,8 @@
                                             <div class="form-group">
                                                 <label> Tag</label>
                                                 <select class="form-control select2" name="tag">
-                                                    <option value="">Please Select Status</option>
-                                                    @foreach(['Deal of the day', 'Limited Stock'] as $elem)
+                                                    <option value="null">Please Select Status</option>
+                  @foreach(['Deal of the day', 'Limited Stock'] as $elem)
                                                     <option value="{{$elem}}" @if($product->tag == $elem){{'selected'}}@endif>{{$elem}}</option>
                                                     @endforeach
                                                 </select>
