@@ -27,7 +27,6 @@
                         <div class="card">
                             <br/>
                             <div class="row">
-
                                 <div class="col-md-9">
                                     <form role="form" method="get" enctype="multipart/form-data" action="{{route('ticket.list')}}">
                                         @csrf
@@ -57,6 +56,7 @@
                                     </form>
                                 </div>
                             <!-- /.card-header -->
+                            </div>
                             <div class="card-body">
                                 <table id="example121" class="table table-bordered table-hover">
                                     <thead>
