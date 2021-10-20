@@ -10,8 +10,9 @@ class PartnerController extends Controller
 {
     use FileTransfer;
     public  function index(Request $request){
+        $search_type=$request->search_type==1?'name':'mobile';
         if($request->search){
-            $partners = Partner::where('name','Like',"%$request->search%")
+            $partners = Partner::where($search_type,'Like',"%$request->search%")
                 ->paginate(10);
         }else{
             $partners = Partner::orderBy('id','desc')
