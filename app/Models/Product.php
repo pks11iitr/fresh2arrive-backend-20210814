@@ -16,7 +16,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id'];
+    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'];
 
     protected $appends = ['percent', 'commissions'];
 
@@ -38,7 +38,7 @@ class Product extends Model
 
     public function getPercentAttribute($value){
 
-        if(!empty($this->getRawOriginal('price_per_unit')) && empty($this->getRawOriginal('cut_price_per_unit')) && $this->getRawOriginal('price_per_unit') < $this->getRawOriginal('cut_price_per_unit')){
+        if(!empty($this->getRawOriginal('price_per_unit')) && !empty($this->getRawOriginal('cut_price_per_unit')) && $this->getRawOriginal('price_per_unit') < $this->getRawOriginal('cut_price_per_unit')){
             return number_format(($this->getRawOriginal('cut_price_per_unit')-$this->getRawOriginal('price_per_unit'))*100/$this->getRawOriginal('cut_price_per_unit'), 1);
         }
 

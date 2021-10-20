@@ -161,6 +161,14 @@
 
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label> Is Hot </label>
+                                                <select class="form-control select2" name="is_hot">
+                                                    <option value="1">Yes</option>
+                                                    <option value="0">No</option>
+
+                                                </select>
+                                            </div>
                                         </div>
 
 

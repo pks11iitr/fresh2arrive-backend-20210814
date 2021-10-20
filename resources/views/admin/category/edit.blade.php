@@ -62,11 +62,18 @@
                                                 <input type="text" name="earn_upto" class="form-control" placeholder="Earn Upto"  required value="{{$category->earn_upto}}">
                                             </div>
                                             <div class="form-group">
-                                                <label>Isactive</label>
+                                                <label>Is Active</label>
                                                 <select class="form-control select2" name="isactive">
                                                     <option value="1" @if($category->isactive==1){{'selected'}}@endif>Yes</option>
                                                     <option value="0" @if($category->isactive==0){{'selected'}}@endif>No</option>
                                                 </select>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Font Color </label>
+                                                <input type="text" name="font_color" class="form-control" placeholder="color code"  required value="{{$category->font_color}}">
                                             </div>
                                             <!-- /.form-group -->
                                         </div>

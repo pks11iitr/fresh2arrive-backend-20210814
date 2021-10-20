@@ -18,14 +18,22 @@ class EarningController extends Controller
         $start1=date("Y-m-d", strtotime("last week monday"));
         $end1=date("Y-m-d", strtotime("last week sunday"));
 
+        $st_en_1=date('d M', strtotime($start1)).'-'.date('d M', strtotime($end1));
+
         $start0=date('Y-m-d', strtotime('+1 days', strtotime($end1)));
         $end0=date('Y-m-d', strtotime('+6 days', strtotime($start0)));
+
+        $st_en_0=date('d M', strtotime($start0)).'-'.date('d M', strtotime($end0));
 
         $start2=date('Y-m-d', strtotime('-7 days', strtotime($start1)));
         $end2=date('Y-m-d', strtotime('+6 days', strtotime($start2)));
 
+        $st_en_2=date('d M', strtotime($start2)).'-'.date('d M', strtotime($end2));
+
         $start3=date('Y-m-d', strtotime('-7 days', strtotime($start2)));
         $end3=date('Y-m-d', strtotime('+6 days', strtotime($start3)));
+
+        $st_en_3=date('d M', strtotime($start3)).'-'.date('d M', strtotime($end3));
 
         $earnings0 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
             ->where('orders.delivery_partner', $user->id)
@@ -96,7 +104,7 @@ class EarningController extends Controller
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('start0', 'end0', 'start1', 'end1', 'start2', 'end2', 'start3', 'end3', 'earnings0', 'earnings1', 'earnings2', 'earnings3', 'deliveries', 'weekly_earnings', 'top_display')
+            'data'=>compact('start0', 'end0', 'start1', 'end1', 'start2', 'end2', 'start3', 'end3', 'earnings0', 'earnings1', 'earnings2', 'earnings3', 'deliveries', 'weekly_earnings', 'top_display', 'st_en_0', 'st_en_1', 'st_en_2', 'st_en_3')
         ];
 
 

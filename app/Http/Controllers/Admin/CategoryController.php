@@ -29,11 +29,12 @@ class CategoryController extends Controller
             'name'=>'required',
             'image'=>'required',
             'earn_upto'=>'required',
-            'isactive'=>'required'
+            'isactive'=>'required',
+            'font_color'=>'required'
         ]);
 
         $category = Category::create(array_merge(
-            $request->only('name', 'isactive', 'earn_upto'),
+            $request->only('name', 'isactive', 'earn_upto', 'font_color'),
             [
                 'image'=>$this->getImagePath($request->image, 'categories')
             ]
@@ -53,7 +54,8 @@ class CategoryController extends Controller
             'name'=>'required',
             //'image'=>'required',
             'earn_upto'=>'required',
-            'isactive'=>'required'
+            'isactive'=>'required',
+            'font_color'=>'required'
         ]);
         $category=Category::findOrFail($id);
 
@@ -64,10 +66,12 @@ class CategoryController extends Controller
         }
 
         $category->update([
+            'name'=>$request->name,
             'isactive'=>$request->isactive,
             'image'=>$path,
             'earn_upto'=>$request->earn_upto,
-            'type'=>$request->type
+            'font_color'=>$request->font_color
+
         ]);
 
         return redirect()->back()->with('success', 'Category has been updated');

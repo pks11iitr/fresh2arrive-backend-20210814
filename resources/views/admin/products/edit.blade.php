@@ -163,6 +163,15 @@
 
                                                 </select>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label> Is Hot </label>
+                                                <select class="form-control select2" name="is_hot">
+                                                    <option value="1" @if($product->is_hot==1){{'selected'}}@endif>Yes</option>
+                                                    <option value="0" @if($product->is_hot==0){{'selected'}}@endif>No</option>
+
+                                                </select>
+                                            </div>
                                         </div>
 
 
