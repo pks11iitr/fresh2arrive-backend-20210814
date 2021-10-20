@@ -58,7 +58,7 @@
                                     <thead>
                                     <tr>
                                         <th> ID</th>
-                                        <th>Day</th>
+
                                         <th>Name</th>
                                         <th>From Time</th>
                                         <th>To Time Price</th>
@@ -73,7 +73,7 @@
                                     @foreach($Timeslot as $Timeslot)
                                         <tr>
                                             <td>{{$Timeslot->id}}</td>
-                                            <td>{{$Timeslot->day}}</td>
+
                                             <td>{{$Timeslot->name}}</td>
                                             <td>{{$Timeslot->from_time}}</td>
                                             <td>{{$Timeslot->to_time}}</td>

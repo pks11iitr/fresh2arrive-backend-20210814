@@ -74,31 +74,7 @@
 
                                             </div>
                                             <!-- /.form-group -->
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label> Day </label>
-                                                <select class="form-control select2" name="day">
-                                                    <option value="0" selected>--Select Day--</option>
-                                                    <option value="1">Monday</option>
-                                                    <option value="2">Tuesday</option>
-                                                    <option value="3">Wednesday</option>
-                                                    <option value="4">Thursday</option>
-                                                    <option value="5">Friday</option>
-                                                    <option value="6">Saturday</option>
-                                                    <option value="7">Sunday</option>
 
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label>Slot Capacity</label>
-                                                <input type="text" name="slot_capacity" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
                                         </div>
                                         <!-- /.col -->
 
