@@ -52,7 +52,7 @@ class ProductController extends Controller
 
         $product = Product::create(array_merge(
 
-            $request->only('name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id'),
+            $request->only('name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
 
             [
                 'image'=>$this->getImagePath($request->image, 'products')
@@ -101,7 +101,7 @@ class ProductController extends Controller
         }
 
         $product->update(array_merge(
-           $request->only('name', 'company', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id'),
+           $request->only('name', 'company', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
            [
                'image'=>$path
            ]
