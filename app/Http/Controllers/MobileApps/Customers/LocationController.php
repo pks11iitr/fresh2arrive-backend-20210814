@@ -17,7 +17,7 @@ class LocationController extends Controller
 
         $map_json=json_decode($request->location_data, true);
 
-        $location = $map_address = $map_json['results'][0]['address_components'];
+        $json = $map_json['results'][0]['address_components'];
 
         $json = array_reverse($json);
         $locality1 = $json[3]['long_name'] ?? '';
