@@ -27,15 +27,24 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-10">
                                         <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-10">
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <select class="form-control" name="search_type">
+                                                            <option value="">--Select Search Type--</option>
+                                                            <option value="1">By Name</option>
+                                                            <option value="2">By Mobile</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
                                                     <div class="form-group">
                                                         <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
                                                     </div>
@@ -58,7 +67,7 @@
                                         <th>Category ID</th>
                                         <th>Name</th>
                                         <th>mobile </th>
-                                        <th>Notification Token</th>
+
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Pincode</th>
@@ -73,7 +82,7 @@
                                             <td>{{$partners->id}}</td>
                                             <td>{{$partners->name}}</td>
                                             <td>{{$partners->mobile}}</td>
-                                            <td>{{$partners->notification_token}}</td>
+
                                             <td>{{$partners->address}}</td>
                                             <td>{{$partners->city}}</td>
                                             <td>{{$partners->pincode}}</td>

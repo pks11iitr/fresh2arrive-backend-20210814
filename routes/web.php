@@ -151,6 +151,18 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
     });
 
 
+    Route::group(['prefix'=>'timeslot'],function(){
+
+        Route::get('/','Admin\TimeslotController@index')->name('timeslot.list');
+        Route::get('create','Admin\TimeslotController@create')->name('timeslot.create');
+        Route::post('store', 'Admin\TimeslotController@store')->name('timeslot.store');
+        Route::get('edit/{id}','Admin\TimeslotController@edit')->name('timeslot.edit');
+Route::post('update/{id}', 'Admin\TimeslotController@update')->name('timeslot.update');
+Route::get('import', 'Admin\TimeslotController@import_Excel')->name('timeslot.import');
+Route::post('excelstore', 'Admin\TimeslotController@store_excel')->name('timeslot.excelstore');
+    });
+
+
     Route::group(['prefix'=>'ticket'],function(){
 
         Route::get('/','Admin\TicketController@index')->name('ticket.list');
