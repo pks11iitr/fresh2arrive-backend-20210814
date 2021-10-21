@@ -60,7 +60,8 @@ class HomeController extends Controller
                 'customer_mobile'=>$order->customer->mobile??'Not Mentioned',
                 'lat'=>$order->customer->lat??0.0,
                 'lang'=>$order->customer->lang??0.0,
-                'delivery_text'=>'You can accept this within 2 hrs'
+                'delivery_text'=>'You can accept this within 2 hrs',
+                'address'=>$order->customer->map_address??''
             ];
         }else{
             $new_order=[];
