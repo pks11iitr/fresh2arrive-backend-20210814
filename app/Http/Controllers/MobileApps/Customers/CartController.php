@@ -226,9 +226,9 @@ class CartController extends Controller
         $prices=[
             'item_count'=>$count,
             'item_total'=>round($cost,2),
-            'echo-packing'=>0,
+            'echo-packing'=>$echo_charges,
             'coupon_discount'=>0,
-            'total_payble'=>round($cost,2),
+            'total_payble'=>round($cost,2)+$echo_charges,
             'wallet_balance'=>$balance
         ];
 
