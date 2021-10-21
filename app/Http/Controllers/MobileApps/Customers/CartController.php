@@ -73,7 +73,7 @@ class CartController extends Controller
     private function increaseCart($device_id, $user, $product, $cart, $available_stock){
 
         if(!$cart)
-            $quantity = $product->min_qty;
+            $quantity = $product->min_qty>0?$product->min_qty:1;
         else
             $quantity = $cart->quantity + 1;
 
