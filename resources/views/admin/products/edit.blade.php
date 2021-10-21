@@ -154,7 +154,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <img src="{{$product->image}}" height="100" width="200">
+                <img src="{{$product->image}}" height="100" width="200">
                                             <div class="form-group">
                                                 <label> Is Active </label>
                                                 <select class="form-control select2" name="isactive">

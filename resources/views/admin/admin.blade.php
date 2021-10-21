@@ -236,6 +236,14 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('configurations.list')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Configurations
+                            </p>
+                        </a>
+                    </li>
 
                     {{--                    <li class="nav-item">--}}
 {{--                        <a href="{{route('video.list')}}" class="nav-link">--}}
@@ -848,3 +856,18 @@
 
 </body>
 </html>
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select3').select2()
+
+        //Initialize Select2 Elements
+        $('.select3bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+    })
+
+
+</script>

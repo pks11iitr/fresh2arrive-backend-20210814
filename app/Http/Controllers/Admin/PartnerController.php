@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
 use Illuminate\Http\Request;
 use App\Models\Partner;
+use App\Models\Area;
+use App\Models\AreaAsign;
 class PartnerController extends Controller
 {
     use FileTransfer;
@@ -23,8 +25,9 @@ class PartnerController extends Controller
     }
 
     public  function  create(Request $request){
-
-        return view('admin.partners.add');
+        $area=Area::orderBy('id','desc')
+            ->get();
+        return view('admin.partners.add',compact('area'));
     }
 
     public  function store(Request $request){
@@ -40,6 +43,9 @@ class PartnerController extends Controller
             'status'=>'required'
         ]);
 
+
+
+
         $partners = new  Partner();
         $partners->name=$request->name;
         $partners->mobile=$request->mobile;
@@ -49,16 +55,23 @@ class PartnerController extends Controller
         $partners->state=$request->state;
         $partners->notification_token=$request->notification_token;
         $partners->status=$request->status;
+        $partners->support_whatsapp=$request->support_whatsapp;
+        $partners->support_mobile=$request->support_mobile;
         $partners->save();
 
-        return redirect()->route('partners.edit', $partners->id)
-            ->with('success','Banner Addedd Successfully');
-    }
 
+        $partners->areas()->sync($request->area_ids??[]);
+        return redirect()->route('partners.edit', $partners->id)
+            ->with('success','Partners Addedd Successfully');
+        }
 
     public  function edit(Request $request,$id){
-        $Partners = Partner::findOrFail($id);
-        return view('admin.partners.edit',compact('Partners'));
+        $areas = Area::get();
+        $Partners = Partner::with('areas')->findOrFail($id);
+        $assigned_areas=$Partners->areas->map(function($element){
+            return $element->id;
+        })->toArray();
+        return view('admin.partners.edit',compact('Partners', 'areas', 'assigned_areas'));
     }
 
 
@@ -77,6 +90,7 @@ class PartnerController extends Controller
         ]);
 
         $Partners=Partner::findOrFail($id);
+
         $Partners->update([
             'name'=>$request->name,
             'mobile'=>$request->mobile,
@@ -85,8 +99,16 @@ class PartnerController extends Controller
             'pincode'=>$request->pincode,
             'state'=>$request->state,
             'notification_token'=>$request->notification_token,
-            'status'=>$request->status
+            'status'=>$request->status,
+            'support_whatsapp'=>$request->support_whatsapp,
+            'support_mobile'=>$request->support_mobile
         ]);
+
+
+
+        $Partners->areas()->sync($request->area_ids??[]);
+
+
 
         return redirect()->back()->with('success', 'Partners has been updated');
 

@@ -78,7 +78,7 @@
                                             <td>{{$products->price_per_unit}}</td>
                                             <td>{{$products->commissions}}</td>
                                             <td>{{$products->tag}}</td>
-                                            <td>{{$products->isactive==0?'Active':'Inactive'}}</td>
+                                            <td>{{$products->isactive==1?'Active':'Inactive'}}</td>
                                             <td><a href="{{route('products.edit',['id'=>$products->id])}}">Edit</a></td>
                                         </tr>
                                     @endforeach

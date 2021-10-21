@@ -24,6 +24,8 @@ class Partner extends Authenticatable implements JWTSubject
         'state',
         'notification_token',
         'status',
+        'support_whatsapp',
+        'support_mobile'
     ];
 
 
@@ -92,6 +94,11 @@ class Partner extends Authenticatable implements JWTSubject
 
     public function preferedTimeSlots(){
         return $this->belongsToMany('App\Models\TimeSlot', 'prefered_slots', 'partner_id', 'slot_id');
+    }
+
+
+    public function areas(){
+        return  $this->belongsToMany('App\Models\Area', 'area_assign', 'partner_id', 'areaid');
     }
 
 }

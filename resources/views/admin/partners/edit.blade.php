@@ -93,6 +93,44 @@
                                         </div>
                                         <!-- /.row -->
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Support Mobile </label>
+                                                <input type="text" name="support_mobile" class="form-control" placeholder="Mobile" value="{{$Partners->support_mobile}}"  required  >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Support Whatsapp </label>
+                                                <input type="text" name="support_whatsapp" class="form-control" placeholder="Mobile" value="{{$Partners->support_whatsapp}}"  required  >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+
+                                            <div class="form-group">
+                                                <label>Areas</label>
+                                                <select class="select3" multiple="multiple" data-placeholder="Select  Areas" name="area_ids[]" autofocus style="width: 100%;">
+                                                    @foreach($areas as $area)
+                    <option value="{{$area->id}}" @if(in_array($area->id, $assigned_areas)){{'selected'}}@endif>{{$area->name}}({{$area->city}})</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
