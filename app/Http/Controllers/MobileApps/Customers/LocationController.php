@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -41,34 +42,29 @@ class LocationController extends Controller
             ->where('pincode', $pincode)
             ->first();
 
-        if ($location) {
+        if($location){
             return [
-                'status' => 'success',
-                'message' => 'Location is serviceable'
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+                'data'=>[
+                    'name'=>$user->name??'',
+                    'house_no'=>$user->house_no??'',
+                    'building'=>$user->building??'',
+                    'street'=>$user->street??'',
+                    'area'=>$location->name,
+                    'city'=>$location->city,
+                    'state'=>$location->state,
+                    'pincode'=>$location->pincode
+                ]
             ];
         }
 
         return [
-            'status'=>'success',
-            'action'=>'',
-            'display_message'=>'',
-            'data'=>[
-                'name'=>$user->name??'',
-                'house_no'=>$user->house_no??'',
-                'building'=>$user->building??'',
-                'street'=>$user->street??'',
-                'area'=>$location->name,
-                'city'=>$location->city,
-                'state'=>$location->state,
-                'pincode'=>$location->pincode
-            ]
-        ];
-
-
-        return [
             'status'=>'failed',
             'action'=>'',
-            'display_message'=>'Location is not servicable'
+            'display_message'=>'Location is not servicable',
+            'data'=>[]
         ];
 
     }
