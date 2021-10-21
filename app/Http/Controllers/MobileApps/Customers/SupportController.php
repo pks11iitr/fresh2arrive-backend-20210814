@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class SupportController extends Controller
 {
     public function index(Request $request){
+
         $configurationsobj = Configuration::select('param', 'value')->whereIn('param',['customer_email', 'customer_mobile', 'customer_whatsapp'])->get();
 
         $configurations=[];
@@ -16,11 +17,19 @@ class SupportController extends Controller
             $configurations[$c->param]=$c->value;
         }
 
+        $user=auth()->guard('customer-api')->user();
+
+        $partner = [
+            'name'=> $user->partner->name??'No Mentioned',
+            'mobile'=>$user->partner->support_mobile??'',
+            'whatsapp'=>$user->partner->support_whatsapp??'',
+            ];
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            "data"=>compact('configurations')
+            "data"=>compact('configurations', 'partner')
         ];
     }
 }
