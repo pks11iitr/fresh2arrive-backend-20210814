@@ -116,7 +116,11 @@ $api->group(['prefix' => 'partner'], function ($api) {
 
 
     });
+
     $api->get('qrcode', ['as' => 'qr.code', 'uses' => 'MobileApps\Partners\ProfileController@qrcodeInfo']);
+
 
 });
 
+$api->get('tnc', 'StaticPageController@tnc');
+$api->get('privacy-policy', 'StaticPageController@privacy');
