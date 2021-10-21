@@ -47,6 +47,25 @@ class HomeController extends Controller
 
         $today_earnings = round($commissions/100);
 
+        $new_order=Order::with(['details', 'customer'])
+            ->where('is_accepted', true)
+            ->where('delivery_partner', $user->id)
+            ->where('status', 'confirmed')
+            ->orderBy('id', 'asc')
+            ->first();
+        if($new_order){
+            $new_order =[
+                'id'=>$new_order->id,
+                'customer'=>$order->customer->name??'Not Mentioned',
+                'customer_mobile'=>$order->customer->mobile??'Not Mentioned',
+                'lat'=>$order->customer->lat??0.0,
+                'lang'=>$order->customer->lang??0.0,
+                'delivery_text'=>'You can accept this within 2 hrs'
+            ];
+        }else{
+            $new_order=[];
+        }
+
         $orders=[
             'tomorrow_orders'=>$tomorrow_orders,
             'today_deliveries'=>$today_delivered,
@@ -86,7 +105,7 @@ class HomeController extends Controller
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('banners', 'name', 'top_skus', 'earnings', 'orders', 'category_earnings')
+            'data'=>compact('banners', 'name', 'top_skus', 'earnings', 'orders', 'category_earnings', 'new_order')
         ];
 
     }

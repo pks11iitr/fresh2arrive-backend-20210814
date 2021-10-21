@@ -153,4 +153,46 @@ class OrderController extends Controller
 
     }
 
+
+    public function acceptRejectOrder(Request $request){
+        $request->validate([
+            'order_id'=>'required|integer',
+            'is_accept'=>'required|in:yes,no'
+        ]);
+
+        $user = $request->user;
+
+        $order = Order::where('status', 'confirmed')
+            ->where('is_accepted', false)
+            ->where('delivery_partner', $user->id)
+            ->find($request->order_id);
+
+        if(!$order){
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'No such order found',
+                'data'=>[]
+            ];
+        }
+
+        if($request->is_accept == 'yes'){
+            $order->is_accepted = true;
+            $order->save();
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'Order has been accepted',
+                'data'=>[]
+            ];
+        }else{
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'Order has been accepted',
+                'data'=>[]
+            ];
+        }
+    }
+
 }
