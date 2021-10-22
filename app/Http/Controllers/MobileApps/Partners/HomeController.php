@@ -48,7 +48,7 @@ class HomeController extends Controller
         $today_earnings = round($commissions/100);
 
         $new_order=Order::with(['details', 'customer'])
-            ->where('is_accepted', true)
+            ->where('is_accepted', false)
             ->where('delivery_partner', $user->id)
             ->where('status', 'confirmed')
             ->orderBy('id', 'asc')
