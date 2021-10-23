@@ -55,7 +55,10 @@ class ProfileController extends Controller
                     $assigned_partner = 1;
                 else
                     $assigned_partner=$partner;
+            }else{
+                $assigned_partner=$user->assigned_partner;
             }
+
         }
 
         $user->update(array_merge($request->only('name', 'building', 'house_no', 'area', 'street', 'city', 'state', 'pincode', 'lat', 'lang', 'map_json'), compact('map_address', 'assigned_partner')));

@@ -47,7 +47,7 @@
                           <td><img src="{{$banner->image}}" height="50" width="100"/></td>
                           <td>{{$banner->type}}</td>
                           {{--<th>Parent Category</th>--}}
-                          <td>{{$banner->isactive?'Active':'Inactive'}}</td>
+                          <td>{{$banner->isactive ==1 ?'Active':'Inactive'}}</td>
                           <td><a href="{{route('banners.edit', ['id'=>$banner->id])}}">Edit</a></td>
                       </tr>
                   @endforeach
