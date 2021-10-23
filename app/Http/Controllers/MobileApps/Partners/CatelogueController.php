@@ -153,7 +153,22 @@ class CatelogueController extends Controller
                 'display_message'=>'',
                 'data'=>$data,
             ];
-        }else{
+        }else if($type=='banner'){
+		$banner = Banner::find($request->banner_id);
+		$data=[
+        	        'image'=> $banner->image,
+                	'product_text'=>'Dummy Text',
+                	'app_text'=>'Download App Now',
+                	'link'=>'http://google.com'
+	            ];
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+		'data'=>$data,
+            ];
+
+	}else{
 
             $data=[
                 'image'=> 'https://images.freekaamaal.com/featured_images/174550_beereebn.png',
