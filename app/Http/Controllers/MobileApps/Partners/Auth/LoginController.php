@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use App\Models\Customer;
+//use App\Models\Customer;
 
 class LoginController extends Controller
 {
