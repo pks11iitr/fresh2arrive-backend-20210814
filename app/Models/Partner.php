@@ -92,6 +92,14 @@ class Partner extends Authenticatable implements JWTSubject
         return $value??'';
     }
 
+    public function orders(){
+        return $this->hasMany('App\Models\Order', 'delivery_partner');
+    }
+
+    public function clients(){
+        return $this->hasMany('App\Models\Customer', 'assigned_partner');
+    }
+
 
     public function preferedTimeSlots(){
         return $this->belongsToMany('App\Models\TimeSlot', 'prefered_slots', 'partner_id', 'slot_id');
@@ -110,22 +118,36 @@ class Partner extends Authenticatable implements JWTSubject
             $areas->where('area_list.name', $area);
 
         })
+            ->withCount('clients')
             ->whereNotIn('partners.id', $ignore_list)
             ->get();
 
-        $pids = $partners->map(function($element){
-            return $element->id;
-        })->toArray();
+        $partners_count =[];
+        foreach($partners as $p){
+            $partners_count[$p->id]=$p->clients_count;
+        }
 
-        $partners_count = Order::where('status', '!=', 'pending')
-            ->select(DB::raw('count(*) as count'), 'delivery_partner')
-            ->groupBy('delivery_partner')
-            ->whereIn('delivery_partner', $pids)
-            ->orderBy('count', 'asc')
-            ->get();
+        asort($partners_count);
 
-        if(count($partners_count))
-            return $partners_count[0]->delivery_partner;
+//        $pids = $partners->map(function($element){
+//            return $element->id;
+//        })->toArray();
+
+//        $partners_count = Order::where('status', '!=', 'pending')
+//            ->select(DB::raw('count(*) as count'), 'delivery_partner')
+//            ->groupBy('delivery_partner')
+//            ->whereIn('delivery_partner', $pids)
+//            ->orderBy('count', 'asc')
+//            ->get();
+
+//        $partners_data=[];
+//        foreach($pids as $p){}
+
+        if(count($partners_count)){
+            $keys=array_keys($partners_count);
+            return $keys[0];
+        }
+
 
         //no partner found
         return 0;
