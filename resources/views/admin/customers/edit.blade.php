@@ -152,7 +152,16 @@
 
                                             <div class="form-group">
                                                 <label>Assigned Partner</label>
-                                                <input type="text" name="assigned_partner" class="form-control"  value="{{$customer->assigned_partner}}"  placeholder="Assigned Partner"  required>
+                                                <select class="form-control select2" name="assigned_partner" required>
+                                                    <option value="">Please Select</option>
+                                                @foreach($partners as $p)
+
+
+                                                        <option value="{{$p->id}}">{{$p->name}}:{{$p->id}}</option>
+
+
+                                                @endforeach
+                                                </select>
                                             </div>
                                         </div>
 

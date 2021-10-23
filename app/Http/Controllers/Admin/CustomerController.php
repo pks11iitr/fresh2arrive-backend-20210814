@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
 use App\Models\Banner;
 use App\Models\Customer;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 
@@ -85,7 +86,10 @@ class CustomerController extends Controller
 
     public function edit(Request $request, $id){
         $customer=Customer::findOrFail($id);
-        return view('admin.customers.edit', compact('customer'));
+        $partners = Partner::select('name', 'id')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('admin.customers.edit', compact('customer', 'partners'));
     }
 
     public function update(Request $request, $id){
