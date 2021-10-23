@@ -19,13 +19,23 @@ class CatelogueController extends Controller
 
         if(!empty($request->category_id)){
             foreach($categories as $c)
-                if($c->id == $request->category_id)
-                    $earn_upto = $c->earn_upto;
+                if($c->id == $request->category_id){
+			$c->is_selected=1;
+			$earn_upto = $c->earn_upto;
+		}else{
+			$c->is_selected=0;	
+		}
+                    //$earn_upto = $c->earn_upto;
         }else{
             $earn_upto = 0;
             foreach($categories as $c)
-                if($c->earn_upto > $earn_upto)
-                    $earn_upto = $c->earn_upto;
+                if($c->earn_upto > $earn_upto){
+			$c->is_selected=0;
+			$earn_upto = $c->earn_upto;
+		}else{
+			$c->is_selected=0;
+		}
+                    //$earn_upto = $c->earn_upto;
         }
 
         $products=Product::active()
