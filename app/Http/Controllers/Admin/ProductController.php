@@ -55,7 +55,7 @@ class ProductController extends Controller
             $request->only('name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
 
             [
-                'image'=>$this->getImagePath($request->image, 'products')
+                'image'=>$this->getImagePath($request->delivery_image, 'products')
             ]
 
 
@@ -94,11 +94,14 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        if($request->image){
-            $path = $this->getImagePath($request->image, 'banners');
+        if($request->delivery_image){
+            $path = $this->getImagePath($request->delivery_image, 'products');
         }else{
             $path = $product->getRawOriginal('image');
         }
+       // return $path;
+       // die;
+
 
         $product->update(array_merge(
            $request->only('name', 'company', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
@@ -106,6 +109,8 @@ class ProductController extends Controller
                'image'=>$path
            ]
         ));
+
+
 
         return redirect()->back()->with('success', 'Product has been updated');
     }

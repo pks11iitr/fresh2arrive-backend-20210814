@@ -173,7 +173,23 @@ Route::post('excelstore', 'Admin\TimeslotController@store_excel')->name('timeslo
 
     });
 
+
+    Route::group(['prefix'=>'configurations'],function(){
+    Route::get('/','Admin\ConfigurationsController@index')->name('configurations.list');
+    Route::get('edit/{id}','Admin\ConfigurationsController@edit')->name('configurations.edit');
+    Route::post('update/{id}', 'Admin\ConfigurationsController@update')->name('configurations.update');
+
+    });
+
+
+
 });
+
+
+
+
+
+
 
 Route::get('about-us', 'StaticPageController@about');
 Route::get('privacy-policy', 'StaticPageController@privacy');

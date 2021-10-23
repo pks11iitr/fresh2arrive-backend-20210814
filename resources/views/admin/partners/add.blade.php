@@ -1,5 +1,6 @@
 @extends('admin.admin')
 @section('content')
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -93,6 +94,39 @@
                                         </div>
                                         <!-- /.row -->
                                     </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Support Mobile </label>
+                                                <input type="text" name="support_mobile" class="form-control" placeholder="Support mobile"  required  >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Support Whatsapp </label>
+                                                <input type="text" name="support_whatsapp" class="form-control" placeholder="Support Whatsapp"  required  >
+                                            </div>
+                                        </div>
+
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Areas</label>
+                                                    <select class="select3" multiple="multiple" data-placeholder="Select  Areas" name="area_ids[]" autofocus style="width: 100%;">
+                                                        @foreach($area as $area)
+                                                            <option value="{{$area->id}}">{{$area->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -114,4 +148,5 @@
     </div>
     <!-- ./wrapper -->
 @endsection
+
 

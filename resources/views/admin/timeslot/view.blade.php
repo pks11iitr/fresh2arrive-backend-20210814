@@ -69,7 +69,6 @@
                                     </thead>
                                     <tbody>
 
-
                                     @foreach($Timeslot as $Timeslot)
                                         <tr>
                                             <td>{{$Timeslot->id}}</td>
