@@ -29,6 +29,8 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     Route::get('/','Admin\DashboardController@index')->name('dashboard');
 
+    Route::get('ViewServiceArea','Admin\ViewServiceAreaController@index')->name('ViewServiceArea');
+    Route::get('ViewServiceArea/{cityname}','Admin\ViewServiceAreaController@View_WithCondition')->name('Passcityname');
     Route::group(['prefix'=>'banners'], function(){
 
             Route::get('/','Admin\BannerController@index')->name('banners.list');

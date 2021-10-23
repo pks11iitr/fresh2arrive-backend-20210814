@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
@@ -42,7 +43,25 @@ class SidebarController extends Controller
 
     public function serviceAreas(Request $request){
 
-        return view('service-areas');
+        $cities=Area::active()
+            ->select('city')
+            ->distinct('city')
+            ->groupBy('city')
+            ->get();
+
+        $cities_arr=[];
+
+        foreach($cities as $c){
+            $cities_arr[strtoupper($c->city)]=[];
+        }
+
+        $arealist=Area::active()->get();
+
+        foreach($arealist as $area){
+            $cities_arr[strtoupper($area->city)][]=$area->name;
+        }
+        //return $cities_arr;
+        return view('service-areas',compact('cities_arr'));
 
     }
 }
