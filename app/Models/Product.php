@@ -18,7 +18,7 @@ class Product extends Model
 
     protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'];
 
-    protected $appends = ['percent', 'commissions'];
+    protected $appends = ['percent', 'earn_per_sale'];
 
     public function getImageAttribute($value){
         if($value)
@@ -28,8 +28,12 @@ class Product extends Model
     }
 
     public function getCommissionsAttribute($value){
-        return floor($value*$this->packet_price/100);
+        return floor($value);
     }
+
+    public function getEarnPerSaleAttribute($value){
+		return floor($this->getRawOriginal('commissions')*$this->getRawOriginal('packet_price')/100);
+	}
 
     public function category(){
         return $this->belongsToMany('App\Models\Category', 'product_category', 'product_id', 'category_id');
