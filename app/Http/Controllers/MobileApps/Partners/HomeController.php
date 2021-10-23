@@ -64,7 +64,15 @@ class HomeController extends Controller
                 'address'=>$order->customer->map_address??''
             ];
         }else{
-            $new_order=[];
+            $new_order=[
+			'id'=>0,
+                	'customer'=>'',
+                	'customer_mobile'=>'',
+                	'lat'=>0.0,
+                	'lang'=>0.0,
+                	'delivery_text'=>'',
+                	'address'=>''
+		];
         }
 
         $orders=[
