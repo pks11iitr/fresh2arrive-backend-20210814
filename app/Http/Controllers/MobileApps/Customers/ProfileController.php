@@ -50,7 +50,7 @@ class ProfileController extends Controller
             })
                 ->find($user->assigned_partner);
             if(!$partner){
-                $partner = Partners::getAvailablePartner($request->area, []);
+                $partner = Partner::getAvailablePartner($request->area, []);
                 if(!$partner)
                     $assigned_partner = 1;
                 else
