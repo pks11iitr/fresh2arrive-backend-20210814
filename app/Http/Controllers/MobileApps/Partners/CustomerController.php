@@ -141,7 +141,7 @@ class CustomerController extends Controller
 
 
                 break;
-            case 'slowly_moving':
+            case 'slow_moving':
                 $users = $users->has('orders', '=', 1);
                 break;
             case 'reported':
