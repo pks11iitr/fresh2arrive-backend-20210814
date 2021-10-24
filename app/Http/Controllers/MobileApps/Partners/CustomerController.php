@@ -65,6 +65,7 @@ class CustomerController extends Controller
         $users = Customer::where('assigned_partner', $user->id)
             ->orderBy('id', 'desc')
             ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
+            ->whereIn('status', ['confirmed', 'processing', 'dispatched', 'delivered'])
         ;
 
 
@@ -72,8 +73,17 @@ class CustomerController extends Controller
             case 'all':
                 break;
             case 'platinum':
-                $users = $users->whereHas('orders', function($orders){
-                    $orders->where(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-7 days')));
+                $users = $users
+//                    ->whereHas('orders', function($orders){
+//                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-7 days')))
+                    ->whereExists(function($query){
+
+                        $query->where('customers.id', DB::raw('orders.user_id'))
+                            ->select(DB::raw('max(delivery_date)'))
+                            ->having(DB::raw('max(delivery_dat)'), '>=', date('Y-m-d', strtotime('-7 days')))
+                            ->from('orders')
+                            ->groupBy('user_id');
+
                 });
                 break;
             case 'gold':
