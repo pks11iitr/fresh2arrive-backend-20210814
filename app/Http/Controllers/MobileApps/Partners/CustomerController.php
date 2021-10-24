@@ -23,7 +23,7 @@ class CustomerController extends Controller
         $reported = $user->reportedUsers()->count();
 
         $active_users = Order::join('customers', 'customers.id', '=', 'orders.user_id')
-            ->where('delivery_partner', $user->id)
+            ->where('assigned_partner', $user->id)
             ->whereIn('orders.status', ['confirmed', 'processing', 'dispatched', 'delivered'])
             ->groupBy('user_id')
             ->orderBy('delivery_date', 'desc')
@@ -63,7 +63,6 @@ class CustomerController extends Controller
         $users = Customer::where('assigned_partner', $user->id)
             ->orderBy('id', 'desc')
             ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
-            ->where('assigned_partner', $user->id)
         ;
 
 
