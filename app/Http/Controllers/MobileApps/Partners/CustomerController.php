@@ -65,20 +65,43 @@ class CustomerController extends Controller
             ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode');
 
 
-        switch($request->customerType){
+        switch($request->customer_type){
             case 'all':
                 break;
             case 'platinum':
+                $users = $users->whereHas('orders', function($orders){
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-7 days')));
+                });
                 break;
             case 'gold':
+                $users = $users->whereHas('orders', function($orders){
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-14 days')))
+                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-8 days')));
+
+                });
                 break;
             case 'silver':
+                $users = $users->whereHas('orders', function($orders){
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-21 days')))
+                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-15 days')));
+
+                });
                 break;
-            case 'all':
+            case 'bronze':
+                $users = $users->whereHas('orders', function($orders){
+                    $orders->where('delivery_date', '<=', date('Y-m-d', strtotime('-22 days')));
+
+                });
+                break;
+            case 'slowly_moving':
+                $users = $users->has('orders', '=', 1);
                 break;
             case 'reported':
                 break;
             case 'inactive':
+                $users = $users->whereDoesntHave('orders', function($orders){
+                    $orders->whereIn('status', ['processing', 'confirmed', 'processing', 'dispatched', 'delivered']);
+                });
                 break;
             default:
 
