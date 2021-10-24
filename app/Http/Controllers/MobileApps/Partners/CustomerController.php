@@ -62,7 +62,9 @@ class CustomerController extends Controller
 
         $users = Customer::where('assigned_partner', $user->id)
             ->orderBy('id', 'desc')
-            ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode');
+            ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
+            ->where('assigned_partner', $user->id)
+        ;
 
 
         switch($request->customer_type){
