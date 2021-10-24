@@ -109,7 +109,7 @@ class CatelogueController extends Controller
             $sort_by = $request->sort_by;
 
             $products=Product::active()
-                ->select('company','name','image','packet_price');
+                ->select('company','name','image','packet_price', 'display_pack_size');
 
             if(!empty($request->category_id)){
                 $products = $products->where('category_id', $request->category_id);
@@ -137,7 +137,7 @@ class CatelogueController extends Controller
             $products=$products->get();
 
             $product_text=implode(',', $products->map(function($elem){
-                return $elem->name.','.$elem->company.','.$elem->packet_price.'/pack';
+                return $elem->name.'-'.$elem->company.'-'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size;
             })->toArray());
 
             $data = [
