@@ -46,6 +46,10 @@ class CatelogueController extends Controller
             $products = $products->where('category_id', $request->category_id);
         }
 
+        if(!empty($request->sort_by=='commission')){
+            $products = $products->orderBy(DB::raw('commissions*packet_price/100'), 'desc');
+        }
+
         if(!empty($request->sort_by)){
             if($request->sort_by == 'top_earning'){
                 $products=$products->orderBy('commissions', 'desc');
