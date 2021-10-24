@@ -65,7 +65,6 @@ class CustomerController extends Controller
         $users = Customer::where('assigned_partner', $user->id)
             ->orderBy('id', 'desc')
             ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
-            ->whereIn('status', ['confirmed', 'processing', 'dispatched', 'delivered'])
         ;
 
 
@@ -79,6 +78,7 @@ class CustomerController extends Controller
                     ->whereExists(function($query){
 
                         $query->where('customers.id', DB::raw('orders.user_id'))
+                            ->whereIn('orders.status', ['confirmed', 'processing', 'dispatched', 'delivered'])
                             ->select('user_id')
                             ->having(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-7 days')))
                             ->from('orders')
@@ -87,11 +87,22 @@ class CustomerController extends Controller
                 });
                 break;
             case 'gold':
-                $users = $users->whereHas('orders', function($orders){
-                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-14 days')))
-                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-8 days')));
+                $users = $users
+//                    ->whereHas('orders', function($orders){
+//                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-14 days')))
+//                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-8 days')));
+//                });
+                    ->whereExists(function($query){
 
-                });
+                        $query->where('customers.id', DB::raw('orders.user_id'))
+                            ->whereIn('orders.status', ['confirmed', 'processing', 'dispatched', 'delivered'])
+                            ->select('user_id')
+                            ->having(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-14 days')))
+                            ->having(DB::raw('max(delivery_date)'), '<=', date('Y-m-d', strtotime('-8 days')))
+                            ->from('orders')
+                            ->groupBy('user_id');
+
+                    });
                 break;
             case 'silver':
                 $users = $users->whereHas('orders', function($orders){
