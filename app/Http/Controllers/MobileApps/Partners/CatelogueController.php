@@ -90,7 +90,7 @@ class CatelogueController extends Controller
             $data = [
 
                 'image'=> $product->image,
-                'product_text'=>$product->name.','.$product->company.','.$product->packet_price.'/pack'.','.$product->display_pack_size,
+                'product_text'=>$product->name.','.$product->company.',Rs'.$product->packet_price.'/pack'.','.$product->display_pack_size,
                 'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
@@ -137,7 +137,7 @@ class CatelogueController extends Controller
             $products=$products->get();
 
             $product_text=implode(',', $products->map(function($elem){
-                return $elem->name.'-'.$elem->company.'-'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size;
+                return $elem->name.'-'.$elem->company.'-Rs'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size;
             })->toArray());
 
             $data = [
