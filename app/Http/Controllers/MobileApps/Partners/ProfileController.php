@@ -164,8 +164,8 @@ class ProfileController extends Controller
 
         $data= [
 
-            'name'=>'Pankaj Sengar',
-            'brand'=>'Apno Ki Dukan',
+            'name'=>$user->bank_account_holder,
+            'brand'=>$user->name,
             'link'=>'https://google.com',
             //'qr_image'=>route('qr.code', ['id'=>$user->id])
             'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
