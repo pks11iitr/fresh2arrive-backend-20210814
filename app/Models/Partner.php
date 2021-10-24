@@ -118,6 +118,7 @@ class Partner extends Authenticatable implements JWTSubject
             $areas->where('area_list.name', $area);
 
         })
+            ->where('status', 1)
             ->withCount('clients')
             ->whereNotIn('partners.id', $ignore_list)
             ->get();

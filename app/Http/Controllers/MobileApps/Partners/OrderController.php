@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -186,6 +187,22 @@ class OrderController extends Controller
                 'data'=>[]
             ];
         }else{
+
+            $area = $order->customer->area;
+            $partners = Partner::whereHas('areas', function($areas) use($area){
+
+                $areas->where('area_list.name', $area);
+
+            })
+                ->where('status', 1)
+                ->withCount('clients')
+                ->inRandomOrder()
+                ->first();
+            if(!$partners)
+                $order->delivery_partner = $partners->id;
+            else
+                $order->delivery_partner = 1;
+
             return [
                 'status'=>'success',
                 'action'=>'',
