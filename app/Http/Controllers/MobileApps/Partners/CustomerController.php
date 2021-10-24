@@ -43,10 +43,10 @@ class CustomerController extends Controller
 
         $last_order_date=[];
         $order_count=[];
+        $user_categories_count['all']=$inactive_users + count($active_users);
         foreach($active_users as $au){
             $last_order_date[$au->user_id]=$au->delivery_date;
             $order_count[$au->user_id]=$au->count;
-            $user_categories_count['all']++;
             if($au->count == 1)
                 $user_categories_count['slow_moving']++;
             if($au->delivery_date >= date('Y-m-d', strtotime('-7 days'))){
