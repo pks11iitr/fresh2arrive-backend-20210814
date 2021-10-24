@@ -53,20 +53,27 @@
                                                 <input type="text" name="email" class="form-control" placeholder="Email"  value="{{$customer->email}}" required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Notification Token </label>
-                                                <input type="text" name="notification_token" class="form-control" value="{{$customer->notification_token}}" placeholder="Notification Token"  required>
-                                            </div>
-                                            <!-- /.form-group -->
 
                                         </div>
-                                        <!-- /.col -->
+
 
                                         <div class="col-md-3">
+
                                             <div class="form-group">
                                                 <label>Area</label>
-                                                <input type="text" name="area" class="form-control" placeholder="Area" value="{{$customer->area}}" required>
+                                          <select class="form-control select2" name="area" required>
+                                        <option value="">Please Select</option>
+                                        @foreach($area as $p)
+                                            <option value="{{$p->id}}"
+                                            @if($p->id==$customer->area){{'selected'}}@endif
+
+                                            >{{$p->name}}</option>
+                                        @endforeach
+                                                </select>
+
+
                                             </div>
+
                                             <div class="form-group">
                                                 <label>House No</label>
                                                 <input type="text" name="house_no" class="form-control" placeholder="House No" value="{{$customer->house_no}}"  required>
@@ -77,16 +84,9 @@
                                                 <input type="text" name="building" class="form-control" placeholder="Building"  value="{{$customer->building}}" required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Street </label>
-                                                <input type="text" name="street" class="form-control" placeholder="Street"  value="{{$customer->street}}" required>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
-
-
-
-
 
 
                                         <div class="col-md-3">
@@ -106,28 +106,19 @@
                                                 <input type="text" name="state" class="form-control" placeholder="State" value="{{$customer->state}}"  required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>lat </label>
-                                                <input type="text" name="lat" class="form-control" placeholder="Lat" value="{{$customer->lat}}"  required>
-                                            </div>
+
                                             <!-- /.form-group -->
                                         </div>
                                         <div class="col-md-3">
 
-                                            <div class="form-group">
-                                                <label>Lang </label>
-                                                <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{$customer->lang}}" required>
-                                            </div>
+
 
                                             <div class="form-group">
                                                 <label>Map Address </label>
                                                 <input type="text" name="map_address" class="form-control" value="{{$customer->map_address}}" placeholder="Map Address"  required>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Map Json </label>
-                                                <input type="text" name="map_json" class="form-control" placeholder="Map Json" value="{{$customer->map_json}}" required>
-                                            </div>
+
 
                                             <div class="form-group">
                                                 <label>Status</label>
@@ -135,7 +126,12 @@
                                                     <option value="">Please Select Status</option>
                                                     <option @if($customer->status==1){{'selected=selected'}}@endif value="1">Inactive </option>
                                                     <option @if($customer->status==0){{'selected=selected'}}@endif value="0">Active</option>
+                                                    <option @if($customer->status==0){{'selected=selected'}}@endif value="2">Block</option>
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Street </label>
+                                                <input type="text" name="street" class="form-control" placeholder="Street"  value="{{$customer->street}}" required>
                                             </div>
                                             <!-- /.col -->
                                         </div>
@@ -157,7 +153,8 @@
                                                 @foreach($partners as $p)
 
 
-                                                        <option value="{{$p->id}}">{{$p->name}}:{{$p->id}}</option>
+                                                        <option value="{{$p->id}}"
+                                                        @if($p->id==$customer->assigned_partner) {{"selected"}}@endif>{{$p->name}}</option>
 
 
                                                 @endforeach

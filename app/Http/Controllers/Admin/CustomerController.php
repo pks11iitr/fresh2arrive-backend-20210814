@@ -8,7 +8,7 @@ use App\Models\Banner;
 use App\Models\Customer;
 use App\Models\Partner;
 use Illuminate\Http\Request;
-
+use App\Models\Area;
 
 class CustomerController extends Controller
 {
@@ -89,7 +89,12 @@ class CustomerController extends Controller
         $partners = Partner::select('name', 'id')
             ->orderBy('id', 'desc')
             ->get();
-        return view('admin.customers.edit', compact('customer', 'partners'));
+
+
+        $area = Area::active()->orderby('id','desc')
+                ->get();
+
+        return view('admin.customers.edit', compact('customer', 'partners','area'));
     }
 
     public function update(Request $request, $id){
@@ -101,7 +106,7 @@ class CustomerController extends Controller
             'status'=>'Required',
             'name'=>'Required',
             //'image'=>'Required',
-            'notification_token'=>'Required',
+           // 'notification_token'=>'Required',
             'house_no'=>'Required',
             'building'=>'Required',
             'street'=>'Required',
@@ -109,10 +114,10 @@ class CustomerController extends Controller
             'city'=>'Required',
             'state'=>'Required',
             'pincode'=>'Required',
-            'lat'=>'Required',
-            'lang'=>'Required',
+           // 'lat'=>'Required',
+           // 'lang'=>'Required',
             'map_address'=>'Required',
-            'map_json'=>'Required',
+           // 'map_json'=>'Required',
             'assigned_partner'=>'Required',
             'reffered_by'=>'Required',
             'reffered_by_partner'=>'Required'
