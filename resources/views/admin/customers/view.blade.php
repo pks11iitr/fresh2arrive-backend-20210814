@@ -26,10 +26,7 @@
                     <div class="col-12">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <a href="{{route('customers.create')}}" class="btn btn-primary">Add Customer</a>
 
-                                </div>
                                 <div class="col-md-10">
                                     <form role="form" method="get" enctype="multipart/form-data" action="{{route('customers.list')}}">
                                         @csrf

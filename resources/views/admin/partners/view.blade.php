@@ -27,10 +27,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-md-2">
-                                        <a href="{{route('partners.create')}}" class="btn btn-primary">Add Partner</a>
 
-                                    </div>
                                     <div class="col-md-10">
                                         <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
                                             @csrf

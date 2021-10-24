@@ -87,6 +87,7 @@
                                                     <option value="">Please Select Status</option>
                                                     <option @if($Partners->status==1) {{'selected=selected'}}@endif value="1">Yes</option>
                                                     <option @if($Partners->status==0){{'selected=selected'}}@endif value="0">No</option>
+
                                                 </select>
                                             </div>
                                             <!-- /.col -->
@@ -118,9 +119,6 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-
-
-
                                         </div>
                                     </div>
 
