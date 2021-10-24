@@ -77,6 +77,19 @@ class OrderController extends Controller
             ]);
         }
 
+        $min_order_value = Configuration::where('param', 'min_order_value')
+            ->first();
+        $min_order_value=$min_order_value->value??0;
+        if($cost < $min_order_value){
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Min order value must be '.$min_order_value,
+                'data'=>[],
+            ];
+        }
+
+
         if($request->coupon){
             $coupon=Coupon::where(DB::raw('BINARY code'), $request->coupon??null)
                 ->first();

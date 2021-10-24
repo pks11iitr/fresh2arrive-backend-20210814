@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -19,13 +20,23 @@ class CatelogueController extends Controller
 
         if(!empty($request->category_id)){
             foreach($categories as $c)
-                if($c->id == $request->category_id)
-                    $earn_upto = $c->earn_upto;
+                if($c->id == $request->category_id){
+			$c->is_selected=1;
+			$earn_upto = $c->earn_upto;
+		}else{
+			$c->is_selected=0;
+		}
+                    //$earn_upto = $c->earn_upto;
         }else{
             $earn_upto = 0;
             foreach($categories as $c)
-                if($c->earn_upto > $earn_upto)
-                    $earn_upto = $c->earn_upto;
+                if($c->earn_upto > $earn_upto){
+			$c->is_selected=0;
+			$earn_upto = $c->earn_upto;
+		}else{
+			$c->is_selected=0;
+		}
+                    //$earn_upto = $c->earn_upto;
         }
 
         $products=Product::active()
@@ -33,6 +44,10 @@ class CatelogueController extends Controller
 
         if(!empty($request->category_id)){
             $products = $products->where('category_id', $request->category_id);
+        }
+
+        if(!empty($request->sort_by=='commission')){
+            $products = $products->orderBy(DB::raw('commissions*packet_price/100'), 'desc');
         }
 
         if(!empty($request->sort_by)){
@@ -79,8 +94,8 @@ class CatelogueController extends Controller
             $data = [
 
                 'image'=> $product->image,
-                'product_text'=>$product->name.','.$product->company.','.$product->packet_price.'/pack',
-                'app_text'=>'Get Discounted deal Now',
+                'product_text'=>$product->name.','.$product->company.',Rs.'.$product->packet_price.'/pack'.','.$product->display_pack_size,
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
 
@@ -98,7 +113,7 @@ class CatelogueController extends Controller
             $sort_by = $request->sort_by;
 
             $products=Product::active()
-                ->select('company','name','image','packet_price');
+                ->select('company','name','image','packet_price', 'display_pack_size');
 
             if(!empty($request->category_id)){
                 $products = $products->where('category_id', $request->category_id);
@@ -126,14 +141,14 @@ class CatelogueController extends Controller
             $products=$products->get();
 
             $product_text=implode(',', $products->map(function($elem){
-                return $elem->name.','.$elem->company.','.$elem->packet_price.'/pack';
+                return $elem->name.'-'.$elem->company.'-Rs.'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size;
             })->toArray());
 
             $data = [
 
                 'image'=> $products[0]->image,
                 'product_text'=>$product_text,
-                'app_text'=>'Download App Now',
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
 
@@ -143,12 +158,27 @@ class CatelogueController extends Controller
                 'display_message'=>'',
                 'data'=>$data,
             ];
-        }else{
+        }else if($type=='banner'){
+		$banner = Banner::find($request->banner_id);
+		$data=[
+        	        'image'=> $banner->image,
+                	'product_text'=>'Dummy Text',
+                	'app_text'=>'Download fresh2arrive app now',
+                	'link'=>'http://google.com'
+	            ];
+            return [
+                'status'=>'success',
+                'action'=>'',
+                'display_message'=>'',
+		'data'=>$data,
+            ];
+
+	}else{
 
             $data=[
                 'image'=> 'https://images.freekaamaal.com/featured_images/174550_beereebn.png',
                 'product_text'=>'Dummy Text',
-                'app_text'=>'Download App Now',
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
             return [

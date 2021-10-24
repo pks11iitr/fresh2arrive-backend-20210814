@@ -59,10 +59,32 @@ class CustomerController extends Controller
                 $user_categories_count['bronze']++;
         }
 
+
         $users = Customer::where('assigned_partner', $user->id)
             ->orderBy('id', 'desc')
-            ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
-            ->paginate(10);
+            ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode');
+
+
+        switch($request->customerType){
+            case 'all':
+                break;
+            case 'platinum':
+                break;
+            case 'gold':
+                break;
+            case 'silver':
+                break;
+            case 'all':
+                break;
+            case 'reported':
+                break;
+            case 'inactive':
+                break;
+            default:
+
+        }
+
+        $users = $users->paginate(10);
 
         $uids = $users->map(function($element){
             return $element->id;

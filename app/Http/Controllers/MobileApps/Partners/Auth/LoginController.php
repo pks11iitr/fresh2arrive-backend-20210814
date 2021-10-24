@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+//use App\Models\Customer;
 
 class LoginController extends Controller
 {
@@ -57,6 +58,15 @@ class LoginController extends Controller
             $user=Partner::create([
                 'mobile'=>$request->mobile
             ]);
+
+	    $customer = Customer::where('mobile', $request->mobile)
+			->first();	
+	    if(!$customer)
+		{
+			$user=Customer::create([
+                		'mobile'=>$request->mobile
+            		]);
+		}	
 
         }
 

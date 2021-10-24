@@ -37,12 +37,14 @@ class TimeSlot extends Model
             if($order_time < $ts->order_till){
                 if($ts->day == 0){
                     $time_slots[date('Y-m-d').' '.$ts->from_time]=[
-                        'name' => 'Today '.$ts->name,
+                        //'name' => 'Today '.$ts->name,
+                        'name' => $ts->name,
                         'id' => date('Y-m-d').'**'.$ts->id
                     ];
                 }else{
                     $time_slots[date('Y-m-d', strtotime('+1 days')).' '.$ts->from_time]=[
-                        'name' => 'Tomorrow '.$ts->name,
+                        //'name' => 'Tomorrow '.$ts->name,
+                        'name' => $ts->name,
                         'id' => date('Y-m-d', strtotime('+1 days')).'**'.$ts->id
                     ];
                 }
