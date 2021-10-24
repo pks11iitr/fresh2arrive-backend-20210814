@@ -44,7 +44,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($area as $area)
+                                    @foreach($areas as $area)
                                         <tr>
                                             <td>{{$area->id}}</td>
                                             <td>{{$area->name}}</td>
@@ -57,7 +57,11 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
+
                                 </table>
+
+                                       {{$areas->appends(request()->input())->links()}}
+
                             </div>
                             <!-- /.card-body -->
                         </div>

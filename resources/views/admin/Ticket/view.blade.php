@@ -74,7 +74,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($Ticket as $Ticket)
+                                    @foreach($Tickets as $Ticket)
                                         <tr>
                                             <td>{{$Ticket->id}}</td>
                                             <td>{{$Ticket->refid}}</td>
@@ -90,6 +90,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {{$Tickets->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>

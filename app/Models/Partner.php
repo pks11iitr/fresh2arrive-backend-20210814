@@ -55,7 +55,8 @@ class Partner extends Authenticatable implements JWTSubject
     public function reportedUsers(){
         return $this->belongsToMany('App\Models\Customer', 'reported_users', 'reported_by', 'reported_user');
     }
-
+    
+    protected $appends =['address'];
 
     public function getAadhaarUrlAttribute($value){
         if($value)

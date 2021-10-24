@@ -11,9 +11,9 @@ class TimeslotController extends Controller
 {
 
     public function index(Request $request){
-            $Timeslot = Timeslot::active()->orderBy('id', 'desc')
+            $Timeslots = Timeslot::active()->orderBy('id', 'desc')
                 ->paginate(10);
-        return view('admin.timeslot.view',compact('Timeslot'));
+        return view('admin.timeslot.view',compact('Timeslots'));
     }
 
     public  function create(Request $request){

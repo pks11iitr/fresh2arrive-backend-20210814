@@ -13,9 +13,9 @@ use mysql_xdevapi\TableUpdate;
 class AreaController extends Controller
 {
     public  function index(Request $request){
-        $area=Area::active()->orderBy('id','desc')
+        $areas=Area::active()->orderBy('id','desc')
             ->paginate(10);
-        return view('admin.area.view', compact('area'));
+        return view('admin.area.view', compact('areas'));
     }
 
     public function create(Request $request){

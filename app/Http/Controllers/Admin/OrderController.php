@@ -12,14 +12,14 @@ class OrderController extends Controller
     public function index(Request $request){
         $search_type=$request->search_type=='1'?'refid':'name';
         if($request->search){
-            $order = Order::where($search_type,'Like',"%$request->search%")
+            $orders = Order::where($search_type,'Like',"%$request->search%")
                 ->paginate(10);
         }else{
-            $order = Order ::orderBy('id','desc')
+            $orders = Order ::orderBy('id','desc')
                 ->paginate(10);
         }
         $partner = Partner::get();
-        return view('admin.orders.view',compact('order','partner'));
+        return view('admin.orders.view',compact('orders','partner'));
     }
 
     public  function create(Request $request){

@@ -69,21 +69,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($products as $products)
+                                    @foreach($products as $product)
                                         <tr>
-                                            <td>{{$products->id}}</td>
-                                            <td>{{$products->name}}</td>
-                                            <td><imc src="{{$products->image}}" height="50" width="100"/></td>
-                                            <td>{{$products->display_pack_size}}</td>
-                                            <td>{{$products->price_per_unit}}</td>
-                                            <td>{{$products->commissions}}</td>
-                                            <td>{{$products->tag}}</td>
-                                            <td>{{$products->isactive==1?'Active':'Inactive'}}</td>
-                                            <td><a href="{{route('products.edit',['id'=>$products->id])}}">Edit</a></td>
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->name}}</td>
+                                            <td><imc src="{{$product->image}}" height="50" width="100"/></td>
+                                            <td>{{$product->display_pack_size}}</td>
+                                            <td>{{$product->price_per_unit}}</td>
+                                            <td>{{$product->commissions}}</td>
+                                            <td>{{$product->tag}}</td>
+                                            <td>{{$product->isactive==1?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('products.edit',['id'=>$product->id])}}">Edit</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {{$products->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>
