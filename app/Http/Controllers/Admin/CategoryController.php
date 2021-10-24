@@ -14,9 +14,9 @@ class CategoryController extends Controller
     use FileTransfer;
 
     public  function  index(Request  $request){
-        $category = Category :: active()->orderBy('id','desc')
+        $categories = Category :: active()->orderBy('id','desc')
             ->paginate(10);
-        return view('admin.category.view',compact('category'));
+        return view('admin.category.view',compact('categories'));
     }
 
     public  function  create(Request $request){

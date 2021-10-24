@@ -69,7 +69,7 @@
                                     </thead>
                                     <tbody>
 
-                                    @foreach($Timeslot as $Timeslot)
+                                    @foreach($Timeslots as $Timeslot)
                                         <tr>
                                             <td>{{$Timeslot->id}}</td>
 
@@ -83,6 +83,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                {{$Timeslots->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>

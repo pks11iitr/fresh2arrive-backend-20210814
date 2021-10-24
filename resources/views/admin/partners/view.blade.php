@@ -74,21 +74,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($partners as $partners)
+                                    @foreach($partners as $partner)
                                         <tr>
-                                            <td>{{$partners->id}}</td>
-                                            <td>{{$partners->name}}</td>
-                                            <td>{{$partners->mobile}}</td>
+                                            <td>{{$partner->id}}</td>
+                                            <td>{{$partner->name}}</td>
+                                            <td>{{$partner->mobile}}</td>
 
-                                            <td>{{$partners->address}}</td>
-                                            <td>{{$partners->city}}</td>
-                                            <td>{{$partners->pincode}}</td>
-                                            <td>{{$partners->state}}</td>
-                                            <td>{{$partners->status?'Active':'Inactive'}}</td>
-                                            <td><a href="{{route('partners.edit',['id'=>$partners->id])}}">Edit</a></td>
+                                            <td>{{$partner->address}}</td>
+                                            <td>{{$partner->city}}</td>
+                                            <td>{{$partner->pincode}}</td>
+                                            <td>{{$partner->state}}</td>
+                                            <td>{{$partner->status?'Active':'Inactive'}}</td>
+                                            <td><a href="{{route('partners.edit',['id'=>$partner->id])}}">Edit</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
+                                    {{$partners->appends(request()->input())->links()}}
+
                                 </table>
                             </div>
                             <!-- /.card-body -->

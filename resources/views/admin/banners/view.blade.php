@@ -56,7 +56,7 @@
 
                   </tbody>
                 </table>
-                  {{$banners->links()}}
+                  {{$banners->appends(request()->input())->links()}}
               </div>
               <!-- /.card-body -->
             </div>

@@ -101,6 +101,7 @@
                                             </tr>
                                     </tbody>
                                 </table>
+                                {{$inventory->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>

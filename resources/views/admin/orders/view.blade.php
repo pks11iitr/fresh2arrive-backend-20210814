@@ -107,7 +107,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($order as $Order)
+                                        @foreach($orders as $Order)
                         <tr>
                             <td>{{$Order->id}}</td>
                             <td>{{$Order->refid}}</td>
@@ -123,6 +123,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                {{$orders->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>

@@ -44,7 +44,7 @@
                                     </thead>
                                     <tbody>
 
-                            @foreach($category as $category)
+                            @foreach($categories as $category)
                                 <tr>
                                     <td>{{$category->id}}</td>
                                     <td>{{$category->name}}</td>
@@ -56,7 +56,9 @@
                             @endforeach
 
                                     </tbody>
+
                                 </table>
+                                {{$categories->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>

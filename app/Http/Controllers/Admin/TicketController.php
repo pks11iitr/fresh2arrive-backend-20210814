@@ -12,14 +12,14 @@ class TicketController extends Controller
     public  function index(Request $request){
 
         if($request->search){
-            $Ticket=Ticket::where('refid','LIKE',"%$request->search%")
+            $Tickets=Ticket::where('refid','LIKE',"%$request->search%")
                    ->paginate(10);
         }else{
-            $Ticket=Ticket::orderBy('id','desc')
+            $Tickets=Ticket::orderBy('id','desc')
                 ->paginate(10);
         }
         $partner = Partner::get();
-        return view('admin.Ticket.view', compact('Ticket','partner'));
+        return view('admin.Ticket.view', compact('Tickets','partner'));
     }
 
 
