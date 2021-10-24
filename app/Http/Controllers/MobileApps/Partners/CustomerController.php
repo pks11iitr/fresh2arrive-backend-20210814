@@ -80,7 +80,7 @@ class CustomerController extends Controller
 
                         $query->where('customers.id', DB::raw('orders.user_id'))
                             ->select(DB::raw('max(delivery_date)'))
-                            ->having(DB::raw('max(delivery_dat)'), '>=', date('Y-m-d', strtotime('-7 days')))
+                            ->having(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-7 days')))
                             ->from('orders')
                             ->groupBy('user_id');
 
