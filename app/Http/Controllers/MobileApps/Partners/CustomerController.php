@@ -73,7 +73,7 @@ class CustomerController extends Controller
                 break;
             case 'platinum':
                 $users = $users->whereHas('orders', function($orders){
-                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-7 days')));
+                    $orders->where(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-7 days')));
                 });
                 break;
             case 'gold':
