@@ -89,7 +89,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{$customers->appends($request->all())->links()}}
+                                {{$customers->appends(request()->input())->links()}}
                             </div>
                             <!-- /.card-body -->
                         </div>
