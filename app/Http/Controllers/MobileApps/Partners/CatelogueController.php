@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -23,7 +24,7 @@ class CatelogueController extends Controller
 			$c->is_selected=1;
 			$earn_upto = $c->earn_upto;
 		}else{
-			$c->is_selected=0;	
+			$c->is_selected=0;
 		}
                     //$earn_upto = $c->earn_upto;
         }else{
@@ -89,8 +90,8 @@ class CatelogueController extends Controller
             $data = [
 
                 'image'=> $product->image,
-                'product_text'=>$product->name.','.$product->company.','.$product->packet_price.'/pack',
-                'app_text'=>'Get Discounted deal Now',
+                'product_text'=>$product->name.','.$product->company.','.$product->packet_price.'/pack'.','.$product->display_pack_size,
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
 
@@ -143,7 +144,7 @@ class CatelogueController extends Controller
 
                 'image'=> $products[0]->image,
                 'product_text'=>$product_text,
-                'app_text'=>'Download App Now',
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
 
@@ -158,7 +159,7 @@ class CatelogueController extends Controller
 		$data=[
         	        'image'=> $banner->image,
                 	'product_text'=>'Dummy Text',
-                	'app_text'=>'Download App Now',
+                	'app_text'=>'Download fresh2arrive app now',
                 	'link'=>'http://google.com'
 	            ];
             return [
@@ -173,7 +174,7 @@ class CatelogueController extends Controller
             $data=[
                 'image'=> 'https://images.freekaamaal.com/featured_images/174550_beereebn.png',
                 'product_text'=>'Dummy Text',
-                'app_text'=>'Download App Now',
+                'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
             return [
