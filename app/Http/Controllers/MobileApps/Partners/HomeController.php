@@ -56,12 +56,12 @@ class HomeController extends Controller
         if($new_order){
             $new_order =[
                 'id'=>$new_order->id,
-                'customer'=>$order->customer->name??'Not Mentioned',
-                'customer_mobile'=>$order->customer->mobile??'Not Mentioned',
-                'lat'=>$order->customer->lat??0.0,
-                'lang'=>$order->customer->lang??0.0,
+                'customer'=>$new_order->customer->name??'Not Mentioned',
+                'customer_mobile'=>$new_order->customer->mobile??'Not Mentioned',
+                'lat'=>$new_order->customer->lat??0.0,
+                'lang'=>$new_order->customer->lang??0.0,
                 'delivery_text'=>'You can accept this within 2 hrs',
-                'address'=>$order->customer->map_address??''
+                'address'=>$new_order->customer->map_address??''
             ];
         }else{
             $new_order=[

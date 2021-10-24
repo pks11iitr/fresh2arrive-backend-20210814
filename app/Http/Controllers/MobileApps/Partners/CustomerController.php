@@ -73,26 +73,26 @@ class CustomerController extends Controller
                 break;
             case 'platinum':
                 $users = $users->whereHas('orders', function($orders){
-                    $orders->where(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-7 days')));
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-7 days')));
                 });
                 break;
             case 'gold':
                 $users = $users->whereHas('orders', function($orders){
-                    $orders->where(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-14 days')))
-                        ->where(DB::raw('max(delivery_date)'), '<=', date('Y-m-d', strtotime('-8 days')));
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-14 days')))
+                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-8 days')));
 
                 });
                 break;
             case 'silver':
                 $users = $users->whereHas('orders', function($orders){
-                    $orders->where(DB::raw('max(delivery_date)'), '>=', date('Y-m-d', strtotime('-21 days')))
-                        ->where(DB::raw('max(delivery_date)'), '<=', date('Y-m-d', strtotime('-15 days')));
+                    $orders->where('delivery_date', '>=', date('Y-m-d', strtotime('-21 days')))
+                        ->where('delivery_date', '<=', date('Y-m-d', strtotime('-15 days')));
 
                 });
                 break;
             case 'bronze':
                 $users = $users->whereHas('orders', function($orders){
-                    $orders->where(DB::raw('max(delivery_date)'), '<=', date('Y-m-d', strtotime('-22 days')));
+                    $orders->where('delivery_date', '<=', date('Y-m-d', strtotime('-22 days')));
 
                 });
                 break;
