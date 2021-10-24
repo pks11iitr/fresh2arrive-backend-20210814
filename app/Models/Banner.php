@@ -13,7 +13,7 @@ class Banner extends Model
 
 
     protected $table='banners';
-    protected $appends =['address'];
+   // protected $appends =['address'];
     protected $fillable=['type', 'image', 'isactive','sequence_no'];
 
     public function getImageAttribute($value){
