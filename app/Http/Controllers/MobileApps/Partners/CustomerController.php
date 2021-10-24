@@ -14,6 +14,7 @@ class CustomerController extends Controller
     public function index(Request $request){
         $user=$request->user;
 
+        // customer with no order
         $inactive_users = Customer::whereDoesntHave('orders', function($orders){
             $orders->whereIn('status', ['processing', 'confirmed', 'processing', 'dispatched', 'delivered']);
         })
@@ -22,6 +23,7 @@ class CustomerController extends Controller
 
         $reported = $user->reportedUsers()->count();
 
+        // customer with atleast one order
         $active_users = Order::join('customers', 'customers.id', '=', 'orders.user_id')
             ->where('assigned_partner', $user->id)
             ->whereIn('orders.status', ['confirmed', 'processing', 'dispatched', 'delivered'])
@@ -108,7 +110,7 @@ class CustomerController extends Controller
 
         }
 
-        $users = $users->paginate(10);
+        $users = $users->paginate(100);
 
         $uids = $users->map(function($element){
             return $element->id;

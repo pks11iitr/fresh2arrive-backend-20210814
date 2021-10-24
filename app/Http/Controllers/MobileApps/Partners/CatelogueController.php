@@ -69,7 +69,7 @@ class CatelogueController extends Controller
             }
         }
 
-        $products = $products->paginate(20);
+        $products = $products->paginate(100);
 
         return [
             'status'=>'success',

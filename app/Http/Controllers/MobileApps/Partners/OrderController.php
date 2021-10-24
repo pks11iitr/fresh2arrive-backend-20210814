@@ -142,7 +142,7 @@ class OrderController extends Controller
             //->where('delivery_date', $tomorrow)
 //            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(100);
 
         return [
             'status'=>'success',

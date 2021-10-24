@@ -24,7 +24,7 @@ class TicketController extends Controller
             ->where('partner_id', $user->id)
             ->where('status', $type)
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate(100);
 
         foreach($tickets as $t){
             $t->issue = implode(',', $t->items->map(function($element){
