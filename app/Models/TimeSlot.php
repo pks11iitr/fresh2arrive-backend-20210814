@@ -13,9 +13,9 @@ class TimeSlot extends Model
     use Active;
     protected $table='time_slot';
 
-    protected $fillable=['name', 'from_time', 'to_time', 'order_till', 'isactive'];
+    protected $fillable=['name','day','from_time', 'to_time', 'order_till', 'isactive'];
 
-    protected $hidden = ['created_at','deleted_at','updated_at'];
+    protected $hidden = ['created_at','day','deleted_at','updated_at'];
 
     public static function getAvailableTimeSlotsList($order_time, $city=null){
 

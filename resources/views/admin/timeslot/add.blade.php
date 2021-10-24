@@ -36,32 +36,47 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <!-- /.form-group -->
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" name="name" class="form-control" placeholder="Name"  required>
                                             </div>
                                             </div>
-                                            <div class="col-md-2">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Day </label>
+                                                <select name="day" class="form-control">
+                                                    <option value="">--Select Day</option>
+                                                    <option value="0">Same Day</option>
+                                                    <option value="1">Next Day</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>From Time </label>
                                                     <input type="time" name="from_time" class="form-control" placeholder="Name"  required>
                                                 </div>
                                                 </div>
-                                            <div class="col-md-2">
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>To Time </label>
                                                 <input type="time" name="to_time" class="form-control" placeholder="Display Pack Size"  required>
                                             </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Order Till</label>
                                                 <input type="time" name="order_till" class="form-control"required>
                                             </div>
                                             </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label> Is Active </label>
                                                     <select class="form-control select2" name="isactive">

@@ -118,8 +118,6 @@
                                                 <input type="text" name="map_address" class="form-control" value="{{$customer->map_address}}" placeholder="Map Address"  required>
                                             </div>
 
-
-
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="status">
@@ -137,7 +135,6 @@
                                         </div>
 
                                         <div class="col-md-3">
-
                                             <div class="form-group">
                                                 <label>Password</label>
                                                 <input type="text" name="password" class="form-control" placeholder="Password"  value="{{$customer->password}}"   required>
@@ -145,18 +142,13 @@
                                         </div>
 
                                         <div class="col-md-3">
-
                                             <div class="form-group">
                                                 <label>Assigned Partner</label>
                                                 <select class="form-control select2" name="assigned_partner" required>
                                                     <option value="">Please Select</option>
                                                 @foreach($partners as $p)
-
-
                                                         <option value="{{$p->id}}"
                                                         @if($p->id==$customer->assigned_partner) {{"selected"}}@endif>{{$p->name}}</option>
-
-
                                                 @endforeach
                                                 </select>
                                             </div>

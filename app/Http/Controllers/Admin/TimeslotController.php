@@ -24,13 +24,14 @@ class TimeslotController extends Controller
     public function store(Request $request){
         $request->validate([
             'name'=>'required',
+            'day'=>'required',
             'from_time'=>'required',
             'to_time'=>'required',
             'isactive'=>'required'
         ]);
 
         $timeslot = TimeSlot::create(array_merge(
-            $request->only('name', 'from_time', 'to_time', 'order_till', 'isactive'),
+            $request->only('name','day','from_time', 'to_time', 'order_till', 'isactive'),
         ));
 
         return redirect()->route('timeslot.edit', ['id'=>$timeslot->id])->with('success', 'Timeslot has been added');
@@ -47,6 +48,7 @@ class TimeslotController extends Controller
 
 
         $request->validate([
+            'day'=>'required',
             'name'=>'required',
             'from_time'=>'required',
             'to_time'=>'required',
@@ -62,7 +64,7 @@ class TimeslotController extends Controller
         }
 
         $TimeSlot->update(array_merge(
-            $request->only( 'name', 'from_time', 'to_time', 'order_till', 'isactive'),
+            $request->only( 'name','day', 'from_time', 'to_time', 'order_till', 'isactive'),
         ));
 
         return redirect()->back()->with('success', 'Time Slot has been updated');
