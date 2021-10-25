@@ -224,4 +224,39 @@ class ProfileController extends Controller
 
     }
 
+
+    public function completeProfile(Request $request ){
+
+        $user = $request->user;
+
+
+        $request->validate([
+            'occupation'=>'required',
+            'referred_by'=>'nullable',
+            'store_name'=>'required',
+            'house_no'=>'required',
+            'landmark'=>'required',
+            'map_address'=>'nullable',
+            'support_mobile'=>'required'
+        ]);
+
+
+        $user->update($request->only('occupation',
+            'referred_by',
+            'store_name',
+            'house_no',
+            'landmark',
+            'map_address',
+            'support_mobile'
+        ));
+
+        return [
+            'status'=>'success',
+            'action'=>'',
+            'display_message'=>'Profile has been updated',
+            'data'=>[],
+        ];
+
+    }
+
 }

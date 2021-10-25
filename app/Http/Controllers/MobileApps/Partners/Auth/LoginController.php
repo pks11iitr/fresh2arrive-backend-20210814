@@ -60,13 +60,13 @@ class LoginController extends Controller
             ]);
 
 	    $customer = Customer::where('mobile', $request->mobile)
-			->first();	
+			->first();
 	    if(!$customer)
 		{
 			$user=Customer::create([
                 		'mobile'=>$request->mobile
             		]);
-		}	
+		}
 
         }
 

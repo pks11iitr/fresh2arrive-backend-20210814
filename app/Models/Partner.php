@@ -26,7 +26,13 @@ class Partner extends Authenticatable implements JWTSubject
         'notification_token',
         'status',
         'support_whatsapp',
-        'support_mobile'
+        'support_mobile',
+        'occupation',
+        'referred_by',
+        'store_name',
+        'house_no',
+        'landmark',
+        'map_address'
     ];
 
 
