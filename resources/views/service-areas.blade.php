@@ -52,7 +52,8 @@
 
             .main_wrapper{width: 98%;}
             .service_area{box-sizing: border-box;}
-            .city_list li{width:30%;}
+            .city_list li{width:29%;}
+            .f_20{font-size: 16px;}
 
         }
     </style>
