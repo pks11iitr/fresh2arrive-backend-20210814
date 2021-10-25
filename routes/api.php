@@ -78,10 +78,12 @@ $api->group(['prefix' => 'partner'], function ($api) {
     $api->get('check-login-status', 'MobileApps\Partners\Auth\LoginController@loginCheck');
     $api->get('support', 'MobileApps\Partners\SupportController@index');
 
+    $api->post('complete-profile', 'MobileApps\Partners\ProfileController@completeProfile');
+
     //therapist apis
     $api->group(['middleware' => ['partner-auth']], function ($api) {
 
-        $api->post('complete-profile', 'MobileApps\Partners\ProfileController@completeProfile');
+
 
         $api->get('home', 'MobileApps\Partners\HomeController@index');
         $api->get('catelogue', 'MobileApps\Partners\CatelogueController@index');

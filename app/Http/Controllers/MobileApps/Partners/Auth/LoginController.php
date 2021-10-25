@@ -55,18 +55,12 @@ class LoginController extends Controller
 
         if(!$user){
 
-            $user=Partner::create([
-                'mobile'=>$request->mobile
-            ]);
-
-	    $customer = Customer::where('mobile', $request->mobile)
-			->first();
-	    if(!$customer)
-		{
-			$user=Customer::create([
-                		'mobile'=>$request->mobile
-            		]);
-		}
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'User Not Registered. Please register to continue',
+                'data'=>[]
+            ];
 
         }
 

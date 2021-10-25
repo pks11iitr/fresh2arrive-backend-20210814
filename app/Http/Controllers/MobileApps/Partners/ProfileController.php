@@ -4,6 +4,8 @@ namespace App\Http\Controllers\MobileApps\Partners;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
+use App\Models\Customer;
+use App\Models\Partner;
 use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -227,8 +229,7 @@ class ProfileController extends Controller
 
     public function completeProfile(Request $request ){
 
-        $user = $request->user;
-
+        //$user = $request->user;
 
         $request->validate([
             'occupation'=>'required',
@@ -241,8 +242,19 @@ class ProfileController extends Controller
             'name'=>'required'
         ]);
 
+        $partner = Partner::where('mobile', $request->support_mobile)
+            ->first();
 
-        $user->update($request->only('occupation',
+        if($partner){
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Already registered. Please login to continue',
+                'data'=>[],
+            ];
+        }
+
+        $partner = Partner::create(array_merge($request->only('occupation',
             'referred_by',
             'store_name',
             'house_no',
@@ -250,7 +262,18 @@ class ProfileController extends Controller
             'map_address',
             'support_mobile',
             'name'
-        ));
+        ), ['mobile'=>$request->support_mobile]));
+
+
+        $customer = Customer::where('mobile', $partner->mobile)
+            ->first();
+
+        if(!$customer)
+        {
+            Customer::create([
+                'mobile'=>$request->mobile
+            ]);
+        }
 
         return [
             'status'=>'success',
