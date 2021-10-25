@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\Configuration;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
@@ -18,15 +19,21 @@ class SidebarController extends Controller
 
         $user_id=$request->user->id??'';
 
-        $referral_amount = '50';
+        $config = Configuration::where('param', 'refer_amount')
+            ->first();
 
-        $conditions=[
-            'Your reffered customer .... jshdsd sjfd yuewiwe riueriere',
-            'Your reffered customer .... jshdsd sjfd yuewiwe riueriere',
-            'Your reffered customer .... jshdsd sjfd yuewiwe riueriere',
-            'Your reffered customer .... jshdsd sjfd yuewiwe riueriere',
-            'Your reffered customer .... jshdsd sjfd yuewiwe riueriere',
-        ];
+        $referral_amount = $config->value??0;
+
+        if($referral_amount>0)
+            $conditions=[
+                'Referral amount of Rs. '.($referral_amount/2).' will be credited on first order',
+                'Referral amount of Rs. '.($referral_amount/2).' will be credited on second order',
+            ];
+        else{
+            $conditions=[
+
+            ];
+        }
 
         return [
             'status'=>'success',
