@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
 use App\Models\TimeSlot;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProfileController extends Controller
 {
@@ -167,8 +168,8 @@ class ProfileController extends Controller
             'name'=>$user->bank_account_holder??'',
             'brand'=>$user->name??'',
             'link'=>'https://google.com',
-            //'qr_image'=>route('qr.code', ['id'=>$user->id])
-            'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
+            'qr_image'=>route('qr.code', ['id'=>$user->id])
+            //'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
         ];
 
         return [
@@ -183,8 +184,15 @@ class ProfileController extends Controller
 
 
     public function qrcodeInfo(Request $request){
-        return view('qrcode');
+        //return view('qrcode');
+
+        $link = 'https://google.com';
+
+        return QrCode::generate($link);
+
     }
+
+
 
 
     public function inviteNewCustomer(Request $request){
