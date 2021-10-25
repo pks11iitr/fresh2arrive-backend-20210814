@@ -278,7 +278,7 @@ class ProfileController extends Controller
         return [
             'status'=>'success',
             'action'=>'',
-            'display_message'=>'Profile has been updated',
+            'display_message'=>'Profile has been created. Please login to continue',
             'data'=>[],
         ];
 
