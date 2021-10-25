@@ -11,7 +11,7 @@ class SidebarController extends Controller
 {
     public function referDetails(Request $request){
 
-        $areas = Area::distinct('city')->get();
+        $areas = Area::select('city')->distinct()->get();
 
         $cities = $areas->map(function($elem){
             return $elem->city;
