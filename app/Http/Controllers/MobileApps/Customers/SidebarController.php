@@ -9,15 +9,12 @@ use Illuminate\Http\Request;
 class SidebarController extends Controller
 {
     public function referDetails(Request $request){
-        $cities =[
 
-            'Delhi',
-            'Noida',
-            'Faridabad',
-            'Ghaziabad',
-            'Gurgaon'
+        $areas = Area::unique('city')->get();
 
-        ];
+        $cities = $areas->map(function($elem){
+            return $elem->city;
+        })->toArray();
 
         $user_id=$request->user->id??'';
 
