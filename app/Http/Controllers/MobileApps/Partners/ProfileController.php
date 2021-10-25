@@ -237,7 +237,8 @@ class ProfileController extends Controller
             'house_no'=>'required',
             'landmark'=>'required',
             'map_address'=>'nullable',
-            'support_mobile'=>'required'
+            'support_mobile'=>'required',
+            'name'=>'required'
         ]);
 
 
@@ -247,7 +248,8 @@ class ProfileController extends Controller
             'house_no',
             'landmark',
             'map_address',
-            'support_mobile'
+            'support_mobile',
+            'name'
         ));
 
         return [
