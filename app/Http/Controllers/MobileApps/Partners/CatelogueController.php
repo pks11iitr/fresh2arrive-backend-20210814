@@ -52,7 +52,7 @@ class CatelogueController extends Controller
 
         if(!empty($request->sort_by)){
             if($request->sort_by == 'top_earning'){
-                $products=$products->orderBy('commissions', 'desc');
+                $products=$products->orderBy(DB::raw('commissions*packet_price/100'), 'desc');
             }else if($request->sort_by == 'fast_selling'){
                 $last_5_day_sales = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
                     ->groupBy('product_id')

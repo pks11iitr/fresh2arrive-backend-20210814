@@ -188,9 +188,13 @@ class ProfileController extends Controller
 
         $link = 'https://google.com';
 
-        header("Content-Type: image/png");
-        echo QrCode::format('png')->generate($link);
-        die;
+        //header("Content-Type: image/png");
+        QrCode::format('png')->generate($link);
+
+        echo '<pre>';
+        print_r(get_included_files());
+
+        //die;
 
 
     }
