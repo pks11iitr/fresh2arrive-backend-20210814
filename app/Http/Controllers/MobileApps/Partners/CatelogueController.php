@@ -40,7 +40,7 @@ class CatelogueController extends Controller
         }
 
         $products=Product::active()
-            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty');
+            ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty', 'commissions');
 
         if(!empty($request->category_id)){
             $products = $products->where('category_id', $request->category_id);
