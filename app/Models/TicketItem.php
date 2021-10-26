@@ -33,5 +33,11 @@ class TicketItem extends Model
         return 'Issue Raised for '.$this->packet_count. ' packs';
     }
 
+    public  function order_details(){
+        return $this->belongsTo('App\Models\OrderDetail', 'detail_id');
+    }
+
+
+
 
 }

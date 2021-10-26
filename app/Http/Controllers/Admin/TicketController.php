@@ -26,6 +26,7 @@ class TicketController extends Controller
 
     public  function edit(Request $request,$id){
         $Ticket=Ticket::findOrFail($id);
+
         return view('admin.Ticket.edit', compact('Ticket'));
     }
 
