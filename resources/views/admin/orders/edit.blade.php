@@ -147,7 +147,24 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="btn btn-primary" onclick="openWalletPanel('{{$order->id}}', '{{route('user.wallet.balance', ['id'=>$order->user_id])}}')" >Add/Revoke Balance</button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="button" class="btn btn-primary" onclick="openWalletPanel('{{$order->id}}', '{{route('user.wallet.balance', ['id'=>$order->user_id])}}')" >Add/Revoke Balance</button>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            @if($order->status=='confirmed')
+
+                                                <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id])}}" >Process</a>
+
+                                            @endif
+
+                                        </div>
+                                    </div>
+
+
+
+
+
                                 </div>
                                 <!-- /.card-body -->
 

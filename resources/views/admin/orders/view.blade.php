@@ -112,7 +112,7 @@
                             <td>{{$Order->id}}</td>
                             <td>{{$Order->refid}}</td>
                             <td>{{$Order->order_total}}</td>
-                            <td>{{$Order->status==0?'pending':'confirmed'}}</td>
+                            <td>{{$Order->status}}</td>
                             <td>{{$Order->is_paid==0?'Yes':'No'}}</td>
                             <td>{{$Order->delivery_date}}</td>
                             <td>{{$Order->delivery_time}}</td>

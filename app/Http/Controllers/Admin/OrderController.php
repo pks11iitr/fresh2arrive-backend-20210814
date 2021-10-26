@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
@@ -39,6 +40,20 @@ class OrderController extends Controller
     public function update(Request $request, $id){
 
     }
+
+
+    public  function update_status(Request $request, $user_id, $order_id)
+    {
+        $order=Order::findOrFail($order_id);
+        $order->update([
+            'status'=>'processing',
+        ]);
+        return redirect()->back()->with('success', 'Status has been updated');
+    }
+
+
+
+
 
 
 }

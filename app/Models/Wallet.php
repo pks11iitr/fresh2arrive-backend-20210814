@@ -39,10 +39,8 @@ class Wallet extends Model
         foreach($wallet as $w){
             $balances[$w->type]=$w->total;
         }
-
         return round(($balances['Credit']??0)-($balances['Debit']??0),2);
     }
-
 
 
     public static function updatewallet($userid, $description, $type, $amount, $amount_type, $orderid=null){

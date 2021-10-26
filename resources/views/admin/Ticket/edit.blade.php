@@ -29,7 +29,6 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Ticket Update</h3>
-
                             </div>
                             <!-- /.card-header -->
 
@@ -37,7 +36,47 @@
                                 @csrf
 
                                 <div class="card-body">
+
                                     <div class="row">
+
+                                        <div class="col-md-4">
+                                            <b>Ticket Type</b> -   <b class="text-danger">{{$Ticket->ticket_type}}</b>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <b>RefID</b> -   <b class="text-danger">{{$Ticket->refid}}</b>
+                                        </div>
+
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Customer Comments </label>
+                                                <textarea class="form-control" readonly rows="5" name="admin_comments"
+                                                >{{$Ticket->customer_comments}}</textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Partner Comments </label>
+                                                <textarea class="form-control" readonly rows="5" name="admin_comments"
+                                                >{{$Ticket->partner_comments}}</textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                        </div>
+                                    </div>
+
+
+
+                                         <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Admin Comments </label>
@@ -59,26 +98,55 @@
                                             </div>
                                         </div>
                                         <!-- /.col -->
-
-
-
-
-
-
-
-                                            <!-- /.col -->
                                         </div>
-                                        <!-- /.row -->
-                                    </div>
-                                </div>
+
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                                 <!-- /.card-body -->
-
+                                </div>
                             </form>
                         </div>
-                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <table id="example121" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Packet Count</th>
+                                    <th>Issue</th>
+                                    <th>Image</th>
+                                    <th>Date</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                @foreach($Ticket->ticket_items as $Ticketitem)
+                                    <tr>
+                                        <td>{{$Ticketitem->id}}</td>
+                                        <td>{{$Ticketitem->order_details->name}}</td>
+                                        <td>{{$Ticketitem->packet_count}}</td>
+                                        <td>{{$Ticketitem->issue}}</td>
+                                        <td><img src="{{$Ticketitem->image}}"  style="width:100px;height:50px"/></td>
+                                        <td>{{$Ticketitem->	created_at}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                           {{-- {{$Tickets->appends(request()->input())->links()}}--}}
+                        </div>
+
+
+
+
+
                     </div>
                     <!--/.col (right) -->
                 </div>

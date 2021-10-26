@@ -47,4 +47,12 @@ class Ticket extends Model
     public function getRaisedOnAttribute($value){
         return date('d/m/Y | h:i A', strtotime($this->created_at));
     }
+
+    public  function ticket_items(){
+        return $this->hasMany('App\Models\TicketItem','ticket_id');
+    }
+
+
+
+
 }
