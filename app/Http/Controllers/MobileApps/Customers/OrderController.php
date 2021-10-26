@@ -176,8 +176,8 @@ class OrderController extends Controller
         $order->status='confirmed';
         $order->save();
 
-//        Cart::where('user_id', $user->id)
-//            ->delete();
+        Cart::where('user_id', $user->id)
+            ->delete();
 
         return [
             'status'=>'success',
