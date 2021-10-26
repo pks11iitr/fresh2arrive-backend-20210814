@@ -69,4 +69,15 @@ class Customer extends Authenticatable implements JWTSubject
         return '';
     }
 
+
+    public function getDynamicLink(){
+        $dynamic_links=app('firebase.dynamic_links');
+
+        $url = 'https://fresh2arrive.com/?customer_id='.($this->id??'');
+
+        $link = (string)$dynamic_links->createShortLink($url)->uri();
+
+        return $link;
+    }
+
 }
