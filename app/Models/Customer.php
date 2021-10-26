@@ -17,7 +17,7 @@ class Customer extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
     use HasFactory, Active;
     protected $table='customers';
-    protected $fillable=['mobile', 'email', 'password', 'status', 'name', 'image', 'notification_token', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode', 'lat', 'lang', 'map_address', 'map_json', 'assigned_partner'];
+    protected $fillable=['mobile', 'email', 'password', 'status', 'name', 'image', 'notification_token', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode', 'lat', 'lang', 'map_address', 'map_json', 'assigned_partner', 'reffered_by'];
 
     protected $appends =['address'];
 
