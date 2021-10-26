@@ -18,11 +18,19 @@ class OrderController extends Controller
         //$tomorrow = '2021-09-28';
 
 
+        $search = $request->search??'';
         $today_orders = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode', 'lat', 'lang');
-            }])
-            ->withCount('details')
+            }]);
+        if($search){
+            $today_orders = $today_orders->whereHas('customer', function($customer) use($search){
+                $customer->where('name', 'like', '%'.$search.'%')
+                ->orWhere('mobile', 'like', '%'.$search.'%');
+            });
+        }
+
+        $today_orders = $today_orders->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $today)
 //            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
@@ -40,8 +48,16 @@ class OrderController extends Controller
         $tommorow_orders = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode', 'lat', 'lang');
-            }])
-            ->withCount('details')
+            }]);
+
+        if($search){
+            $tommorow_orders = $tommorow_orders->whereHas('customer', function($customer) use($search){
+                $customer->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('mobile', 'like', '%'.$search.'%');
+            });
+        }
+
+        $tommorow_orders=$tommorow_orders->withCount('details')
             ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
             ->where('delivery_date', $tomorrow)
 //            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
@@ -134,11 +150,24 @@ class OrderController extends Controller
     public function deliveries(Request $request){
         $user = $request->user;
 
+        $search = $request->search;
+
+
         $deliveries = Order::where('delivery_partner', $user->id)
             ->with(['customer'=>function($customer){
                 $customer->select('id', 'name', 'mobile', 'house_no', 'building', 'area', 'street', 'city', 'state', 'pincode');
-            }])
-            ->withCount('details')
+            }]);
+
+        if($search){
+            $deliveries = $deliveries->whereHas('customer', function($customer) use($search){
+                $customer->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('mobile', 'like', '%'.$search.'%');
+            });
+        }
+
+
+
+        $deliveries=$deliveries->withCount('details')
             ->whereIn('status', ['delivered'])
             //->where('delivery_date', $tomorrow)
 //            ->select('id', 'order_total', 'user_id', 'delivery_partner', 'refid', 'created_at')
