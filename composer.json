@@ -17,6 +17,7 @@
         "google/apiclient": "^2.7",
         "guzzlehttp/guzzle": "^7.2",
         "kodeine/laravel-acl": "^2.0",
+        "kreait/laravel-firebase": "^3.2",
         "laravel-notification-channels/fcm": "~2.0",
         "laravel/framework": "^8.12",
         "laravel/socialite": "^5.2",
