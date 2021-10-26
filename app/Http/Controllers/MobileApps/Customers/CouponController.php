@@ -134,7 +134,7 @@ class CouponController extends Controller
             if(round($cost,2) <= $balance)
                 $bottom_button_text = 'Place Order';
             else
-                $bottom_button_text = 'Add Rs.'.(round($cost,2) - $balance).' to wallet';
+                $bottom_button_text = 'Add Rs.'.(round($cost,2)+$echo_charges - $balance).' to wallet';
         }
 
         return [

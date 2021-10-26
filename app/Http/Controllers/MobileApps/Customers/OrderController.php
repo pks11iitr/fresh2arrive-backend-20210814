@@ -283,7 +283,7 @@ class OrderController extends Controller
 
         $delivery_partner='';
         if($user){
-            $delivery_partner = Partner::select('name', 'mobile')->find($order->delivery_partner);
+            $delivery_partner = Partner::select('name', 'mobile', 'house_no', 'landmark')->find($order->delivery_partner);
         }
 
         $delivery_address = '';

@@ -14,6 +14,8 @@ class CustomerController extends Controller
     public function index(Request $request){
         $user=$request->user;
 
+        $search = $request->search??'';
+
         // customer with no order
         $inactive_users = Customer::whereDoesntHave('orders', function($orders){
             $orders->whereIn('status', ['processing', 'confirmed', 'processing', 'dispatched', 'delivered']);
@@ -66,6 +68,13 @@ class CustomerController extends Controller
             ->orderBy('id', 'desc')
             ->select('id', 'name', 'mobile', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode')
         ;
+
+        if($search){
+            $users = $users->where(function($customer)use($search){
+                $customer->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('mobile', 'like', '%'.$search.'%');
+                });
+        }
 
 
         switch($request->customer_type){

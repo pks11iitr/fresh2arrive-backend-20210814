@@ -167,10 +167,11 @@ class CartController extends Controller
 
         $delivery_partner=[
             'name'=>'',
-            'mobile'=>''
+            'mobile'=>'',
+            'address'=>''
         ];
         if($user){
-           $delivery_partner = Partner::select('name', 'mobile')->find($user->assigned_partner);
+           $delivery_partner = Partner::select('name', 'mobile', 'house_no', 'landmark')->find($user->assigned_partner);
         }
 
         if($user){
@@ -253,7 +254,7 @@ class CartController extends Controller
             if(round($cost,2) <= $balance)
                 $bottom_button_text = 'Place Order';
             else
-                $bottom_button_text = 'Add Rs.'.(round($cost,2) - $balance).' to wallet';
+                $bottom_button_text = 'Add Rs.'.(round($cost,2)+$echo_charges - $balance).' to wallet';
         }
 
         return [

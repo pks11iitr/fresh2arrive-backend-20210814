@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\Banner;
 use App\Models\Configuration;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,7 @@ class SidebarController extends Controller
             $conditions=[
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on first order',
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on second order',
+                'Your friends will be get Rs. 51 as a welcome bonus on registration.'
             ];
         else{
             $conditions=[
@@ -35,11 +37,22 @@ class SidebarController extends Controller
             ];
         }
 
+        $share = Banner::where('type', 'share')
+            ->first();
+
+        $refer_link= [
+            'link'=>'https://google.com',
+            'image'=>$share->image,
+            'product_text'=>'',
+            'app_text'=>'Download fresh2arrive app now'
+            //'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
+        ];
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('conditions', 'referral_amount', 'user_id', 'cities')
+            'data'=>compact('conditions', 'referral_amount', 'user_id', 'cities', 'refer_link')
         ];
 
     }

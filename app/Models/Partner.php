@@ -35,6 +35,8 @@ class Partner extends Authenticatable implements JWTSubject
         'map_address'
     ];
 
+    protected $appends =['address'];
+
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -161,6 +163,13 @@ class Partner extends Authenticatable implements JWTSubject
         return 0;
 
 
+
+    }
+
+
+    public function getAddressAttribute($value){
+
+        return ($this->house_no??'').($this->landmark??'');
 
     }
 
