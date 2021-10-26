@@ -47,6 +47,7 @@
                                       <option value="refer">Refer Banner</option>
                                       <option value="product">Product Banner</option>
                                       <option value="banner">Only Banner</option>
+                                      <option value="share">Share App Banner(always inactive)</option>
                                   </select>
                               </div>
                               <!-- /.form-group -->

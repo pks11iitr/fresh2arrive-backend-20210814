@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label>Entity Type</label>
                                                 <select class="form-control select2" name="type">
-                                                    @foreach(['banner', 'refer', 'product'] as $type)
+                                                    @foreach(['banner', 'refer', 'product', 'share'] as $type)
                                                         <option value="{{$type}}" @if($banner->type==$type){{'selected'}}@endif>{{ucfirst($type)}} Banner</option>
                                                     @endforeach
 

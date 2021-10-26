@@ -162,7 +162,7 @@ class CatelogueController extends Controller
 		$banner = Banner::find($request->banner_id);
 		$data=[
         	        'image'=> $banner->image,
-                	'product_text'=>'Dummy Text',
+                	'product_text'=>'',
                 	'app_text'=>'Download fresh2arrive app now',
                 	'link'=>'http://google.com'
 	            ];
@@ -175,9 +175,11 @@ class CatelogueController extends Controller
 
 	}else{
 
+            $share = Banner::where('type', 'share')
+                ->first();
             $data=[
-                'image'=> 'https://images.freekaamaal.com/featured_images/174550_beereebn.png',
-                'product_text'=>'Dummy Text',
+                'image'=> $share->image,
+                'product_text'=>'',
                 'app_text'=>'Download fresh2arrive app now',
                 'link'=>'http://google.com'
             ];
