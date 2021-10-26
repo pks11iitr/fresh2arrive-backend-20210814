@@ -189,7 +189,7 @@ class OrderController extends Controller
         }else{
 
             $area = $order->customer->area;
-            $partners = Partner::whereHas('areas', function($areas) use($area){
+            $partner = Partner::whereHas('areas', function($areas) use($area){
 
                 $areas->where('area_list.name', $area);
 
@@ -199,7 +199,7 @@ class OrderController extends Controller
                 ->inRandomOrder()
                 ->first();
             if($partners)
-                $order->delivery_partner = $partners->id;
+                $order->delivery_partner = $partner->id;
             else
                 $order->delivery_partner = 1;
 
