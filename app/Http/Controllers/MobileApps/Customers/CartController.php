@@ -167,10 +167,11 @@ class CartController extends Controller
 
         $delivery_partner=[
             'name'=>'',
-            'mobile'=>''
+            'mobile'=>'',
+            'address'=>''
         ];
         if($user){
-           $delivery_partner = Partner::select('name', 'mobile')->find($user->assigned_partner);
+           $delivery_partner = Partner::select('name', 'mobile', 'house_no', 'landmark')->find($user->assigned_partner);
         }
 
         if($user){
