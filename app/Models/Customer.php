@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Kreait\Firebase\DynamicLink\AndroidInfo;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Kreait\Firebase\DynamicLink\CreateDynamicLink;
 
 class Customer extends Authenticatable implements JWTSubject
 {
@@ -71,11 +73,22 @@ class Customer extends Authenticatable implements JWTSubject
 
 
     public function getDynamicLink(){
+
         $dynamic_links=app('firebase.dynamic_links');
+        $url='https://fresh2arrive.com/?customer_id='.($this->id??'');
+        $action = CreateDynamicLink::forUrl($url)
+            ->withDynamicLinkDomain('https://fresh2arrive.page.link')
+            ->withUnguessableSuffix() // default
+            // or
+            ->withShortSuffix()
+            ->withAndroidInfo(
+                AndroidInfo::new()
+                    ->withPackageName('com.fresh.arrive')
+            );
 
-        $url = 'https://fresh2arrive.com/?customer_id='.($this->id??'').'&apn=com.fresh.arrive';
+        $link = (string)$dynamic_links->createDynamicLink($action)->uri();
 
-        $link = (string)$dynamic_links->createShortLink($url)->uri();
+       //$link = (string)$dynamic_links->createShortLink($url)->uri();
 
         return $link;
     }
