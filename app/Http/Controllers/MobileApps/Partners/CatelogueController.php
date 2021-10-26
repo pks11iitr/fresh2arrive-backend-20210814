@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Partners;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -85,6 +86,9 @@ class CatelogueController extends Controller
     public function shareCateglogue(Request $request){
         $type = $request->type;
 
+        $user=$request->user;
+        $customer = Customer::where('mobile', $user->mobile)->first();
+
         if($type == 'product'){
 
             $product_id = $request->product_id;
@@ -96,7 +100,7 @@ class CatelogueController extends Controller
                 'image'=> $product->image,
                 'product_text'=>$product->name.','.$product->company.',Rs.'.$product->packet_price.'/pack'.','.$product->display_pack_size,
                 'app_text'=>'Download fresh2arrive app now',
-                'link'=>'http://google.com'
+                'link'=>!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             ];
 
             return [
@@ -149,7 +153,7 @@ class CatelogueController extends Controller
                 'image'=> $products[0]->image,
                 'product_text'=>$product_text,
                 'app_text'=>'Download fresh2arrive app now',
-                'link'=>'http://google.com'
+                'link'=>!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             ];
 
             return [
@@ -164,7 +168,7 @@ class CatelogueController extends Controller
         	        'image'=> $banner->image,
                 	'product_text'=>'',
                 	'app_text'=>'Download fresh2arrive app now',
-                	'link'=>'http://google.com'
+            'link'=>!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
 	            ];
             return [
                 'status'=>'success',
@@ -181,7 +185,7 @@ class CatelogueController extends Controller
                 'image'=> $share->image,
                 'product_text'=>'',
                 'app_text'=>'Download fresh2arrive app now',
-                'link'=>'http://google.com'
+                'link'=>!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             ];
             return [
                 'status'=>'success',

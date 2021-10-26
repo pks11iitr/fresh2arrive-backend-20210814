@@ -165,11 +165,13 @@ class ProfileController extends Controller
     public function getSidebarInfo(Request $request){
         $user=$request->user;
 
+        $customer = Customer::where('mobile', $user->mobile)->first();
+
         $data= [
 
             'name'=>$user->bank_account_holder??'',
             'brand'=>$user->name??'',
-            'link'=>'https://google.com',
+            'link'=>!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             'qr_image'=>route('qr.code', ['id'=>$user->id])
             //'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
         ];
