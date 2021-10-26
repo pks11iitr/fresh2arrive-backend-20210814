@@ -13,7 +13,7 @@ class BannerController extends Controller
     use FileTransfer;
 
     public function index(Request $request){
-        $banners = Banner::active()->orderBy('id', 'desc')
+        $banners = Banner::orderBy('id', 'desc')
                     ->paginate(10);
         return view('admin.banners.view', compact('banners'));
     }
