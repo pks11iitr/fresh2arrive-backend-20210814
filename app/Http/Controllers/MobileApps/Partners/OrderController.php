@@ -198,7 +198,7 @@ class OrderController extends Controller
                 ->where('id', '!=', $user->id)
                 ->inRandomOrder()
                 ->first();
-            if($partners)
+            if($partner)
                 $order->delivery_partner = $partner->id;
             else
                 $order->delivery_partner = 1;
