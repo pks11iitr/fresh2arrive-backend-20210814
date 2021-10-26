@@ -206,7 +206,7 @@ class OrderController extends Controller
             return [
                 'status'=>'success',
                 'action'=>'',
-                'display_message'=>'Order has been accepted',
+                'display_message'=>$request->is_accept=='yes'?'Order has been accepted':'Order has been rejected',
                 'data'=>[]
             ];
         }
