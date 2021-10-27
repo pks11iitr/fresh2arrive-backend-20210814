@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Kolkata',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
         Kodeine\Acl\AclServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         //SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Kreait\Laravel\Firebase\ServiceProvider::class
     ],
 
     /*

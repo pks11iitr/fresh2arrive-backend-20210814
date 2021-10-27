@@ -22,11 +22,11 @@ class HomeController extends Controller
                 ->get();
 
 	   foreach($categories as $cat){
-		
+
 			if($request->category_id == $cat->id)
 				$cat->is_selected=1;
 			else
-				$cat->is_selected=0;		
+				$cat->is_selected=0;
 
 		}
 
@@ -44,7 +44,7 @@ class HomeController extends Controller
             ->orderBy('name', 'asc')
             ->select('id', 'company','name','image','display_pack_size', 'price_per_unit','cut_price_per_unit', 'unit_name', 'packet_price', 'tag', 'min_qty', 'max_qty');
 
-        if(!empty($request->category_id)){	
+        if(!empty($request->category_id)){
             $products = $products->where('category_id', $request->category_id);
         }
 
@@ -69,11 +69,19 @@ class HomeController extends Controller
         $pending_partner_name = $order->partner->name??'';
         $pending_order_id=$order->id??'';
 
+        if($user)
+            $user = $user->only('name','mobile');
+        else
+            $user = [
+                'name'=>'Hi Guest',
+                'mobile'=>'Fresh2Arrive'
+            ];
+
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name', 'pending_order_id', 'partner_whatsapp')
+            'data'=>compact('categories', 'banners', 'products', 'cart_total_quantity', 'partner','next_time_slot', 'pending_partner_name', 'pending_order_id', 'partner_whatsapp', 'user')
         ];
     }
 

@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
+
+
+
     public function referDetails(Request $request){
 
         $areas = Area::select('city')->distinct()->get();
@@ -40,8 +43,11 @@ class SidebarController extends Controller
         $share = Banner::where('type', 'share')
             ->first();
 
+
+
+
         $refer_link= [
-            'link'=>'https://google.com',
+            'link'=>!empty($user)?$user->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             'image'=>$share->image,
             'product_text'=>'',
             'app_text'=>'Download fresh2arrive app now'

@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Kreait\Firebase\DynamicLink\AndroidInfo;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Kreait\Firebase\DynamicLink\CreateDynamicLink;
 
 class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
     use HasFactory, Active;
     protected $table='customers';
-    protected $fillable=['mobile', 'email', 'password', 'status', 'name', 'image', 'notification_token', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode', 'lat', 'lang', 'map_address', 'map_json', 'assigned_partner'];
+    protected $fillable=['mobile', 'email', 'password', 'status', 'name', 'image', 'notification_token', 'house_no', 'building', 'street', 'area', 'city', 'state', 'pincode', 'lat', 'lang', 'map_address', 'map_json', 'assigned_partner', 'reffered_by'];
 
     protected $appends =['address'];
 
@@ -67,6 +69,53 @@ class Customer extends Authenticatable implements JWTSubject
             return Storage::url($value);
 
         return '';
+    }
+
+
+    public function getDynamicLink(){
+
+        $dynamic_links=app('firebase.dynamic_links');
+        $url='https://fresh2arrive.com/?customer_id='.($this->id??'');
+        $action = CreateDynamicLink::forUrl($url)
+            ->withDynamicLinkDomain('https://fresh2arrive.page.link')
+            ->withUnguessableSuffix() // default
+            // or
+            ->withShortSuffix()
+            ->withAndroidInfo(
+                AndroidInfo::new()
+                    ->withPackageName('com.fresh.arrive')
+            );
+
+        $link = (string)$dynamic_links->createDynamicLink($action)->uri();
+
+       //$link = (string)$dynamic_links->createShortLink($url)->uri();
+
+        return $link;
+    }
+
+
+    public static function creditReferralAmount($user){
+
+        if($user->reffered_by){
+            $customer =Customer::find($user->reffered_by);
+            if($customer){
+                $order=Order::where('user_id', $user->id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+                if(count($order)<=2){
+
+                    $refferal_amount = Configuration::where('param', 'refer_amount')
+                        ->first();
+
+                    $amount = ($refferal_amount->value??0)/2;
+                    if($refferal_amount > 0){
+                        Wallet::updatewallet($customer->id, 'Referral Credit', 'Credit', $amount, 'CASH', $order[0]->id);
+                    }
+                }
+            }
+        }
+
+
     }
 
 }
