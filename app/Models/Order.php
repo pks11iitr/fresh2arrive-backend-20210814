@@ -52,6 +52,8 @@ class Order extends Model
     }
 
 
+
+
     public function partner(){
         return $this->belongsTo('App\Models\Partner', 'delivery_partner');
     }

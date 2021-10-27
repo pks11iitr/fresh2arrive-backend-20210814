@@ -192,6 +192,7 @@
                                             <td>Quantity: {{$detail->packet_count??0}}</td>
                                             <td>Rs. {{$detail->price??0}}/Item</td>
                                             <td>Rs. {{($detail->price??0)*($detail->packet_count??0)}} Total</td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>

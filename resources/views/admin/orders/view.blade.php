@@ -104,6 +104,7 @@
                                         <th>Delivery Time</th>
                                         <th>Delivery Partner</th>
                                         <th>Action</th>
+                                        <th>Print</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -118,7 +119,8 @@
                             <td>{{$Order->delivery_time}}</td>
                             <td>{{$Order->partner->name}}</td>
                             <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a></td>
-
+                            <td><a href="{{route('invoice',['orderid'=>$Order->id])}}" class="btn btn-success">Print</a>
+                            </td>
                         </tr>
                                         @endforeach
                                     </tbody>
