@@ -36,7 +36,7 @@ class ProfileController extends Controller
 
 
         $pan_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'/pan');
-        $aadhaar_url = $this->getImagePath($request->pan_image, 'user/'.$user->id.'/aadhaar');
+        $aadhaar_url = $this->getImagePath($request->aadhaar_image, 'user/'.$user->id.'/aadhaar');
 
         $user->update([
             'pan_no'=>$request->pan_no,
