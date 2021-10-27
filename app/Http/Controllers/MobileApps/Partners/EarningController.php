@@ -42,7 +42,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '<=', $end0)
             ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
-        $earnings0 = round($earnings0/100);
+        $earnings0 = round($earnings0);
 
         $earnings1 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
             ->where('orders.delivery_partner', $user->id)
@@ -51,7 +51,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '<=', $end1)
             ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
-        $earnings1 = round($earnings1/100);
+        $earnings1 = round($earnings1);
 
         $earnings2 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
             ->where('orders.delivery_partner', $user->id)
@@ -60,7 +60,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '<=', $end2)
             ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
-        $earnings2 = round($earnings2/100);
+        $earnings2 = round($earnings2);
 
         $earnings3 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
             ->where('orders.delivery_partner', $user->id)
@@ -69,7 +69,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '<=', $end3)
             ->sum(DB::raw('round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)'));
 
-        $earnings3 = round($earnings3/100);
+        $earnings3 = round($earnings3);
 
         if(!empty($request->start_date) && !empty($request->end_date)){
             $start_date = $request->start_date;
