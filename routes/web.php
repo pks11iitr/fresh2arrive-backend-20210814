@@ -23,6 +23,11 @@ Route::get('/role-check', 'Admin\HomeController@check_n_redirect')->name('user.r
 
 });
 
+
+Route::get('invoice','Admin\InvoiceController@index')->name('invoice');
+
+
+
 Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
