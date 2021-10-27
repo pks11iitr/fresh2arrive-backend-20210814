@@ -5,6 +5,7 @@ use App\Models\OrderDetail;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -12,7 +13,7 @@ class InvoiceController extends Controller
         $order_detail=OrderDetail::where('order_id',$orderid)
         ->get();
 
-        $joinquery=OrderDetail:: join('orders','orders.id','=','order_details.order_id')
+        $order_data=OrderDetail:: join('orders','orders.id','=','order_details.order_id')
             ->join('partners', 'partners.id', '=', 'orders.delivery_partner')
             ->join('customers', 'customers.id', '=', 'orders.user_id')
             ->select('orders.id as oid','orders.echo_charges','orders.created_at','orders.delivery_date','partners.name as pname','partners.address','partners.mobile as pmobile','partners.house_no as phouse_no','partners.city as pcity','partners.pincode as ppincode','partners.state as pstate',
@@ -21,6 +22,9 @@ class InvoiceController extends Controller
             ->where('order_id',$orderid)
             ->first();
 
-        return view('admin.invoice',['order_data'=>$joinquery],compact('order_detail'));
+        $pdf = PDF::loadView('admin.invoice', compact('order_detail', 'order_data'));
+        return $pdf->download('invoice.pdf');
+
+//        return view('admin.invoice', compact('order_detail', 'order_data'));
     }
 }
