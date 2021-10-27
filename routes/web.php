@@ -24,7 +24,7 @@ Route::get('/role-check', 'Admin\HomeController@check_n_redirect')->name('user.r
 });
 
 
-Route::get('invoice','Admin\InvoiceController@index')->name('invoice');
+Route::get('invoice/{orderid}','Admin\InvoiceController@index')->name('invoice');
 
 
 

@@ -57,8 +57,7 @@
     </tr>
     <tr>
         <td>
-            <p><b>12345678</b></p>
-
+            <p><b>{{$order_data->oid}}</b></p>
         </td>
     </tr>
 
@@ -67,12 +66,11 @@
     </tr>
 
     <tr>
-        <td colspan="4"><p>Customer : Rocky Handsome (9811223344)</p></td>
-
+        <td colspan="4"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p></td>
     </tr>
     <tr>
-        <td colspan="4"><p>Address &nbsp;&nbsp;&nbsp;: A-59,Sec-22,Noida<br/>
-                &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;UP India,201301</p></td>
+        <td colspan="4"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
+              </td>
 
     </tr>
 
@@ -80,26 +78,34 @@
         <tr><td colspan="4"><hr/></td></tr>
     </tr>
     <tr>
-        <td colspan="4"><p>Delivery Owner : Vivek Store (9811223344)</p></td>
+        <td colspan="4"><p>Delivery Owner :{{$order_data->pname}} ({{$order_data->pmobile}})</p></td>
 
     </tr>
 
     <tr>
-        <td colspan="4">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;: A-59,Sec-22,Noida <br/>
-                &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; UP India,201301</p></td>
+        <td colspan="4">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:{{$order_data->phouse_no}},{{$order_data->pcity}},{{$order_data->pstate}},{{$order_data->ppincode}} {{$order_data->address}}</p></td>
+
 
     </tr>
+
     <tr><td><br/></td></tr>
 
+
+
     <tr>
-        <td colspan="4"><p>Order Date &nbsp;&nbsp;&nbsp;: Wed 27 oct 2021</p></td>
+        <td colspan="4"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
+
+               {{-- Wed 27 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4"><p>Delivery Date : Thu 28 oct 2021</p></td>
+        <td colspan="4"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
+               {{-- Thu 28 oct 2021--}}
     </tr>
     <tr>
         <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: f2a0001</p></td>
     </tr>
+
+
     <tr><td colspan="4"><br/></td></tr>
 
 
@@ -111,31 +117,29 @@
     </tr>
 
     <tr><td colspan="4"><hr/></td></tr>
+    <?php  $total =0;
+           $orderdetails=0;
+           $grandtotal=0;
+          // $order_data=$order_data->echo_charges;
+    ?>
+    @foreach($order_detail as $orderdetails)
 
     <tr class="trborder">
         <p>
-        <td >Demo Testingo</td>
-        <td>2KG</td>
-        <td>81</td>
-        <td>16</td>
+        <td >{{$orderdetails->name}}</td>
+        <td>{{$orderdetails->quantity}}</td>
+        <td>{{$orderdetails->price}}</td>
+        <td>{{$orderdetails->quantity * $orderdetails->price}}</td>
         </p>
-    </tr>
-
-    <tr class="trborder">
-        <p>
-        <td>Demo</td>
-        <td>1KG</td>
-        <td>91</td>
-        <td>20</td>
-        </p>
-
-    </tr>
+    </tr>   <?php $amt=$orderdetails->quantity * $orderdetails->price?>
+             <?php $total+=$amt; ?>
+    @endforeach
     <tr><td><br/></td></tr>
     <tr class="trborder">
         <td></td>
         <td></td>
         <td>Total :-</td>
-        <td>36</td>
+        <td>{{$total}}</td>
     </tr>
 
     <tr class="trborder">
@@ -156,14 +160,15 @@
         <td></td>
         <td></td>
         <td>Eco Friendly Packaging:-</td>
-        <td>5</td>
+        <td>{{$order_data->echo_charges}}</td>
+
     </tr>
 
     <tr class="trborder">
         <td></td>
         <td></td>
         <td>Grand Total :-</td>
-        <td>36</td>
+        <td> {{$total + $order_data->echo_charges}}</td>
     </tr>
 
 </table>

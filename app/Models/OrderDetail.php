@@ -34,7 +34,6 @@ class OrderDetail extends Model
     public function getImageAttribute($value){
         if($value)
             return Storage::url($value);
-
         return '';
     }
 
@@ -54,6 +53,10 @@ class OrderDetail extends Model
 
     public function product(){
         return $this->belongsTo('App\Models\Product', 'product_id');
+    }
+
+    public function orderss(){
+        return $this->belongsTo('App\Models\Product', 'order_id');
     }
 
 }
