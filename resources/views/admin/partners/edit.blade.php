@@ -122,6 +122,20 @@
                                         </div>
                                     </div>
 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Pan No. </label>
+                                                    <input type="text" name="support_whatsapp" class="form-control" placeholder="pan_no" value="{{$Partners->pan_no}}"  required  >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Aadhaar No. </label>
+                                                    <input type="text" name="support_whatsapp" class="form-control" placeholder="aadhaar_no" value="{{$Partners->aadhaar_no}}"  required  >
+                                                </div>
+                                            </div>
+                                        </div>
 
 
 

@@ -101,7 +101,9 @@ class PartnerController extends Controller
             'notification_token'=>$request->notification_token,
             'status'=>$request->status,
             'support_whatsapp'=>$request->support_whatsapp,
-            'support_mobile'=>$request->support_mobile
+            'support_mobile'=>$request->support_mobile,
+            'pan_no'=>$request->pan_no,
+            'aadhaar_no'=>$request->aadhaar_no
         ]);
 
 
