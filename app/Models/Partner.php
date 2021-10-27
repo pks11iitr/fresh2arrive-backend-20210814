@@ -32,7 +32,14 @@ class Partner extends Authenticatable implements JWTSubject
         'store_name',
         'house_no',
         'landmark',
-        'map_address'
+        'map_address',
+        'pan_no',
+        'aadhaar_no',
+        'aadhaar_url',
+        'pan_url',
+        'bank_account_holder',
+        'bank_account_no',
+        'bank_ifsc'
     ];
 
     protected $appends =['address'];
