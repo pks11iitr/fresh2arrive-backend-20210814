@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{route('partners.update',['id' =>$Partners->id])}}">
+                            <form role="form" method="post" action="{{route('partners.update',['id' =>$Partners->id])}}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="card-body">
@@ -122,24 +122,78 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Store Name </label>
+                                                <input type="text" name="store_name" class="form-control" placeholder="Store Name" value="{{$Partners->store_name}}"  required  >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>House No. </label>
+                                                <input type="text" name="house_no" class="form-control" placeholder="House `No" value="{{$Partners->house_no}}"  required  >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Land Mark </label>
+                                                <input type="text" name="landmark" class="form-control" placeholder="Landmark" value="{{$Partners->landmark}}"  required  >
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Pan No. </label>
-                                                    <input type="text" name="support_whatsapp" class="form-control" placeholder="pan_no" value="{{$Partners->pan_no}}"  required  >
+                                                    <input type="text" name="pan_no" class="form-control" placeholder="Pan No." value="{{$Partners->pan_no}}"  required  >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Aadhaar No. </label>
-                                                    <input type="text" name="support_whatsapp" class="form-control" placeholder="aadhaar_no" value="{{$Partners->aadhaar_no}}"  required  >
+                                                    <input type="text" name="aadhaar_no" class="form-control" placeholder="Aadhaar No." value="{{$Partners->aadhaar_no}}"  required  >
                                                 </div>
                                             </div>
                                         </div>
 
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Upload Pan Image </label>
+                                                <input type="file" name="pan_url" class="form-control" placeholder="Pan No."  >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Upload Aadhaar Image </label>
+                                                <input type="file" name="aadhaar_url" class="form-control" placeholder="Aadhaar No."     >
+                                            </div>
+                                        </div>
+                                    </div>
 
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <a href="{{$Partners->pan_url}}" class="btn btn-warning">Click and Preview Pan Photo</a>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <a href="{{$Partners->aadhaar_url}}" class="btn btn-danger">Click and Preview Aadhaar Photo</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
 
 
 

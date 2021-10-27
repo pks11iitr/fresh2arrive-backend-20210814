@@ -11,6 +11,7 @@ use App\Models\AreaAsign;
 class PartnerController extends Controller
 {
     use FileTransfer;
+
     public  function index(Request $request){
         $search_type=$request->search_type==1?'name':'mobile';
         if($request->search){
@@ -91,6 +92,22 @@ class PartnerController extends Controller
 
         $Partners=Partner::findOrFail($id);
 
+        if($request->pan_url){
+            $pan=$this->getImagePath($request->pan_url, 'pan');
+
+        }else{
+            $pan=$Partners->getRawOriginal('pan_url');
+
+        }
+
+        if($request->aadhaar_url){
+            $aadhaar=$this->getImagePath($request->aadhaar_url,'aadhaar');
+        }else{
+            $aadhaar=$Partners->getRawOriginal('aadhaar_url');
+        }
+
+
+
         $Partners->update([
             'name'=>$request->name,
             'mobile'=>$request->mobile,
@@ -103,15 +120,18 @@ class PartnerController extends Controller
             'support_whatsapp'=>$request->support_whatsapp,
             'support_mobile'=>$request->support_mobile,
             'pan_no'=>$request->pan_no,
-            'aadhaar_no'=>$request->aadhaar_no
+            'aadhaar_no'=>$request->aadhaar_no,
+            'pan_url'=>$pan,
+            'aadhaar_url'=>$aadhaar,
+            'store_name'=>$request->store_name,
+            'house_no'=>$request->house_no,
+            'landmark'=>$request->landmark
+
         ]);
 
 
 
         $Partners->areas()->sync($request->area_ids??[]);
-
-
-
         return redirect()->back()->with('success', 'Partners has been updated');
 
     }
