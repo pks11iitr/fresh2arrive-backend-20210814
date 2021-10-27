@@ -93,4 +93,29 @@ class Customer extends Authenticatable implements JWTSubject
         return $link;
     }
 
+
+    public static function creditReferralAmount($user){
+
+        if($user->reffered_by){
+            $customer =Customer::find($user->reffered_by);
+            if($customer){
+                $order=Order::where('user_id', $user->id)
+                    ->orderBy('id', 'desc')
+                    ->get();
+                if(count($order)<=2){
+
+                    $refferal_amount = Configuration::where('param', 'refer_amount')
+                        ->first();
+
+                    $amount = ($refferal_amount->value??0)/2;
+                    if($refferal_amount > 0){
+                        Wallet::updatewallet($customer->id, 'Referral Credit', 'Credit', $amount, 'CASH', $order[0]->id);
+                    }
+                }
+            }
+        }
+
+
+    }
+
 }

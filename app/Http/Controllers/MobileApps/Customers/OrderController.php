@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Configuration;
 use App\Models\Coupon;
+use App\Models\Customer;
 use App\Models\DeliveryPartner;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -175,6 +176,8 @@ class OrderController extends Controller
         $order->is_paid=1;
         $order->status='confirmed';
         $order->save();
+
+        Customer::creditReferralAmount($user);
 
         Cart::where('user_id', $user->id)
             ->delete();
