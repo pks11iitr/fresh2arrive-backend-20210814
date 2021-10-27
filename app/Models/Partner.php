@@ -39,7 +39,10 @@ class Partner extends Authenticatable implements JWTSubject
         'pan_url',
         'bank_account_holder',
         'bank_account_no',
-        'bank_ifsc'
+        'bank_ifsc',
+        'store_name',
+        'house_no',
+        'landmark'
     ];
 
     protected $appends =['address'];
