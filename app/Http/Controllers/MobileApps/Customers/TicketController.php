@@ -170,7 +170,7 @@ class TicketController extends Controller
         }, 'items'=>function($items){
             $items->select('id', 'issue', 'ticket_id');
         }])
-            ->where('user_id', $user->id)
+            ->where('user_id', $user->id??0)
             ->where('status', $type)
             ->orderBy('id', 'desc')
             ->paginate(10);
