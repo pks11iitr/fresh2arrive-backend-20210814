@@ -14,8 +14,10 @@ class Msg91
         //return true;
         $curl = curl_init();
 
+        $url = 'https://api.msg91.com/api/sendhttp.php?authkey='.self::$authkey.'&sender=FRSHAR&mobiles=91'.$mobile.'&route=4&message='.urlencode($message).'&DLT_TE_ID='.$dlt_id;
+
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.msg91.com/api/sendhttp.php?authkey=".self::$authkey."&mobiles=$mobile&message=".urlencode($message)."&sender=FRSHAR&route=4&DLT_TE_ID=$dlt_id",
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
