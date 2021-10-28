@@ -59,7 +59,12 @@
 
     <tr>
         <td colspan="4">
-            <p><b>{{$order_data->oid}}</b></p>
+            @php
+
+            @endphp
+
+            <p><b>{{str::padLeft($order_data->oid, 8, '0')}}</b></p>
+
         </td>
     </tr>
 
