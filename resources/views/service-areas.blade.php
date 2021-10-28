@@ -68,9 +68,14 @@
     <div class="width_100 service_area">
         <h1 class="heading f_20 margin_zero flex_flow align_center"> <span style="margin-right: 10px;"><img src="{{asset('admin-theme/locatio_01.png')}}" width="18"/></span> <label>We are active in below cities:</label></h1>
         <ul class="city_list">
+
             @foreach($cities_arr as $key=>$val)
                 <li>
-                    <a class="all-cities" href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$(".all-cities").css("background-color","#FFECE2");$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
+                    @if($loop->iteration==1)
+                        <a style="background-color:#F27935;color:#Fff!important;" class="all-cities" href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$(".all-cities").css("background-color","#FFECE2");$(".all-cities").css("color","#F27935");$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
+                    @else
+                        <a class="all-cities" href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$(".all-cities").css("background-color","#FFECE2");$(".all-cities").css("color","#F27935");$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
+                    @endif
                 </li>
             @endforeach
         </ul>
