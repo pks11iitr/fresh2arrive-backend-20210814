@@ -114,6 +114,21 @@
                                             </div>
                                         </div>
 
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Bags No.</label>
+                                                <input type="text" name="bags_no" class="form-control" placeholder="Bags No."  value="{{$order->bags_no}}" >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                <label>Crate No.</label>
+                                                <input type="text" name="delivery_partner" class="form-control" placeholder="Crate No."  value="{{$order->	crate_no}}" >
+                                            </div>
+                                        </div>
 {{--                                        <div class="col-md-3">--}}
 
 {{--                                            <div class="form-group">--}}

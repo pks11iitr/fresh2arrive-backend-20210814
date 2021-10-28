@@ -22,7 +22,6 @@
         width:20%;
         text-align:center;
 
-
     }
     .trborder1 td{
         font-size:16px;
@@ -38,42 +37,27 @@
 
 <table class="table">
     <tr>
-        <td colspan="4" style="text-align:center;">
-            <p class="p1">Fresh2arrive</p>
+        <td colspan="4" style="text-align:center;"><p class="p1">fresh2arrive</p>
             <p style="font-size:20px;font-weight:700;"> Ecoveggy Private Limited.</p>
-            <p>Commercial Shop,Hosiyarpur,Sec-52 Noida,Opp - Piller - No 232<br/>
+            <p>Commorcial Shop,Hosiyarpur,Sec-52 Noida,Opp - Piller - No 232<br/>
                 9990194488,8800808954
                 <br/>(GSTIN : 09AAGCE6115M1ZD)
-            </p>
-        </td>
+            </p></td>
+    </tr>
+    <tr><td colspan="4"><hr/></td></tr>
+    <tr>
+        <td  colspan="4" style="text-align: center"><p><B>[RETAIL INVOICE]</B></p></td>
     </tr>
     <tr>
-        <td colspan="4">
-            <hr/>
-        </td>
-    </tr>
-    <tr>
-        <td  colspan="4" style="text-align: center">
-            <p><B>[RETAIL INVOICE]</B></p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <p>OrderID</p>
-        </td>
+        <td><p>OrderID</p></td>
         <td></td>
         <td></td>
-        <td>
-            <p style="border:1px solid;text-align: center;padding: 5px">Bags : 1</p>
-        </td>
+        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no}}</p></td>
     </tr>
     <tr>
         <td>
             <p><b>{{$order_data->oid}}</b></p>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
     </tr>
 
     <tr>
@@ -81,17 +65,16 @@
     </tr>
 
     <tr>
-        <td colspan="4"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p>
-        </td>
+        <td colspan="4"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p></td>
     </tr>
     <tr>
-        <td colspan="4">
-            <p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
-        </td>
+        <td colspan="4"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
+              </td>
+
     </tr>
 
     <tr>
-        <td colspan="4"><hr/></td>
+        <tr><td colspan="4"><hr/></td></tr>
     </tr>
     <tr>
         <td colspan="4"><p>Delivery Owner :{{$order_data->pname}} ({{$order_data->pmobile}})</p></td>
@@ -104,27 +87,20 @@
 
     </tr>
 
-    <tr>
-        <td><br/></td>
-        <td><br/></td>
-        <td><br/></td>
-        <td><br/></td>
-    </tr>
-
+    <tr><td><br/></td></tr>
 
 
     <tr>
-        <td colspan="4">
-            <p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p>
-        </td>
+        <td colspan="4"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
+
+               {{-- Wed 27 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4">
-            <p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p>
-        </td>
+        <td colspan="4"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
+               {{-- Thu 28 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: f2a0001</p></td>
+        <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
     </tr>
 
 
@@ -138,11 +114,7 @@
         <td>Amt</td>
     </tr>
 
-    <tr>
-        <td colspan="4"><hr/>
-        </td>
-    </tr>
-
+    <tr><td colspan="4"><hr/></td></tr>
     <?php  $total =0;
            $orderdetails=0;
            $grandtotal=0;
@@ -157,16 +129,11 @@
         <td>{{$orderdetails->price}}</td>
         <td>{{$orderdetails->quantity * $orderdetails->price}}</td>
         </p>
-    </tr>
-        <?php $amt=$orderdetails->quantity * $orderdetails->price?>
-        <?php $total+=$amt; ?>
+    </tr>   <?php $amt=$orderdetails->quantity * $orderdetails->price?>
+             <?php $total+=$amt; ?>
     @endforeach
-    <tr>
-        <td><br/></td>
-        <td><br/></td>
-        <td><br/></td>
-        <td><br/></td>
-    </tr>
+    <tr><td><br/></td></tr>
+
     <tr class="trborder">
         <td></td>
         <td></td>
@@ -193,23 +160,29 @@
         <td></td>
         <td>Eco Friendly Packaging:-</td>
         <td>{{$order_data->echo_charges}}</td>
-
     </tr>
 
     <tr class="trborder">
         <td></td>
         <td></td>
-        <td>Grand Total :-</td>
-        <td> {{$total + $order_data->echo_charges}}</td>
+        <td><b>Grand Total :-</b></td>
+        <td><b>{{$total + $order_data->echo_charges}}</b></td>
     </tr>
 
 </table>
-<br/>
-<B>Thanks for buying from fresh2arrive<br/> HAVE A NICE DAY <br/>follow us on Instagram,Facebook,Twitter.</B><br/><br/>
-<b>Visit on : www.fresh2arrive.com</b><br/><br/>
-<b>
-    All disputes are subject to <br/>Gautam Budh Nagar Jurisdiction Only
-</b>
+<table style="width:100%">
+    <tr>
+        <td><p>Thanks for buying from fresh2arrive<br/> HAVE A NICE DAY <br/>follow us on Instagram,Facebook,Twitter.</p></td>
+        <td>
+            <p>Visit on : www.fresh2arrive.com</p>
+            <p>
+                All disputes are subject to <br/>Gautam Budh Nagar Jurisdiction Only
+            </p>
+        </td>
+    </tr>
+</table>
+
+
 
 </tr>
 </body>

@@ -54,6 +54,4 @@ class OrderController extends Controller
 
 
 
-
-
 }
