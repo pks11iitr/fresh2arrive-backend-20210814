@@ -67,7 +67,7 @@ class OrderController extends Controller
         $tomorrow_date=date('d M y', strtotime('+1 days'));
         $tomorrow_total=0;
 
-        foreach($today_orders as $o){
+        foreach($tommorow_orders as $o){
             $tomorrow_count++;
             $tomorrow_total+=$o->order_total;
         }
