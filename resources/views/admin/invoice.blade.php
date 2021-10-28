@@ -22,7 +22,6 @@
         width:20%;
         text-align:center;
 
-
     }
     .trborder1 td{
         font-size:16px;
@@ -53,7 +52,7 @@
         <td><p>OrderID</p></td>
         <td></td>
         <td></td>
-        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : 1</p></td>
+        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no}}</p></td>
     </tr>
     <tr>
         <td>
@@ -91,7 +90,6 @@
     <tr><td><br/></td></tr>
 
 
-
     <tr>
         <td colspan="4"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
 
@@ -102,7 +100,7 @@
                {{-- Thu 28 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: f2a0001</p></td>
+        <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
     </tr>
 
 
@@ -135,6 +133,7 @@
              <?php $total+=$amt; ?>
     @endforeach
     <tr><td><br/></td></tr>
+
     <tr class="trborder">
         <td></td>
         <td></td>
@@ -161,7 +160,6 @@
         <td></td>
         <td>Eco Friendly Packaging:-</td>
         <td>{{$order_data->echo_charges}}</td>
-
     </tr>
 
     <tr class="trborder">
