@@ -97,7 +97,7 @@ class EarningController extends Controller
             ->where('orders.delivery_date', '>=', $start_date)
             ->where('orders.delivery_date', '<=', $end_date)
             ->groupBY('delivery_date')
-            ->select(DB::raw('count(distinct(orders.refid)) as count'), DB::raw('sum(order_total) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'),  DB::raw('DAY(delivery_date) as date'), DB::raw('MONTHNAME(delivery_date) as month'), 'delivery_date')
+            ->select(DB::raw('count(distinct(orders.refid)) as count'), DB::raw('sum(packet_price*packet_count) as total'), DB::raw('sum(round(order_details.packet_price*order_details.commissions*order_details.packet_count/100)) as earnings'),  DB::raw('DAY(delivery_date) as date'), DB::raw('MONTHNAME(delivery_date) as month'), 'delivery_date')
             ->get();
 
         return [
