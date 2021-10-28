@@ -70,7 +70,7 @@
         <ul class="city_list">
             @foreach($cities_arr as $key=>$val)
                 <li>
-                    <a href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
+                    <a class="all-cities" href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$(".all-cities").css("background-color","#FFECE2");$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
                 </li>
             @endforeach
         </ul>
