@@ -271,7 +271,7 @@ class OrderController extends Controller
             $cost=$cost+$detail->packet_price*$detail->packet_count;
             $count++;
             $items[] =[
-                'id'=>$detail->product_id,
+                'id'=>$detail->id,
                 'name'=>$detail->name,
                 'company'=>$detail->company,
                 'image'=>$detail->image,
