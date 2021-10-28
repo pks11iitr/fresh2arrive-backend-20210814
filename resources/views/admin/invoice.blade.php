@@ -165,17 +165,24 @@
     <tr class="trborder">
         <td></td>
         <td></td>
-        <td>Grand Total :-</td>
-        <td> {{$total + $order_data->echo_charges}}</td>
+        <td><b>Grand Total :-</b></td>
+        <td><b>{{$total + $order_data->echo_charges}}</b></td>
     </tr>
 
 </table>
-<br/>
-<B>Thanks for buying from fresh2arrive<br/> HAVE A NICE DAY <br/>follow us on Instagram,Facebook,Twitter.</B><br/><br/>
-<b>Visit on : www.fresh2arrive.com</b><br/><br/>
-<b>
-    All disputes are subject to <br/>Gautam Budh Nagar Jurisdiction Only
-</b>
+<table style="width:100%">
+    <tr>
+        <td><p>Thanks for buying from fresh2arrive<br/> HAVE A NICE DAY <br/>follow us on Instagram,Facebook,Twitter.</p></td>
+        <td>
+            <p>Visit on : www.fresh2arrive.com</p>
+            <p>
+                All disputes are subject to <br/>Gautam Budh Nagar Jurisdiction Only
+            </p>
+        </td>
+    </tr>
+</table>
+
+
 
 </tr>
 </body>
