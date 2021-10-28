@@ -56,6 +56,10 @@
             .f_20{font-size: 16px;}
 
         }
+
+
+
+
     </style>
 
 </head>
@@ -66,7 +70,7 @@
         <ul class="city_list">
             @foreach($cities_arr as $key=>$val)
                 <li>
-                    <a href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$("#{{str_replace(' ', '_', $key)}}").show()'>{{$key}}</a>
+                    <a href="javascript:void(0)" onclick='$(".servicing_areaxx").hide();$("#{{str_replace(' ', '_', $key)}}").show();$(this).css("background-color","#F27935");$(this).css("color","#Fff");'>{{$key}}</a>
                 </li>
             @endforeach
         </ul>
@@ -94,3 +98,5 @@
 </div>
 </body>
 </html>
+
+
