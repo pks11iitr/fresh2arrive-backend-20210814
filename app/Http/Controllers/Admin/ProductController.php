@@ -15,7 +15,7 @@ class ProductController extends Controller
 
     public function index(Request $request){
 
-        $products = Product::active();
+        $products = Product::where('id', '>', 1);
 
         if($request->search)
             $products = $products->where('name', 'LIKE', "%$request->search%");

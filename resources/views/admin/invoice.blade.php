@@ -63,7 +63,7 @@
 
             @endphp
 
-            <p><b>{{str::padLeft($order_data->oid, 8, '0')}}</b></p>
+            <p><b>{{$order_data->refid}}</b></p>
 
         </td>
     </tr>
