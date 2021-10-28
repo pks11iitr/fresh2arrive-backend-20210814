@@ -52,12 +52,10 @@ class LoginController extends Controller
             ->first();
 
         if(!$user){
-
             $user=Customer::create([
                 'mobile'=>$request->mobile,
                 'reffered_by'=>$request->customer_id??null
             ]);
-
         }
 
         if($user->status==2){
