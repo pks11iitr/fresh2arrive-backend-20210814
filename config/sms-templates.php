@@ -1,4 +1,4 @@
 <?php
 return [
-    'login'=>'Your OTP for '.env('SMS_APP_NAME').' is {{otp}}.',
+    'login'=>'Your One Time Password for fresh2arrive is {{otp}}',
 ];
