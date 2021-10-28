@@ -155,9 +155,10 @@ class OrderController extends Controller
                 'data'=>[],
             ];
 
+        $maxrefid=Order::max('refid');
 
         $order = Order::create([
-            'refid'=>$refid,
+            'refid'=>($maxrefid??12548327)+1,
             'user_id'=>$request->user->id,
             'order_total'=>$cost,
             'coupon_applied'=>$coupon_applied,
