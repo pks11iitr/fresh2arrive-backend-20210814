@@ -96,32 +96,44 @@
                                     <thead>
                                     <tr>
                                         <th>Order ID</th>
-                                        <th>Refid</th>
+                                    {{--    <th>Refid</th>--}}
                                         <th>Total</th>
                                         <th>Status</th>
                                         <th>Is_Pad</th>
                                         <th>Delivery Date</th>
                                         <th>Delivery Time</th>
                                         <th>Delivery Partner</th>
+                                        <th>On Time</th>
+                                        <th>On Door</th>
+                                        <th>Review</th>
+                                        <th>Rating</th>
                                         <th>Action</th>
-                                        <th>Print</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($orders as $Order)
                         <tr>
                             <td>{{$Order->id}}</td>
-                            <td>{{$Order->refid}}</td>
+                          {{--  <td>{{$Order->refid}}</td>--}}
                             <td>{{$Order->order_total}}</td>
                             <td>{{$Order->status}}</td>
-                            <td>{{$Order->is_paid==0?'Yes':'No'}}</td>
+                            <td>{{$Order->is_paid==1 ? 'Yes':'No'}}</td>
                             <td>{{$Order->delivery_date}}</td>
                             <td>{{$Order->delivery_time}}</td>
                             <td>{{$Order->partner->name}}</td>
-                            <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a></td>
-                            <td><a href="{{route('invoice',['orderid'=>$Order->id])}}" class="btn btn-success">Print</a>
+                            <td>{{$Order->on_time==1 ? 'Yes':'No'}}</td>
+                            <td>{{$Order->on_doorstep==1 ? 'Yes':'No'}}</td>
+                            <td>{{$Order->review}}</td>
+                            <td>{{$Order->rating}}</td>
+                            <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a> <a href="{{route('invoice',['orderid'=>$Order->id])}}" class="btn btn-success">Print</a>
                             </td>
                         </tr>
+
+
+
+
+
                                         @endforeach
                                     </tbody>
                                 </table>
