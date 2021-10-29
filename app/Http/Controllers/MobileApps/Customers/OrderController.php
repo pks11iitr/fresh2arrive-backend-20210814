@@ -143,7 +143,7 @@ class OrderController extends Controller
         }
 
 
-        $refid=rand(0,9).date('YmdHis');
+        //$refid=rand(0,9).date('YmdHis');
 
         $deliveryslot=explode('**', $request->timeslot)[1];
         $ts=TimeSlot::find($deliveryslot);
@@ -155,10 +155,10 @@ class OrderController extends Controller
                 'data'=>[],
             ];
 
-        $maxrefid=Order::max('refid');
+        $maxrefid=Order::max('id');
 
         $order = Order::create([
-            'refid'=>($maxrefid??12548327)+1,
+            'refid'=>str_pad(($maxrefid??0)+1, 8, '0'),
             'user_id'=>$request->user->id,
             'order_total'=>$cost,
             'coupon_applied'=>$coupon_applied,

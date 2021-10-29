@@ -50,7 +50,7 @@ class TicketController extends Controller
                 'data'=>[]
             ];
 
-        $max_number = Ticket::max('refid')+1;
+        $max_number = Ticket::max('id');
 
         if($request->type=='item'){
             if($order->item_ticket_status!=0)
@@ -88,7 +88,7 @@ class TicketController extends Controller
 
             if($items){
                 $ticket = Ticket::create([
-                    'refid'=>$max_number,
+                    'refid'=>str_pad(($max_number??0)+1, 8, '0'),
                     'order_id'=>$request->order_id,
                     'customer_comments'=>$request->comments??'',
                     'user_id'=>$order->user_id,
