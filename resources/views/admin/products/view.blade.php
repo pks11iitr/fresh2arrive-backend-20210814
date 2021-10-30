@@ -73,7 +73,7 @@
                                         <tr>
                                             <td>{{$product->id}}</td>
                                             <td>{{$product->name}}</td>
-                                            <td><imc src="{{$product->image}}" height="50" width="100"/></td>
+                                            <td><img src="{{$product->image}}" height="50" width="100"/></td>
                                             <td>{{$product->display_pack_size}}</td>
                                             <td>{{$product->price_per_unit}}</td>
                                             <td>{{$product->commissions}}</td>
