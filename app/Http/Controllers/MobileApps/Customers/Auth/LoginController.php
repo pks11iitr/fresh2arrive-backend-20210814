@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Customers\Auth;
 use App\Events\SendOtp;
 use App\Models\Customer;
 use App\Models\OTPModel;
+use App\Models\Wallet;
 use App\Services\SMS\Msg91;
 use App\Services\SMS\Nimbusit;
 use Illuminate\Http\Request;
@@ -56,6 +57,9 @@ class LoginController extends Controller
                 'mobile'=>$request->mobile,
                 'reffered_by'=>$request->customer_id??null
             ]);
+
+            /// welcome bonus
+            Wallet::updatewallet($user->id, 'Welcome Bonus', 'Credit', 51, 'CASH', null);
         }
 
         if($user->status==2){
