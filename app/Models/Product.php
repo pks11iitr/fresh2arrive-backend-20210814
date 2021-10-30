@@ -88,6 +88,13 @@ class Product extends Model
 
     }
 
+    public function getTagAttribute($value){
+        if($value)
+            return $value;
+        return '';
+    }
+
+
 
 
 
