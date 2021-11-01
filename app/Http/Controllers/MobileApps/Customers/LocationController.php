@@ -39,7 +39,7 @@ class LocationController extends Controller
                     ->orWhere('name', $locality4)
                     ->orWhere('name', $locality5);
             })
-            ->where('pincode', $pincode)
+            //->where('pincode', $pincode)
             ->first();
 
         if($location){
