@@ -20,6 +20,7 @@ class InvoiceController extends Controller
             ->where('order_id',$orderid)
             ->first();
 
+
        /* $pdf = PDF::loadView('admin.invoice', compact('order_detail', 'order_data'));
         return $pdf->download('invoice.pdf');*/
 

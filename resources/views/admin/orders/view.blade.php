@@ -95,8 +95,8 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Order ID</th>
-                                    {{--    <th>Refid</th>--}}
+                                        <th>  ID</th>
+                                        <th>Name</th>
                                         <th>Total</th>
                                         <th>Status</th>
                                         <th>Is_Pad</th>
@@ -115,7 +115,7 @@
                                         @foreach($orders as $Order)
                         <tr>
                             <td>{{$Order->id}}</td>
-                          {{--  <td>{{$Order->refid}}</td>--}}
+                            <td>{{$Order->customer->name.' - '.$Order->customer->mobile}}</td>
                             <td>{{$Order->order_total}}</td>
                             <td>{{$Order->status}}</td>
                             <td>{{$Order->is_paid==1 ? 'Yes':'No'}}</td>
