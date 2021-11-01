@@ -158,7 +158,7 @@ class OrderController extends Controller
         $maxrefid=Order::max('id');
 
         $order = Order::create([
-            'refid'=>str_pad(($maxrefid??0)+1, 8, '0'),
+            'refid'=>str_pad(($maxrefid??0)+1, 8, '0', STR_PAD_LEFT),
             'user_id'=>$request->user->id,
             'order_total'=>$cost,
             'coupon_applied'=>$coupon_applied,

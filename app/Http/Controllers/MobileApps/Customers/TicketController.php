@@ -88,7 +88,7 @@ class TicketController extends Controller
 
             if($items){
                 $ticket = Ticket::create([
-                    'refid'=>str_pad(($max_number??0)+1, 8, '0'),
+                    'refid'=>str_pad(($max_number??0)+1, 8, '0', STR_PAD_LEFT),
                     'order_id'=>$request->order_id,
                     'customer_comments'=>$request->comments??'',
                     'user_id'=>$order->user_id,
