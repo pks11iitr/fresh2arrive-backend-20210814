@@ -78,7 +78,12 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Unit Name </label>
-                                                <input type="text" name="unit_name" class="form-control" placeholder="Unit Name"  required>
+                                                <select class="form-control select2" name="unit_name">
+                                                    <option value="">Please Select</option>
+                                                    @foreach(['Kg', 'Pcs.', 'Gm', 'Dozen'] as $val)
+                                                    <option value="{{$val}}">{{$val}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group">
