@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Customers\Auth;
 use App\Events\SendOtp;
 use App\Models\Customer;
 use App\Models\OTPModel;
+use App\Models\Partner;
 use App\Models\Wallet;
 use App\Services\SMS\Msg91;
 use App\Services\SMS\Nimbusit;
@@ -53,13 +54,44 @@ class LoginController extends Controller
             ->first();
 
         if(!$user){
+            if($request->customer_id){
+
+                $customer = Customer::find($request->customer_id);
+                if($customer){
+                    $linked_partner=Partner::where('mobile', $customer->mobile)
+                        ->first();
+                    if($linked_partner){
+                        $reffered_by_partner=$linked_partner->id;
+                    }
+
+                }
+
+            }
             $user=Customer::create([
                 'mobile'=>$request->mobile,
-                'reffered_by'=>$request->customer_id??null
+                'reffered_by'=>$request->customer_id??null,
+                'reffered_by_partner'=>$reffered_by_partner??null
             ]);
 
             /// welcome bonus
             Wallet::updatewallet($user->id, 'Welcome Bonus', 'Credit', 51, 'CASH', null);
+        }else if($user->status == 0){
+            if($request->customer_id){
+
+                $customer = Customer::find($request->customer_id);
+                if($customer){
+                    $linked_partner=Partner::where('mobile', $customer->mobile)
+                        ->first();
+                    if($linked_partner){
+                        $reffered_by_partner=$linked_partner->id;
+                    }
+
+                }
+
+            }
+            $user->reffered_by=$request->customer_id??null;
+            $user->reffered_by_partner=$reffered_by_partner??null;
+            $user->save();
         }
 
         if($user->status==2){

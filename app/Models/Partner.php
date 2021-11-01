@@ -42,7 +42,7 @@ class Partner extends Authenticatable implements JWTSubject
         'bank_ifsc',
         'store_name',
         'house_no',
-        'landmark'
+        'landmark',
     ];
 
     protected $appends =['address'];
@@ -174,6 +174,21 @@ class Partner extends Authenticatable implements JWTSubject
 
 
 
+    }
+
+
+    public static function checkPartnerAvailability($area, $partner_id){
+        $partner = Partner::whereHas('areas', function($areas) use($area){
+
+            $areas->where('area_list.name', $area);
+
+        })
+            ->where('status', 1)
+            ->find($partner_id);
+
+        if($partner)
+            return true;
+        return false;
     }
 
 

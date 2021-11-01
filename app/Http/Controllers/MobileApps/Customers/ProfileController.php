@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Partner;
 use Google\Service\DisplayVideo\Resource\Partners;
 use Illuminate\Http\Request;
+use Riverline\MultiPartParser\Part;
 
 class ProfileController extends Controller
 {
@@ -37,11 +38,29 @@ class ProfileController extends Controller
         $map_address = $map_json['results'][0]['formatted_address'];
 
         if(empty($user->assigned_partner)){
-            $partner = Partners::getAvailablePartner($request->area, []);
-            if(!$partner)
-                $assigned_partner = 1;
-            else
-                $assigned_partner=$partner;
+            //first time registration
+            if(empty($user->reffered_by_partner)){
+                // if no reffereal mentioned
+                $partner = Partners::getAvailablePartner($request->area, []);
+                if(!$partner)
+                    $assigned_partner = 1;
+                else
+                    $assigned_partner=$partner;
+            }else{
+                // if refferred by partner
+                $availability=Partner::checkPartnerAvailability($request->area, $user->reffered_by_partner);
+                if($availability===true){
+                    //assign refferer if available at location
+                    $assigned_partner = $user->reffered_by_partner;
+                }else{
+                    // find suitable partner if reffereer not available
+                    $partner = Partners::getAvailablePartner($request->area, []);
+                    if(!$partner)
+                        $assigned_partner = 1;
+                    else
+                        $assigned_partner=$partner;
+                }
+            }
         }else{
             $partner = Partner::whereHas('areas', function($areas) use($request){
 
