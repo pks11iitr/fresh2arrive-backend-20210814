@@ -24,7 +24,7 @@ class ProfileController extends Controller
         $request->validate([
             'name'=>'required',
             'house_no'=>'required',
-            'street'=>'required',
+            //'street'=>'required',
             'area'=>'required',
             'city'=>'required',
             'state'=>'required',
