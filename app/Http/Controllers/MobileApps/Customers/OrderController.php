@@ -170,7 +170,7 @@ class OrderController extends Controller
             'delivery_partner'=>$user->assigned_partner
         ]);
 
-        Wallet::updatewallet($user->id, 'Paid for Order: '.$refid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', $order->id);
+        Wallet::updatewallet($user->id, 'Paid for Order: '.$maxrefid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', $order->id??'');
 
         $order->details()->saveMany($details);
 
