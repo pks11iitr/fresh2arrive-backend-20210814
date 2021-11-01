@@ -82,8 +82,15 @@
             <td>{{$customers->mobile}}</td>
             <td>{{$customers->area}}</td>
             <td>{{$customers->partner->name}}</td>
-            <td>{{$customers->status==0?'Active':'Inactive'}}</td>
-
+             <?php
+                if($customers->status == 1 ){
+                    $status="Active";
+                }elseif($customers->status == 2){
+                    $status="Block";
+                }else{
+                    $status="Inactive";
+                }  ?>
+            <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
                                             </tr>
                                         @endforeach
