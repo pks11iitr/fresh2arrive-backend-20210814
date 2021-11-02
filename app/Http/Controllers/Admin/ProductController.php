@@ -35,7 +35,7 @@ class ProductController extends Controller
         $request->validate([
             'name'=>'required',
             'company'=>'required',
-            'image'=>'required',
+            'delivery_image'=>'required',
             'display_pack_size'=>'required',
             'price_per_unit'=>'required',
             'cut_price_per_unit'=>'required',
