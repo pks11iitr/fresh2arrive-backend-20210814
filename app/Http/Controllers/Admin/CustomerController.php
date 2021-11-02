@@ -84,6 +84,15 @@ class CustomerController extends Controller
             ->with('success','Customer Addedd Successfully');
     }
 
+
+    public function return_customername($customerid){
+        $customer = Customer::select("*")
+            ->where('id',$customerid)
+            ->first();
+        return $customer->name;
+    }
+
+
     public function edit(Request $request, $id){
         $customer=Customer::findOrFail($id);
         $partners = Partner::select('name', 'id')
@@ -91,18 +100,27 @@ class CustomerController extends Controller
             ->get();
 
 
+
+        $customername=$this->return_customername($customer->reffered_by);
+
         $area = Area::active()->orderby('id','desc')
                 ->get();
 
-        return view('admin.customers.edit', compact('customer', 'partners','area'));
+        return view('admin.customers.edit',['customername'=>$customername], compact('customer', 'partners','area','customername'));
     }
+
+
+
+
+
+
 
     public function update(Request $request, $id){
 
         $request->validate([
             'mobile'=>'Required',
-            'email'=>'Required',
-            'password'=>'Required',
+           // 'email'=>'Required',
+           // 'password'=>'Required',
             'status'=>'Required',
             'name'=>'Required',
             //'image'=>'Required',
@@ -133,11 +151,11 @@ class CustomerController extends Controller
 
         $customer->update([
             'mobile'=>$request->mobile,
-            'email'=>$request->email,
-            'password'=>$request->password,
+          //  'email'=>$request->email,
+           // 'password'=>$request->password,
             'status'=>$request->status,
             'name'=>$request->name,
-            'image'=>$path,
+           // 'image'=>$path,
             'notification_token'=>$request->notification_token,
             'house_no'=>$request->house_no,
             'building'=>$request->building,
