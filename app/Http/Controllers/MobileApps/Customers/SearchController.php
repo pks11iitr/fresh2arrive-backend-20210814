@@ -13,6 +13,8 @@ class SearchController extends Controller
             ->select('id', 'name')
             ->get();
 
+        Product::setLimitedStock($hot_products);
+
 //        $pids = $hot_products->map(function($element){
 //            return $element->id;
 //        })->toArray();
