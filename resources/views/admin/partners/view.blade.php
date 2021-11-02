@@ -61,11 +61,12 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Category ID</th>
+                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>mobile </th>
+                                        <th>Area </th>
 
-                                        <th>Address</th>
+
                                         <th>City</th>
                                         <th>Pincode</th>
                                         <th>State</th>
@@ -79,8 +80,7 @@
                                             <td>{{$partner->id}}</td>
                                             <td>{{$partner->name}}</td>
                                             <td>{{$partner->mobile}}</td>
-
-                                            <td>{{$partner->address}}</td>
+                                         <td>@foreach($partner->areas as $area){{$area->name}},@endforeach</td>
                                             <td>{{$partner->city}}</td>
                                             <td>{{$partner->pincode}}</td>
                                             <td>{{$partner->state}}</td>

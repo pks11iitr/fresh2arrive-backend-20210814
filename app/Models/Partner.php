@@ -198,4 +198,28 @@ class Partner extends Authenticatable implements JWTSubject
 
     }
 
+
+
+
+    public static function get_asignareas($partner_id){
+        $assign_areas=DB::table('area_assign')
+         ->join('area_list', 'area_list.id', '=', 'area_assign.areaid')               ->select('area_list.name as areaname')
+         ->where('partner_id', $partner_id)
+         ->get();
+
+       // return $assign_areas ;
+
+        $areas=[];
+        foreach($assign_areas as $a){
+             $areas[]=$a;
+        }
+        return $areas;
+
+    }
+
+
+
+
+
+
 }

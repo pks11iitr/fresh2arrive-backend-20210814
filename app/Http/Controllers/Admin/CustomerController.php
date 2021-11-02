@@ -93,7 +93,13 @@ class CustomerController extends Controller
         $customer = Customer::select("*")
             ->where('id',$customerid)
             ->first();
-        return $customer->name;
+
+        if($customer){
+            $custname=$customer->name;
+        }else{
+            $custname="NA";
+        }
+        return $custname;
     }
 
 
@@ -141,7 +147,7 @@ class CustomerController extends Controller
             'map_address'=>'Required',
            // 'map_json'=>'Required',
             'assigned_partner'=>'Required',
-            'reffered_by'=>'Required',
+           // 'reffered_by'=>'Required',
             'reffered_by_partner'=>'Required'
         ]);
 

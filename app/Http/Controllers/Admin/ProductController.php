@@ -19,7 +19,6 @@ class ProductController extends Controller
 
         if($request->search)
             $products = $products->where('name', 'LIKE', "%$request->search%");
-
         $products = $products->orderBy('id','desc')
             ->paginate(10);
         return view('admin.products.view',compact('products'));
