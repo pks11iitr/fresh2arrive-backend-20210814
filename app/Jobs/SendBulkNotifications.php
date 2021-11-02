@@ -45,7 +45,36 @@ class SendBulkNotifications implements ShouldQueue
     }
 
     public function sendPartnerNotifications(){
+        $partners = Notification::select('notification_token')
+            ->where('notification_token', '!=', null)
+            ->get();
+
         $messaging = app('firebase.messaging');
+
+
+        if(!empty($this->image)){
+            $notification = Notification::fromArray([
+                'title' => $this->title,
+                'body' => $this->description,
+                'image' => $this->image,
+            ]);
+        }else{
+            $notification = Notification::fromArray([
+                'title' => $this->title,
+                'body' => $this->description
+            ]);
+        }
+
+        foreach($customers as $customer){
+
+            try {
+                $message = CloudMessage::withTarget('token', $customer->notification_token)
+                    ->withNotification($notification);
+                $messaging->send($message);
+            }catch (\Exception $e){
+
+            }
+        }
     }
 
 
