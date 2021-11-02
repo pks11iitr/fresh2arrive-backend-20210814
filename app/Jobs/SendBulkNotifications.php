@@ -47,6 +47,9 @@ class SendBulkNotifications implements ShouldQueue
     }
 
     public function sendPartnerNotifications(){
+
+        config(['firebase.default' => 'partner']);
+
         $partners = Partner::select('notification_token')
             ->where('notification_token', '!=', null)
             ->get();
