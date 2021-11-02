@@ -48,7 +48,7 @@ class HomeController extends Controller
             $products = $products->where('category_id', $request->category_id);
         }
 
-        $products = $products->paginate(1000);
+        $products = $products->paginate(5);
 
         Product::setCartQuantity($products, $request->cart);
         $cart_total_quantity=$request->cart_total_quantity;
