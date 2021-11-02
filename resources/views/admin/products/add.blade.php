@@ -80,7 +80,7 @@
                                                 <label>Unit Name </label>
                                                 <select class="form-control select2" name="unit_name">
                                                     <option value="">Please Select</option>
-                                                    @foreach(['Kg', 'Pcs.', 'Gm', 'Dozen'] as $val)
+                                                    @foreach(['Kg', 'Pcs.', 'Gm', 'Dozen','Ltr','ML','Pack'] as $val)
                                                     <option value="{{$val}}">{{$val}}</option>
                                                     @endforeach
                                                 </select>

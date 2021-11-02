@@ -59,11 +59,9 @@
 
     <tr>
         <td colspan="4">
-            @php
 
-            @endphp
 
-            <p><b>{{$order_data->refid}}</b></p>
+            <p><b>{{$order_data->refrerid}}</b></p>
 
         </td>
     </tr>

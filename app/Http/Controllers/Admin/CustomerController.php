@@ -21,7 +21,11 @@ class CustomerController extends Controller
         }else{
             $customer = Customer::orderBy('id','desc')
                 ->paginate(10);
+
         }
+
+
+
         return view('admin.customers.view',compact('customer'));
     }
 
