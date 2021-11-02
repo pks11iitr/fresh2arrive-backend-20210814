@@ -32,7 +32,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                            <form role="form" method="post" enctype="multipart/form-data" action="" onsubmit="return false">
+                            <form role="form" method="post" enctype="multipart/form-data"
+                                  action="{{route('orders.update', ['id'=>$order->id])}}" >
                                 @csrf
 
                                 <div class="card-body">
@@ -58,10 +59,6 @@
                                                 <input type="text" name="status" class="form-control" placeholder="Status"  value="{{$order->status}}" disabled>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Is Paid  </label>
-                                                <input type="text" name="is_paid" class="form-control" placeholder="Is Paid"  value="{{$order->is_paid==1?'yes':'no'}}" disabled>
-                                            </div>
                                             <!-- /.form-group -->
 
                                         </div>
@@ -80,6 +77,13 @@
                                             <div class="form-group">
                                                 <label>Delivery Date  </label>
                                                 <input type="date" name="delivery_date" class="form-control" placeholder="Delivery Date "  value="{{$order->delivery_date}}" disabled>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label>Is Paid  </label>
+                                                <input type="text" name="is_paid" class="form-control" placeholder="Is Paid"  value="{{$order->is_paid==1?'yes':'no'}}" disabled>
                                             </div>
                                             <!-- /.form-group -->
                                         </div>
@@ -107,28 +111,29 @@
                                         </div>
 
                                         <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Delivery Partner Location </label>
+                                                <input type="text" name="delivery_partner_location" class="form-control" placeholder="Delivery Partner Location "  value="{{$order->delivery_partner_location??''}}" disabled>
+                                            </div>
 
                                             <div class="form-group">
                                                 <label>Delivery Partner</label>
                                                 <input type="text" name="delivery_partner" class="form-control" placeholder="Delivery Partner"  value="{{$order->partner->name}}" disabled>
                                             </div>
-                                        </div>
 
-
-                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Bags No.</label>
                                                 <input type="text" name="bags_no" class="form-control" placeholder="Bags No."  value="{{$order->bags_no}}" >
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-3">
+
+
 
                                             <div class="form-group">
                                                 <label>Crate No.</label>
-                                                <input type="text" name="delivery_partner" class="form-control" placeholder="Crate No."  value="{{$order->	crate_no}}" >
+                                                <input type="text" name="crate_no" class="form-control" placeholder="Crate No."  value="{{$order->	crate_no}}" >
                                             </div>
-                                        </div>
+
 {{--                                        <div class="col-md-3">--}}
 
 {{--                                            <div class="form-group">--}}
@@ -138,12 +143,9 @@
 {{--                                        </div>--}}
 
 
-                                        <div class="col-md-3">
 
-                                            <div class="form-group">
-                                                <label>Delivery Partner Location </label>
-                                                <input type="text" name="delivery_partner_location" class="form-control" placeholder="Delivery Partner Location "  value="{{$order->delivery_partner_location??''}}" disabled>
-                                            </div>
+
+
                                         </div>
 
                                         <div class="col-md-6">
@@ -158,32 +160,41 @@
                                         </div>
 
 
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="submit" class="btn btn-success" value="Update">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <!-- /.row -->
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary" onclick="openWalletPanel('{{$order->id}}', '{{route('user.wallet.balance', ['id'=>$order->user_id])}}')" >Add/Revoke Balance</button>
-                                        </div>
-                                        <div class="col-md-6 text-right">
-                                            @if($order->status=='confirmed')
 
-                                                <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id])}}" >Process</a>
-
-                                            @endif
-
-                                        </div>
-                                    </div>
-
-
-
-
-
-                                </div>
                                 <!-- /.card-body -->
 
                             </form>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-primary" onclick="openWalletPanel('{{$order->id}}', '{{route('user.wallet.balance', ['id'=>$order->user_id])}}')" >Add/Revoke Balance</button>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        @if($order->status=='confirmed')
+
+                                            <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id])}}" >Process</a>
+
+                                        @endif
+
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="card-body">

@@ -32,7 +32,9 @@ class Order extends Model
         'on_time',
         'on_doorstep',
         'review',
-        'rating'
+        'rating',
+        'bags_no',
+        'crate_no'
     ];
 
     protected $appends = ['placed_on', 'delivery_schedule', 'order_date', 'delivery_at'];

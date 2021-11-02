@@ -167,7 +167,8 @@
 
                                             <div class="form-group">
                                                 <label>Reffered By Partner</label>
-                                                <input type="text" name="reffered_by_partner" class="form-control" value="{{$customer->reffered_by_partner}}"  placeholder="Reffered By Partner"  required>
+                                                <input type="hidden" name="reffered_by_partner"  value="{{$customer->partner->id}}">
+                                                <input type="text"  class="form-control" value="{{$customer->partner->name}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">

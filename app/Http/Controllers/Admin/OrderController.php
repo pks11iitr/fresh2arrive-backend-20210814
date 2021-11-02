@@ -38,16 +38,26 @@ class OrderController extends Controller
     }
 
     public function update(Request $request, $id){
+        $order=Order::findOrFail($id);
+        $order->update([
+            'bags_no'=>$request->bags_no,
+            'crate_no'=>$request->crate_no
+        ]);
 
+        return redirect()->back()->with('success', 'Status has been updated');
     }
 
 
     public  function update_status(Request $request, $user_id, $order_id)
     {
+
         $order=Order::findOrFail($order_id);
         $order->update([
             'status'=>'processing',
+
         ]);
+
+
         return redirect()->back()->with('success', 'Status has been updated');
     }
 
