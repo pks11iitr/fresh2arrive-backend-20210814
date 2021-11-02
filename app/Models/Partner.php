@@ -198,4 +198,13 @@ class Partner extends Authenticatable implements JWTSubject
 
     }
 
+
+
+
+
+
+
+
+
+
 }
