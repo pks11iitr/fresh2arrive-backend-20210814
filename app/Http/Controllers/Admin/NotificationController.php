@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileTransfer;
 use App\Jobs\SendBulkNotifications;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 class NotificationController extends Controller
 {
+
+    use FileTransfer;
 //    public function index(){
 //        $notifications = Notification::orderBy('id','desc')
 //        ->paginate(10);
