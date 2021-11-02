@@ -86,7 +86,7 @@ class PartnerController extends Controller
             'city'=>'required',
             'pincode'=>'required',
             'state'=>'required',
-            'notification_token'=>'required',
+           // 'notification_token'=>'required',
             'status'=>'required'
         ]);
 
@@ -115,7 +115,7 @@ class PartnerController extends Controller
             'city'=>$request->city,
             'pincode'=>$request->pincode,
             'state'=>$request->state,
-            'notification_token'=>$request->notification_token,
+           // 'notification_token'=>$request->notification_token,
             'status'=>$request->status,
             'support_whatsapp'=>$request->support_whatsapp,
             'support_mobile'=>$request->support_mobile,

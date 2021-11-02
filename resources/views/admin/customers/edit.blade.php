@@ -48,11 +48,24 @@
                                                 <input type="text" name="mobile" class="form-control" placeholder="Mobile" value="{{$customer->mobile}}"  required>
                                             </div>
 
-                                            <div class="form-group">
+
+                                                <div class="form-group">
+                                                    <label>Assigned Partner</label>
+                                                    <select class="form-control select2" name="assigned_partner" required>
+                                                        <option value="">Please Select</option>
+                                                        @foreach($partners as $p)
+                                                            <option value="{{$p->id}}"
+                                                            @if($p->id==$customer->assigned_partner) {{"selected"}}@endif>{{$p->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+
+                                           {{-- <div class="form-group">
                                                 <label>Email </label>
                                                 <input type="text" name="email" class="form-control" placeholder="Email"  value="{{$customer->email}}" required>
                                             </div>
-
+--}}
 
                                         </div>
 
@@ -134,32 +147,20 @@
                                             <!-- /.col -->
                                         </div>
 
-                                        <div class="col-md-3">
+                                        {{--<div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Password</label>
                                                 <input type="text" name="password" class="form-control" placeholder="Password"  value="{{$customer->password}}"   required>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Assigned Partner</label>
-                                                <select class="form-control select2" name="assigned_partner" required>
-                                                    <option value="">Please Select</option>
-                                                @foreach($partners as $p)
-                                                        <option value="{{$p->id}}"
-                                                        @if($p->id==$customer->assigned_partner) {{"selected"}}@endif>{{$p->name}}</option>
-                                                @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
+                                        </div>--}}
 
 
                                         <div class="col-md-3">
 
                                             <div class="form-group">
                                                 <label>Reffered By</label>
-                                                <input type="text" name="reffered_by" class="form-control"  value="{{$customer->reffered_by}}" placeholder="Reffered By"  required>
+                                                <input type="hidden" name="reffered_by" value="{{$customer->reffered_by}}">
+                                                <input type="text" name="" class="form-control"  value="{{$customername}}" placeholder="Reffered By"  required>
                                             </div>
                                         </div>
 
@@ -171,7 +172,7 @@
                                                 <input type="text"  class="form-control" value="{{$customer->partner->name}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                       {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Image</label>
                                                 <div class="input-group">
@@ -185,7 +186,7 @@
                                                 </div>
                                                 <img src="{{$customer->image}}" height="100" width="200"/>
                                             </div>
-                                        </div>
+                                        </div>--}}
 
 
                                         <!-- /.row -->

@@ -77,10 +77,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <div class="form-group">
+                                           {{-- <div class="form-group">
                                                 <label>Notification Token </label>
                                                 <input type="text" name="notification_token" class="form-control" placeholder="Notification Token" value="{{$Partners->notification_token}}"  required>
-                                            </div>
+                                            </div>--}}
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="status">
