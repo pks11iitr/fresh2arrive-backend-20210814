@@ -80,7 +80,7 @@ class Customer extends Authenticatable implements JWTSubject
         $dynamic_links=app('firebase.dynamic_links');
         $url='https://fresh2arrive.com/?customer_id='.($this->id??'');
         $action = CreateDynamicLink::forUrl($url)
-            ->withDynamicLinkDomain('https://fresh2arrive.page.link')
+            ->withDynamicLinkDomain(env('FIREBASE_DYNAMIC_LINKS_DEFAULT_DOMAIN'))
             ->withUnguessableSuffix() // default
             // or
             ->withShortSuffix()
