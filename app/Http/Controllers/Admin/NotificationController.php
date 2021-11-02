@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
 use App\Jobs\SendBulkNotifications;
 use Illuminate\Http\Request;
-use App\Models\Notification;
+
 class NotificationController extends Controller
 {
 
