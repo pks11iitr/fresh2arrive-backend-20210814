@@ -65,10 +65,10 @@ class SendBulkNotifications implements ShouldQueue
             ]);
         }
 
-        foreach($customers as $customer){
+        foreach($partners as $partner){
 
             try {
-                $message = CloudMessage::withTarget('token', $customer->notification_token)
+                $message = CloudMessage::withTarget('token', $partner->notification_token)
                     ->withNotification($notification);
                 $messaging->send($message);
             }catch (\Exception $e){
