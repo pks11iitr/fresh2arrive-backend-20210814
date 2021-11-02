@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Kreait\Firebase\Messaging\CloudMessage;
 use Kreait\Firebase\Messaging\Notification;
 
@@ -57,7 +58,7 @@ class SendBulkNotifications implements ShouldQueue
             $notification = Notification::fromArray([
                 'title' => $this->title,
                 'body' => $this->description,
-                'image' => $this->image,
+                'image' => Storage::url($this->image),
             ]);
         }else{
             $notification = Notification::fromArray([
@@ -92,7 +93,7 @@ class SendBulkNotifications implements ShouldQueue
             $notification = Notification::fromArray([
                 'title' => $this->title,
                 'body' => $this->description,
-                'image' => $this->image,
+                'image' => Storage::url($this->image),
             ]);
         }else{
             $notification = Notification::fromArray([
