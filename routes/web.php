@@ -143,11 +143,12 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     Route::group(['prefix'=>'notification'],function(){
 
-        Route::get('/','Admin\NotificationController@index')->name('notification.list');
+//        Route::get('/','Admin\NotificationController@index')->name('notification.list');
         Route::get('create','Admin\NotificationController@create')->name('notification.create');
-        Route::post('store', 'Admin\NotificationController@store')->name('notification.store');
-        Route::get('edit/{id}','Admin\NotificationController@edit')->name('notification.edit');
-        Route::post('update/{id}', 'Admin\NotificationController@update')->name('notification.update');
+        Route::post('create','Admin\NotificationController@send');
+//        Route::post('store', 'Admin\NotificationController@store')->name('notification.store');
+//        Route::get('edit/{id}','Admin\NotificationController@edit')->name('notification.edit');
+//        Route::post('update/{id}', 'Admin\NotificationController@update')->name('notification.update');
 
     });
 

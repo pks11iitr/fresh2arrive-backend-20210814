@@ -12,7 +12,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active"><a href="{{route('area.list')}}">Area</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('area.list')}}">Notification</a></li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
 
-                            <form role="form" method="post" action="{{route('area.store')}}">
+                            <form role="form" method="post" action="" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="card-body">
@@ -40,10 +40,9 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Partner/Customer </label>
-                                                <select name="pm" required class="form-control">
-                                                    <option value="">--Select--</option>
-                                                    <option value="1">Partner</option>
-                                                    <option value="2">Customer</option>
+                                                <select name="type" required class="form-control">
+                                                    <option value="customer">Customer</option>
+                                                    <option value="partner">Partner</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -52,16 +51,14 @@
 
                                             <div class="form-group">
                                                 <label>Title</label>
-                                                <input type="text" name="" class="form-control" placeholder="Title"  required>
+                                                <input type="text" name="title" class="form-control" placeholder="Title"  required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Text </label>
-                                                <textarea class="form-control" name="" rows="5">
-
-                                                </textarea>
+                                                <label>Body </label>
+                                                <textarea class="form-control" name="description" rows="5"></textarea>
                                             </div>
                                         </div>
 
@@ -70,7 +67,7 @@
                                                 <label>Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*" required>
+                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*">
                                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                     </div>
                                                     <div class="input-group-append">

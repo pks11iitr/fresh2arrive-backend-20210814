@@ -145,7 +145,7 @@ class CatelogueController extends Controller
             $products=$products->get();
 
             $product_text=implode(',', $products->map(function($elem){
-                return $elem->name.'-Rs.'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size;
+                return $elem->name.'-Rs.'.$elem->packet_price.'/pack'.'-'.$elem->display_pack_size."\n";
             })->toArray());
 
             $data = [

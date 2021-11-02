@@ -201,7 +201,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('notification.list')}}" class="nav-link">
+                        <a href="{{route('notification.create')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Notifications
