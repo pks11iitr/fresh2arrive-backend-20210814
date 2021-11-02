@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Customer;
+use App\Models\Partner;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -45,7 +46,7 @@ class SendBulkNotifications implements ShouldQueue
     }
 
     public function sendPartnerNotifications(){
-        $partners = Notification::select('notification_token')
+        $partners = Partner::select('notification_token')
             ->where('notification_token', '!=', null)
             ->get();
 
