@@ -75,9 +75,7 @@ class Product extends Model
         foreach($products as $p){
 
             if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
-                $p->out_of_stock=1;
-            }else{
-                $p->out_of_stock=0;
+                $p->tag='Out of stock';
             }
         }
 
