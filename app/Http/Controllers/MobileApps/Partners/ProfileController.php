@@ -190,7 +190,13 @@ class ProfileController extends Controller
     public function qrcodeInfo(Request $request){
         //return view('qrcode');
 
-        $link = 'https://google.com';
+        $user=Partner::find($request->id);
+
+        $customer = Customer::where('mobile', $user->mobile)->first();
+
+        $link=!empty($customer)?$customer->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive';
+
+//        $link = 'https://google.com';
 
         //header("Content-Type: image/png");
         return QrCode::size(100)->generate($link);
