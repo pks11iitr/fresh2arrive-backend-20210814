@@ -113,6 +113,7 @@
 
     <tr class="trborder1">
         <td>Description</td>
+        <td>Size</td>
         <td>Qty</td>
         <td>Rate</td>
         <td>Amt</td>
