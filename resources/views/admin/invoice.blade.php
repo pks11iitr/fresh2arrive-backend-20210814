@@ -38,7 +38,7 @@
 <table class="table">
 
     <tr>
-        <td colspan="4" style="text-align:center;"><p class="p1">fresh2arrive</p>
+        <td colspan="5" style="text-align:center;"><p class="p1">fresh2arrive</p>
             <p style="font-size:20px;font-weight:700;"> Ecoveggy Private Limited.</p>
             <p>Commorcial Shop,Hosiyarpur,Sec-52 Noida,Opp - Piller - No 232<br/>
                 9990194488,8800808954
@@ -46,10 +46,10 @@
             </p></td>
     </tr>
 
-    <tr><td colspan="4"><hr/></td></tr>
+    <tr><td colspan="5"><hr/></td></tr>
 
     <tr>
-        <td  colspan="4" style="text-align: center"><p><B>[RETAIL INVOICE]</B></p></td>
+        <td  colspan="5" style="text-align: center"><p><B>[RETAIL INVOICE]</B></p></td>
     </tr>
 
     <tr>
@@ -58,7 +58,7 @@
     </tr>
 
     <tr>
-        <td colspan="4">
+        <td colspan="5">
 
 
             <p><b>{{$order_data->refrerid}}</b></p>
@@ -67,48 +67,48 @@
     </tr>
 
     <tr>
-        <td colspan="4"><br/></td>
+        <td colspan="5"><br/></td>
     </tr>
 
     <tr>
-        <td colspan="4"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p></td>
+        <td colspan="5"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p></td>
     </tr>
 
     <tr>
-        <td colspan="4"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
+        <td colspan="5"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
         </td>
     </tr>
 
     <tr>
-        <td colspan="4"><hr/></td>
+        <td colspan="5"><hr/></td>
     </tr>
 
     <tr>
-        <td colspan="4"><p>Delivery Owner :{{$order_data->pname}} ({{$order_data->pmobile}})</p></td>
+        <td colspan="5"><p>Delivery Owner :{{$order_data->pname}} ({{$order_data->pmobile}})</p></td>
     </tr>
 
     <tr>
-        <td colspan="4">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:{{$order_data->phouse_no}},{{$order_data->pcity}},{{$order_data->pstate}},{{$order_data->ppincode}} {{$order_data->address}}</p></td>
+        <td colspan="5">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:{{$order_data->phouse_no}},{{$order_data->pcity}},{{$order_data->pstate}},{{$order_data->ppincode}} {{$order_data->address}}</p></td>
     </tr>
 
-    <tr><td colspan="4"><br/></td></tr>
+    <tr><td colspan="5"><br/></td></tr>
 
 
     <tr>
-        <td colspan="4"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
+        <td colspan="5"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
 
-                Wed 27 oct 2021
+{{--                Wed 27 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
-                Thu 28 oct 2021
+        <td colspan="5"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
+{{--                Thu 28 oct 2021--}}
     </tr>
     <tr>
-        <td colspan="4"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
+        <td colspan="5"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
     </tr>
 
 
-    <tr><td colspan="4"><br/></td></tr>
+    <tr><td colspan="5"><br/></td></tr>
 
 
     <tr class="trborder1">
@@ -119,7 +119,7 @@
         <td>Amt</td>
     </tr>
 
-    <tr><td colspan="4"><hr/></td></tr>
+    <tr><td colspan="5"><hr/></td></tr>
     <?php  $total =0;
            $orderdetails=0;
            $grandtotal=0;
