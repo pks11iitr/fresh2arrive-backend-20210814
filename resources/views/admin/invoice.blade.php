@@ -129,6 +129,7 @@
     <tr class="trborder">
         <p>
         <td >{{$orderdetails->name}}</td>
+        <td >{{$orderdetails->display_pack_size}}</td>
         <td>{{$orderdetails->quantity}}</td>
         <td>{{$orderdetails->packet_price}}</td>
         <td>{{$orderdetails->quantity * $orderdetails->packet_price}}</td>
