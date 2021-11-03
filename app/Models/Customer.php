@@ -111,7 +111,7 @@ class Customer extends Authenticatable implements JWTSubject
                         ->first();
 
                     $amount = ($refferal_amount->value??0)/2;
-                    if($refferal_amount > 0){
+                    if($amount > 0){
                         Wallet::updatewallet($customer->id, 'Referral Credit', 'Credit', $amount, 'CASH', $order[0]->id);
                     }
                 }
