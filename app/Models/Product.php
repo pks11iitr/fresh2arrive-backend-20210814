@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Inventory;
 use App\Models\OrderDetail;
 use App\Models\Traits\Active;
-use App\Models\Inventory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -66,18 +66,21 @@ class Product extends Model
             $pids[]=$p->id;
         }
 
-        // calculate total stock
-        $purchased_quantity=Inventory::purchased_quantity($pids);
-        $consumed_stock=OrderDetail::consumed_quantity([$pids]);
-        // calculate sold out stock
-        //$sold_quantity=Order
-        //get difference & set flag
-        foreach($products as $p){
+        if(!empty($pids)){
+            // calculate total stock
+            $purchased_quantity=Inventory::purchased_quantity($pids);
+            $consumed_stock=OrderDetail::consumed_quantity([$pids]);
+            // calculate sold out stock
+            //$sold_quantity=Order
+            //get difference & set flag
+            foreach($products as $p){
 
-            if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
-                $p->tag='Out of stock';
+                if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
+                    $p->tag='Out of stock';
+                }
             }
         }
+
 
     }
 
