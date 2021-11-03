@@ -102,9 +102,9 @@ class WalletController extends Controller
 
 
             //delete all incomplete attempts
-        Wallet::where('user_id', $user->id)
-            ->where('iscomplete', false)
-            ->delete();
+//        Wallet::where('user_id', $user->id)
+//            ->where('iscomplete', false)
+//            ->delete();
 
         //start new attempt
         $wallet=Wallet::create([
