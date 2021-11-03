@@ -130,10 +130,10 @@
         <p>
         <td >{{$orderdetails->name}}</td>
         <td>{{$orderdetails->quantity}}</td>
-        <td>{{$orderdetails->price}}</td>
-        <td>{{$orderdetails->quantity * $orderdetails->price}}</td>
+        <td>{{$orderdetails->packet_price}}</td>
+        <td>{{$orderdetails->quantity * $orderdetails->packet_price}}</td>
         </p>
-    </tr>   <?php $amt=$orderdetails->quantity * $orderdetails->price?>
+    </tr>   <?php $amt=$orderdetails->quantity * $orderdetails->packet_price?>
              <?php $total+=$amt; ?>
     @endforeach
     <tr><td><br/></td></tr>
