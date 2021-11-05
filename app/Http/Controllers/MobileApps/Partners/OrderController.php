@@ -231,11 +231,12 @@ class OrderController extends Controller
                 $order->delivery_partner = $partner->id;
             else
                 $order->delivery_partner = config('constants.default_assign_partner');
+            $order->save();
 
             return [
                 'status'=>'success',
                 'action'=>'',
-                'display_message'=>$request->is_accept=='yes'?'Order has been accepted':'Order has been rejected',
+                'display_message'=>'Order has been rejected',
                 'data'=>[]
             ];
         }
