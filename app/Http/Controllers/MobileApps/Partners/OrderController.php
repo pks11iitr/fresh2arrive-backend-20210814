@@ -230,7 +230,7 @@ class OrderController extends Controller
             if($partner)
                 $order->delivery_partner = $partner->id;
             else
-                $order->delivery_partner = 1;
+                $order->delivery_partner = config('constants.default_assign_partner');
 
             return [
                 'status'=>'success',

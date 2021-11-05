@@ -43,7 +43,7 @@ class ProfileController extends Controller
                 // if no reffereal mentioned
                 $partner = Partners::getAvailablePartner($request->area, []);
                 if(!$partner)
-                    $assigned_partner = 6;
+                    $assigned_partner = config('constants.default_assign_partner');
                 else
                     $assigned_partner=$partner;
             }else{
@@ -56,7 +56,7 @@ class ProfileController extends Controller
                     // find suitable partner if reffereer not available
                     $partner = Partners::getAvailablePartner($request->area, []);
                     if(!$partner)
-                        $assigned_partner = 6;
+                        $assigned_partner = config('constants.default_assign_partner');
                     else
                         $assigned_partner=$partner;
                 }
