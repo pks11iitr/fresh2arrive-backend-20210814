@@ -279,7 +279,7 @@ class ProfileController extends Controller
         if(!$customer)
         {
             Customer::create([
-                'mobile'=>$request->mobile
+                'mobile'=>$partner->mobile
             ]);
         }
 
