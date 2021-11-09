@@ -168,10 +168,24 @@
 
                                             <div class="form-group">
                                                 <label>Reffered By Partner</label>
+
+
+                                                    <?php 
+                                                    if(empty($customer->partnerRefferer->name)){
+                                                        $partner_name="NA";
+                                                    }else{
+                                                        $partner_name=$customer->partnerRefferer->name;
+                                                    }
+                                                    
+                                                    ?>
+
+
                                                 <input type="hidden" name="reffered_by_partner"  value="{{$customer->partner->id}}">
-                                                <input type="text"  class="form-control" value="{{$customer->partner->name}}"  placeholder="Reffered By Partner" >
+                                                <input type="text"  class="form-control" value="{{$partner_name}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
+
+
                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Image</label>
