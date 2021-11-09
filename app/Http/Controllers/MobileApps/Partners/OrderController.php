@@ -93,6 +93,15 @@ class OrderController extends Controller
 
         $user = $request->user;
 
+        if(!$request->hasFile('delivery_image')){
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Please upload file',
+                'data'=>[]
+            ];
+        }
+
         $order=Order::where('delivery_partner', $user->id)
                 ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
                 ->where('delivery_date', date('Y-m-d'))
