@@ -228,6 +228,8 @@ class OrderController extends Controller
                 ->where('status', 'delivered')
                 //->select('id', 'refid', 'order_total', 'delivery_date', 'delivery_time')
                 ->paginate(10);
+        }else{
+            abort(404);
         }
 
         return [
