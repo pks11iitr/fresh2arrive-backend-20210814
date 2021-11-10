@@ -153,7 +153,7 @@
                                                 <label> Delivery Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <img src="{{$order->delivery_image}}" height="50" weidth="100"/>
+                                                        <img src="{{$order->delivery_image}}" height="50" target=_blank weidth="100"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,10 +188,13 @@
                                     <div class="col-md-6 text-right">
                                         @if($order->status=='confirmed')
 
-                                            <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id])}}" >Process</a>
-
+                                            <a  align="right" class="btn btn-warning " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'process'])}}" >Process</a>
+                                        
+                                            @elseif($order->status=='process')
+                                            <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'delivered'])}}" >Click Deliver</a>
+                                            @else
+                                            <a  align="right" class="btn btn-danger " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'delivered'])}}" >Delivered</a>
                                         @endif
-
                                     </div>
                                 </div>
 
