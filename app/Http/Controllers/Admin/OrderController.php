@@ -48,13 +48,12 @@ class OrderController extends Controller
     }
 
 
-    public  function update_status(Request $request, $user_id, $order_id)
+    public  function update_status(Request $request, $user_id, $order_id,$book_status)
     {
 
         $order=Order::findOrFail($order_id);
         $order->update([
-            'status'=>'processing',
-
+            'status'=>$book_status,
         ]);
 
 

@@ -35,7 +35,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
     Route::get('/','Admin\DashboardController@index')->name('dashboard');
 
 
-    Route::get('updateStatus/{user_id}/{order_id}', 'Admin\OrderController@update_status')->name('orders.updateStatus');
+    Route::get('updateStatus/{user_id}/{order_id}/{book_status}', 'Admin\OrderController@update_status')->name('orders.updateStatus');
 
     Route::get('ViewServiceArea','Admin\ViewServiceAreaController@index')->name('ViewServiceArea');
     Route::get('ViewServiceArea/{cityname}','Admin\ViewServiceAreaController@View_WithCondition')->name('Passcityname');
