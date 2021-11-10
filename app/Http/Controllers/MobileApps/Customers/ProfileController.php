@@ -71,7 +71,7 @@ class ProfileController extends Controller
             if(!$partner){
                 $partner = Partner::getAvailablePartner($request->area, []);
                 if(!$partner)
-                    $assigned_partner = 6;
+                    $assigned_partner = config('constants.default_assign_partner');
                 else
                     $assigned_partner=$partner;
             }else{

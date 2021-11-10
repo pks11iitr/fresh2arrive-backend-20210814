@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -33,11 +34,11 @@ class LocationController extends Controller
         $location = Area::active()
             ->where(function ($query) use ($locality1, $locality2, $locality3, $locality4, $locality5)
             {
-                $query->where('name', $locality1)
-                    ->orWhere('name', $locality2)
-                    ->orWhere('name', $locality3)
-                    ->orWhere('name', $locality4)
-                    ->orWhere('name', $locality5);
+                $query->where(DB::raw("Locate(name, '$locality1')"), '!=', 0)
+                ->where(DB::raw("Locate(name, '$locality2')"), '!=', 0)
+                ->where(DB::raw("Locate(name, '$locality3')"), '!=', 0)
+                ->where(DB::raw("Locate(name, '$locality4')"), '!=', 0)
+                ->where(DB::raw("Locate(name, '$locality5')"), '!=', 0);
             })
             //->where('pincode', $pincode)
             ->first();
