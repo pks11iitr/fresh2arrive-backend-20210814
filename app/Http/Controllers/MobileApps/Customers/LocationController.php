@@ -35,10 +35,10 @@ class LocationController extends Controller
             ->where(function ($query) use ($locality1, $locality2, $locality3, $locality4, $locality5)
             {
                 $query->where(DB::raw("Locate(name, '$locality1')"), '!=', 0)
-                ->where(DB::raw("Locate(name, '$locality2')"), '!=', 0)
-                ->where(DB::raw("Locate(name, '$locality3')"), '!=', 0)
-                ->where(DB::raw("Locate(name, '$locality4')"), '!=', 0)
-                ->where(DB::raw("Locate(name, '$locality5')"), '!=', 0);
+                ->orWhere(DB::raw("Locate(name, '$locality2')"), '!=', 0)
+                ->orWhere(DB::raw("Locate(name, '$locality3')"), '!=', 0)
+                ->orWhere(DB::raw("Locate(name, '$locality4')"), '!=', 0)
+                ->orWhere(DB::raw("Locate(name, '$locality5')"), '!=', 0);
             })
             //->where('pincode', $pincode)
             ->first();
