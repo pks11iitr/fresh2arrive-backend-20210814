@@ -74,16 +74,28 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
+
+
+                        <?php 
+                                      
+                                        
+                                        ?>
+
                                     </thead>
                                     <tbody>
                                         @foreach($customer as $customers)
+                                       <?php if(empty($customers->areas_name->name)){
+                                            $area_name="NA";
+                                        }else{
+                                            $area_name=$customers->areas_name->name;
+                                        }?>
                                             <tr>
-            <td>{{$customers->id}}</td>
-            <td>{{$customers->name}}</td>
-            <td>{{$customers->mobile}}</td>
-            <td>{{$customers->area}}</td>
-            <td>{{$customers->partner->name}}</td>
-            <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
+                            <td>{{$customers->id}}</td>
+                            <td>{{$customers->name}}</td>
+                            <td>{{$customers->mobile}}</td>
+                            <td>{{$area_name}}</td>
+                            <td>{{$customers->partner->name}}</td>
+                            <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
              <?php
                 if($customers->status == 1 ){
                     $status="Active";

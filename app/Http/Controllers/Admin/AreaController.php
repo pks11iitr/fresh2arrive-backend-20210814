@@ -13,7 +13,7 @@ use mysql_xdevapi\TableUpdate;
 class AreaController extends Controller
 {
     public  function index(Request $request){
-        $areas=Area::active()->orderBy('id','desc')
+        $areas=Area::orderBy('id','desc')
             ->paginate(10);
         return view('admin.area.view', compact('areas'));
     }
