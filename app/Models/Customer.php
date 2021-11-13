@@ -58,6 +58,9 @@ class Customer extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\Models\Partner', 'reffered_by_partner');
     }
 
+    public function areas_name(){
+        return $this->belongsTo('App\Models\Area', 'area');
+    }
 
     public function getAddressAttribute($value){
         return ($this->house_no??'').' '.($this->building??'').' '.($this->area??'').' '.($this->street??'').' '.($this->city??'').' '.($this->state??'').' '.($this->pincode??'');
