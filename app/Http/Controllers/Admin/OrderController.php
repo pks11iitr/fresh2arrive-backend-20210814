@@ -21,7 +21,7 @@ class OrderController extends Controller
         if($request->fromdate)
             $orders=$orders->where('delivery_date','>=', $request->fromdate);
         if($request->todate)
-            $orders=$orders->where('delivery_date','>=', $request->todate);
+            $orders=$orders->where('delivery_date','<=', $request->todate);
 
         if($request->partner_id)
             $orders = $orders->where('delivery_partner', $request->partner_id);
