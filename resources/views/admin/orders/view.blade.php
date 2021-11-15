@@ -8,8 +8,8 @@
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>Orders</h1>
-                        <h2>Total Amount: {{$total_amount??0}}</h2>
-                        <h2>Total Orders: {{$orders->total()}}</h2>
+                        <h5>Total Amount: {{$total_amount??0}}</h5>
+                        <h5>Total Orders: {{$orders->total()}}</h5>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
