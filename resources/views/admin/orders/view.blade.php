@@ -31,7 +31,6 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <form role="form" method="get" enctype="multipart/form-data" action="{{route('orders.list')}}">
-                                        @csrf
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>Search Type</label>
@@ -48,19 +47,19 @@
                                             <div class="col-md-3">
                                                 <label>ReferID</label>
                                                 <div class="form-group">
-                                                    <input type="text" name="referid" class="form-control" placeholder="ReferID"  required>
+                                                    <input type="text" name="referid" class="form-control" placeholder="ReferID">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>From Date</label>
-                                                    <input type="date" name="fromdate" class="form-control" placeholder="Search Only Product Name"  required>
+                                                    <input type="date" name="fromdate" class="form-control" placeholder="Search Only Product Name"  value="{{request('fromdate')}}">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <label>To Date</label>
                                                 <div class="form-group">
-                                                    <input type="date" name="todate" class="form-control" placeholder="Search Only Product Name"  required>
+                                                    <input type="date" name="todate" class="form-control" placeholder="Search Only Product Name"  value="{{request('todate')}}">
                                                 </div>
                                             </div>
 
@@ -69,15 +68,24 @@
 
                                             <div class="col-md-6">
                                                 <label>Partners</label>
-                                                <select class="form-control select2" name="product_id" required>
+                                                <select class="form-control select2" name="partner_id" >
                                                     <option value="">--Select Parner</option>
                                          @foreach($partner as $partner)
-                                                        <option value="{{$partner->id}}">{{$partner->name}}</option>
+                                                        <option value="{{$partner->id}}" @if($partner->id == request('partner_id')){{'selected'}}@endif>{{$partner->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Status</label>
+                                                <select class="form-control select2" name="status">
+                                                    <option value="">--Select Status</option>
+                                                    @foreach(['confirmed', 'processing', 'delivered'] as $status)
+                                                        <option value="{{$status}}" @if($status == request('status')){{'selected'}}@endif>{{ucfirst($status)}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
                                                 </div>
