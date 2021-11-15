@@ -31,7 +31,7 @@ class OrderController extends Controller
 
         $total_amount = $orders->sum('order_total');
 
-        $orders=$orders->paginate();
+        $orders=$orders->paginate(20);
 
         $partner = Partner::get();
         return view('admin.orders.view',compact('orders','partner', 'total_amount'));
