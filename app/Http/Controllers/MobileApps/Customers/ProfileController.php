@@ -41,7 +41,7 @@ class ProfileController extends Controller
             //first time registration
             if(empty($user->reffered_by_partner)){
                 // if no reffereal mentioned
-                $partner = Partners::getAvailablePartner($request->area, []);
+                $partner = Partner::getAvailablePartner($request->area, []);
                 if(!$partner)
                     $assigned_partner = config('constants.default_assign_partner');
                 else
@@ -54,7 +54,7 @@ class ProfileController extends Controller
                     $assigned_partner = $user->reffered_by_partner;
                 }else{
                     // find suitable partner if reffereer not available
-                    $partner = Partners::getAvailablePartner($request->area, []);
+                    $partner = Partner::getAvailablePartner($request->area, []);
                     if(!$partner)
                         $assigned_partner = config('constants.default_assign_partner');
                     else
