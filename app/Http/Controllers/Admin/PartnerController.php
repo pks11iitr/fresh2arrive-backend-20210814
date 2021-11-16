@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\Partner;
 use App\Models\Area;
 use App\Models\AreaAsign;
+use Illuminate\Support\Facades\DB;
+
 class PartnerController extends Controller
 {
     use FileTransfer;
@@ -134,6 +137,94 @@ class PartnerController extends Controller
         $Partners->areas()->sync($request->area_ids??[]);
         return redirect()->back()->with('success', 'Partners has been updated');
 
+    }
+
+
+    public function commissions(Request $request){
+
+        $allpartners = Partner::orderBy('id','desc')
+            ->get();
+
+        $partners=Partner::orderBy('id','desc')
+            ->paginate(20);
+
+        $start1=date("Y-m-d", strtotime("last week monday"));
+        $end1=date("Y-m-d", strtotime("last week sunday"));
+
+
+        $start0=date('Y-m-d', strtotime('+1 days', strtotime($end1)));
+        $end0=date('Y-m-d', strtotime('+6 days', strtotime($start0)));
+
+
+        $start2=date('Y-m-d', strtotime('-7 days', strtotime($start1)));
+        $end2=date('Y-m-d', strtotime('+6 days', strtotime($start2)));
+
+
+        $start3=date('Y-m-d', strtotime('-7 days', strtotime($start2)));
+        $end3=date('Y-m-d', strtotime('+6 days', strtotime($start3)));
+
+
+        $earnings0 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', '>=', $start0)
+            ->where('orders.delivery_date', '<=', $end0)
+            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->groupBy('orders.delivery_partner');
+        if($request->partner_id)
+            $earnings0=$earnings0->where('delivery_parnter', $request->partner_id);
+        $earnings0=$earnings0->get();
+
+        $partners_earnings0=[];
+        foreach($earnings0 as $earning){
+            $partners_earnings0[$earning->delivery_partner]=$earning->earnings;
+        }
+
+        $earnings1 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', '>=', $start1)
+            ->where('orders.delivery_date', '<=', $end1)
+            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100))  as earnings'), 'delivery_partner')
+            ->groupBy('orders.delivery_partner');
+        if($request->partner_id)
+            $earnings1=$earnings1->where('delivery_parnter', $request->partner_id);
+        $earnings1=$earnings1->get();
+
+        $partners_earnings1=[];
+        foreach($earnings1 as $earning){
+            $partners_earnings1[$earning->delivery_partner]=$earning->earnings;
+        }
+
+        $earnings2 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', '>=', $start2)
+            ->where('orders.delivery_date', '<=', $end2)
+            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->groupBy('orders.delivery_partner');
+        if($request->partner_id)
+            $earnings2=$earnings2->where('delivery_parnter', $request->partner_id);
+        $earnings2=$earnings2->get();
+
+        $partners_earnings2=[];
+        foreach($earnings2 as $earning){
+            $partners_earnings2[$earning->delivery_partner]=$earning->earnings;
+        }
+
+        $earnings3 = OrderDetail::join('orders', 'orders.id', '=', 'order_details.order_id')
+            ->where('order_details.status', 'delivered')
+            ->where('orders.delivery_date', '>=', $start3)
+            ->where('orders.delivery_date', '<=', $end3)
+            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->groupBy('orders.delivery_partner');
+       if($request->partner_id)
+           $earnings3=$earnings3->where('delivery_parnter', $request->partner_id);
+        $earnings3=$earnings3->get();
+
+        $partners_earnings3=[];
+        foreach($earnings3 as $earning){
+            $partners_earnings3[$earning->delivery_partner]=$earning->earnings;
+        }
+
+        return view('admin.partners.commisions', compact('partners', 'partners_earnings0', 'partners_earnings1', 'partners_earnings2', 'partners_earnings3', 'allpartners', 'start0', 'start1', 'start2', 'start3', 'end0', 'end1', 'end2', 'end3'));
     }
 
 

@@ -86,6 +86,8 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::get('edit/{id}','Admin\PartnerController@edit')->name('partners.edit');
         Route::post('update/{id}', 'Admin\PartnerController@update')->name('partners.update');
 
+        Route::get('commissions','Admin\PartnerController@commissions')->name('partners.commissions');
+
 
     });
 

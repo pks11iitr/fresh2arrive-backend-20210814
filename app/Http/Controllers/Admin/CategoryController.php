@@ -14,7 +14,7 @@ class CategoryController extends Controller
 
     public  function  index(Request  $request){
         $categories = Category :: active()->orderBy('id','desc')
-            ->paginate(10);
+            ->paginate(20);
         return view('admin.category.view',compact('categories'));
     }
 
