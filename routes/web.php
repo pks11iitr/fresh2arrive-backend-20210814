@@ -37,9 +37,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     Route::get('updateStatus/{user_id}/{order_id}/{book_status}', 'Admin\OrderController@update_status')->name('orders.updateStatus');
 
-    Route::get('ViewServiceArea','Admin\ViewServiceAreaController@index')->name('ViewServiceArea');
-    Route::get('ViewServiceArea/{cityname}','Admin\ViewServiceAreaController@View_WithCondition')->name('Passcityname');
-
+   
     Route::group(['prefix'=>'banners'], function(){
 
             Route::get('/','Admin\BannerController@index')->name('banners.list');
@@ -100,6 +98,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('store', 'Admin\CustomerController@store')->name('customers.store');
         Route::get('edit/{id}','Admin\CustomerController@edit')->name('customers.edit');
         Route::post('update/{id}', 'Admin\CustomerController@update')->name('customers.update');
+        Route::get('customers-by-partner', 'Admin\CustomerController@customerviewpartner')->name('customers.listbypartner');
     });
 
 
@@ -111,6 +110,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('store', 'Admin\OrderController@store')->name('orders.store');
         Route::get('edit/{id}','Admin\OrderController@edit')->name('orders.edit');
         Route::post('update/{id}', 'Admin\OrderController@update')->name('orders.update');
+        Route::get('reportorder', 'Admin\OrderController@reportorder')->name('orders.report');
     });
 
 
@@ -185,9 +185,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 Route::post('update/{id}', 'Admin\TimeslotController@update')->name('timeslot.update');
 Route::get('import', 'Admin\TimeslotController@import_Excel')->name('timeslot.import');
 Route::post('excelstore', 'Admin\TimeslotController@store_excel')->name('timeslot.excelstore');
-    });
-
-
+    });Route::post('orderreport','Admin\OrderReportController@index')->name('orderreports');
     Route::group(['prefix'=>'ticket'],function(){
 
         Route::get('/','Admin\TicketController@index')->name('ticket.list');

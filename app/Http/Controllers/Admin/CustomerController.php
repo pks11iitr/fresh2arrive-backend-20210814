@@ -13,20 +13,52 @@ use App\Models\Area;
 class CustomerController extends Controller
 {
     use FileTransfer;
+
+
+    public function count_customer($pid){
+
+        if($pid>0){
+            $count = Customer::where('assigned_partner',$pid)
+            -> count();
+        }else{
+            $count = Customer::count();
+        }
+        
+        return $count;
+    }
+
+
     public  function index(Request $request){
+ 
+
         $search_type=$request->search_type==1?'name':'mobile';
+
+
         if($request->search){
             $customer = Customer::where($search_type, 'LIKE', "%$request->search%")
                 ->paginate(10);
-        }else{
+                $count=$this->count_customer(0);
+        } 
+        
+        else if($request->partners){
+          
+             $customer = Customer::where('assigned_partner',$request->partners)
+                ->orderBy('id','desc')
+                ->paginate(10);
+                $count=$this->count_customer($request->partners);
+        }
+        
+        else{ 
             $customer = Customer::orderBy('id','desc')
                 ->paginate(10);
-
+                $count=$this->count_customer(0);
         }
 
-
-
-        return view('admin.customers.view',compact('customer'));
+        
+         
+        $partnersss=Partner::orderBy('id','desc')
+        ->get();
+        return view('admin.customers.view',['count'=>$count],compact('customer','partnersss'));
     }
 
     public  function create(Request $request){
@@ -187,5 +219,13 @@ class CustomerController extends Controller
 
 
     }
+
+
+
+     
+
+
+
+
 
 }

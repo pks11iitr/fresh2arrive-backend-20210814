@@ -51,7 +51,6 @@
                                             <td>{{$area->city}}</td>
                                             <td>{{$area->state}}</td>
                                             <td>{{$area->pincode}}</td>
-
                                             <td>{{$area->isactive==1?'Active':'Inactive'}}</td>
                                             <td><a href="{{route('area.edit',['id'=>$area->id])}}">Edit</a></td>
                                         </tr>

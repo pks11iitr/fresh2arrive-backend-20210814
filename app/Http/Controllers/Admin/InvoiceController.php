@@ -26,4 +26,12 @@ class InvoiceController extends Controller
 
         return view('admin.invoice', compact('order_detail', 'order_data'));
     }
+
+
+
+    public function orderreport(){
+        return view('admin.orderReport');
+    }
+
+
 }

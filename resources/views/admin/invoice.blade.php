@@ -54,14 +54,14 @@
 
     <tr>
         <td colspan="3"><p>OrderID</p></td>
-        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no}}</p></td>
+        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no ?? 0}}</p></td>
     </tr>
 
     <tr>
         <td colspan="5">
 
 
-            <p><b>{{$order_data->refrerid}}</b></p>
+            <p><b>{{$order_data->refrerid ?? 0}}</b></p>
 
         </td>
     </tr>
