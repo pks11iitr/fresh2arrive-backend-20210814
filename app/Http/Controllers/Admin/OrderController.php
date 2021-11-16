@@ -63,4 +63,12 @@ class OrderController extends Controller
 
 
 
+    public function reportorder(){
+        
+        return "gggg";
+
+    }
+
+
+
 }
