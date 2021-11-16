@@ -51,7 +51,7 @@
 
                                                 <div class="form-group">
                                                     <label>Assigned Partner</label>
-                                                    <select class="form-control select2" name="assigned_partner" required>
+                                                    <select class="form-control select2" name="assigned_partner" >
                                                         <option value="">Please Select</option>
                                                         @foreach($partners as $p)
                                                             <option value="{{$p->id}}"
@@ -63,7 +63,7 @@
 
                                            {{-- <div class="form-group">
                                                 <label>Email </label>
-                                                <input type="text" name="email" class="form-control" placeholder="Email"  value="{{$customer->email}}" required>
+                                                <input type="text" name="email" class="form-control" placeholder="Email"  value="{{$customer->email}}" >
                                             </div>
 --}}
 
@@ -74,10 +74,10 @@
 
                                             <div class="form-group">
                                                 <label>Area</label>
-                                          <select class="form-control select2" name="area" required>
+                                          <select class="form-control select2" name="area" >
                                         <option value="">Please Select</option>
                                         @foreach($area as $p)
-                                            <option value="{{$p->id}}"
+                                            <option value="{{$p->name}}"
                                             @if($p->id==$customer->area){{'selected'}}@endif
 
                                             >{{$p->name}}</option>
