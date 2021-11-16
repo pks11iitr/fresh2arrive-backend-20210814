@@ -126,29 +126,24 @@
                                     <tbody>
                                         @foreach($customer as $customers)
                                         
-
-                                       <?php if(empty($customers->areas_name->name)){
-                                            $area_name="NA";
-                                        }else{
-                                            $area_name=$customers->areas_name->name;
-                                        }?>
+ 
                                             <tr>
                             <td>{{$customers->id}}</td>
                             <td>{{$customers->name}}</td>
-                            <td>{{$customers->mobile}}</td>
-                            <td>{{$area_name}}</td>
+                            <td>{{$customers->mobile}}</td>	
+                            <td>{{$customers->area}}</td>
                             <td>{{$customers->partner->name}}</td>
                             <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
-                <?php
-                if($customers->status == 1 ){
-                    $status="Active";
-                }elseif($customers->status == 2){
-                    $status="Block";
-                }else{
-                    $status="Inactive";
-                }  ?>
+                            <?php
+                            if($customers->status == 1 ){
+                                $status="Active";
+                            }elseif($customers->status == 2){
+                                $status="Block";
+                            }else{
+                                $status="Inactive";
+                            }  ?>
 
-            <td>{{$status}}</td>
+                        <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
 {{--            <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>--}}
                                             </tr>
