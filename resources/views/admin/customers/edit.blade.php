@@ -171,7 +171,7 @@
 
 
                                                     <?php
-                                                    if(empty($customer->partnerRefferer->name??)){
+                                                    if(empty($customer->partnerRefferer->name??'')){
                                                         $partner_name="NA";
                                                     }else{
                                                         $partner_name=$customer->partnerRefferer->name??'';
