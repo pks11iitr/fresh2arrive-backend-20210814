@@ -61,6 +61,44 @@ class LocationController extends Controller
             ];
         }
 
+
+        if($request->lat && $request->lang){
+
+            $haversine = "(6371 * acos(cos(radians($request->lat))
+                     * cos(radians(users.lat))
+                     * cos(radians(users.lang)
+                     - radians($request->lang))
+                     + sin(radians($request->lat))
+                     * sin(radians(users.lat))))";
+
+            $location=Area::active()
+                ->where('lat', '!=', null)
+                ->where('lang', '!=', null)
+                ->select('users.*', DB::raw("$haversine as distance"))
+                ->where(DB::raw("$haversine"), '<=', 1.0)
+                ->orderBy('distance', 'asc')
+                ->first();
+
+            if($location){
+                return [
+                    'status'=>'success',
+                    'action'=>'',
+                    'display_message'=>'',
+                    'data'=>[
+                        'name'=>$user->name??'',
+                        'house_no'=>$user->house_no??'',
+                        'building'=>$user->building??'',
+                        'street'=>$user->street??'',
+                        'area'=>$location->name,
+                        'city'=>$location->city,
+                        'state'=>$location->state,
+                        'pincode'=>$location->pincode
+                    ]
+                ];
+            }
+        }
+
+
         return [
             'status'=>'failed',
             'action'=>'',
