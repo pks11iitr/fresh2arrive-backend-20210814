@@ -71,7 +71,6 @@
 
 
                                         <div class="col-md-3">
-
                                             <div class="form-group">
                                                 <label>Area</label>
                                           <select class="form-control select2" name="area" >
