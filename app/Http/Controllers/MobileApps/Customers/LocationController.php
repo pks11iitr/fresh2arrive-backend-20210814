@@ -64,12 +64,12 @@ class LocationController extends Controller
 
         if($request->lat && $request->lang){
 
-            return [
-                'status'=>'failed',
-                'action'=>'',
-                'display_message'=>'Location is not servicable:'.$request->lat.':'.$request->lang,
-                'data'=>[]
-            ];
+//            return [
+//                'status'=>'failed',
+//                'action'=>'',
+//                'display_message'=>'Location is not servicable:'.$request->lat.':'.$request->lang,
+//                'data'=>[]
+//            ];
             $haversine = "(6371 * acos(cos(radians($request->lat))
                      * cos(radians(area_list.lat))
                      * cos(radians(area_list.lang)
@@ -81,7 +81,7 @@ class LocationController extends Controller
                 ->where('lat', '!=', null)
                 ->where('lang', '!=', null)
                 ->select(DB::raw("$haversine as distance"))
-                ->where(DB::raw("$haversine"), '<=', 1.0)
+                //->where(DB::raw("$haversine"), '<=', 1.0)
                 ->orderBy('distance', 'asc')
                 ->first();
 
