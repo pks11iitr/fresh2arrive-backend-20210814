@@ -68,6 +68,27 @@
 
                                         </div>
 
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Lat</label>
+                                                <input type="text" name="lat" class="form-control" placeholder="Lat" value="{{$area->lat}}"  required>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Lang</label>
+                                                <input type="text" name="lang" class="form-control" placeholder="Lang" value="{{$area->lang}}"  required>
+                                            </div>
+
+
+                                        </div>
+
+
+
                                         <div class="col-md-3">
 
                                             <div class="form-group">

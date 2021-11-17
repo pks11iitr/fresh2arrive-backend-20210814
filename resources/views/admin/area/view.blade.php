@@ -39,6 +39,8 @@
                                         <th>City</th>
                                         <th>State</th>
                                         <th>Pincode</th>
+                                        <!-- <th>Lat</th>
+                                        <th>Lang</th> -->
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

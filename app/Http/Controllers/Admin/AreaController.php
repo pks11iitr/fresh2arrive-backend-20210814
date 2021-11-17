@@ -36,6 +36,8 @@ class AreaController extends Controller
         $Area->city=$request->city;
         $Area->state=$request->state;
         $Area->pincode=$request->pincode;
+        $Area->lat=$request->lat;
+        $Area->lang=$request->lang; 
         $Area->isactive=$request->isactive;
         $Area->save();
         return redirect()->route('area.edit', $Area->id)
@@ -62,8 +64,12 @@ class AreaController extends Controller
             'city'=>$request->city,
             'state'=>$request->state,
             'pincode'=>$request->pincode,
+            'lat'  =>$request->lat,
+            'lang' =>$request->lang, 
             'isactive'=>$request->isactive
         ]);
+
+        
         return redirect()->back()->with('success', 'Area has been updated');
     }
 
