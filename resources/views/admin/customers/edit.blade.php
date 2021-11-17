@@ -171,16 +171,16 @@
 
 
                                                     <?php
-                                                    if(empty($customer->partnerRefferer->name)){
+                                                    if(empty($customer->partnerRefferer->name??)){
                                                         $partner_name="NA";
                                                     }else{
-                                                        $partner_name=$customer->partnerRefferer->name;
+                                                        $partner_name=$customer->partnerRefferer->name??'';
                                                     }
 
                                                     ?>
 
 
-                                                <input type="hidden" name="reffered_by_partner"  value="{{$customer->partner->id}}">
+                                                <input type="hidden" name="reffered_by_partner"  value="{{$customer->partner->id??0}}">
                                                 <input type="text"  readonly class="form-control" value="{{$partner_name}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
