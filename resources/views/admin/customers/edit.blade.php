@@ -78,7 +78,7 @@
                                         <option value="">Please Select</option>
                                         @foreach($area as $p)
                                             <option value="{{$p->name}}"
-                                            @if($p->id==$customer->area){{'selected'}}@endif
+                                            @if($p->name==$customer->area){{'selected'}}@endif
 
                                             >{{$p->name}}</option>
                                         @endforeach
@@ -170,13 +170,13 @@
                                                 <label>Reffered By Partner</label>
 
 
-                                                    <?php 
+                                                    <?php
                                                     if(empty($customer->partnerRefferer->name)){
                                                         $partner_name="NA";
                                                     }else{
                                                         $partner_name=$customer->partnerRefferer->name;
                                                     }
-                                                    
+
                                                     ?>
 
 
