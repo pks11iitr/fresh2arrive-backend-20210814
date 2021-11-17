@@ -17,59 +17,53 @@ class LocationController extends Controller
 
         $user=auth()->guard('customer-api')->user();
 
-        $map_json=json_decode($request->location_data, true);
-
-        $json = $map_json['results'][0]['address_components'];
-
-        $json = array_reverse($json);
-        $locality1 = $json[3]['long_name'] ?? '';
-        $locality2 = $json[4]['long_name'] ?? '';
-        $locality3 = $json[5]['long_name'] ?? '';
-        $locality4 = $json[6]['long_name'] ?? '';
-        $locality5 = $json[7]['long_name'] ?? '';
-
-        $pincode = $json[0]['long_name'];
-
-
-        $location = Area::active()
-            ->where(function ($query) use ($locality1, $locality2, $locality3, $locality4, $locality5)
-            {
-                $query->where(DB::raw("Locate(name, '$locality1')"), '!=', 0)
-                ->orWhere(DB::raw("Locate(name, '$locality2')"), '!=', 0)
-                ->orWhere(DB::raw("Locate(name, '$locality3')"), '!=', 0)
-                ->orWhere(DB::raw("Locate(name, '$locality4')"), '!=', 0)
-                ->orWhere(DB::raw("Locate(name, '$locality5')"), '!=', 0);
-            })
-            //->where('pincode', $pincode)
-            ->first();
-
-        if($location){
-            return [
-                'status'=>'success',
-                'action'=>'',
-                'display_message'=>'',
-                'data'=>[
-                    'name'=>$user->name??'',
-                    'house_no'=>$user->house_no??'',
-                    'building'=>$user->building??'',
-                    'street'=>$user->street??'',
-                    'area'=>$location->name,
-                    'city'=>$location->city,
-                    'state'=>$location->state,
-                    'pincode'=>$location->pincode
-                ]
-            ];
-        }
+//        $map_json=json_decode($request->location_data, true);
+//
+//        $json = $map_json['results'][0]['address_components'];
+//
+//        $json = array_reverse($json);
+//        $locality1 = $json[3]['long_name'] ?? '';
+//        $locality2 = $json[4]['long_name'] ?? '';
+//        $locality3 = $json[5]['long_name'] ?? '';
+//        $locality4 = $json[6]['long_name'] ?? '';
+//        $locality5 = $json[7]['long_name'] ?? '';
+//
+//        $pincode = $json[0]['long_name'];
+//
+//
+//        $location = Area::active()
+//            ->where(function ($query) use ($locality1, $locality2, $locality3, $locality4, $locality5)
+//            {
+//                $query->where(DB::raw("Locate(name, '$locality1')"), '!=', 0)
+//                ->orWhere(DB::raw("Locate(name, '$locality2')"), '!=', 0)
+//                ->orWhere(DB::raw("Locate(name, '$locality3')"), '!=', 0)
+//                ->orWhere(DB::raw("Locate(name, '$locality4')"), '!=', 0)
+//                ->orWhere(DB::raw("Locate(name, '$locality5')"), '!=', 0);
+//            })
+//            //->where('pincode', $pincode)
+//            ->first();
+//
+//        if($location){
+//            return [
+//                'status'=>'success',
+//                'action'=>'',
+//                'display_message'=>'',
+//                'data'=>[
+//                    'name'=>$user->name??'',
+//                    'house_no'=>$user->house_no??'',
+//                    'building'=>$user->building??'',
+//                    'street'=>$user->street??'',
+//                    'area'=>$location->name,
+//                    'city'=>$location->city,
+//                    'state'=>$location->state,
+//                    'pincode'=>$location->pincode
+//                ]
+//            ];
+//        }
 
 
         if($request->lat && $request->lang){
 
-//            return [
-//                'status'=>'failed',
-//                'action'=>'',
-//                'display_message'=>'Location is not servicable:'.$request->lat.':'.$request->lang,
-//                'data'=>[]
-//            ];
             $haversine = "(6371 * acos(cos(radians($request->lat))
                      * cos(radians(area_list.lat))
                      * cos(radians(area_list.lang)
