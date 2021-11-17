@@ -13,5 +13,5 @@ class Area extends Model
 
     protected $table='area_list';
 
-    protected $fillable=['name', 'isactive', 'city','state','pincode'];
+    protected $fillable=['name', 'isactive', 'city','state','pincode','lat','lang'];
 }
