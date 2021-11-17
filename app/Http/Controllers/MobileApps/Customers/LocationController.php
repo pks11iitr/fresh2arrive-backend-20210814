@@ -81,7 +81,7 @@ class LocationController extends Controller
                 ->where('lat', '!=', null)
                 ->where('lang', '!=', null)
                 ->select('area_list.*', DB::raw("$haversine as distance"))
-                //->where(DB::raw("$haversine"), '<=', 1.0)
+                ->where(DB::raw("$haversine"), '<=', 1.0)
                 ->orderBy('distance', 'asc')
                 ->first();
 
