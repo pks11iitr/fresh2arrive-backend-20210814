@@ -56,7 +56,13 @@ class ProfileController extends Controller
                     // find suitable partner if reffereer not available
                     $partner = Partner::getAvailablePartner($request->area, []);
                     if(!$partner)
-                        $assigned_partner = config('constants.default_assign_partner');
+                        //$assigned_partner = config('constants.default_assign_partner');
+                        return [
+                            'status'=>'failed',
+                            'action'=>'',
+                            'display_message'=>'No delivery partner is available at this location',
+                            'data'=>[]
+                        ];
                     else
                         $assigned_partner=$partner;
                 }
@@ -71,7 +77,13 @@ class ProfileController extends Controller
             if(!$partner){
                 $partner = Partner::getAvailablePartner($request->area, []);
                 if(!$partner)
-                    $assigned_partner = config('constants.default_assign_partner');
+                    //$assigned_partner = config('constants.default_assign_partner');
+                    return [
+                        'status'=>'failed',
+                        'action'=>'',
+                        'display_message'=>'No delivery partner is available at this location',
+                        'data'=>[]
+                    ];
                 else
                     $assigned_partner=$partner;
             }else{
