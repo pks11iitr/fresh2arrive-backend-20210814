@@ -131,20 +131,6 @@ class OrderController extends Controller
             $echo_charges = $echo_charges->value??0;
         }
 
-        $balance=Wallet::balance($user->id);
-
-        if($balance < $cost-$coupon_discount+$echo_charges){
-            return [
-                'status'=>'failed',
-                'action'=>'recharge_wallet',
-                'display_message'=>'Wallet balance is low',
-                'data'=>[],
-            ];
-        }
-
-
-        //$refid=rand(0,9).date('YmdHis');
-
         $deliveryslot=explode('**', $request->timeslot)[1];
         $ts=TimeSlot::find($deliveryslot);
         if(!$ts)
@@ -156,6 +142,20 @@ class OrderController extends Controller
             ];
 
         $maxrefid=Order::max('id');
+
+        $balance=Wallet::balance($user->id);
+
+        if($balance < $cost-$coupon_discount+$echo_charges){
+            return [
+                'status'=>'failed',
+                'action'=>'recharge_wallet',
+                'display_message'=>'Wallet balance is low',
+                'data'=>[],
+            ];
+        }
+
+        Wallet::updatewallet($user->id, 'Paid for Order: '.$maxrefid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', ($maxrefid??0)+1);
+
 
         $order = Order::create([
             'refid'=>str_pad(($maxrefid??0)+1, 8, '0', STR_PAD_LEFT),
@@ -169,8 +169,6 @@ class OrderController extends Controller
             'delivery_time'=>$ts->name,
             'delivery_partner'=>$user->assigned_partner
         ]);
-
-        Wallet::updatewallet($user->id, 'Paid for Order: '.$maxrefid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', $order->id??'');
 
         $order->details()->saveMany($details);
 
