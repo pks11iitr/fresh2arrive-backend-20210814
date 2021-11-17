@@ -64,6 +64,12 @@ class LocationController extends Controller
 
         if($request->lat && $request->lang){
 
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Location is not servicable:'.$request->lat.':'.$request->lang,
+                'data'=>[]
+            ];
             $haversine = "(6371 * acos(cos(radians($request->lat))
                      * cos(radians(area_list.lat))
                      * cos(radians(area_list.lang)
