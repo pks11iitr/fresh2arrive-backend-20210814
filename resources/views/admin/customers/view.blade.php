@@ -54,46 +54,46 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div> 
+                            </div>
 
 
 
-<div class="row"> 
+<div class="row">
 <div class="col-md-10">
     <form role="form" method="get"  action="{{route('customers.list')}}">
         @csrf
         <div class="row">
-        
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Partner</label>
             <select class="form-control select2"  name="partners"  id="Partner">
                 <option value="">--Select Partner--</option>
-                            @foreach($partnersss as $p) 
-                    <option value="{{$p->id}}">{{$p->name}}</option> 
+                            @foreach($partnersss as $p)
+                    <option value="{{$p->id}}">{{$p->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- /.form-group -->
                 </div>
-                                   
-           
+
+
             <div class="col-md-4">
                 <div class="form-group">
                     <br/>
-                    
+
                     <button type="submit"  class="btn btn-danger">Show All Customers</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-</div> 
- 
+</div>
 
-                        
+
+
                         <div class="card">
- 
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -103,7 +103,7 @@
 
 
 
-                        
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -125,14 +125,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach($customer as $customers)
-                                        
- 
+
+
                                             <tr>
                             <td>{{$customers->id}}</td>
                             <td>{{$customers->name}}</td>
-                            <td>{{$customers->mobile}}</td>	
+                            <td>{{$customers->mobile}}</td>
                             <td>{{$customers->area}}</td>
-                            <td>{{$customers->partner->name}}</td>
+                            <td>{{$customers->partner->name??'Not Alloted'}}</td>
                             <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
                             <?php
                             if($customers->status == 1 ){
