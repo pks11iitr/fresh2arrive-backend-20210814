@@ -65,11 +65,11 @@ class LocationController extends Controller
         if($request->lat && $request->lang){
 
             $haversine = "(6371 * acos(cos(radians($request->lat))
-                     * cos(radians(users.lat))
-                     * cos(radians(users.lang)
+                     * cos(radians(area_list.lat))
+                     * cos(radians(area_list.lang)
                      - radians($request->lang))
                      + sin(radians($request->lat))
-                     * sin(radians(users.lat))))";
+                     * sin(radians(area_list.lat))))";
 
             $location=Area::active()
                 ->where('lat', '!=', null)
