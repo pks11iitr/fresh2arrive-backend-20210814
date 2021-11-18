@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\MobileApps\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\Partner;
 use Google\Service\DisplayVideo\Resource\Partners;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Riverline\MultiPartParser\Part;
 
 class ProfileController extends Controller
@@ -37,24 +39,43 @@ class ProfileController extends Controller
         $map_json = json_decode($request->map_json, true);
         $map_address = $map_json['results'][0]['formatted_address'];
 
+
+        $haversine = "(6371 * acos(cos(radians($request->lat))
+                     * cos(radians(area_list.lat))
+                     * cos(radians(area_list.lang)
+                     - radians($request->lang))
+                     + sin(radians($request->lat))
+                     * sin(radians(area_list.lat))))";
+
+        $area=Area::active()
+            ->where('lat', '!=', null)
+            ->where('lang', '!=', null)
+            //->where('distance', '!=', null)
+            ->select('area_list.*', DB::raw("$haversine as distance1"))
+            ->where(DB::raw("$haversine"), '<=', DB::raw('distance'))
+            ->orderBy('distance1', 'asc')
+            ->where('name', $request->area)
+            ->first();
+
+
         if(empty($user->assigned_partner)){
             //first time registration
             if(empty($user->reffered_by_partner)){
                 // if no reffereal mentioned
-                $partner = Partner::getAvailablePartner($request->area, []);
+                $partner = Partner::getAvailablePartner($area, []);
                 if(!$partner)
                     $assigned_partner = config('constants.default_assign_partner');
                 else
                     $assigned_partner=$partner;
             }else{
                 // if refferred by partner
-                $availability=Partner::checkPartnerAvailability($request->area, $user->reffered_by_partner);
+                $availability=Partner::checkPartnerAvailability($area, $user->reffered_by_partner);
                 if($availability===true){
                     //assign refferer if available at location
                     $assigned_partner = $user->reffered_by_partner;
                 }else{
                     // find suitable partner if reffereer not available
-                    $partner = Partner::getAvailablePartner($request->area, []);
+                    $partner = Partner::getAvailablePartner($area, []);
                     if(!$partner)
                         //$assigned_partner = config('constants.default_assign_partner');
                         return [
@@ -75,7 +96,7 @@ class ProfileController extends Controller
             })
                 ->find($user->assigned_partner);
             if(!$partner){
-                $partner = Partner::getAvailablePartner($request->area, []);
+                $partner = Partner::getAvailablePartner($area, []);
                 if(!$partner)
                     //$assigned_partner = config('constants.default_assign_partner');
                     return [
