@@ -82,7 +82,8 @@ class SidebarController extends Controller
         $arealist=Area::active()->get();
 
         foreach($arealist as $area){
-            $cities_arr[strtoupper($area->city)][]=$area->name;
+            if(!in_array($area->name, $cities_arr[strtoupper($area->city)]))
+             $cities_arr[strtoupper($area->city)][]=$area->name;
         }
         //return $cities_arr;
         return view('service-areas',compact('cities_arr'));

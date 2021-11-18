@@ -39,6 +39,8 @@ class AreaController extends Controller
         $Area->lat=$request->lat;
         $Area->lang=$request->lang; 
         $Area->distance=$request->distance; 
+        $Area->remarks=$request->remarks; 
+        
         $Area->isactive=$request->isactive;
         $Area->save();
         return redirect()->route('area.edit', $Area->id)
@@ -68,6 +70,7 @@ class AreaController extends Controller
             'lat'  =>$request->lat,
             'lang' =>$request->lang, 
             'distance' =>$request->distance, 
+            'remarks' =>$request->remarks, 
             'isactive'=>$request->isactive
         ]);
 
