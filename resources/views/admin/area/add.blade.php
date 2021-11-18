@@ -94,8 +94,16 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-3">
 
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Remarks</label>
+                                                <input type="text" name="remarks" class="form-control" placeholder="Remarks" value=""  required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="isactive">

@@ -115,7 +115,7 @@
                                                 <label>Areas</label>
                                                 <select class="select3" multiple="multiple" data-placeholder="Select  Areas" name="area_ids[]" autofocus style="width: 100%;">
                                                     @foreach($areas as $area)
-                    <option value="{{$area->id}}" @if(in_array($area->id, $assigned_areas)){{'selected'}}@endif>{{$area->name}}({{$area->city}})</option>
+                    <option value="{{$area->id}}" @if(in_array($area->id, $assigned_areas)){{'selected'}}@endif>{{$area->name}}({{$area->city}}) - ({{$area->remarks}})</option>
                                                     @endforeach
                                                 </select>
                                             </div>
