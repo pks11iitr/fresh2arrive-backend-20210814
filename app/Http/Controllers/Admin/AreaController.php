@@ -38,6 +38,7 @@ class AreaController extends Controller
         $Area->pincode=$request->pincode;
         $Area->lat=$request->lat;
         $Area->lang=$request->lang; 
+        $Area->distance=$request->distance; 
         $Area->isactive=$request->isactive;
         $Area->save();
         return redirect()->route('area.edit', $Area->id)
@@ -66,6 +67,7 @@ class AreaController extends Controller
             'pincode'=>$request->pincode,
             'lat'  =>$request->lat,
             'lang' =>$request->lang, 
+            'distance' =>$request->distance, 
             'isactive'=>$request->isactive
         ]);
 

@@ -86,6 +86,14 @@
 
                                         </div>
 
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Distance</label>
+                                                <input type="text" name="distance" class="form-control" placeholder="Distance" value=""  required>
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-3">
 
                                             <div class="form-group">
