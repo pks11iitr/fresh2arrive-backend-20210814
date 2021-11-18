@@ -116,7 +116,7 @@
                                                     <label>Areas</label>
                                                     <select class="select3" multiple="multiple" data-placeholder="Select  Areas" name="area_ids[]" autofocus style="width: 100%;">
                                                         @foreach($area as $area)
-                                                            <option value="{{$area->id}}">{{$area->name}}</option>
+                                                            <option value="{{$area->id}}">{{$area->name}} - ({{$area->remarks}})</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

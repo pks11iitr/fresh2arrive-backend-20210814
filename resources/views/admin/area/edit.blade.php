@@ -97,6 +97,14 @@
 
                                         </div>
 
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Remarks</label>
+                                                <input type="text" name="remarks" class="form-control" placeholder="Remarks" value="{{$area->remarks}}"  required>
+                                            </div>
+                                        </div>
+
+
                                         
                                         <div class="col-md-3">
 

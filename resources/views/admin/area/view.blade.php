@@ -39,6 +39,7 @@
                                         <th>City</th>
                                         <th>State</th>
                                         <th>Pincode</th>
+                                        <th>Remarks</th>
                                         <!-- <th>Lat</th>
                                         <th>Lang</th> -->
                                         <th>Status</th>
@@ -53,6 +54,7 @@
                                             <td>{{$area->city}}</td>
                                             <td>{{$area->state}}</td>
                                             <td>{{$area->pincode}}</td>
+                                            <td>{{$area->remarks}}</td>
                                             <td>{{$area->isactive==1?'Active':'Inactive'}}</td>
                                             <td><a href="{{route('area.edit',['id'=>$area->id])}}">Edit</a></td>
                                         </tr>
