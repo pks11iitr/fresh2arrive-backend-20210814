@@ -29,9 +29,11 @@ class HomeController extends Controller
 
         $today_deliveries = Order::where('delivery_partner', $user->id)
             ->where('delivery_date', $today)
+            ->whereIn('status', ['confirmed', 'processing', 'dispatched', 'delivered'])
             ->count();
         $tomorrow_orders = Order::where('delivery_partner', $user->id)
             ->where('delivery_date', $tomorrow)
+            ->whereIn('status', ['confirmed', 'processing', 'dispatched', 'delivered'])
             ->count();
         $today_delivered = Order::where('delivery_partner', $user->id)
             ->where('delivery_date', $today)
