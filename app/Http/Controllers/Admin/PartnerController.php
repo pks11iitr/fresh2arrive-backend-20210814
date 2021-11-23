@@ -168,7 +168,7 @@ class PartnerController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start0)
             ->where('orders.delivery_date', '<=', $end0)
-            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->select(DB::raw('sum(round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
             ->groupBy('orders.delivery_partner');
         if($request->partner_id)
             $earnings0=$earnings0->where('delivery_parnter', $request->partner_id);
@@ -183,7 +183,7 @@ class PartnerController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start1)
             ->where('orders.delivery_date', '<=', $end1)
-            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100))  as earnings'), 'delivery_partner')
+            ->select(DB::raw('sum(round(order_details.commissions*order_details.packet_price*order_details.packet_count/100))  as earnings'), 'delivery_partner')
             ->groupBy('orders.delivery_partner');
         if($request->partner_id)
             $earnings1=$earnings1->where('delivery_parnter', $request->partner_id);
@@ -198,7 +198,7 @@ class PartnerController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start2)
             ->where('orders.delivery_date', '<=', $end2)
-            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->select(DB::raw('sum(round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
             ->groupBy('orders.delivery_partner');
         if($request->partner_id)
             $earnings2=$earnings2->where('delivery_parnter', $request->partner_id);
@@ -213,7 +213,7 @@ class PartnerController extends Controller
             ->where('order_details.status', 'delivered')
             ->where('orders.delivery_date', '>=', $start3)
             ->where('orders.delivery_date', '<=', $end3)
-            ->select(DB::raw('round(sum(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
+            ->select(DB::raw('sum(round(order_details.commissions*order_details.packet_price*order_details.packet_count/100)) as earnings'), 'delivery_partner')
             ->groupBy('orders.delivery_partner');
        if($request->partner_id)
            $earnings3=$earnings3->where('delivery_parnter', $request->partner_id);
