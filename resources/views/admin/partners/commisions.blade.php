@@ -44,7 +44,7 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
+                                                        <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
