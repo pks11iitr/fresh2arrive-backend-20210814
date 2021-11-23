@@ -29,7 +29,7 @@
                                 <div class="row">
 
                                     <div class="col-md-10">
-                                        <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
+                                        <form role="form" method="get" enctype="multipart/form-data" action="">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-5">
