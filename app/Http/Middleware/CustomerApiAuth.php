@@ -38,7 +38,7 @@ class CustomerApiAuth
             $i=0;
             foreach($cart_items as $c){
                 $cart_total_quantity++;
-                $cart[$i]=$c->quantity;
+                $cart[$c->product_id]=$c->quantity;
                 $i++;
             }
         }else if($request->device_id){
@@ -51,7 +51,7 @@ class CustomerApiAuth
             $i=0;
             foreach($cart_items as $c){
                 $cart_total_quantity++;
-                $cart[$i]=$c->quantity;
+                $cart[$c->product_id]=$c->quantity;
                 $i++;
             }
         }
