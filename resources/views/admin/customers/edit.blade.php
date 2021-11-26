@@ -87,12 +87,12 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>House No</label>
+                                                <label>House/Flat No/Block & Floor</label>
                                                 <input type="text" name="house_no" class="form-control" placeholder="House No" value="{{$customer->house_no}}"  required>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Building</label>
+                                                <label>Tower/Block Name</label>
                                                 <input type="text" name="building" class="form-control" placeholder="Building"  value="{{$customer->building}}" required>
                                             </div>
 
@@ -140,7 +140,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Street </label>
+                                                <label>Society/Sector Name </label>
                                                 <input type="text" name="street" class="form-control" placeholder="Street"  value="{{$customer->street}}" required>
                                             </div>
                                             <!-- /.col -->

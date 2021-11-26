@@ -75,7 +75,7 @@
     </tr>
 
     <tr>
-        <td colspan="5"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->area}},{{$order_data->city}},{{$order_data->state}},{{$order_data->pincode}}</p>
+        <td colspan="5"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->building}},{{$order_data->street}},{{$order_data->city}},{{$order_data->pincode}},({{$order_data->area}})</p>
         </td>
     </tr>
 

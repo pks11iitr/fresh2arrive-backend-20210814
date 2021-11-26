@@ -51,6 +51,18 @@
                                     <br/>
                                     <div class="row">
 
+                                <div class="col-md-4">
+                                    <b>Customer Mobile</b> -   <b class="text-danger">{{$Ticket->customer->mobile}}</b>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <b>Partner Mobile</b> -   <b class="text-danger">{{$Ticket->partners_name->mobile}}</b>
+                                </div>
+
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Customer Comments </label>
@@ -134,7 +146,7 @@
                                         <td>{{$Ticketitem->order_details->name}}</td>
                                         <td>{{$Ticketitem->packet_count}}</td>
                                         <td>{{$Ticketitem->issue}}</td>
-                                        <td><img src="{{$Ticketitem->image}}"  style="width:100px;height:50px"/></td>
+                                        <td><a href="#" target="_blank"><img src="{{$Ticketitem->image}}"  style="width:100px;height:50px"/></a></td>
                                         <td>{{$Ticketitem->	created_at}}</td>
                                     </tr>
                                 @endforeach

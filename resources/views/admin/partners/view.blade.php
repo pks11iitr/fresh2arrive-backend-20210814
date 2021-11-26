@@ -32,7 +32,7 @@
                                         <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <select class="form-control" name="search_type">
                                                             <option value="">--Select Search Type--</option>
@@ -41,11 +41,22 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                <select name="area" class="form-control"> 
+                                                @foreach($areas as $area)
+                                                 <option value="{{$area->id}}">{{$area->name}}</option>
+                                                @endforeach
+                                                </select>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <button type="submit" class="btn btn-success ">Search</button>
