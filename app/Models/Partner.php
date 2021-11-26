@@ -134,7 +134,7 @@ class Partner extends Authenticatable implements JWTSubject
         $area = $location;
         $partners = Partner::whereHas('areas', function($areas) use($area){
 
-            $areas->where('area_list.name', $area);
+            $areas->where('area_list.id', $area->id);
 
         })
             ->where('status', 1)
@@ -180,7 +180,7 @@ class Partner extends Authenticatable implements JWTSubject
     public static function checkPartnerAvailability($area, $partner_id){
         $partner = Partner::whereHas('areas', function($areas) use($area){
 
-            $areas->where('area_list.name', $area);
+            $areas->where('area_list.id', $area->id);
 
         })
             ->where('status', 1)

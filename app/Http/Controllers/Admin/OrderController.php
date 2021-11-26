@@ -66,11 +66,11 @@ class OrderController extends Controller
     {
 
         $order=Order::findOrFail($order_id);
-        $order->update([
-            'status'=>$book_status,
-        ]);
-
-
+        $order->status=$book_status;
+        if($book_status == 'delivered'){
+            $order->delivered_at=date('Y-m-d H:i:s');
+        }
+        $order->save();
         return redirect()->back()->with('success', 'Status has been updated');
     }
 
@@ -78,7 +78,7 @@ class OrderController extends Controller
 
 
     public function reportorder(){
-        
+
         return "gggg";
 
     }

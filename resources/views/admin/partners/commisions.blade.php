@@ -29,7 +29,7 @@
                                 <div class="row">
 
                                     <div class="col-md-10">
-                                        <form role="form" method="get" enctype="multipart/form-data" action="{{route('partners.list')}}">
+                                        <form role="form" method="get" enctype="multipart/form-data" action="">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-5">
@@ -44,7 +44,7 @@
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="form-group">
-                                                        <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
+                                                        <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">

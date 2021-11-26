@@ -187,13 +187,10 @@
                                     </div>
                                     <div class="col-md-6 text-right">
                                         @if($order->status=='confirmed')
+                                            <a  align="right" class="btn btn-warning " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'processing'])}}" >Start Processing</a>
 
-                                            <a  align="right" class="btn btn-warning " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'processing'])}}" >Process</a>
-
-                                            @elseif($order->status=='processing')
-                                            <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'delivered'])}}" >Click Deliver</a>
-                                            @else
-                                            <a  align="right" class="btn btn-danger " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'delivered'])}}" >Delivered</a>
+                                        @elseif($order->status=='processing')
+                                            <a  align="right" class="btn btn-success " href="{{route('orders.updateStatus', ['user_id'=>$order->user_id,'order_id'=>$order->id,'book_status'=>'delivered'])}}" >Mark Deliver</a>
                                         @endif
                                     </div>
                                 </div>
