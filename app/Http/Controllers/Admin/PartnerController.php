@@ -16,6 +16,11 @@ class PartnerController extends Controller
     use FileTransfer;
 
     public  function index(Request $request){
+
+        $areas = Area::select('name','id')->distinct()
+        ->groupBy('name')
+        ->get();
+
         $search_type=$request->search_type==1?'name':'mobile';
         if($request->search){
             $partners = Partner::where($search_type,'Like',"%$request->search%")
@@ -24,8 +29,7 @@ class PartnerController extends Controller
             $partners = Partner::orderBy('id','desc')
                 ->paginate(10);
         }
-
-        return view('admin.partners.view',compact('partners'));
+        return view('admin.partners.view',compact('partners','areas'));
     }
 
     public  function  create(Request $request){
