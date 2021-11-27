@@ -46,12 +46,12 @@
                                                         <input type="text" name="search" class="form-control" placeholder="Search Only Partner Name"  required>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                <select name="area" class="form-control"> 
+                                                <select name="area" class="form-control">
                                                 @foreach($areas as $area)
-                                                 <option value="{{$area->id}}">{{$area->name}}</option>
+                                                 <option value="{{$area->id}}">{{$area->name}} {{$area->remarks}}</option>
                                                 @endforeach
                                                 </select>
                                                     </div>
