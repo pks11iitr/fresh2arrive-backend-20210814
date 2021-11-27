@@ -17,8 +17,8 @@ class PartnerController extends Controller
 
     public  function index(Request $request){
 
-        $areas = Area::select('name','id')->distinct()
-        ->groupBy('name')
+        $areas = Area::active()->select('name','id')
+            ->orderby('name', 'asc')
         ->get();
 
         $search_type=$request->search_type==1?'name':'mobile';
