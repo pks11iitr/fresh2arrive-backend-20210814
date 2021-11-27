@@ -17,7 +17,7 @@ class PartnerController extends Controller
 
     public  function index(Request $request){
 
-        $areas = Area::active()->select('name','id')
+        $areas = Area::active()->select('name','id', 'remarks')
             ->orderby('name', 'asc')
         ->get();
 
