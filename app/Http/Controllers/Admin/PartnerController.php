@@ -27,8 +27,8 @@ class PartnerController extends Controller
 				->orderBy('status', 'desc')
                 ->paginate(10);
         }else{
-            $partners = Partner::orderBy('id','desc')
-                ->orderBy('status', 'desc')
+            $partners = Partner::
+                orderBy('status', 'desc')
                 ->paginate(10);
         }
         return view('admin.partners.view',compact('partners','areas'));

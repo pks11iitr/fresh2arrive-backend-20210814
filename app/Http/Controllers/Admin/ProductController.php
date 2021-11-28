@@ -21,7 +21,8 @@ class ProductController extends Controller
 
         if($request->search)
             $products = $products->where('name', 'LIKE', "%$request->search%");
-        $products = $products->orderBy('id','desc')
+        
+        $products = $products
 			->orderBy('isactive', 'desc')
             ->paginate(100);
             
