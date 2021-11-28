@@ -117,7 +117,6 @@
                                         <th>Balance</th>
                                         <th>Status</th>
                                         <th>Action</th>
-{{--                                        <th>Wallet</th>--}}
                                     </tr>
 
 
