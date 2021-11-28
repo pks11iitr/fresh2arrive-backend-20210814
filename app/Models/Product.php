@@ -69,7 +69,7 @@ class Product extends Model
         if(!empty($pids)){
             // calculate total stock
             $purchased_quantity=Inventory::purchased_quantity($pids);
-            $consumed_stock=OrderDetail::consumed_quantity([$pids]);
+            $consumed_stock=OrderDetail::consumed_quantity($pids);
             // calculate sold out stock
             //$sold_quantity=Order
             //get difference & set flag

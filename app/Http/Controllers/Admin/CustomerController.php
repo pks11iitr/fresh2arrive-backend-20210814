@@ -36,7 +36,7 @@ class CustomerController extends Controller
 
         if($request->search){
             $customer = Customer::where($search_type, 'LIKE', "%$request->search%")
-                ->paginate(10);
+                ->paginate(100);
                 $count=$this->count_customer(0);
         } 
         
@@ -44,13 +44,13 @@ class CustomerController extends Controller
           
              $customer = Customer::where('assigned_partner',$request->partners)
                 ->orderBy('id','desc')
-                ->paginate(10);
+                ->paginate(100);
                 $count=$this->count_customer($request->partners);
         }
         
         else{ 
             $customer = Customer::orderBy('id','desc')
-                ->paginate(10);
+                ->paginate(100);
                 $count=$this->count_customer(0);
         }
 

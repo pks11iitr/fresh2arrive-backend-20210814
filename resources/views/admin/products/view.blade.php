@@ -64,6 +64,7 @@
                                         <th>Packet Price</th>
                                         <th>Commissions</th>
                                         <th>Tag</th>
+                                        <th>Stock</th>
                                         <th>Isactive</th>
                                         <th>Action</th>
                                     </tr>
@@ -78,6 +79,7 @@
                                             <td>{{$product->price_per_unit}}</td>
                                             <td>{{$product->commissions}}</td>
                                             <td>{{$product->tag}}</td>
+                                            <td>{{$product->remaining_stock}}</td>
                                             <td>{{$product->isactive==1?'Active':'Inactive'}}</td>
                                             <td><a href="{{route('products.edit',['id'=>$product->id])}}">Edit</a></td>
                                         </tr>

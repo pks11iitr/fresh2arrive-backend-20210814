@@ -20,7 +20,23 @@ class ProductController extends Controller
         if($request->search)
             $products = $products->where('name', 'LIKE', "%$request->search%");
         $products = $products->orderBy('id','desc')
-            ->paginate(20);
+            ->paginate(100);
+            
+        $pids=$products->map(function($element){
+				return $element->id;
+			})->toArray(); 
+			
+		$purchased_quantity=Inventory::purchased_quantity($pids);
+		$consumed_stock=OrderDetail::consumed_quantity([$pids]);
+        foreach($products as $p){
+
+			if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
+				$p->remaining_stock='Out of stock';
+			}else{
+				$p->remaining_stock=($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0);
+			}
+		}	   
+            
         return view('admin.products.view',compact('products'));
     }
 
