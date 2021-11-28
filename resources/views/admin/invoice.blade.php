@@ -54,7 +54,7 @@
 
     <tr>
         <td colspan="3"><p>OrderID: {{$order_data->refrerid ?? 0}}</p></td>
-        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no ?? 0}}</p></td>
+        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no ?? 1}}</p></td>
     </tr>
 
 <!--
@@ -149,11 +149,13 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Total :-</td>
         <td>{{$total}}</td>
     </tr>
 
     <tr class="trborder">
+        <td></td>
         <td></td>
         <td></td>
         <td>GST exempted :-</td>
@@ -163,6 +165,7 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Discount :-</td>
         <td>0</td>
     </tr>
@@ -170,11 +173,13 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Eco Friendly Packaging:-</td>
         <td>{{$order_data->echo_charges}}</td>
     </tr>
 
     <tr class="trborder">
+        <td></td>
         <td></td>
         <td></td>
         <td><b>Grand Total :-</b></td>
