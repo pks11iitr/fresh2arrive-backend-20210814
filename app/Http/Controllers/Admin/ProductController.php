@@ -7,6 +7,8 @@ use App\Http\Controllers\Traits\FileTransfer;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Inventory;
+use App\Models\OrderDetail;
 
 class ProductController extends Controller
 {
