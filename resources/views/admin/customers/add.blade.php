@@ -133,8 +133,8 @@
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="status">
                                                     <option value="">Please Select Status</option>
-                                                    <option value="0">Active</option>
-                                                    <option value="1"><Ina></Ina>ctive</option>
+                                                    <option value="0">Inactive</option>
+                                                    <option value="1"><Ina></Ina>Active</option>
                                                 </select>
                                             </div>
                                             <!-- /.col -->

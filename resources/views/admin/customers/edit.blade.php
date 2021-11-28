@@ -134,8 +134,8 @@
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="status">
                                                     <option value="">Please Select Status</option>
-                                                    <option @if($customer->status==0){{'selected=selected'}}@endif value="1">Inactive </option>
-                                                    <option @if($customer->status==1){{'selected=selected'}}@endif value="0">Active</option>
+                                                    <option @if($customer->status==0){{'selected=selected'}}@endif value="0">Inactive </option>
+                                                    <option @if($customer->status==1){{'selected=selected'}}@endif value="1">Active</option>
                                                     <option @if($customer->status==2){{'selected=selected'}}@endif value="2">Block</option>
                                                 </select>
                                             </div>
