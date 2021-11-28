@@ -104,7 +104,7 @@
     </tr>
     <tr>
 -->
-        <td colspan="2"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
+        <td colspan="2"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }} {{ $order_data->delivery_time }} </p></td>
 {{--                Thu 28 oct 2021--}}
 <!--
     </tr>
