@@ -117,6 +117,7 @@
                                         <th>Balance</th>
                                         <th>Status</th>
                                         <th>Action</th>
+                                        <th>Wallet</th>
                                     </tr>
 
 
@@ -144,7 +145,7 @@
 
                         <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
-{{--            <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>--}}
+            <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
