@@ -24,9 +24,11 @@ class PartnerController extends Controller
         $search_type=$request->search_type==1?'name':'mobile';
         if($request->search){
             $partners = Partner::where($search_type,'Like',"%$request->search%")
+				->orderBy('status', 'desc')
                 ->paginate(10);
         }else{
             $partners = Partner::orderBy('id','desc')
+                ->orderBy('status', 'desc')
                 ->paginate(10);
         }
         return view('admin.partners.view',compact('partners','areas'));
