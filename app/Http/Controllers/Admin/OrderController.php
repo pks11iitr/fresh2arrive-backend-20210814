@@ -88,13 +88,14 @@ class OrderController extends Controller
 
         if($request->fromdate && $request->timeslots && $request->todate)
         {
-            $quantities = OrderDetail::where('delivery_date', '>=', $request->fromdate)
-                ->whereHas('orderss', function($order){
-                    $order->whereNotIn('orders.status', ['pending', 'cancelled']);
+            $quantities = OrderDetail::whereHas('orderss', function($order) use ($request){
+                    $order->whereNotIn('orders.status', ['pending', 'cancelled'])
+                        ->where('delivery_date', '<=', $request->todate)
+                        ->whereIn('delivery_slot',$request->timeslots)
+                    ->where('delivery_date', '>=', $request->fromdate);
                 })
                 ->with('product')
-                ->where('delivery_date', '<=', $request->todate)
-                ->whereIn('delivery_slot',$request->timeslots)
+
                 ->groupBy('product_id')
                 ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
                 ->paginate(100);
