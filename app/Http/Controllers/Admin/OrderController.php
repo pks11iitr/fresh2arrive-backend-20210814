@@ -9,6 +9,7 @@ use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
+use DB;
 
 class OrderController extends Controller
 {
