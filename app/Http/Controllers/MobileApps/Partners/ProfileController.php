@@ -25,7 +25,7 @@ class ProfileController extends Controller
 
         if(empty($user->pan_url) || empty($user->aadhaar_url)){
 
-            if(empty($request->pan_image) || empty($request->aadhaar_image))
+            if(empty($request->pan_image) || empty($request->aadhaar_image || !$request->hasFile('pan_image') || !$request->hasFile('aadhaar_image')))
                 return [
                     'status'=>'failed',
                     'action'=>'',
