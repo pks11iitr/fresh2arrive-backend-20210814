@@ -88,7 +88,7 @@ class OrderController extends Controller
         if($request->fromdate && $request->timeslots && $request->todate)
         {
             $quantities = OrderDetail::where('delivery_date', '>=', $request->fromdate)
-                ->whereHas('order', function($order){
+                ->whereHas('orderss', function($order){
                     $order->whereNotIn('orders.status', ['pending', 'cancelled']);
                 })
                 ->with('product')
