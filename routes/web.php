@@ -37,7 +37,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
 
     Route::get('updateStatus/{user_id}/{order_id}/{book_status}', 'Admin\OrderController@update_status')->name('orders.updateStatus');
 
-   
+
     Route::group(['prefix'=>'banners'], function(){
 
             Route::get('/','Admin\BannerController@index')->name('banners.list');
@@ -110,7 +110,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('store', 'Admin\OrderController@store')->name('orders.store');
         Route::get('edit/{id}','Admin\OrderController@edit')->name('orders.edit');
         Route::post('update/{id}', 'Admin\OrderController@update')->name('orders.update');
-        Route::get('reportorder', 'Admin\OrderController@reportorder')->name('orders.report');
+        Route::get('reportorder', 'Admin\OrderController@orderWiseProductQuantity')->name('orders.report');
     });
 
 

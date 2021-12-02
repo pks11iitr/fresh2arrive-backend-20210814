@@ -3,7 +3,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
@@ -77,9 +79,27 @@ class OrderController extends Controller
 
 
 
-    public function reportorder(){
+    public function orderWiseProductQuantity(Request $request){
 
-        return "gggg";
+        $quantities = [];
+
+        $timeslots = TimeSlot::get();
+
+        if($request->fromdate && $request->timeslots && $request->todate)
+        {
+            $quantities = OrderDetail::where('delivery_date', '>=', $request->fromdate)
+                ->whereHas('order', function($order){
+                    $order->whereNotIn('orders.status', ['pending', 'cancelled']);
+                })
+                ->with('product')
+                ->where('delivery_date', '<=', $request->todate)
+                ->whereIn('delivery_slot',$request->timeslots)
+                ->groupBy('product_id')
+                ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
+                ->paginate(100);
+        }
+
+        return view('admin.orders.summary', compact('quantities', 'timeslots'));
 
     }
 
