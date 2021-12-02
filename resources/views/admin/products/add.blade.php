@@ -95,6 +95,10 @@
                                                 <label>Consumed Quantity </label>
                                                 <input type="text" name="consumed_quantity" class="form-control" placeholder="Consumed Quantity "  required>
                                             </div>
+                                            <div class="form-group">
+                                                <label>Position </label>
+                                                <input type="text" name="position" class="form-control" placeholder="Position"  required value="1000">
+                                            </div>
 
                                             <div class="form-group">
                                                 <label> Tag</label>
