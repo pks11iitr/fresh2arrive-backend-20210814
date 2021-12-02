@@ -56,7 +56,7 @@ class OrderDetail extends Model
     }
 
     public function orderss(){
-        return $this->belongsTo('App\Models\Product', 'order_id');
+        return $this->belongsTo('App\Models\Order', 'order_id');
     }
 
 }
