@@ -53,9 +53,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <a class="btn btn-info" href="{{route('orders.report')}}">Reset</a>
                                             </div>
                                         </div>
 
