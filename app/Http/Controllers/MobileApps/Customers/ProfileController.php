@@ -37,7 +37,15 @@ class ProfileController extends Controller
         ]);
 
         $map_json = json_decode($request->map_json, true);
-        $map_address = $map_json['results'][0]['formatted_address'];
+        $map_address = $map_json['results'][0]['formatted_address']??'';
+
+        if(empty($map_address))
+            return [
+                'status'=>'failed',
+                'action'=>'',
+                'display_message'=>'Location cannot be fetched',
+                'data'=>[]
+            ];
 
 
         $haversine = "(6371 * acos(cos(radians($request->lat))
