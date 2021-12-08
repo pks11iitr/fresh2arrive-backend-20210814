@@ -158,8 +158,7 @@
 
                                             <div class="form-group">
                                                 <label>Reffered By</label>
-                                                <input type="hidden" name="reffered_by" value="{{$customer->reffered_by}}">
-                                                <input type="text" readonly name="" class="form-control"  value="{{$customername}}" placeholder="Reffered By"  required>
+                                                <input type="text" disabled name="" class="form-control"  value="{{$customer->refferer->name??''}}" placeholder="Reffered By"  required>
                                             </div>
                                         </div>
 
@@ -169,18 +168,10 @@
                                                 <label>Reffered By Partner</label>
 
 
-                                                    <?php
-                                                    if(empty($customer->partnerRefferer->name??'')){
-                                                        $partner_name="NA";
-                                                    }else{
-                                                        $partner_name=$customer->partnerRefferer->name??'';
-                                                    }
-
-                                                    ?>
 
 
-                                                <input type="hidden" name="reffered_by_partner"  value="{{$customer->partner->id??0}}">
-                                                <input type="text"  readonly class="form-control" value="{{$partner_name}}"  placeholder="Reffered By Partner" >
+
+                                                <input type="text"  disabled class="form-control" value="{{$customer->partnerRefferer->name}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
 
