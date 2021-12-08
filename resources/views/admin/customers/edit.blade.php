@@ -171,7 +171,7 @@
 
 
 
-                                                <input type="text"  disabled class="form-control" value="{{$customer->partnerRefferer->name}}"  placeholder="Reffered By Partner" >
+                                                <input type="text"  disabled class="form-control" value="{{$customer->partnerRefferer->name??''}}"  placeholder="Reffered By Partner" >
                                             </div>
                                         </div>
 
