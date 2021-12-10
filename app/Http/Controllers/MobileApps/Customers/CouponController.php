@@ -114,10 +114,10 @@ class CouponController extends Controller
 
             }
 
-            $user->coupon_applied = $coupon->code;
+            $user->applied_coupon = $coupon->code;
             $coupon_applied = $coupon->code;
         }else{
-            $user->coupon_applied = null;
+            $user->applied_coupon = null;
             $coupon_applied = '';
         }
 
