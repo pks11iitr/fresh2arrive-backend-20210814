@@ -76,8 +76,6 @@ class CouponController extends Controller
                 ];
             }
 
-            $user->coupon_applied = $coupon->code;
-            $coupon_applied = $coupon->code;
         }
 
         $items=Cart::with(['product'])
@@ -115,6 +113,12 @@ class CouponController extends Controller
                 ];
 
             }
+
+            $user->coupon_applied = $coupon->code;
+            $coupon_applied = $coupon->code;
+        }else{
+            $user->coupon_applied = null;
+            $coupon_applied = '';
         }
 
         if($request->echo_pack){
