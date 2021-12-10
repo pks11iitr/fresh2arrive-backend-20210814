@@ -259,12 +259,13 @@ class CartController extends Controller
 
 
         //----------------check echo charges----------
+        $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
+        $echo_charges = intval($echo_charges->value??0);
         if($user->echo_selected){
-            $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
-            $echo_charges = intval($echo_charges->value??0);
+            $echo_charges_1 = $echo_charges;
             $echo_selected = 1;
         }else{
-            $echo_charges =0;
+            $echo_charges_1 = 0;
             $echo_selected = 0;
         }
 
@@ -272,9 +273,9 @@ class CartController extends Controller
         $prices=[
             'item_count'=>$count,
             'item_total'=>round($cost,2),
-            'echo-packing'=>$echo_charges,
+            'echo-packing'=>$echo_charges_1,
             'coupon_discount'=>$coupon_discount,
-            'total_payble'=>round($cost,2) + $echo_charges - $coupon_discount,
+            'total_payble'=>round($cost,2) + $echo_charges_1 - $coupon_discount,
             'wallet_balance'=>$balance
         ];
 
