@@ -5,6 +5,7 @@ namespace App\Http\Controllers\MobileApps\Customers;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Configuration;
+use App\Models\Coupon;
 use App\Models\DeliveryPartner;
 use App\Models\Inventory;
 use App\Models\OrderDetail;
@@ -193,9 +194,6 @@ class CartController extends Controller
         }
 
 
-        $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
-        $echo_charges = intval($echo_charges->value??0);
-
         if($user){
             $balance=Wallet::balance($user->id);
             //$balance = $walletdetails['balance'];
@@ -224,12 +222,59 @@ class CartController extends Controller
             ];
         }
 
+
+        //--------------Check Coupon Status-----------------
+        if($user->applied_coupon){
+            $coupon = Coupon::active()->where('code', $user->applied_coupon)->first();
+            if(!$coupon){
+                $user->applied_coupon = null;
+                $user->save();
+                $coupon_discount = 0;
+                $coupon_applied = '';
+            }else{
+
+                $eligibility=$coupon->getUserEligibility($user);
+                if(!$eligibility){
+                    $user->applied_coupon = null;
+                    $user->save();
+                    $coupon_discount = 0;
+                    $coupon_applied = '';
+                }else{
+                    $discount=$coupon->getCouponDiscount($cost);
+                    if($discount <= 0){
+                        $user->applied_coupon = null;
+                        $user->save();
+                        $coupon_discount = 0;
+                        $coupon_applied = '';
+                    }else{
+                        $coupon_discount = $discount;
+                        $coupon_applied = $user->coupon_applied;
+                    }
+                }
+            }
+        }else{
+            $coupon_discount = 0;
+            $coupon_applied = '';
+        }
+
+
+        //----------------check echo charges----------
+        if($user->echo_selected){
+            $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
+            $echo_charges = intval($echo_charges->value??0);
+            $echo_selected = 1;
+        }else{
+            $echo_charges =0;
+            $echo_selected = 0;
+        }
+
+
         $prices=[
             'item_count'=>$count,
             'item_total'=>round($cost,2),
             'echo-packing'=>$echo_charges,
-            'coupon_discount'=>0,
-            'total_payble'=>round($cost,2)+$echo_charges,
+            'coupon_discount'=>$coupon_discount,
+            'total_payble'=>round($cost,2) + $echo_charges - $coupon_discount,
             'wallet_balance'=>$balance
         ];
 
@@ -248,20 +293,31 @@ class CartController extends Controller
             ];
         }
 
+        $min_order_value = Configuration::where('param', 'min_order_value')
+            ->first();
+        $min_order_value = $min_order_value->value??0;
+
         if(!$user)
             $bottom_button_text='Login to continue';
         else{
-            if(round($cost,2) <= $balance)
-                $bottom_button_text = 'Place Order';
-            else
-                $bottom_button_text = 'Add Rs.'.(round($cost,2)+$echo_charges - $balance).' to wallet';
+            if($prices['item_total'] < $min_order_value){
+                $bottom_button_text = 'Minimum order value is Rs.'.$min_order_value;
+            }else{
+                if($prices['total_payble'] <= $prices['wallet_balance'])
+                    $bottom_button_text = 'Place Order';
+                else
+                    $bottom_button_text = 'Add Rs.'.($prices['total_payble'] - $prices['wallet_balance']).' to wallet';
+            }
+
         }
+
+        $add_wallet_amount = $prices['total_payble'] - $prices['wallet_balance'];
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>'',
-            'data'=>compact('items', 'prices', 'time_slots', 'delivery_partner', 'bottom_button_text', 'echo_charges', 'delivery_address', 'count', 'cost')
+            'data'=>compact('items', 'prices', 'time_slots', 'delivery_partner', 'bottom_button_text', 'echo_charges', 'delivery_address', 'count', 'cost', 'echo_selected', 'coupon_applied', 'add_wallet_amount', 'min_order_value')
         ];
 
 
