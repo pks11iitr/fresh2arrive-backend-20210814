@@ -224,7 +224,7 @@ class CartController extends Controller
 
 
         //--------------Check Coupon Status-----------------
-        if($user->applied_coupon){
+        if(!empty($user->applied_coupon)){
             $coupon = Coupon::active()->where('code', $user->applied_coupon)->first();
             if(!$coupon){
                 $user->applied_coupon = null;
@@ -248,7 +248,7 @@ class CartController extends Controller
                         $coupon_applied = '';
                     }else{
                         $coupon_discount = $discount;
-                        $coupon_applied = $user->coupon_applied;
+                        $coupon_applied = $user->applied_coupon;
                     }
                 }
             }
