@@ -71,8 +71,15 @@ class ProfileController extends Controller
             if(empty($user->reffered_by_partner)){
                 // if no reffereal mentioned
                 $partner = Partner::getAvailablePartner($area, []);
-                if(!$partner)
-                    $assigned_partner = config('constants.default_assign_partner');
+                if(!$partner){
+                    //$assigned_partner = config('constants.default_assign_partner');
+                    return [
+                        'status'=>'failed',
+                        'action'=>'',
+                        'display_message'=>'No delivery partner is available at this location',
+                        'data'=>[]
+                    ];
+                }
                 else
                     $assigned_partner=$partner;
             }else{
