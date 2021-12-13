@@ -85,8 +85,9 @@
                                                 <label>Status</label>
                                                 <select class="form-control select2" name="status">
                                                     <option value="">Please Select Status</option>
-                                                    <option @if($Partners->status==1) {{'selected=selected'}}@endif value="1">Yes</option>
-                                                    <option @if($Partners->status==0){{'selected=selected'}}@endif value="0">No</option>
+                                                    <option @if($Partners->status==1) {{'selected=selected'}}@endif value="1">Active</option>
+                                                    <option @if($Partners->status==0){{'selected=selected'}}@endif value="0">Inactive</option>
+                                                    <option @if($Partners->status==2){{'selected=selected'}}@endif value="2">Blocked</option>
 
                                                 </select>
                                             </div>

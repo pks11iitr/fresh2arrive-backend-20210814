@@ -137,7 +137,7 @@ class Partner extends Authenticatable implements JWTSubject
             $areas->where('area_list.id', $area->id);
 
         })
-            ->where('status', 1)
+            ->where('partners.status', 1)
             ->withCount('clients')
             ->whereNotIn('partners.id', $ignore_list)
             ->get();
@@ -183,7 +183,7 @@ class Partner extends Authenticatable implements JWTSubject
             $areas->where('area_list.id', $area->id);
 
         })
-            ->where('status', 1)
+            ->where('partners.status', 1)
             ->find($partner_id);
 
         if($partner)

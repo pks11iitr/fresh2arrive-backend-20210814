@@ -95,7 +95,7 @@
                                             <td>{{$partner->city}}</td>
                                             <td>{{$partner->pincode}}</td>
                                             <td>{{$partner->state}}</td>
-                                            <td>{{$partner->status?'Active':'Inactive'}}</td>
+                                            <td>{{$partner->status==1?'Active':($partner->status==2?'Blocked':'Inactive')}}</td>
                                             <td><a href="{{route('partners.edit',['id'=>$partner->id])}}">Edit</a></td>
                                         </tr>
                                     @endforeach
