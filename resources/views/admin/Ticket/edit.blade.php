@@ -146,7 +146,12 @@
                                         <td>{{$Ticketitem->order_details->name}}</td>
                                         <td>{{$Ticketitem->packet_count}}</td>
                                         <td>{{$Ticketitem->issue}}</td>
-                                        <td><a href="#" target="_blank"><img src="{{$Ticketitem->image}}"  style="width:100px;height:50px"/></a></td>
+                                        <td>
+                                            @if($Ticketitem->image)
+                                            <a href="{{$Ticketitem->image}}" target="_blank">
+                                                <img src="{{$Ticketitem->image}}"  style="width:100px;height:50px"/></a>
+                                            @endif
+                                        </td>
                                         <td>{{$Ticketitem->	created_at}}</td>
                                     </tr>
                                 @endforeach
