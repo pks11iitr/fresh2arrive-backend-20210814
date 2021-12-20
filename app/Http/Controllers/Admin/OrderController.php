@@ -16,9 +16,17 @@ class OrderController extends Controller
     public function index(Request $request){
         $search_type=$request->search_type=='1'?'refid':'name';
         if($request->search){
-            $orders = Order::where($search_type,'Like',"%$request->search%");
+            $orders = Order::with(['customer'=>function($customer){
+                $customer->withCount(['orders'=>function($orders){
+                    $orders->where('orders.status', '!=', 'cancelled');
+                }]);
+            }])->where($search_type,'Like',"%$request->search%");
         }else{
-            $orders = Order ::orderBy('id','desc');
+            $orders = Order ::with(['customer'=>function($customer){
+                $customer->withCount(['orders'=>function($orders){
+                    $orders->where('orders.status', '!=', 'cancelled');
+                }]);
+            }])->orderBy('id','desc');
         }
 
         if($request->fromdate)

@@ -206,11 +206,7 @@ class OrderController extends Controller
             ];
 
         if($type=='active'){
-            $orders = Order::with(['customer'=>function($customer){
-               $customer->withCount(['orders'=>function($orders){
-                   $orders->where('orders.status', '!=', 'cancelled');
-               }]);
-            }])->where('user_id', $user->id)
+            $orders = Order::where('user_id', $user->id)
                 ->orderBy('id', 'desc')
                 ->where('is_paid',true)
                 ->whereIn('status', ['confirmed', 'processing', 'dispatched'])
