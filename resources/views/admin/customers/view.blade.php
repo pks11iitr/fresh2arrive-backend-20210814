@@ -110,6 +110,7 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                         <th>Wallet</th>
+                                        <th>Registered On</th>
                                     </tr>
 
 
@@ -121,7 +122,7 @@
 
                                             <tr>
                             <td>{{$customers->id}}</td>
-                            <td>{{$customers->name}}</td>
+                            <td>{{$customers->name}}<br>Orders : {{$customers->orders_count}}</td>
                             <td>{{$customers->mobile}}</td>
                             <td>{{$customers->area}}</td>
                             <td>{{$customers->partner->name??'Not Alloted'}}</td>
@@ -138,6 +139,7 @@
                         <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
             <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>
+                                                <td>{{date('d/m/Y h:i:a',strtotime($customers->created_on))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

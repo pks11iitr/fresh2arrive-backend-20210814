@@ -125,7 +125,7 @@
                                         @foreach($orders as $Order)
                         <tr>
                             <td>{{$Order->id}}</td>
-                            <td>{{$Order->customer->name.' - '.$Order->customer->mobile}}</td>
+                            <td>{{$Order->customer->name.' - '.$Order->customer->mobile}}<br>Total Orders: {{$Order->customer->orders_count}}</td>
                             <td>{{$Order->order_total}}</td>
                             <td>{{$Order->status}}</td>
                             <td>{{$Order->is_paid==1 ? 'Yes':'No'}}</td>

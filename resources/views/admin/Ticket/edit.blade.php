@@ -52,11 +52,11 @@
                                     <div class="row">
 
                                 <div class="col-md-4">
-                                    <b>Customer Mobile</b> -   <b class="text-danger">{{$Ticket->customer->mobile}}</b>
+                                    <b>Customer Mobile</b> -   <b class="text-danger">{{$Ticket->customer->name}} - {{$Ticket->customer->mobile}}</b>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <b>Partner Mobile</b> -   <b class="text-danger">{{$Ticket->partners_name->mobile}}</b>
+                                    <b>Partner</b> -   <b class="text-danger">{{$Ticket->partners_name->name}} - {{$Ticket->partners_name->mobile}}</b>
                                 </div>
 
                                     </div>

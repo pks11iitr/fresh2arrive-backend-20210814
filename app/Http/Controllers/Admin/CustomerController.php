@@ -33,7 +33,10 @@ class CustomerController extends Controller
 
         $search_type=$request->search_type==1?'name':'mobile';
 
-        $customer = Customer::where('id', '>', 0);
+        $customer = Customer::withCount(['orders'=>function($orders){
+            $orders->where('orders.status', '!=', 'cancelled');
+        }])
+            ->where('id', '>', 0);
 
         if($request->search){
             $customer = $customer->where($search_type, 'LIKE', "%$request->search%");
