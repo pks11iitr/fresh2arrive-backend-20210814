@@ -31,7 +31,7 @@ class ProductController extends Controller
 			})->toArray();
 
 		$purchased_quantity=Inventory::purchased_quantity($pids);
-		$consumed_stock=OrderDetail::consumed_quantity([$pids]);
+		$consumed_stock=OrderDetail::consumed_quantity($pids);
         foreach($products as $p){
 
 			if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
