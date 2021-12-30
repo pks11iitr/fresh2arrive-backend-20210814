@@ -95,7 +95,10 @@
                                                 <label>Consumed Quantity </label>
                                                 <input type="text" name="consumed_quantity" class="form-control" placeholder="Consumed Quantity "  required value="{{$product->consumed_quantity}}">
                                             </div>
-
+                                            <div class="form-group">
+                                                <label>Position </label>
+                                                <input type="text" name="position" class="form-control" placeholder="Position"  required value="{{$product->position}}">
+                                            </div>
                                             <div class="form-group">
                                                 <label> Tag</label>
                                                 <select class="form-control select2" name="tag">

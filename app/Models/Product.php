@@ -16,7 +16,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'];
+    protected $fillable=['name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot', 'position'];
 
     protected $appends = ['percent', 'earn_per_sale'];
 
@@ -69,7 +69,7 @@ class Product extends Model
         if(!empty($pids)){
             // calculate total stock
             $purchased_quantity=Inventory::purchased_quantity($pids);
-            $consumed_stock=OrderDetail::consumed_quantity([$pids]);
+            $consumed_stock=OrderDetail::consumed_quantity($pids);
             // calculate sold out stock
             //$sold_quantity=Order
             //get difference & set flag

@@ -7,6 +7,8 @@ use App\Http\Controllers\Traits\FileTransfer;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Inventory;
+use App\Models\OrderDetail;
 
 class ProductController extends Controller
 {
@@ -19,8 +21,26 @@ class ProductController extends Controller
 
         if($request->search)
             $products = $products->where('name', 'LIKE', "%$request->search%");
-        $products = $products->orderBy('id','desc')
-            ->paginate(20);
+
+        $products = $products
+			->orderBy('isactive', 'desc')
+            ->paginate(100);
+
+        $pids=$products->map(function($element){
+				return $element->id;
+			})->toArray();
+
+		$purchased_quantity=Inventory::purchased_quantity($pids);
+		$consumed_stock=OrderDetail::consumed_quantity($pids);
+        foreach($products as $p){
+
+			if(($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0)<=0){
+				$p->remaining_stock='Out of stock';
+			}else{
+				$p->remaining_stock=($purchased_quantity[$p->id]??0)-($consumed_stock[$p->id]??0);
+			}
+		}
+
         return view('admin.products.view',compact('products'));
     }
 
@@ -46,12 +66,13 @@ class ProductController extends Controller
             'min_qty'=>'required',
             'max_qty'=>'required',
             'commissions'=>'required',
-            'category_id'=>'required'
+            'category_id'=>'required',
+            'position'=>'required'
         ]);
 
         $product = Product::create(array_merge(
 
-            $request->only('name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
+            $request->only('name', 'company', 'image', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot', 'position'),
 
             [
                 'image'=>$this->getImagePath($request->delivery_image, 'products')
@@ -88,7 +109,8 @@ class ProductController extends Controller
             'min_qty'=>'required',
             'max_qty'=>'required',
             'commissions'=>'required',
-            'category_id'=>'required'
+            'category_id'=>'required',
+            'position'=>'required'
         ]);
 
         $product = Product::findOrFail($id);
@@ -103,7 +125,7 @@ class ProductController extends Controller
 
 
         $product->update(array_merge(
-           $request->only('name', 'company', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot'),
+           $request->only('name', 'company', 'display_pack_size', 'price_per_unit', 'cut_price_per_unit', 'unit_name', 'packet_price', 'consumed_quantity', 'isactive', 'tag', 'min_qty', 'max_qty', 'commissions', 'category_id', 'is_hot', 'position'),
            [
                'image'=>$path
            ]

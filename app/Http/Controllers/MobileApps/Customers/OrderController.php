@@ -180,6 +180,9 @@ class OrderController extends Controller
 
         Cart::where('user_id', $user->id)
             ->delete();
+        $user->applied_coupon=null;
+        $user->echo_selected = 1;
+        $user->save();
 
         return [
             'status'=>'success',

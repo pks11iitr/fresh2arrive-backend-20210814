@@ -3,19 +3,30 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
+use DB;
 
 class OrderController extends Controller
 {
     public function index(Request $request){
         $search_type=$request->search_type=='1'?'refid':'name';
         if($request->search){
-            $orders = Order::where($search_type,'Like',"%$request->search%");
+            $orders = Order::with(['customer'=>function($customer){
+                $customer->withCount(['orders'=>function($orders){
+                    $orders->where('orders.status', '!=', 'cancelled');
+                }]);
+            }])->where($search_type,'Like',"%$request->search%");
         }else{
-            $orders = Order ::orderBy('id','desc');
+            $orders = Order ::with(['customer'=>function($customer){
+                $customer->withCount(['orders'=>function($orders){
+                    $orders->where('orders.status', '!=', 'cancelled');
+                }]);
+            }])->orderBy('id','desc');
         }
 
         if($request->fromdate)
@@ -77,9 +88,52 @@ class OrderController extends Controller
 
 
 
-    public function reportorder(){
+    public function orderWiseProductQuantity(Request $request){
 
-        return "gggg";
+        $quantities = [];
+
+        $timeslots = TimeSlot::get();
+
+        if($request->fromdate && $request->timeslots && $request->todate)
+        {
+            $quantities = OrderDetail::with('product')
+                ->whereHas('orderss', function($order) use ($request){
+                    $order->whereNotIn('orders.status', ['pending', 'cancelled'])
+                        ->where('orders.delivery_date', '<=', $request->todate)
+                        ->whereIn('orders.delivery_slot',$request->timeslots)
+                        ->where('orders.delivery_date', '>=', $request->fromdate);
+                })
+                ->groupBy('product_id')
+                ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
+                ->paginate(100);
+        }
+
+        return view('admin.orders.summary', compact('quantities', 'timeslots'));
+
+    }
+
+
+    public function salesReport(Request $request){
+
+        $quantities = [];
+
+        $timeslots = TimeSlot::get();
+
+        if($request->fromdate && $request->timeslots && $request->todate)
+        {
+            $quantities = OrderDetail::with('product')
+                ->whereHas('orderss', function($order) use ($request){
+                    $order->whereNotIn('orders.status', ['pending', 'cancelled'])
+                        ->where('orders.created_at', '<=', $request->todate.' 23:59:59')
+                        ->whereIn('orders.delivery_slot',$request->timeslots)
+                        ->where('orders.created_at', '>=', $request->fromdate.' 00:00:00');
+                })
+                ->groupBy('product_id')
+                ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
+                ->paginate(100);
+        }
+
+        return view('admin.orders.sales-summary', compact('quantities', 'timeslots'));
 
     }
 

@@ -27,11 +27,11 @@
                         <div class="card-header">
                             <div class="row">
 
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <form role="form" method="get" enctype="multipart/form-data" action="{{route('customers.list')}}">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <select class="form-control" name="search_type">
                                                         <option value="">--Select Search Type--</option>
@@ -41,9 +41,33 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-5">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <input type="text" name="search" class="form-control" placeholder="Search Only Customer Name"  required>
+                                                    <input type="text" name="search" class="form-control" placeholder="Search Only Customer Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select class="form-control select2"  name="partners"  id="Partner">
+                                                        <option value="">--Select Partner--</option>
+                                                        @foreach($partnersss as $p)
+                                                            <option value="{{$p->id}}">{{$p->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <!-- /.form-group -->
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <select class="form-control" name="customer_type">
+                                                        <option value="">--Select Customer Type--</option>
+                                                        <option value="inactive">In Active</option>
+                                                        <option value="slow-moving">Slow Moving</option>
+                                                        <option value="platinum">Platinum</option>
+                                                        <option value="silver">Silver</option>
+                                                        <option value="gold">Gold</option>
+                                                        <option value="bronze">Bronze</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -57,38 +81,6 @@
                             </div>
 
 
-
-<div class="row">
-<div class="col-md-10">
-    <form role="form" method="get"  action="{{route('customers.list')}}">
-        @csrf
-        <div class="row">
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Partner</label>
-            <select class="form-control select2"  name="partners"  id="Partner">
-                <option value="">--Select Partner--</option>
-                            @foreach($partnersss as $p)
-                    <option value="{{$p->id}}">{{$p->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!-- /.form-group -->
-                </div>
-
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <br/>
-
-                    <button type="submit"  class="btn btn-danger">Show All Customers</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-</div>
 
 
 
@@ -117,7 +109,8 @@
                                         <th>Balance</th>
                                         <th>Status</th>
                                         <th>Action</th>
-{{--                                        <th>Wallet</th>--}}
+                                        <th>Wallet</th>
+                                        <th>Registered On</th>
                                     </tr>
 
 
@@ -129,7 +122,7 @@
 
                                             <tr>
                             <td>{{$customers->id}}</td>
-                            <td>{{$customers->name}}</td>
+                            <td>{{$customers->name}}<br>Orders : {{$customers->orders_count}}</td>
                             <td>{{$customers->mobile}}</td>
                             <td>{{$customers->area}}</td>
                             <td>{{$customers->partner->name??'Not Alloted'}}</td>
@@ -145,11 +138,12 @@
 
                         <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
-{{--            <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>--}}
+            <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>
+                                                <td>{{date('d/m/Y h:i:a',strtotime($customers->created_at))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot> Total Customer - <b class="text-danger">{{$count}}</b></tfoot>
+                                    <tfoot> Total Customer - <b class="text-danger">{{$customer->total()}}</b></tfoot>
 
                                 </table>
                                 {{$customer->appends(request()->input())->links()}}

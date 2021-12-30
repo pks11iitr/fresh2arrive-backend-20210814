@@ -23,42 +23,40 @@ class CustomerController extends Controller
         }else{
             $count = Customer::count();
         }
-        
+
         return $count;
     }
 
 
     public  function index(Request $request){
- 
+
 
         $search_type=$request->search_type==1?'name':'mobile';
 
+        $customer = Customer::withCount(['orders'=>function($orders){
+            $orders->where('orders.status', '!=', 'cancelled');
+        }])
+            ->where('id', '>', 0);
 
         if($request->search){
-            $customer = Customer::where($search_type, 'LIKE', "%$request->search%")
-                ->paginate(10);
-                $count=$this->count_customer(0);
-        } 
-        
-        else if($request->partners){
-          
-             $customer = Customer::where('assigned_partner',$request->partners)
-                ->orderBy('id','desc')
-                ->paginate(10);
-                $count=$this->count_customer($request->partners);
-        }
-        
-        else{ 
-            $customer = Customer::orderBy('id','desc')
-                ->paginate(10);
-                $count=$this->count_customer(0);
+            $customer = $customer->where($search_type, 'LIKE', "%$request->search%");
         }
 
-        
-         
+        if($request->partners){
+
+            $customer = $customer->where('assigned_partner',$request->partners);
+
+        }
+
+        $customer = $customer->orderBy('id','desc')
+                ->paginate(100);
+
+
+
+
         $partnersss=Partner::orderBy('id','desc')
         ->get();
-        return view('admin.customers.view',['count'=>$count],compact('customer','partnersss'));
+        return view('admin.customers.view',compact('customer','partnersss'));
     }
 
     public  function create(Request $request){
@@ -88,8 +86,8 @@ class CustomerController extends Controller
             'map_address'=>'Required',
             'map_json'=>'Required',
             'assigned_partner'=>'Required',
-            'reffered_by'=>'Required',
-            'reffered_by_partner'=>'Required'
+            //'reffered_by'=>'Required',
+            //'reffered_by_partner'=>'Required'
         ]);
 
 
@@ -180,7 +178,7 @@ class CustomerController extends Controller
            // 'map_json'=>'Required',
             'assigned_partner'=>'Required',
            // 'reffered_by'=>'Required',
-            'reffered_by_partner'=>'Required'
+            //'reffered_by_partner'=>'Required'
         ]);
 
         $customer = Customer::findOrfail($id);
@@ -211,8 +209,8 @@ class CustomerController extends Controller
             'map_address'=>$request->map_address,
             'map_json'=>$request->map_json,
             'assigned_partner'=>$request->assigned_partner,
-            'reffered_by'=>$request->reffered_by,
-            'reffered_by_partner'=>$request->reffered_by_partner
+            //'reffered_by'=>$request->reffered_by,
+            //'reffered_by_partner'=>$request->reffered_by_partner
         ]);
 
         return redirect()->back()->with('success', 'Customer has been updated');
@@ -222,7 +220,7 @@ class CustomerController extends Controller
 
 
 
-     
+
 
 
 

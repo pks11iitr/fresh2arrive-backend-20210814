@@ -11,6 +11,7 @@ class SearchController extends Controller
     public function home(Request $request){
         $hot_products = Product::active()->where('is_hot', true)
             ->select('id', 'name')
+            ->orderBy('position', 'asc')
             ->get();
 
         Product::setLimitedStock($hot_products);
@@ -31,6 +32,7 @@ class SearchController extends Controller
     public function suggestions(Request $request){
         $products = Product::active()
             ->where('name', 'like', "%$request->search%")
+            ->orderBy('position', 'asc')
             ->get();
 
 //        $pids = $hot_products->map(function($element){

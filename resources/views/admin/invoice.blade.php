@@ -53,10 +53,11 @@
     </tr>
 
     <tr>
-        <td colspan="3"><p>OrderID</p></td>
-        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no ?? 0}}</p></td>
+        <td colspan="3"><p>OrderID: {{$order_data->refrerid ?? 0}}</p></td>
+        <td><p style="border:1px solid;text-align: center;padding: 5px">Bags : {{$order_data->bags_no ?? 1}}</p></td>
     </tr>
 
+<!--
     <tr>
         <td colspan="5">
 
@@ -65,6 +66,7 @@
 
         </td>
     </tr>
+-->
 
     <tr>
         <td colspan="5"><br/></td>
@@ -95,16 +97,20 @@
 
 
     <tr>
-        <td colspan="5"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
+        <td colspan="1"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
 
 {{--                Wed 27 oct 2021--}}
+<!--
     </tr>
     <tr>
-        <td colspan="5"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }}  </p></td>
+-->
+        <td colspan="3"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }} {{ $order_data->delivery_time }} </p></td>
 {{--                Thu 28 oct 2021--}}
+<!--
     </tr>
     <tr>
-        <td colspan="5"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
+-->
+        <td colspan="1"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
     </tr>
 
 
@@ -143,11 +149,13 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Total :-</td>
         <td>{{$total}}</td>
     </tr>
 
     <tr class="trborder">
+        <td></td>
         <td></td>
         <td></td>
         <td>GST exempted :-</td>
@@ -157,6 +165,7 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Discount :-</td>
         <td>0</td>
     </tr>
@@ -164,11 +173,13 @@
     <tr class="trborder">
         <td></td>
         <td></td>
+        <td></td>
         <td>Eco Friendly Packaging:-</td>
         <td>{{$order_data->echo_charges}}</td>
     </tr>
 
     <tr class="trborder">
+        <td></td>
         <td></td>
         <td></td>
         <td><b>Grand Total :-</b></td>

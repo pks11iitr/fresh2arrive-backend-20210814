@@ -75,6 +75,7 @@ class CouponController extends Controller
                     'data'=>[],
                 ];
             }
+
         }
 
         $items=Cart::with(['product'])
@@ -112,12 +113,25 @@ class CouponController extends Controller
                 ];
 
             }
+
+            $user->applied_coupon = $coupon->code;
+            $coupon_applied = $coupon->code;
+        }else{
+            $user->applied_coupon = null;
+            $coupon_applied = '';
         }
 
         if($request->echo_pack){
             $echo_charges = Configuration::where('param', 'eco_friendly_charge')->first();
+            $echo_charges = intval($echo_charges->value??0);
+            $user->echo_selected = true;
+            $echo_selected=1;
+        }else{
+            $echo_charges = 0;
+            $user->echo_selected = false;
+            $echo_selected = 0;
         }
-        $echo_charges = intval($echo_charges->value??0);
+
 
         $prices=[
             'item_count'=>$count,
@@ -128,20 +142,31 @@ class CouponController extends Controller
             'wallet_balance' => $balance
         ];
 
+        $user->save();
+
+        $min_order_value = Configuration::where('param', 'min_order_value')
+            ->first();
+        $min_order_value = $min_order_value->value??0;
+
         if(!$user)
             $bottom_button_text='Login to continue';
         else{
-            if(round($cost,2) <= $balance)
-                $bottom_button_text = 'Place Order';
-            else
-                $bottom_button_text = 'Add Rs.'.(round($cost,2)+$echo_charges - $balance).' to wallet';
+            if($prices['item_total'] < $min_order_value){
+                $bottom_button_text = 'Minimum order value is Rs.'.$min_order_value;
+            }else{
+                if($prices['total_payble'] <= $prices['wallet_balance'])
+                    $bottom_button_text = 'Place Order';
+                else
+                    $bottom_button_text = 'Add Rs.'.($prices['total_payble'] - $prices['wallet_balance']).' to wallet';
+            }
+
         }
 
         return [
             'status'=>'success',
             'action'=>'',
             'display_message'=>$discount>0?('Discount of Rs. '.$discount.' Applied Successfully'):'',
-            'data'=>compact('prices', 'bottom_button_text'),
+            'data'=>compact('prices', 'bottom_button_text', 'echo_selected', 'coupon_applied'),
         ];
     }
 

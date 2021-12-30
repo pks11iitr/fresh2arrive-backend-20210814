@@ -37,7 +37,15 @@ class ProfileController extends Controller
         ]);
 
         $map_json = json_decode($request->map_json, true);
-        $map_address = $map_json['results'][0]['formatted_address'];
+        $map_address = $map_json['results'][0]['formatted_address']??'';
+
+//        if(empty($map_address))
+//            return [
+//                'status'=>'failed',
+//                'action'=>'',
+//                'display_message'=>'Location cannot be fetched',
+//                'data'=>[]
+//            ];
 
 
         $haversine = "(6371 * acos(cos(radians($request->lat))
@@ -63,8 +71,15 @@ class ProfileController extends Controller
             if(empty($user->reffered_by_partner)){
                 // if no reffereal mentioned
                 $partner = Partner::getAvailablePartner($area, []);
-                if(!$partner)
-                    $assigned_partner = config('constants.default_assign_partner');
+                if(!$partner){
+                    //$assigned_partner = config('constants.default_assign_partner');
+                    return [
+                        'status'=>'failed',
+                        'action'=>'',
+                        'display_message'=>'No delivery partner is available at this location',
+                        'data'=>[]
+                    ];
+                }
                 else
                     $assigned_partner=$partner;
             }else{
