@@ -252,12 +252,20 @@
                             </p>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a href="{{route('orders.report')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 Order Report
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('orders.sale-report')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                Sale Report
                             </p>
                         </a>
                     </li>

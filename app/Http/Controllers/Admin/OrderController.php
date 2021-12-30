@@ -113,5 +113,30 @@ class OrderController extends Controller
     }
 
 
+    public function salesReport(Request $request){
+
+        $quantities = [];
+
+        $timeslots = TimeSlot::get();
+
+        if($request->fromdate && $request->timeslots && $request->todate)
+        {
+            $quantities = OrderDetail::with('product')
+                ->whereHas('orderss', function($order) use ($request){
+                    $order->whereNotIn('orders.status', ['pending', 'cancelled'])
+                        ->where('orders.created_at', '<=', $request->todate.' 23:59:59')
+                        ->whereIn('orders.delivery_slot',$request->timeslots)
+                        ->where('orders.created_at', '>=', $request->fromdate.' 00:00:00');
+                })
+                ->groupBy('product_id')
+                ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
+                ->paginate(100);
+        }
+
+        return view('admin.orders.sales-summary', compact('quantities', 'timeslots'));
+
+    }
+
+
 
 }
