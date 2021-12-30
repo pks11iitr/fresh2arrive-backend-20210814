@@ -112,6 +112,7 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::post('update/{id}', 'Admin\OrderController@update')->name('orders.update');
         Route::get('reportorder', 'Admin\OrderController@orderWiseProductQuantity')->name('orders.report');
         Route::get('salereport', 'Admin\OrderController@salesReport')->name('orders.sale-report');
+        Route::get('export-order', 'Admin\OrderController@orderWiseProductQuantity')->name('orders.report-download');
     });
 
 

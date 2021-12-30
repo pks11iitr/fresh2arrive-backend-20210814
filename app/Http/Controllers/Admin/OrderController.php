@@ -9,6 +9,7 @@ use App\Models\TimeSlot;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
+use App\Exports\OrderExports;
 use DB;
 
 class OrderController extends Controller
@@ -107,8 +108,12 @@ class OrderController extends Controller
                 ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
                 ->paginate(100);
         }
-
-        return view('admin.orders.summary', compact('quantities', 'timeslots'));
+        if($request->export==1){
+            return Excel::download(new OrderExports(quantities), 'report.xlsx');
+        }else{
+            return view('admin.orders.summary', compact('quantities', 'timeslots'));
+        }
+      
 
     }
 
