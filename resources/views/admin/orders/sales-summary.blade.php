@@ -30,7 +30,7 @@
                         <br/>
                         <div class="row">
                             <div class="col-md-12">
-                                <form role="form" method="get" enctype="multipart/form-data" action="{{route('orders.report')}}">
+                                <form role="form" method="get" enctype="multipart/form-data" action="{{route('orders.sale-report')}}">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
