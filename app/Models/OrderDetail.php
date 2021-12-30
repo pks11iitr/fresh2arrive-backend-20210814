@@ -40,6 +40,9 @@ class OrderDetail extends Model
     public static function consumed_quantity($pids){
         $consumed_items=OrderDetail::whereIn('product_id', $pids)
             ->select(DB::raw('sum(quantity*packet_count) as quantity'), 'product_id')
+            ->whereHas('orderss', function($orderss){
+                $orderss->whereNotIn('orders.status', ['pending', 'cancelled']);
+            })
             ->groupBy('product_id')
             ->get();
         $consumed_quantity=[];
