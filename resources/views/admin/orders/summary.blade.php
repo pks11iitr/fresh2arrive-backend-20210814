@@ -63,6 +63,13 @@
                                                 <a class="btn btn-info" href="{{route('orders.report')}}">Reset</a>
                                             </div>
                                         </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <a class="btn btn-info" href="{{route('orders.report-download')}}?export=1&{{request()->getQueryString()}}">Export</a>
+                                            </div>
+                                        </div>
+
+                                        
 
                                     </div>
 

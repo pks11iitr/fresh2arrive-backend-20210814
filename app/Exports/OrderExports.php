@@ -5,16 +5,16 @@ use Maatwebsite\Excel\Concerns\FromView;
 class OrderExports implements FromView
 {
 
-    protected $orderdata;
+    protected $quantities;
 
-    function __construct($orderdata) {
-        $this->orderdata = $orderdata;
+    function __construct($quantities) {
+        $this->quantities = $quantities;
       }
 
     public function view(): View
     {
-        return view('exports.invoices', [
-            'orderdata' => $this->orderdata
+        return view('admin.orders.order-excel-report', [
+            'quantities' => $this->quantities
         ]);
     }
 }
