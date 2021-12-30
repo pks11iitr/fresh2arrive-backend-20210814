@@ -57,6 +57,9 @@
                                     </div>
                                 </div>
                             </div>
+
+ 
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -65,10 +68,11 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>mobile </th>
-                                        <th>{{$start3.'---'.$end3}}</th>
-                                        <th>{{$start2.'---'.$end2}}</th>
-                                        <th>{{$start1.'---'.$end1}}</th>
-                                        <th>{{$start0.'---'.$end0}}</th>
+                                         }}
+                                        <th>{{date('d/M/y', strtotime($start3)).'---'.date('d/M/y', strtotime($end3))}}</th>
+                                        <th>{{date('d/M/y', strtotime($start2)).'---'.date('d/M/y', strtotime($end2))}}</th>
+                                        <th>{{date('d/M/y', strtotime($start1)).'---'.date('d/M/y', strtotime($end1))}}</th>
+                                        <th>{{date('d/M/y', strtotime($start0)).'---'.date('d/M/y', strtotime($end0))}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>

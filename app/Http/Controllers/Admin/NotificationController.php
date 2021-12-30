@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\FileTransfer;
 use App\Jobs\SendBulkNotifications;
 use Illuminate\Http\Request;
+use App\Models\Notification;
 
 class NotificationController extends Controller
 {
@@ -19,7 +20,12 @@ class NotificationController extends Controller
 
 
     public  function  create(){
-        return view('admin.notification.add');
+        $notifications = Notification::orderBy('id','desc')
+                ->paginate(10);
+               //return view('admin.notification.view',compact('notifications'));
+
+
+        return view('admin.notification.add',compact('notifications'));
     }
 
 

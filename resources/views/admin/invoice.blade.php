@@ -97,7 +97,9 @@
 
 
     <tr>
-        <td colspan="1"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}</p></td>
+        <td colspan="1"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}<br/>
+        
+        Placed At  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:  {{ date('h:i A', strtotime($order_data->created_at)) }}</p></td>
 
 {{--                Wed 27 oct 2021--}}
 <!--

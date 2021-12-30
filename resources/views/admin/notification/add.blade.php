@@ -67,7 +67,7 @@
                                                 <label>Image</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
-                                                        <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept="image/*">
+                                                        <input type="file" name="image" class="custom-file-input"  accept="image/*" id="imgInp">
                                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                     </div>
                                                     <div class="input-group-append">
@@ -75,7 +75,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <img id="blah" src="#"  alt="" style="width:250px;height:100px;"/>
                                         </div>
 
 
@@ -98,8 +98,73 @@
         </section>
         <!-- /.content -->
 
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th> ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                         
+                                        <th>Userid</th>
+                                        <th>Type</th>
+                                        
+                                        <th>Date</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($notifications as $notification)
+                                        <tr>
+                                            <td>{{$notification->id}}</td>
+                                            <td>{{$notification->title}}</td>
+                                            <td>{{$notification->description}}</td>
+                                            
+                                            <td>{{$notification->user_id}}</td>
+                                            <td>{{$notification->type}}</td>
+                                            <td>{{$notification->created_at}}</td>
+                                           
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+
+                                </table>
+
+                                       {{$notifications->appends(request()->input())->links()}}
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
 
     </div>
     <!-- ./wrapper -->
+
+    <script>
+  imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
+</script> 
+ 
+
 @endsection
+
 
