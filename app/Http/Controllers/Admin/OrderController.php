@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Partner;
 use App\Exports\OrderExports;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -109,11 +110,11 @@ class OrderController extends Controller
                 ->paginate(100);
         }
         if($request->export==1){
-            return Excel::download(new OrderExports(quantities), 'report.xlsx');
+            return Excel::download(new OrderExports($quantities), 'report.xlsx');
         }else{
             return view('admin.orders.summary', compact('quantities', 'timeslots'));
         }
-      
+
 
     }
 
