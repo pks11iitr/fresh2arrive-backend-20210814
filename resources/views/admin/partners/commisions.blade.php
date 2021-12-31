@@ -68,7 +68,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>mobile </th>
-                                         }}
+                                         
                                         <th>{{date('d/M/y', strtotime($start3)).'---'.date('d/M/y', strtotime($end3))}}</th>
                                         <th>{{date('d/M/y', strtotime($start2)).'---'.date('d/M/y', strtotime($end2))}}</th>
                                         <th>{{date('d/M/y', strtotime($start1)).'---'.date('d/M/y', strtotime($end1))}}</th>
