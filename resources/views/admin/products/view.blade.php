@@ -62,7 +62,8 @@
                                         <th>Image</th>
                                         <th>Display Pack Size</th>
                                         <th>Packet Price</th>
-                                        <th>Commissions</th>
+                                        <th>Comm</th>
+                                        <th>Posi</th>
                                         <th>Tag</th>
                                         <th>Stock</th>
                                         <th>Isactive</th>
@@ -78,6 +79,7 @@
                                             <td>{{$product->display_pack_size}}</td>
                                             <td>{{$product->price_per_unit}}</td>
                                             <td>{{$product->commissions}}</td>
+                                            <td>{{$product->position}}</td>
                                             <td>{{$product->tag}}</td>
                                             <td>{{$product->remaining_stock}}</td>
                                             <td>{{$product->isactive==1?'Active':'Inactive'}}</td>

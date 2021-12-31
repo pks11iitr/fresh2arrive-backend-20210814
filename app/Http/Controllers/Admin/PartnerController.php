@@ -148,10 +148,10 @@ class PartnerController extends Controller
 
     public function commissions(Request $request){
 
-        $allpartners = Partner::orderBy('id','desc')
+        $allpartners = Partner::orderBy('status','desc')
             ->get();
 
-        $partners=Partner::orderBy('id','desc')
+        $partners=Partner::orderBy('status','desc')
             ->paginate(20);
 
         $start1=date("Y-m-d", strtotime("last week monday"));

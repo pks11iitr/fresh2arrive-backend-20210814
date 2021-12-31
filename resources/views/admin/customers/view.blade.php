@@ -104,6 +104,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>mobile</th>
+                                        <th>Orders  </th>
                                         <th>Area</th>
                                         <th>Assigned Partner</th>
                                         <th>Balance</th>
@@ -122,8 +123,9 @@
 
                                             <tr>
                             <td>{{$customers->id}}</td>
-                            <td>{{$customers->name}}<br>Orders : {{$customers->orders_count}}</td>
+                            <td>{{$customers->name}} </td>
                             <td>{{$customers->mobile}}</td>
+                            <td>{{$customers->orders_count}}</td>
                             <td>{{$customers->area}}</td>
                             <td>{{$customers->partner->name??'Not Alloted'}}</td>
                             <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
