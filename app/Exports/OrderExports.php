@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
@@ -6,9 +7,11 @@ class OrderExports implements FromView
 {
 
     protected $quantities;
-
+    
     function __construct($quantities) {
+        
         $this->quantities = $quantities;
+
       }
 
     public function view(): View
@@ -17,4 +20,6 @@ class OrderExports implements FromView
             'quantities' => $this->quantities
         ]);
     }
+
 }
+
