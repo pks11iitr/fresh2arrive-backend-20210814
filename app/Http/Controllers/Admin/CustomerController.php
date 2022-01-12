@@ -49,11 +49,7 @@ class CustomerController extends Controller
         }
 
         $customer = $customer->orderBy('id','desc')
-                ->paginate(100);
-
-
-
-
+                ->paginate(100); 
         $partnersss=Partner::orderBy('id','desc')
         ->get();
         return view('admin.customers.view',compact('customer','partnersss'));

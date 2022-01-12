@@ -8,7 +8,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\Partner;
 use App\Models\Area;
-use App\Models\AreaAsign;
+//use App\Models\AreaAsign;
 use Illuminate\Support\Facades\DB;
 
 class PartnerController extends Controller
