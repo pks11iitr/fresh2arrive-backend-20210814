@@ -52,10 +52,7 @@ class PartnerController extends Controller
             'notification_token'=>'required',
             'status'=>'required'
         ]);
-
-
-
-
+ 
         $partners = new  Partner();
         $partners->name=$request->name;
         $partners->mobile=$request->mobile;
@@ -68,8 +65,7 @@ class PartnerController extends Controller
         $partners->support_whatsapp=$request->support_whatsapp;
         $partners->support_mobile=$request->support_mobile;
         $partners->save();
-
-
+ 
         $partners->areas()->sync($request->area_ids??[]);
         return redirect()->route('partners.edit', $partners->id)
             ->with('success','Partners Addedd Successfully');
@@ -84,10 +80,8 @@ class PartnerController extends Controller
         return view('admin.partners.edit',compact('Partners', 'areas', 'assigned_areas'));
     }
 
-
-
-    public  function update(Request $request,$id){
-
+ 
+    public  function update(Request $request,$id){ 
         $request->validate([
             'name'=>'required',
             'mobile'=>'required',
