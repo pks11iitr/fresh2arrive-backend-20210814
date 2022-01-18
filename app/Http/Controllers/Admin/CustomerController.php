@@ -9,7 +9,9 @@ use App\Models\Customer;
 use App\Models\Partner;
 use Illuminate\Http\Request;
 use App\Models\Area;
-
+use App\Models\Wallet;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CustomerExport;
 class CustomerController extends Controller
 {
     use FileTransfer;
@@ -49,11 +51,7 @@ class CustomerController extends Controller
         }
 
         $customer = $customer->orderBy('id','desc')
-                ->paginate(100);
-
-
-
-
+                ->paginate(100); 
         $partnersss=Partner::orderBy('id','desc')
         ->get();
         return view('admin.customers.view',compact('customer','partnersss'));
@@ -216,13 +214,19 @@ class CustomerController extends Controller
         return redirect()->back()->with('success', 'Customer has been updated');
 
 
+        
     }
 
 
 
+    public function export(){
+        return Excel::download(new CustomerExport, 'customers.xlsx');
+    }
 
-
-
+    public function history($id){
+        $wallet=Wallet::where('user_id',$id)->paginate(10);
+        return view('admin.customers.wallethistory',compact('wallet'));
+    }
 
 
 

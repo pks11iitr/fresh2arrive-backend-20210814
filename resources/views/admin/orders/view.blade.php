@@ -29,6 +29,46 @@
                         <div class="card-header">
 {{--                            <a href="{{route('orders.create')}}" class="btn btn-primary">Add Order</a>--}}
                         </div>
+ 
+                        
+    <br/>
+
+    <div class="row">
+                                <div class="col-md-12">
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('orders.list')}}">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Search Type</label>
+                                                <div class="form-group">
+                                                    <select class="form-control" name="search_type">
+                                                        <option value="">--Select Search Type--</option>
+                                                        <option value="1">By Refid</option> 
+                                                        <option value="2">By Mobile</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label>Value</label>
+                                                <div class="form-group">
+                                                    <input type="text" name="search_value" class="form-control" placeholder="Value">
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row"> 
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+
                         <br/>
                             <div class="row">
                                 <div class="col-md-12">

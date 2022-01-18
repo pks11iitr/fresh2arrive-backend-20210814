@@ -70,10 +70,14 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-success ">Search</button>
+                                                    <a href="{{route('customers.export')}}" class="btn btn-warning">Export List In Excel</a>
+                                                 
                                                 </div>
+                                                
+                                                    
                                             </div>
                                         </div>
                                     </form>
@@ -125,10 +129,10 @@
                             <td>{{$customers->id}}</td>
                             <td>{{$customers->name}} </td>
                             <td>{{$customers->mobile}}</td>
-                            <td>{{$customers->orders_count}}</td>
+                            <td>{{$customers->orders_count}} </td>
                             <td>{{$customers->area}}</td>
                             <td>{{$customers->partner->name??'Not Alloted'}}</td>
-                            <td>{{\App\Models\Wallet::balance($customers->id)}}</td>
+                            <td><a href="{{route('customers.history',['id'=>$customers->id])}}" class="btn btn-warning">{{\App\Models\Wallet::balance($customers->id)}}</a></td>
                             <?php
                             if($customers->status == 1 ){
                                 $status="Active";

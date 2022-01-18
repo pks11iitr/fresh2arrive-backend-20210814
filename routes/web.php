@@ -99,6 +99,8 @@ Route::group(['middleware'=>['auth', 'acl'], 'is'=>'admin'], function(){
         Route::get('edit/{id}','Admin\CustomerController@edit')->name('customers.edit');
         Route::post('update/{id}', 'Admin\CustomerController@update')->name('customers.update');
         Route::get('customers-by-partner', 'Admin\CustomerController@customerviewpartner')->name('customers.listbypartner');
+        Route::get('export','Admin\CustomerController@export')->name('customers.export');
+        Route::get('history/{id}','Admin\CustomerController@history')->name('customers.history');
     });
 
 
