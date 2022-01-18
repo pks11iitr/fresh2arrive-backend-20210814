@@ -10,19 +10,37 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Partner;
 use App\Exports\OrderExports;
+use App\Models\Customer;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
+
+        public function getid($mobile){
+            return $Customer=Customer::where('mobile',$mobile)->first();
+        }
+
+
+
+
     public function index(Request $request){
-        $search_type=$request->search_type=='1'?'refid':'name';
-        if($request->search){
+          $search_type=$request->search_type=='1'?'id':'user_id';
+        if($request->search_type==2){
+             $getval=$this->getid($request->search_value);
+               $srch=$getval->id;
+        }else{
+             $srch=$request->search_value;
+        }
+
+
+ 
+        if($request->search_value){
             $orders = Order::with(['customer'=>function($customer){
-                $customer->withCount(['orders'=>function($orders){
+                    $customer->withCount(['orders'=>function($orders){
                     $orders->where('orders.status', '!=', 'cancelled');
                 }]);
-            }])->where($search_type,'Like',"%$request->search%");
+            }])->where($search_type,'Like',"%$srch%");
         }else{
             $orders = Order ::with(['customer'=>function($customer){
                 $customer->withCount(['orders'=>function($orders){
