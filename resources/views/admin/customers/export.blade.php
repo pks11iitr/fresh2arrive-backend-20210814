@@ -30,7 +30,7 @@
                                         <td>{{$quantity->name}}</td>
                                     <td>{{$quantity->mobile}}  </td>   
                                     <td>{{\App\Models\Wallet::balance($quantity->id)}}</td> 
-                                    <td>{{$customers->orders_count}}</td>    
+                                    <td>{{$quantity->orders_count}}</td>    
                                     <td>{{$quantity->partner->name??'Not Alloted'}}</td>
                                     <td>{{$quantity->refferer->name ?? ''}}</td>
                                     <td>{{$quantity->partnerRefferer->name ?? ''}}</td>                            
