@@ -32,8 +32,6 @@ class OrderController extends Controller
         }else{
              $srch=$request->search_value;
         }
-
-
  
         if($request->search_value){
             $orders = Order::with(['customer'=>function($customer){
