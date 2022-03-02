@@ -81,14 +81,19 @@
                                         <th>Product Name</th>
                                         <th>Total Quantity</th>
                                         <th>Packet Size</th>
+                                        <th>Price</th>
+                                        <th>Amount</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($quantities as $quantity)
+                                    <?php $amount=$quantity->packet_count*$quantity->product->price_per_unit;?>
                                         <tr>
                                             <td>{{$quantity->product->name??''}}</td>
-                                            <td>{{$quantity->packet_count}}</td>
+                                            <td>{{$quantity->packet_count}}</td>                                           
                                             <td>{{$quantity->product->display_pack_size??''}}</td>
+                                            <td>{{$quantity->product->price_per_unit??''}}</td>
+                                            <td>{{$amount??''}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

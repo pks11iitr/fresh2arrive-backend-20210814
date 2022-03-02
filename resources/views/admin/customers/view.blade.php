@@ -125,7 +125,7 @@
                                         @foreach($customer as $customers)
 
 
-                                            <tr>
+                            <tr>
                             <td>{{$customers->id}}</td>
                             <td>{{$customers->name}} </td>
                             <td>{{$customers->mobile}}</td>

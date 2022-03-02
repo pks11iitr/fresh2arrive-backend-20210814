@@ -145,11 +145,12 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>  ID</th>
+                                        <th>ID</th>
                                         <th>Name</th>
+                                        <th>OR.No</th>
                                         <th>Total</th>
                                         <th>Status</th>
-                                        <th>Is_Pad</th>
+                                        
                                         <th>Delivery Date</th>
                                         <th>Delivery Time</th>
                                         <th>Delivery Partner</th>
@@ -165,11 +166,12 @@
                                         @foreach($orders as $Order)
                         <tr>
                             <td>{{$Order->id}}</td>
-                            <td>{{$Order->customer->name.' - '.$Order->customer->mobile}}<br>Total Orders: {{$Order->customer->orders_count}}</td>
+                            <td>{{$Order->customer->name.' - '.$Order->customer->mobile}}</td>
+                            <td>{{$Order->customer->orders_count}}</td>
                             <td>{{$Order->order_total}}</td>
                             <td>{{$Order->status}}</td>
                             <td>{{$Order->is_paid==1 ? 'Yes':'No'}}</td>
-                            <td>{{$Order->delivery_date}}</td>
+                            <td>{{date('d-m-Y', strtotime($Order->delivery_date));}}</td>
                             <td>{{$Order->delivery_time}}</td>
                             <td>{{$Order->partner->name}}</td>
                             <td>{{$Order->on_time==1 ? 'Yes':'No'}}</td>
