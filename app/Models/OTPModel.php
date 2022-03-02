@@ -12,13 +12,20 @@ class OTPModel extends Model
     protected $fillable=['entity', 'user_id', 'otp', 'type', 'expiry'];
 
     public static function createOTP($entity,$userid, $type){
-        if($entity == 'partner' && $userid == 2 && $userid==254 && $entity == 'customer')
+
+        
+         
+        if($entity == 'partner' && $userid == 2)
             $rand = 111111;
+        else  if($entity == 'customer' && $userid == 254)   
+        $rand = 111111;      
         else
             $rand=rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9);
 
 
         //$rand='111111';
+       // echo $rand;
+       // die;
 
         $otp=self::where('entity', $entity)
                         ->where('user_id', $userid)
