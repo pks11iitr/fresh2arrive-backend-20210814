@@ -12,7 +12,7 @@ class OTPModel extends Model
     protected $fillable=['entity', 'user_id', 'otp', 'type', 'expiry'];
 
     public static function createOTP($entity,$userid, $type){
-        if($entity == 'partner' && $userid == 2)
+        if($entity == 'partner' && $userid == 2 && $userid==254 && $entity == 'customer')
             $rand = 111111;
         else
             $rand=rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9).''.rand(1, 9);
