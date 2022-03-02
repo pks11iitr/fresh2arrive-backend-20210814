@@ -125,12 +125,12 @@
                                         @foreach($customer as $customers)
 
 
-                                            <tr>
+                            <tr>
                             <td>{{$customers->id}}</td>
                             <td>{{$customers->name}} </td>
                             <td>{{$customers->mobile}}</td>
                             <td>{{$customers->orders_count}} </td>
-                            <td>{{$customers->area}}</td>
+                            <td>{{$customers->area}}<br/>/{{$customers->street}}</td>
                             <td>{{$customers->partner->name??'Not Alloted'}}</td>
                             <td><a href="{{route('customers.history',['id'=>$customers->id])}}" class="btn btn-warning">{{\App\Models\Wallet::balance($customers->id)}}</a></td>
                             <?php

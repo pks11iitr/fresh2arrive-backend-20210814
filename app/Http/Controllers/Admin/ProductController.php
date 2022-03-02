@@ -109,8 +109,8 @@ class ProductController extends Controller
             'min_qty'=>'required',
             'max_qty'=>'required',
             'commissions'=>'required',
-            'category_id'=>'required',
-            'position'=>'required'
+            'category_id'=>'required'
+            //'position'=>'required'
         ]);
 
         $product = Product::findOrFail($id);

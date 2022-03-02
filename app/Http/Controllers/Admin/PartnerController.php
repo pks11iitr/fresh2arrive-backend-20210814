@@ -82,6 +82,7 @@ class PartnerController extends Controller
 
  
     public  function update(Request $request,$id){ 
+        
         $request->validate([
             'name'=>'required',
             'mobile'=>'required',
@@ -89,7 +90,6 @@ class PartnerController extends Controller
             'city'=>'required',
             'pincode'=>'required',
             'state'=>'required',
-           // 'notification_token'=>'required',
             'status'=>'required'
         ]);
 
@@ -97,10 +97,8 @@ class PartnerController extends Controller
 
         if($request->pan_url){
             $pan=$this->getImagePath($request->pan_url, 'pan');
-
         }else{
             $pan=$Partners->getRawOriginal('pan_url');
-
         }
 
         if($request->aadhaar_url){
@@ -108,8 +106,6 @@ class PartnerController extends Controller
         }else{
             $aadhaar=$Partners->getRawOriginal('aadhaar_url');
         }
-
-
 
         $Partners->update([
             'name'=>$request->name,
@@ -129,14 +125,10 @@ class PartnerController extends Controller
             'store_name'=>$request->store_name,
             'house_no'=>$request->house_no,
             'landmark'=>$request->landmark
-
         ]);
-
-
-
+ 
         $Partners->areas()->sync($request->area_ids??[]);
         return redirect()->back()->with('success', 'Partners has been updated');
-
     }
 
 
