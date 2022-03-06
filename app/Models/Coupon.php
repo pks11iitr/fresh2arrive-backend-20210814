@@ -38,7 +38,7 @@ class Coupon extends Model
                         $order->where('payment_mode', 'COD')
                             ->orWhere(function($order){
                                 $order->where('payment_mode', 'online')
-                                    ->where('payment_status', 'paid');
+                                    ->where('is_paid', 1);
                             });
                     })
                     ->first();
@@ -52,7 +52,7 @@ class Coupon extends Model
                         $order->where('payment_mode', 'COD')
                             ->orWhere(function($order){
                                 $order->where('payment_mode', 'online')
-                                    ->where('payment_status', 'paid');
+                                    ->where('is_paid', 1);
                             });
                     })
                     ->first();
