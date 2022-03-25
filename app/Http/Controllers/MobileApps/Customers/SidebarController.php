@@ -13,7 +13,7 @@ class SidebarController extends Controller
 
 
 
-    public function referDetails(Request $request){
+    public function referDetails(Request $request){                         
 
         $user = $request->user;
         $areas = Area::select('city')->distinct()->get();
@@ -37,15 +37,11 @@ class SidebarController extends Controller
             ];
         else{
             $conditions=[
-
             ];
         }
 
         $share = Banner::where('type', 'share')
             ->first();
-
-
-
 
         $refer_link= [
             'link'=>!empty($user)?$user->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
