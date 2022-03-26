@@ -59,7 +59,7 @@ class HomeController extends Controller
         $partner = $user->partner->name??'';
         $partner_whatsapp = $user->partner->whatsapp_group??'';
 
-        $next_time_slot='Next Delivery Slot: '.(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
+        $next_time_slot=(TimeSlot::getAvailableTimeSlotsList(date('H:i:s'))[0]['name']??'');
 
         $order = Order::where('user_id', $user->id??0)
             ->with('partner')
