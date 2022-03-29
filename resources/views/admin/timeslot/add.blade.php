@@ -40,8 +40,7 @@
                                             <!-- /.form-group -->
                                             <div class="form-group">
                                                 <label>Name</label>
-       <?php $time_now=mktime(date('h')+5,date('i')+30,date('s'));
-$cdate = date('d-m-Y', $time_now);?>
+<?php $time_now=mktime(date('h')+5,date('i')+30,date('s'));$cdate = date('d-m-Y', $time_now);?>
                                                 <input type="text" name="name" value="&nbsp; <?php echo $cdate; ?>" class="form-control" placeholder="Name"  required>
                                             </div>
                                             </div>

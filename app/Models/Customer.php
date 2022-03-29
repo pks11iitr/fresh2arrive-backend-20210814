@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Kreait\Firebase\DynamicLink\AndroidInfo;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Kreait\Firebase\DynamicLink\CreateDynamicLink;
-
+use DB;
 class Customer extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
@@ -66,12 +66,21 @@ class Customer extends Authenticatable implements JWTSubject
         return ($this->house_no??'').' '.($this->building??'').' '.($this->area??'').' '.($this->street??'').' '.($this->city??'').' '.($this->state??'').' '.($this->pincode??'');
     }
 
-    // public function count_customers()
-    // {
-    //     return $this->hasMany('App\Models\Customer','id');
-    // }
+     
 
-
+    public static function total_order($userid){
+        
+        $wallet=Order::where('user_id', $userid)
+            ->where('is_paid', true)
+            ->select(DB::raw('sum(order_total) as total'))
+            //->groupBy('user_id', $userid)
+            ->get();
+        $balances=0;
+        foreach($wallet as $w){
+            $balances=$w->total;
+        }
+        return round(($balances),2);
+    }
 
     public function getImageAttribute($value){
         if($value)
