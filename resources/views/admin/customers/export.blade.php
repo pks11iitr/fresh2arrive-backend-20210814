@@ -7,7 +7,8 @@
                                     <td>name</td>
                                     <td>mobile</td>                                      
                                     <td>Balance</td>    
-                                    <td>Orders</td>    
+                                    <td>Orders</td>   
+                                    <td>Orders Total</td>  
                                     <td>assigned_partner</td>
                                     <td>reffered_by</td>
                                     <td>reffered_by_partner</td>                                
@@ -26,11 +27,13 @@
                                     </thead>
                                     <tbody>
                                     @foreach($customer as $quantity)
-                                        <tr>
-                                        <td>{{$quantity->name}}</td>
+                                    <tr>
+                                    <td>{{$quantity->name}}</td>
                                     <td>{{$quantity->mobile}}  </td>   
                                     <td>{{\App\Models\Wallet::balance($quantity->id)}}</td> 
                                     <td>{{$quantity->orders_count}}</td>    
+                                    <td>{{\App\Models\Customer::total_order($quantity->id)}}</td>  
+                                    
                                     <td>{{$quantity->partner->name??'Not Alloted'}}</td>
                                     <td>{{$quantity->refferer->name ?? ''}}</td>
                                     <td>{{$quantity->partnerRefferer->name ?? ''}}</td>                            
