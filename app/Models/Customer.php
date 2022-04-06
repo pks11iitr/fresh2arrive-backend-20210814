@@ -73,7 +73,6 @@ class Customer extends Authenticatable implements JWTSubject
         $wallet=Order::where('user_id', $userid)
             ->where('is_paid', true)
             ->select(DB::raw('sum(order_total) as total'))
-            //->groupBy('user_id', $userid)
             ->get();
         $balances=0;
         foreach($wallet as $w){
