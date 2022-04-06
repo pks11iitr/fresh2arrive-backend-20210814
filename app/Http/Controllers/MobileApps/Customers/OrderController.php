@@ -154,7 +154,7 @@ class OrderController extends Controller
             ];
         }
 
-        Wallet::updatewallet($user->id, 'Paid for Order: '.$maxrefid, 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', ($maxrefid??0)+1);
+        Wallet::updatewallet($user->id, 'Paid for Order: '.($maxrefid+1), 'Debit', round($cost-$coupon_discount+$echo_charges), 'CASH', ($maxrefid??0)+1);
 
 
         $order = Order::create([

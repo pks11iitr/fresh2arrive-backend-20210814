@@ -141,14 +141,14 @@ class OrderController extends Controller
 
         $timeslots = TimeSlot::get();
 
-        if($request->fromdate && $request->timeslots && $request->todate)
+        if($request->fromdate && $request->todate)
         {
-            
+           
              $quantities = OrderDetail::with('product')
                 ->whereHas('orderss', function($order) use ($request){
                     $order->whereNotIn('orders.status', ['pending', 'cancelled'])
                         ->where('orders.created_at', '<=', $request->todate.' 23:59:59')
-                        ->whereIn('orders.delivery_slot',$request->timeslots)
+                        //->whereIn('orders.delivery_slot',$request->timeslots)
                         ->where('orders.created_at', '>=', $request->fromdate.' 00:00:00');
                 })
                 ->groupBy('product_id')

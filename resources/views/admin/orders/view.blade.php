@@ -149,8 +149,7 @@
                                         <th>Name</th>
                                         <th>OR.No</th>
                                         <th>Total</th>
-                                        <th>Status</th>
-                                        
+                                        <th>Status</th> 
                                         <th>Delivery Date</th>
                                         <th>Delivery Time</th>
                                         <th>Delivery Partner</th>

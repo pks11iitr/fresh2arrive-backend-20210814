@@ -45,24 +45,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <!-- <div class="col-md-4">
                                             <label>Delivery Slot</label>
                                             <select class="form-control select2" name="timeslots[]" multiple>
                                                 @foreach($timeslots as $ts)
                                                     <option value="{{$ts->id}}" @if(in_array($ts->id , request('timeslots')??[])){{'selected'}}@endif >{{$ts->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-1">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
+                                        <!-- <div class="col-md-1">
                                             <div class="form-group">
                                                 <a class="btn btn-info" href="{{route('orders.report')}}">Reset</a>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
 
