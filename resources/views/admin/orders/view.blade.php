@@ -190,9 +190,7 @@
                                 {{$Order->customer->house_no??''}} 
                             </td>
 
-
-
-
+ 
                             <td>{{$Order->customer->building??''}}</td>
                             <td>{{date('d-m-Y', strtotime($Order->customer->created_at));}}</td>
                             <td>{{date('d-m-Y', strtotime($Order->created_at));}}</td> 

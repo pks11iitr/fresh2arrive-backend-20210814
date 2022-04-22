@@ -13,7 +13,7 @@ class CategoryController extends Controller
     use FileTransfer;
 
     public  function  index(Request  $request){
-        $categories = Category :: active()->orderBy('id','desc')
+        $categories = Category :: orderBy('id','desc')
             ->paginate(20);
         return view('admin.category.view',compact('categories'));
     }
