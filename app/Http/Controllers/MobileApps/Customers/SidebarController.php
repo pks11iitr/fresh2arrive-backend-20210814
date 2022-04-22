@@ -33,7 +33,7 @@ class SidebarController extends Controller
             $conditions=[
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on first order',
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on second order',
-                'Your friends will be get Rs. 51 as a welcome bonus on registration.'
+                'Your friends will be get' .($referral_amount/2).'as a welcome bonus on registration.'
             ];
         else{
             $conditions=[
@@ -46,7 +46,7 @@ class SidebarController extends Controller
         $refer_link= [
             'link'=>!empty($user)?$user->getDynamicLink():'https://play.google.com/store/apps/details?id=com.fresh.arrive',
             'image'=>$share->image??'',
-            'product_text'=>'I am using fresh2arrive app for online purchase fresh veggies & fruits. Use my refferal link & you will get Rs.51 in your wallet.',
+            'product_text'=>'I am using fresh2arrive app for online purchase fresh veggies & fruits. Use my refferal link & you will get Rs. ' .($referral_amount/2).' in your wallet.',
             'app_text'=>'Order Now'
             //'qr_image'=>'https://images.freekaamaal.com/featured_images/174550_beereebn.png'
         ];

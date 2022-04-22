@@ -80,4 +80,10 @@ class Order extends Model
     }
 
 
+    public function oaddress(){
+            return $this->belongsTo('App\Models\Address','address_id');
+    }
+
+
+
 }
