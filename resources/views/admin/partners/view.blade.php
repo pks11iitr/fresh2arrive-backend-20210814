@@ -91,7 +91,7 @@
                                             <td>{{$partner->id}}</td>
                                             <td>{{$partner->name}}</td>
                                             <td>{{$partner->mobile}}</td>
-                                         <td>@foreach($partner->areas as $area){{$area->name}},@endforeach</td>
+                                             <td>@foreach($partner->areas as $area){{$area->name}},@endforeach</td>
                                             <td>{{$partner->city}}</td>
                                             <td>{{$partner->pincode}}</td>
                                             <td>{{$partner->state}}</td>

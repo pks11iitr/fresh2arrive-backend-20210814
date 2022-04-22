@@ -178,9 +178,6 @@
                             <td>{{date('d-m-Y', strtotime($Order->delivery_date));}}</td>      
                             <td>{{$Order->delivery_time}}</td>                  
                             <td>{{$Order->partner->name}}</td>
-
- 
-
                             <td>
                                 {{$Order->customer->building??''}},
                                 {{$Order->customer->street??''}},
@@ -189,8 +186,6 @@
                                 {{$Order->customer->pincode??''}},
                                 {{$Order->customer->house_no??''}} 
                             </td>
-
- 
                             <td>{{$Order->customer->building??''}}</td>
                             <td>{{date('d-m-Y', strtotime($Order->customer->created_at));}}</td>
                             <td>{{date('d-m-Y', strtotime($Order->created_at));}}</td> 
