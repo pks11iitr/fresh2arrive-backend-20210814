@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\OTPModel;
 use App\Models\Partner;
 use App\Models\Wallet;
+use App\Models\Configuration;
 use App\Services\SMS\Msg91;
 use App\Services\SMS\Nimbusit;
 use Illuminate\Http\Request;
@@ -72,9 +73,10 @@ class LoginController extends Controller
                 'reffered_by'=>$request->customer_id??null,
                 'reffered_by_partner'=>$reffered_by_partner??null
             ]);
-
-            /// welcome bonus
-            Wallet::updatewallet($user->id, 'Welcome Bonus', 'Credit', 51, 'CASH', null);
+            $config = Configuration::where('param', 'refer_amount')
+            ->first();
+           $referral_amount = $config->value??0;         
+            Wallet::updatewallet($user->id, 'Welcome Bonus', 'Credit', $referral_amount, 'CASH', null);
         }else if($user->status == 0){
             if($request->customer_id){
 
