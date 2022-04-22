@@ -27,7 +27,7 @@ class OrderController extends Controller
     public function index(Request $request){
           $search_type=$request->search_type=='1'?'id':'user_id';
         if($request->search_type==2){
-             $getval=$this->getid($request->search_value);
+               $getval=$this->getid($request->search_value);
                $srch=$getval->id;
         }else{
              $srch=$request->search_value;

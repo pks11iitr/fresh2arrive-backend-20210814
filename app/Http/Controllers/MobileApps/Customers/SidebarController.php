@@ -33,7 +33,7 @@ class SidebarController extends Controller
             $conditions=[
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on first order',
                 'Referral amount of Rs. '.($referral_amount/2).' will be credited on second order',
-                'Your friends will be get Rs. 51 as a welcome bonus on registration.'
+                'Your friends will be get' .($referral_amount/2).'as a welcome bonus on registration.'
             ];
         else{
             $conditions=[

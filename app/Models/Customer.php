@@ -89,7 +89,7 @@ class Customer extends Authenticatable implements JWTSubject
     }
 
 
-    public function getDynamicLink(){
+ public function getDynamicLink(){
 
         $dynamic_links=app('firebase.dynamic_links');
         $url='https://fresh2arrive.com/?customer_id='.($this->id??'');
@@ -102,11 +102,8 @@ class Customer extends Authenticatable implements JWTSubject
                 AndroidInfo::new()
                     ->withPackageName('com.fresh.arrive')
             );
-
         $link = (string)$dynamic_links->createDynamicLink($action)->uri();
-
        //$link = (string)$dynamic_links->createShortLink($url)->uri();
-
         return $link;
     }
 
