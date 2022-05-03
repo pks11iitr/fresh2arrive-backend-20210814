@@ -29,8 +29,8 @@
                         <div class="card-header">
 {{--                            <a href="{{route('orders.create')}}" class="btn btn-primary">Add Order</a>--}}
                         </div>
- 
-                        
+
+
     <br/>
 
     <div class="row">
@@ -42,7 +42,7 @@
                                                 <div class="form-group">
                                                     <select class="form-control" name="search_type">
                                                         <option value="">--Select Search Type--</option>
-                                                        <option value="1">By Refid</option> 
+                                                        <option value="1">By Refid</option>
                                                         <option value="2">By Mobile</option>
                                                     </select>
                                                 </div>
@@ -53,12 +53,17 @@
                                                 <div class="form-group">
                                                     <input type="text" name="search_value" class="form-control" placeholder="Value">
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
-                                        <div class="row"> 
-                                            <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-9">
                                                 <div class="form-group">
                                                     <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <a class="btn btn-info" href="{{route('orders.list')}}?export=1&{{request()->getQueryString()}}">Export</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,8 +155,8 @@
                                         <th>Mobile</th>
                                         <th>OR.No</th>
                                         <th>Total</th>
-                                        <th>Status</th> 
-                                        <th>Is_Paid</th> 
+                                        <th>Status</th>
+                                        <th>Is_Paid</th>
                                         <th>Delivery Date</th>
                                         <th>Delivery Time</th>
                                         <th>Delivery Partner</th>
@@ -160,7 +165,7 @@
                                         <th>Customer Registered Date</th>
                                         <th>Last Order Date</th>
                                         <th>Last Order No</th>
-                                       
+
                                         <th>Action</th>
 
                                     </tr>
@@ -175,8 +180,8 @@
                             <td>{{$Order->order_total}}</td>
                             <td>{{$Order->status}}</td>
                             <td>{{$Order->is_paid==1 ? 'Yes':'No'}}</td>
-                            <td>{{date('d-m-Y', strtotime($Order->delivery_date));}}</td>      
-                            <td>{{$Order->delivery_time}}</td>                  
+                            <td>{{date('d-m-Y', strtotime($Order->delivery_date));}}</td>
+                            <td>{{$Order->delivery_time}}</td>
                             <td>{{$Order->partner->name}}</td>
                             <td>
                                 {{$Order->customer->building??''}},
@@ -184,12 +189,12 @@
                                 {{$Order->customer->city??''}},
                                 {{$Order->customer->state??''}},
                                 {{$Order->customer->pincode??''}},
-                                {{$Order->customer->house_no??''}} 
+                                {{$Order->customer->house_no??''}}
                             </td>
                             <td>{{$Order->customer->building??''}}</td>
                             <td>{{date('d-m-Y', strtotime($Order->customer->created_at));}}</td>
-                            <td>{{date('d-m-Y', strtotime($Order->created_at));}}</td> 
-                            <td>{{$Order->id}}</td> 
+                            <td>{{date('d-m-Y', strtotime($Order->created_at));}}</td>
+                            <td>{{$Order->id}}</td>
                             <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a> <a href="{{route('invoice',['orderid'=>$Order->id])}}" class="btn btn-success">Print</a>
                             </td>
                     </tr>

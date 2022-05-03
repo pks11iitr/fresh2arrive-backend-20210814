@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Exports\OrderReportExports;
 use App\Http\Controllers\Controller;
 use App\Models\OrderDetail;
 use App\Models\Product;
@@ -32,7 +33,7 @@ class OrderController extends Controller
         }else{
              $srch=$request->search_value;
         }
- 
+
         if($request->search_value){
             $orders = Order::with(['customer'=>function($customer){
                     $customer->withCount(['orders'=>function($orders){
@@ -60,9 +61,14 @@ class OrderController extends Controller
 
         $total_amount = $orders->sum('order_total');
 
-        $orders=$orders->paginate(20);
 
         $partner = Partner::get();
+        if($request->export == 1){
+            $orders = $orders->get();
+            return Excel::download(new OrderReportExports($orders, $partner), 'order-report.xlsx');
+        }
+        $orders=$orders->paginate(20);
+
         return view('admin.orders.view',compact('orders','partner', 'total_amount'));
     }
 
@@ -143,7 +149,7 @@ class OrderController extends Controller
 
         if($request->fromdate && $request->todate)
         {
-           
+
              $quantities = OrderDetail::with('product')
                 ->whereHas('orderss', function($order) use ($request){
                     $order->whereNotIn('orders.status', ['pending', 'cancelled'])
