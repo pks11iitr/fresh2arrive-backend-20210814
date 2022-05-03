@@ -17,7 +17,6 @@
         <th>Last Order Date</th>
         <th>Last Order No</th>
 
-        <th>Action</th>
 
     </tr>
     </thead>
@@ -46,8 +45,6 @@
             <td>{{date('d-m-Y', strtotime($Order->customer->created_at));}}</td>
             <td>{{date('d-m-Y', strtotime($Order->created_at));}}</td>
             <td>{{$Order->id}}</td>
-            <td><a href="{{route('orders.edit',['id'=>$Order->id])}}">Edit</a> <a href="{{route('invoice',['orderid'=>$Order->id])}}" class="btn btn-success">Print</a>
-            </td>
         </tr>
 
 
