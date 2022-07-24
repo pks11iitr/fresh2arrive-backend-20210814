@@ -14,6 +14,8 @@
                                     <td>reffered_by_partner</td>                                
                                     <td>Address</td>
                                     <td>Society/Sector</td>
+                                    <td>Registered On</td>
+                                    <td>Registered Date</td>
                                                                         
                                     <!-- <td>lat</td>
                                     <td>lang</td> -->
@@ -33,7 +35,9 @@
                                     <td>{{$quantity->refferer->name ?? ''}}</td>
                                     <td>{{$quantity->partnerRefferer->name ?? ''}}</td>                            
                                     <td>House No/Flat No.{{$quantity->house_no}} {{$quantity->building}} {{$quantity->street}}</td>                                    
-                                    <td>{{$quantity->street}}</td>                                    
+                                    <td>{{$quantity->street}}</td>     
+                                    <td>{{date('d/m/Y',strtotime($quantity->created_at))}}</td>
+                                    <td>{{date('h:i:a',strtotime($quantity->created_at))}}</td>                               
                                     <!-- <td>{{$quantity->lat}}</td>
                                     <td>{{$quantity->lang}}</td> -->
                                     <!-- <td>{{$quantity->map_address}}</td> -->
