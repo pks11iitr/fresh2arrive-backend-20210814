@@ -136,14 +136,9 @@ class CustomerController extends Controller
         $partners = Partner::select('name', 'id')
             ->orderBy('id', 'desc')
             ->get();
-
-
-
         $customername=$this->return_customername($customer->reffered_by);
-
         $area = Area::active()->orderby('id','desc')
                 ->get();
-
         return view('admin.customers.edit',['customername'=>$customername], compact('customer', 'partners','area','customername'));
     }
 
@@ -219,8 +214,12 @@ class CustomerController extends Controller
 
 
 
-    public function export(){
-        return Excel::download(new CustomerExport, 'customers.xlsx');
+    public function export(request $request){
+        if($request->fromdate)
+            $customers=Customer::whereBetween('created_at', [$request->fromdate,$request->todate])->get();
+        
+           // return $customers;die;
+        return Excel::download(new CustomerExport($customers), 'customers.xlsx');
     }
 
     public function history($id){

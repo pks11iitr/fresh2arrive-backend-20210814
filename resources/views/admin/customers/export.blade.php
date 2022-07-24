@@ -14,8 +14,7 @@
                                     <td>reffered_by_partner</td>                                
                                     <td>Address</td>
                                     <td>Society/Sector</td>
-                                    
-                                    
+                                                                        
                                     <!-- <td>lat</td>
                                     <td>lang</td> -->
                                     <!-- <td>map_address</td> -->

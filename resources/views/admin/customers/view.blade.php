@@ -72,34 +72,49 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-success ">Search</button>
-                                                    <a href="{{route('customers.export')}}" class="btn btn-warning">Export List In Excel</a>
-                                                 
+                                                    <button type="submit" class="btn btn-success ">Search</button>                                                                                                    
                                                 </div>
                                                 
                                                     
                                             </div>
                                         </div>
                                     </form>
+
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('customers.export')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                 <input type="date" name="fromdate" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="date" name="todate" class="form-control">
+                                                </div>
+                                            </div>
+                                            
+                                         
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                <button type="submit" class="btn btn-warning ">Export List In Excel</button>                                                                                                       
+                                                </div>
+                                                
+                                                    
+                                            </div>
+                                        </div>
+                                    </form>
+
+
                                 </div>
-                            </div>
-
-
-
-
-
+                            </div> 
                         <div class="card">
 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-
-
-
-
-
-
+                                    <thead> 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
