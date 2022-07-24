@@ -73,11 +73,12 @@
     </tr>
 
     <tr>
-        <td colspan="5"><p>Customer : {{$order_data->name}} ({{$order_data->mobile}})</p></td>
+        <td colspan="5"><p>Customer : {{$order_data->name??''}} ({{$order_data->mobile??''}})</p></td>
     </tr>
 
     <tr>
-        <td colspan="5"><p>Address &nbsp;:{{$order_data->house_no}},{{$order_data->building}},{{$order_data->street}},{{$order_data->city}},{{$order_data->pincode}},({{$order_data->area}})</p>
+        <td colspan="5"><p>Address &nbsp;:House/Flat No - {{$order_data->house_no??''}},
+        Tower/Block Name - {{$order_data->building??''}} , Society/Sector Name - {{$order_data->street??''}}</p>
         </td>
     </tr>
 
@@ -86,33 +87,33 @@
     </tr>
 
     <tr>
-        <td colspan="5"><p>Delivery Owner :{{$order_data->pname}} ({{$order_data->pmobile}})</p></td>
+        <td colspan="5"><p>Delivery Owner :{{$order_data->pname??''}} ({{$order_data->pmobile??''}})</p></td>
     </tr>
 
     <tr>
-        <td colspan="5">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:{{$order_data->phouse_no}},{{$order_data->pcity}},{{$order_data->pstate}},{{$order_data->ppincode}} {{$order_data->address}}</p></td>
+        <td colspan="5">  <p>Address &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;:{{$order_data->phouse_no??''}},{{$order_data->pcity??''}},{{$order_data->pstate??''}},{{$order_data->ppincode??''}} {{$order_data->address??''}}</p></td>
     </tr>
 
     <tr><td colspan="5"><br/></td></tr>
 
 
     <tr>
-        <td colspan="1"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at)) }}<br/>
+        <td colspan="1"><p>Order Date &nbsp;&nbsp;&nbsp;:  {{ date('d/M/y', strtotime($order_data->created_at??'')) }}<br/>
         
-        Placed At  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:  {{ date('h:i A', strtotime($order_data->created_at)) }}</p></td>
+        Placed At  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:  {{ date('h:i A', strtotime($order_data->created_at??'')) }}</p></td>
 
 {{--                Wed 27 oct 2021--}}
 <!--
     </tr>
     <tr>
 -->
-        <td colspan="3"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date)) }} {{ $order_data->delivery_time }} </p></td>
+        <td colspan="3"><p>Delivery Date : {{ date('d/M/y', strtotime($order_data->delivery_date??'')) }} {{ $order_data->delivery_time??'' }} </p></td>
 {{--                Thu 28 oct 2021--}}
 <!--
     </tr>
     <tr>
 -->
-        <td colspan="1"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no}}</p></td>
+        <td colspan="1"><p>Crate No &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;: {{$order_data->crate_no??''}}</p></td>
     </tr>
 
 
@@ -177,7 +178,7 @@
         <td></td>
         <td></td>
         <td>Eco Friendly Packaging:-</td>
-        <td>{{$order_data->echo_charges}}</td>
+        <td>{{$order_data->echo_charges??''}}</td>
     </tr>
 
     <tr class="trborder">
@@ -185,7 +186,8 @@
         <td></td>
         <td></td>
         <td><b>Grand Total :-</b></td>
-        <td><b>{{$total + $order_data->echo_charges}}</b></td>
+        <?php $eccharges=$order_data->echo_charges ?? '0';?>
+        <td><b>{{$total + $eccharges}}</b></td>
     </tr>
 </table>
 <table style="width:100%">

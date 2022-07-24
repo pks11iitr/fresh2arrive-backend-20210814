@@ -32,8 +32,7 @@
                                     <td>{{$quantity->mobile}}  </td>   
                                     <td>{{\App\Models\Wallet::balance($quantity->id)}}</td> 
                                     <td>{{$quantity->orders_count}}</td>    
-                                    <td>{{\App\Models\Customer::total_order($quantity->id)}}</td>  
-                                    
+                                    <td>{{\App\Models\Customer::total_order($quantity->id)}}</td>                                      
                                     <td>{{$quantity->partner->name??'Not Alloted'}}</td>
                                     <td>{{$quantity->refferer->name ?? ''}}</td>
                                     <td>{{$quantity->partnerRefferer->name ?? ''}}</td>                            
