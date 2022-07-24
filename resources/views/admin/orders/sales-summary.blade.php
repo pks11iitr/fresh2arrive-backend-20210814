@@ -56,6 +56,12 @@
                                         <div class="col-md-1">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group"> 
+                                                <button type="submit" value="1" name="export" class="btn btn-warning " style="margin-top: 30px">Export</button>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-1">
