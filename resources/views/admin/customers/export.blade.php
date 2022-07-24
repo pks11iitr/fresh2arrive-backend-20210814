@@ -12,16 +12,13 @@
                                     <td>assigned_partner</td>
                                     <td>reffered_by</td>
                                     <td>reffered_by_partner</td>                                
-                                    <td>house_no</td>
-                                    <td>building</td>
-                                    <td>street</td>
-                                    <td>area</td>
-                                    <td>city</td>
-                                    <td>state</td>
-                                    <td>pincode</td>
+                                    <td>Address</td>
+                                    <td>Society/Sector</td>
+                                    
+                                    
                                     <!-- <td>lat</td>
                                     <td>lang</td> -->
-                                    <td>map_address</td>
+                                    <!-- <td>map_address</td> -->
                                                                                                    
                              </tr>
                                     </thead>
@@ -36,16 +33,11 @@
                                     <td>{{$quantity->partner->name??'Not Alloted'}}</td>
                                     <td>{{$quantity->refferer->name ?? ''}}</td>
                                     <td>{{$quantity->partnerRefferer->name ?? ''}}</td>                            
-                                    <td>{{$quantity->house_no}}</td>
-                                    <td>{{$quantity->building}}</td>
-                                    <td>{{$quantity->street}}</td>
-                                    <td>{{$quantity->area}}</td>
-                                    <td>{{$quantity->city}}</td>
-                                    <td>{{$quantity->state}}</td>
-                                    <td>{{$quantity->pincode}}</td>
+                                    <td>House No/Flat No.{{$quantity->house_no}} {{$quantity->building}} {{$quantity->street}}</td>                                    
+                                    <td>{{$quantity->street}}</td>                                    
                                     <!-- <td>{{$quantity->lat}}</td>
                                     <td>{{$quantity->lang}}</td> -->
-                                    <td>{{$quantity->map_address}}</td>
+                                    <!-- <td>{{$quantity->map_address}}</td> -->
                                    
                                     
                                         </tr>
