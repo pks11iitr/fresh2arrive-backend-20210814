@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Partner;
 use App\Exports\OrderExports;
 use App\Models\Customer;
+use App\Exports\salesReportExport;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -149,7 +150,6 @@ class OrderController extends Controller
 
         if($request->fromdate && $request->todate)
         {
-
              $quantities = OrderDetail::with('product')
                 ->whereHas('orderss', function($order) use ($request){
                     $order->whereNotIn('orders.status', ['pending', 'cancelled'])
@@ -162,10 +162,26 @@ class OrderController extends Controller
                 ->paginate(100);
         }
 
+
+        if($request->export=="1"){
+              $quantities = OrderDetail::with('product')
+            ->whereHas('orderss', function($order) use ($request){
+                $order->whereNotIn('orders.status', ['pending', 'cancelled'])
+                    ->where('orders.created_at', '<=', $request->todate.' 23:59:59')
+                    //->whereIn('orders.delivery_slot',$request->timeslots)
+                    ->where('orders.created_at', '>=', $request->fromdate.' 00:00:00');
+            })
+            ->groupBy('product_id')
+            ->select(DB::raw('sum(packet_count) as packet_count'), 'product_id')
+            ->get();
+            return Excel::download(new salesReportExport($quantities),'salereport.xlsx');
+        }
+
+
         return view('admin.orders.sales-summary', compact('quantities', 'timeslots'));
 
     }
 
-
+    
 
 }

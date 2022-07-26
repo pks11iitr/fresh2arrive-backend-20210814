@@ -56,6 +56,12 @@
                                         <div class="col-md-1">
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-success " style="margin-top: 30px">Search</button>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group"> 
+                                                <button type="submit" value="1" name="export" class="btn btn-warning " style="margin-top: 30px">Export</button>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-1">
@@ -87,12 +93,12 @@
                                     </thead>
                                     <tbody>
                                     @foreach($quantities as $quantity)
-                                    <?php $amount=$quantity->packet_count*$quantity->product->price_per_unit;?>
+                                    <?php $amount=$quantity->packet_count*$quantity->product->packet_price;?>
                                         <tr>
                                             <td>{{$quantity->product->name??''}}</td>
                                             <td>{{$quantity->packet_count}}</td>                                           
                                             <td>{{$quantity->product->display_pack_size??''}}</td>
-                                            <td>{{$quantity->product->price_per_unit??''}}</td>
+                                            <td>{{$quantity->product->packet_price??''}}</td>
                                             <td>{{$amount??''}}</td>
                                         </tr>
                                     @endforeach

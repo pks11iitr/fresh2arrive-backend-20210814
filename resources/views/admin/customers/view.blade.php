@@ -72,34 +72,49 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-success ">Search</button>
-                                                    <a href="{{route('customers.export')}}" class="btn btn-warning">Export List In Excel</a>
-                                                 
+                                                    <button type="submit" class="btn btn-success ">Search</button>                                                                                                    
                                                 </div>
                                                 
                                                     
                                             </div>
                                         </div>
                                     </form>
+
+                                    <form role="form" method="get" enctype="multipart/form-data" action="{{route('customers.export')}}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                 <input type="date" name="fromdate" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <input type="date" name="todate" class="form-control">
+                                                </div>
+                                            </div>
+                                            
+                                         
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                <button type="submit" class="btn btn-warning ">Export List In Excel</button>                                                                                                       
+                                                </div>
+                                                
+                                                    
+                                            </div>
+                                        </div>
+                                    </form>
+
+
                                 </div>
-                            </div>
-
-
-
-
-
+                            </div> 
                         <div class="card">
 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
-                                    <thead>
-
-
-
-
-
-
+                                    <thead> 
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -146,8 +161,8 @@
                         <td>{{$status}}</td>
             <td><a href="{{route('customers.edit',['id'=>$customers->id])}}">Edit</a></td>
             <td><a href="javascript:void(0)" class='btn btn-primary' onclick="openWalletPanel('{{$order->id??''}}', '{{route('user.wallet.balance', ['id'=>$customers->id])}}', {{$customers->id}})">Add/Revoke Balance</a></button></td>
-                                                <td>{{date('d/m/Y',strtotime($customers->created_at))}}</td>
-                                                <td>{{date('h:i:a',strtotime($customers->created_at))}}</td>
+            <td>{{date('d/m/Y',strtotime($customers->created_at))}}</td>
+            <td>{{date('h:i:a',strtotime($customers->created_at))}}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

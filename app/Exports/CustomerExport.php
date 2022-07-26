@@ -9,12 +9,19 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class CustomerExport implements FromView
 {
+    protected $customers;
+
+    function __construct($customers) { 
+        $this->customers = $customers;
+      }
+       
+
     public function view(): View
-    {
+    {  
         return view('admin.customers.export', [
-            'customer' =>  Customer::withCount(['orders'=>function($orders){
-                $orders->where('orders.status', '!=', 'cancelled');
-            }])->get()
-        ]);
+            'customer' => $this->customers             
+        ]);        
     }
 }
+
+ 
